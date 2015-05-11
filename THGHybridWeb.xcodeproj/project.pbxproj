@@ -1,0 +1,549 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		173E4E641B00FDAE00ACBCCA /* THGHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */; };
+		173E4E6B1B00FDAE00ACBCCA /* THGHybridWebTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E4E6A1B00FDAE00ACBCCA /* THGHybridWebTests.swift */; };
+		177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */; };
+		177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
+		177E5D921B00FE1A006BCBE2 /* HybridAPI+PageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */; };
+		177E5D931B00FE1A006BCBE2 /* HybridAPI+Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */; };
+		177E5D941B00FE1A006BCBE2 /* HybridAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */; };
+		177E5D951B00FE1A006BCBE2 /* JSValue+HybridAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */; };
+		177E5D961B00FE1A006BCBE2 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */; };
+		177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */; };
+		177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */; };
+		177E5DA91B00FE61006BCBE2 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177E5DA41B00FE30006BCBE2 /* THGBridge.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 173E4E4F1B00FDAD00ACBCCA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 173E4E571B00FDAD00ACBCCA;
+			remoteInfo = THGHybridWeb;
+		};
+		177E5DA31B00FE30006BCBE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 177E5D9B1B00FE30006BCBE2 /* THGBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CAC38A9D1AC3130B005A3CE0;
+			remoteInfo = THGBridge;
+		};
+		177E5DA51B00FE30006BCBE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 177E5D9B1B00FE30006BCBE2 /* THGBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CAC38AA81AC3130B005A3CE0;
+			remoteInfo = THGBridgeTests;
+		};
+		177E5DA71B00FE30006BCBE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 177E5D9B1B00FE30006BCBE2 /* THGBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA24107F1AF9692000AA4410;
+			remoteInfo = THGBridge_osx;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THGHybridWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		173E4E5C1B00FDAD00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THGHybridWeb.h; sourceTree = "<group>"; };
+		173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THGHybridWebTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		173E4E691B00FDAE00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		173E4E6A1B00FDAE00ACBCCA /* THGHybridWebTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THGHybridWebTests.swift; sourceTree = "<group>"; };
+		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; };
+		177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Logging.swift"; sourceTree = "<group>"; };
+		177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+PageState.swift"; sourceTree = "<group>"; };
+		177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Share.swift"; sourceTree = "<group>"; };
+		177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPI.swift; sourceTree = "<group>"; };
+		177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSValue+HybridAPI.swift"; sourceTree = "<group>"; };
+		177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerChild.swift; sourceTree = "<group>"; };
+		177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		177E5D9B1B00FE30006BCBE2 /* THGBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGBridge.xcodeproj; path = ../BridgeOfDeath/THGBridge.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		173E4E541B00FDAD00ACBCCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				177E5DA91B00FE61006BCBE2 /* THGBridge.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		173E4E601B00FDAE00ACBCCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				173E4E641B00FDAE00ACBCCA /* THGHybridWeb.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		173E4E4E1B00FDAD00ACBCCA = {
+			isa = PBXGroup;
+			children = (
+				177E5D9A1B00FE25006BCBE2 /* Modules */,
+				173E4E5A1B00FDAD00ACBCCA /* THGHybridWeb */,
+				173E4E671B00FDAE00ACBCCA /* THGHybridWebTests */,
+				173E4E591B00FDAD00ACBCCA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		173E4E591B00FDAD00ACBCCA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */,
+				173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		173E4E5A1B00FDAD00ACBCCA /* THGHybridWeb */ = {
+			isa = PBXGroup;
+			children = (
+				177E5D841B00FE1A006BCBE2 /* Source */,
+				173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */,
+				173E4E5B1B00FDAD00ACBCCA /* Supporting Files */,
+			);
+			path = THGHybridWeb;
+			sourceTree = "<group>";
+		};
+		173E4E5B1B00FDAD00ACBCCA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				173E4E5C1B00FDAD00ACBCCA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		173E4E671B00FDAE00ACBCCA /* THGHybridWebTests */ = {
+			isa = PBXGroup;
+			children = (
+				173E4E6A1B00FDAE00ACBCCA /* THGHybridWebTests.swift */,
+				173E4E681B00FDAE00ACBCCA /* Supporting Files */,
+			);
+			path = THGHybridWebTests;
+			sourceTree = "<group>";
+		};
+		173E4E681B00FDAE00ACBCCA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				173E4E691B00FDAE00ACBCCA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		177E5D841B00FE1A006BCBE2 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				177E5D851B00FE1A006BCBE2 /* JS API */,
+				177E5D8D1B00FE1A006BCBE2 /* Web View */,
+			);
+			path = Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		177E5D851B00FE1A006BCBE2 /* JS API */ = {
+			isa = PBXGroup;
+			children = (
+				177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */,
+				177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */,
+				177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */,
+				177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */,
+				177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */,
+				177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */,
+				177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */,
+			);
+			path = "JS API";
+			sourceTree = "<group>";
+		};
+		177E5D8D1B00FE1A006BCBE2 /* Web View */ = {
+			isa = PBXGroup;
+			children = (
+				177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */,
+				177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */,
+			);
+			path = "Web View";
+			sourceTree = "<group>";
+		};
+		177E5D9A1B00FE25006BCBE2 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				177E5D9B1B00FE30006BCBE2 /* THGBridge.xcodeproj */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		177E5D9C1B00FE30006BCBE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				177E5DA41B00FE30006BCBE2 /* THGBridge.framework */,
+				177E5DA61B00FE30006BCBE2 /* THGBridgeTests.xctest */,
+				177E5DA81B00FE30006BCBE2 /* THGBridge.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		173E4E551B00FDAD00ACBCCA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		173E4E571B00FDAD00ACBCCA /* THGHybridWeb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 173E4E6E1B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "THGHybridWeb" */;
+			buildPhases = (
+				173E4E531B00FDAD00ACBCCA /* Sources */,
+				173E4E541B00FDAD00ACBCCA /* Frameworks */,
+				173E4E551B00FDAD00ACBCCA /* Headers */,
+				173E4E561B00FDAD00ACBCCA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = THGHybridWeb;
+			productName = THGHybridWeb;
+			productReference = 173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		173E4E621B00FDAE00ACBCCA /* THGHybridWebTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 173E4E711B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "THGHybridWebTests" */;
+			buildPhases = (
+				173E4E5F1B00FDAE00ACBCCA /* Sources */,
+				173E4E601B00FDAE00ACBCCA /* Frameworks */,
+				173E4E611B00FDAE00ACBCCA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				173E4E661B00FDAE00ACBCCA /* PBXTargetDependency */,
+			);
+			name = THGHybridWebTests;
+			productName = THGHybridWebTests;
+			productReference = 173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		173E4E4F1B00FDAD00ACBCCA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = TheHolyGrail;
+				TargetAttributes = {
+					173E4E571B00FDAD00ACBCCA = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					173E4E621B00FDAE00ACBCCA = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 173E4E521B00FDAD00ACBCCA /* Build configuration list for PBXProject "THGHybridWeb" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 173E4E4E1B00FDAD00ACBCCA;
+			productRefGroup = 173E4E591B00FDAD00ACBCCA /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 177E5D9C1B00FE30006BCBE2 /* Products */;
+					ProjectRef = 177E5D9B1B00FE30006BCBE2 /* THGBridge.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				173E4E571B00FDAD00ACBCCA /* THGHybridWeb */,
+				173E4E621B00FDAE00ACBCCA /* THGHybridWebTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		177E5DA41B00FE30006BCBE2 /* THGBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = THGBridge.framework;
+			remoteRef = 177E5DA31B00FE30006BCBE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		177E5DA61B00FE30006BCBE2 /* THGBridgeTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = THGBridgeTests.xctest;
+			remoteRef = 177E5DA51B00FE30006BCBE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		177E5DA81B00FE30006BCBE2 /* THGBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = THGBridge.framework;
+			remoteRef = 177E5DA71B00FE30006BCBE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		173E4E561B00FDAD00ACBCCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		173E4E611B00FDAE00ACBCCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		173E4E531B00FDAD00ACBCCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */,
+				177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */,
+				177E5D921B00FE1A006BCBE2 /* HybridAPI+PageState.swift in Sources */,
+				177E5D961B00FE1A006BCBE2 /* Navigation.swift in Sources */,
+				177E5D941B00FE1A006BCBE2 /* HybridAPI.swift in Sources */,
+				177E5D931B00FE1A006BCBE2 /* HybridAPI+Share.swift in Sources */,
+				177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */,
+				177E5D951B00FE1A006BCBE2 /* JSValue+HybridAPI.swift in Sources */,
+				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		173E4E5F1B00FDAE00ACBCCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				173E4E6B1B00FDAE00ACBCCA /* THGHybridWebTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		173E4E661B00FDAE00ACBCCA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 173E4E571B00FDAD00ACBCCA /* THGHybridWeb */;
+			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		173E4E6C1B00FDAE00ACBCCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		173E4E6D1B00FDAE00ACBCCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		173E4E6F1B00FDAE00ACBCCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = THGHybridWeb/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		173E4E701B00FDAE00ACBCCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = THGHybridWeb/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		173E4E721B00FDAE00ACBCCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = THGHybridWebTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		173E4E731B00FDAE00ACBCCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = THGHybridWebTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		173E4E521B00FDAD00ACBCCA /* Build configuration list for PBXProject "THGHybridWeb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				173E4E6C1B00FDAE00ACBCCA /* Debug */,
+				173E4E6D1B00FDAE00ACBCCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		173E4E6E1B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "THGHybridWeb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				173E4E6F1B00FDAE00ACBCCA /* Debug */,
+				173E4E701B00FDAE00ACBCCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		173E4E711B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "THGHybridWebTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				173E4E721B00FDAE00ACBCCA /* Debug */,
+				173E4E731B00FDAE00ACBCCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 173E4E4F1B00FDAD00ACBCCA /* Project object */;
+}
