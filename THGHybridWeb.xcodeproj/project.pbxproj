@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		173E4E641B00FDAE00ACBCCA /* THGHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */; };
-		173E4E6B1B00FDAE00ACBCCA /* THGHybridWebTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E4E6A1B00FDAE00ACBCCA /* THGHybridWebTests.swift */; };
 		177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */; };
 		177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
 		177E5D921B00FE1A006BCBE2 /* HybridAPI+PageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */; };
@@ -19,7 +18,8 @@
 		177E5D961B00FE1A006BCBE2 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */; };
 		177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */; };
 		177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */; };
-		177E5DA91B00FE61006BCBE2 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177E5DA41B00FE30006BCBE2 /* THGBridge.framework */; };
+		177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */; };
+		177E5E021B014646006BCBE2 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177E5DA41B00FE30006BCBE2 /* THGBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +59,6 @@
 		173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THGHybridWeb.h; sourceTree = "<group>"; };
 		173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THGHybridWebTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E691B00FDAE00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		173E4E6A1B00FDAE00ACBCCA /* THGHybridWebTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THGHybridWebTests.swift; sourceTree = "<group>"; };
 		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; };
 		177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Logging.swift"; sourceTree = "<group>"; };
 		177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+PageState.swift"; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerChild.swift; sourceTree = "<group>"; };
 		177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		177E5D9B1B00FE30006BCBE2 /* THGBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGBridge.xcodeproj; path = ../BridgeOfDeath/THGBridge.xcodeproj; sourceTree = "<group>"; };
+		177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				177E5DA91B00FE61006BCBE2 /* THGBridge.framework in Frameworks */,
+				177E5E021B014646006BCBE2 /* THGBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +132,7 @@
 		173E4E671B00FDAE00ACBCCA /* THGHybridWebTests */ = {
 			isa = PBXGroup;
 			children = (
-				173E4E6A1B00FDAE00ACBCCA /* THGHybridWebTests.swift */,
+				177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */,
 				173E4E681B00FDAE00ACBCCA /* Supporting Files */,
 			);
 			path = THGHybridWebTests;
@@ -349,7 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173E4E6B1B00FDAE00ACBCCA /* THGHybridWebTests.swift in Sources */,
+				177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
