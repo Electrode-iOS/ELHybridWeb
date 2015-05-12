@@ -196,16 +196,3 @@ extension UIView {
         return image
     }
 }
-
-// MARK: - UIWebView's JavaScriptContext
-
-private let webViewJavaScriptContextPath = "documentView.webView.mainFrame.javaScriptContext"
-
-extension UIWebView {
-    /**
-    Retreive the JavaScript context from the web view.
-    */
-    var javaScriptContext: JSContext? {
-        return valueForKeyPath(webViewJavaScriptContextPath) as? JSContext
-    }
-}

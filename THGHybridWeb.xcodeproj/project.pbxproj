@@ -20,6 +20,7 @@
 		177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */; };
 		177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */; };
 		177E5E021B014646006BCBE2 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177E5DA41B00FE30006BCBE2 /* THGBridge.framework */; };
+		17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		177E5D9B1B00FE30006BCBE2 /* THGBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGBridge.xcodeproj; path = ../BridgeOfDeath/THGBridge.xcodeproj; sourceTree = "<group>"; };
 		177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPITests.swift; sourceTree = "<group>"; };
+		17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+JavaScriptContext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			children = (
 				177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */,
 				177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */,
+				17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */,
 			);
 			path = "Web View";
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				177E5D931B00FE1A006BCBE2 /* HybridAPI+Share.swift in Sources */,
 				177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */,
 				177E5D951B00FE1A006BCBE2 /* JSValue+HybridAPI.swift in Sources */,
+				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
