@@ -13,7 +13,7 @@ import JavaScriptCore
 
 private let webViewJavaScriptContextPath = "documentView.webView.mainFrame.javaScriptContext"
 
-extension UIWebView {
+public extension UIWebView {
     /**
     Retreive the JavaScript context from the web view.
     */
