@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		177DA81F1B064C450006457E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177DA81D1B064C450006457E /* DetailViewController.swift */; };
+		177DA8201B064C450006457E /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177DA81E1B064C450006457E /* DetailViewController.xib */; };
 		177E5DB91B00FF22006BCBE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DB81B00FF22006BCBE2 /* AppDelegate.swift */; };
 		177E5DBB1B00FF22006BCBE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DBA1B00FF22006BCBE2 /* ViewController.swift */; };
-		177E5DBE1B00FF22006BCBE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 177E5DBC1B00FF22006BCBE2 /* Main.storyboard */; };
 		177E5DC01B00FF22006BCBE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 177E5DBF1B00FF22006BCBE2 /* Images.xcassets */; };
 		177E5DC31B00FF22006BCBE2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177E5DC11B00FF22006BCBE2 /* LaunchScreen.xib */; };
 		177E5DCF1B00FF22006BCBE2 /* ZootExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */; };
 		177E5DE51B00FF87006BCBE2 /* THGHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177E5DE11B00FF42006BCBE2 /* THGHybridWeb.framework */; };
+		17EA19721B0ABB5300E011CB /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EA19711B0ABB5300E011CB /* ViewController.xib */; };
+		17ED5C971B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,17 +44,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		177DA81D1B064C450006457E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		177DA81E1B064C450006457E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		177E5DB31B00FF22006BCBE2 /* ZootExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZootExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		177E5DB71B00FF22006BCBE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		177E5DB81B00FF22006BCBE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		177E5DBA1B00FF22006BCBE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		177E5DBD1B00FF22006BCBE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		177E5DBF1B00FF22006BCBE2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		177E5DC21B00FF22006BCBE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		177E5DC81B00FF22006BCBE2 /* ZootExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZootExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		177E5DCD1B00FF22006BCBE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZootExampleTests.swift; sourceTree = "<group>"; };
 		177E5DD81B00FF42006BCBE2 /* THGHybridWeb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGHybridWeb.xcodeproj; path = ../THGHybridWeb.xcodeproj; sourceTree = "<group>"; };
+		17EA19711B0ABB5300E011CB /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+NativeDetailView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +103,10 @@
 			children = (
 				177E5DB81B00FF22006BCBE2 /* AppDelegate.swift */,
 				177E5DBA1B00FF22006BCBE2 /* ViewController.swift */,
-				177E5DBC1B00FF22006BCBE2 /* Main.storyboard */,
+				17EA19711B0ABB5300E011CB /* ViewController.xib */,
+				177DA81D1B064C450006457E /* DetailViewController.swift */,
+				177DA81E1B064C450006457E /* DetailViewController.xib */,
+				17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */,
 				177E5DBF1B00FF22006BCBE2 /* Images.xcassets */,
 				177E5DC11B00FF22006BCBE2 /* LaunchScreen.xib */,
 				177E5DB61B00FF22006BCBE2 /* Supporting Files */,
@@ -242,8 +251,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				177E5DBE1B00FF22006BCBE2 /* Main.storyboard in Resources */,
 				177E5DC31B00FF22006BCBE2 /* LaunchScreen.xib in Resources */,
+				177DA8201B064C450006457E /* DetailViewController.xib in Resources */,
+				17EA19721B0ABB5300E011CB /* ViewController.xib in Resources */,
 				177E5DC01B00FF22006BCBE2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,7 +272,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177DA81F1B064C450006457E /* DetailViewController.swift in Sources */,
 				177E5DBB1B00FF22006BCBE2 /* ViewController.swift in Sources */,
+				17ED5C971B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift in Sources */,
 				177E5DB91B00FF22006BCBE2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,14 +298,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		177E5DBC1B00FF22006BCBE2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				177E5DBD1B00FF22006BCBE2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		177E5DC11B00FF22006BCBE2 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -7,30 +7,23 @@
 //
 
 import UIKit
+import JavaScriptCore
 import THGHybridWeb
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func openWebView(sender: UIButton) {
-        let webController = WebViewController()
-        webController.addHybridAPI()
-        let navController = UINavigationController(rootViewController: webController)
-        //        let url = NSURL(string: "https://dl.dropboxusercontent.com/u/6589453/wm/bridge/bridge-test.html")!
-        //        let url = NSURL(string: "http://bridgeofdeath.herokuapp.com/")!
-        let url = NSURL(string: "http://localhost:3000/")!
+    
+    var webViewURL = NSURL(string: "http://localhost:3000/")
         
-        webController.loadURL(url)
-        presentViewController(navController, animated: true, completion: nil)
+    /**
+     Example of pusing a web view from a native view.
+    */
+    @IBAction func pushWebView(sender: UIButton) {
+        if let url = webViewURL {
+            let webController = WebViewController()
+            webController.addHybridAPI()
+            webController.loadURL(url)
+            
+            navigationController?.pushViewController(webController, animated: true)
+        }
     }
 }
-
