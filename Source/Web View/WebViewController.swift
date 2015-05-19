@@ -29,7 +29,7 @@ public class WebViewController: UIViewController {
         return !isMovingFromParentViewController() && webView.superview != view
     }
     
-    convenience init(webView: UIWebView, bridge: Bridge) {
+    public convenience init(webView: UIWebView, bridge: Bridge) {
         self.init(nibName: nil, bundle: nil)
         self.bridge = bridge
         self.webView = webView
