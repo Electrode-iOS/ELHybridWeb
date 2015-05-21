@@ -4,7 +4,17 @@ Zoot (`THGHybridWeb` module) is a Swift framework that provides a bridged JavaSc
 
 ## Installation
 
-Install by adding THGHybridWeb.xcodeproj to your project and configuring your target to link THGHybridWeb.framework.
+### Carthage
+
+Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+
+```
+github "TheHolyGrail/Zoot" ~> 0.0.2
+```
+
+### Manual
+
+Install manually by adding THGHybridWeb.xcodeproj to your project and configuring your target to link THGHybridWeb.framework.
 
 Zoot depends on the following [THG](https://github.com/TheHolyGrail/) modules:
 

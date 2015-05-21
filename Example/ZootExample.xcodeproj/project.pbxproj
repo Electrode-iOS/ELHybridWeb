@@ -14,7 +14,11 @@
 		177E5DC01B00FF22006BCBE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 177E5DBF1B00FF22006BCBE2 /* Images.xcassets */; };
 		177E5DC31B00FF22006BCBE2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177E5DC11B00FF22006BCBE2 /* LaunchScreen.xib */; };
 		177E5DCF1B00FF22006BCBE2 /* ZootExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */; };
-		177E5DE51B00FF87006BCBE2 /* THGHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177E5DE11B00FF42006BCBE2 /* THGHybridWeb.framework */; };
+		1786AFE11B0E611F005B7559 /* THGHybridWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17E55D681B0E419900DA11BB /* THGHybridWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1786AFED1B0E6220005B7559 /* THGBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFEA1B0E6220005B7559 /* THGBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1786AFEE1B0E6220005B7559 /* THGFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFEB1B0E6220005B7559 /* THGFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1786AFEF1B0E6220005B7559 /* THGLog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFEC1B0E6220005B7559 /* THGLog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		17E55D6B1B0E41A900DA11BB /* THGHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E55D681B0E419900DA11BB /* THGHybridWeb.framework */; };
 		17EA19721B0ABB5300E011CB /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EA19711B0ABB5300E011CB /* ViewController.xib */; };
 		17ED5C971B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */; };
 /* End PBXBuildFile section */
@@ -27,21 +31,45 @@
 			remoteGlobalIDString = 177E5DB21B00FF22006BCBE2;
 			remoteInfo = ZootExample;
 		};
-		177E5DE01B00FF42006BCBE2 /* PBXContainerItemProxy */ = {
+		1786AFE21B0E611F005B7559 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 177E5DD81B00FF42006BCBE2 /* THGHybridWeb.xcodeproj */;
+			containerPortal = 17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 173E4E571B00FDAD00ACBCCA;
+			remoteInfo = THGHybridWeb;
+		};
+		17E55D671B0E419900DA11BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 173E4E581B00FDAD00ACBCCA;
 			remoteInfo = THGHybridWeb;
 		};
-		177E5DE21B00FF42006BCBE2 /* PBXContainerItemProxy */ = {
+		17E55D691B0E419900DA11BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 177E5DD81B00FF42006BCBE2 /* THGHybridWeb.xcodeproj */;
+			containerPortal = 17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 173E4E631B00FDAE00ACBCCA;
 			remoteInfo = THGHybridWebTests;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		17E55D7B1B0E420400DA11BB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1786AFE11B0E611F005B7559 /* THGHybridWeb.framework in Embed Frameworks */,
+				1786AFED1B0E6220005B7559 /* THGBridge.framework in Embed Frameworks */,
+				1786AFEE1B0E6220005B7559 /* THGFoundation.framework in Embed Frameworks */,
+				1786AFEF1B0E6220005B7559 /* THGLog.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		177DA81D1B064C450006457E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +83,10 @@
 		177E5DC81B00FF22006BCBE2 /* ZootExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZootExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		177E5DCD1B00FF22006BCBE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZootExampleTests.swift; sourceTree = "<group>"; };
-		177E5DD81B00FF42006BCBE2 /* THGHybridWeb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGHybridWeb.xcodeproj; path = ../THGHybridWeb.xcodeproj; sourceTree = "<group>"; };
+		1786AFEA1B0E6220005B7559 /* THGBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGBridge.framework; path = ../Carthage/Build/iOS/THGBridge.framework; sourceTree = "<group>"; };
+		1786AFEB1B0E6220005B7559 /* THGFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGFoundation.framework; path = ../Carthage/Build/iOS/THGFoundation.framework; sourceTree = "<group>"; };
+		1786AFEC1B0E6220005B7559 /* THGLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGLog.framework; path = ../Carthage/Build/iOS/THGLog.framework; sourceTree = "<group>"; };
+		17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGHybridWeb.xcodeproj; path = ../THGHybridWeb.xcodeproj; sourceTree = "<group>"; };
 		17EA19711B0ABB5300E011CB /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+NativeDetailView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				177E5DE51B00FF87006BCBE2 /* THGHybridWeb.framework in Frameworks */,
+				17E55D6B1B0E41A900DA11BB /* THGHybridWeb.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +113,8 @@
 		177E5DAA1B00FF22006BCBE2 = {
 			isa = PBXGroup;
 			children = (
-				177E5DD81B00FF42006BCBE2 /* THGHybridWeb.xcodeproj */,
+				1786AFF01B0E62BC005B7559 /* Frameworks */,
+				17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */,
 				177E5DB51B00FF22006BCBE2 /* ZootExample */,
 				177E5DCB1B00FF22006BCBE2 /* ZootExampleTests */,
 				177E5DB41B00FF22006BCBE2 /* Products */,
@@ -139,11 +171,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		177E5DD91B00FF42006BCBE2 /* Products */ = {
+		1786AFF01B0E62BC005B7559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				177E5DE11B00FF42006BCBE2 /* THGHybridWeb.framework */,
-				177E5DE31B00FF42006BCBE2 /* THGHybridWebTests.xctest */,
+				1786AFEA1B0E6220005B7559 /* THGBridge.framework */,
+				1786AFEB1B0E6220005B7559 /* THGFoundation.framework */,
+				1786AFEC1B0E6220005B7559 /* THGLog.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		17E55D631B0E419900DA11BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17E55D681B0E419900DA11BB /* THGHybridWeb.framework */,
+				17E55D6A1B0E419900DA11BB /* THGHybridWebTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,10 +200,12 @@
 				177E5DAF1B00FF22006BCBE2 /* Sources */,
 				177E5DB01B00FF22006BCBE2 /* Frameworks */,
 				177E5DB11B00FF22006BCBE2 /* Resources */,
+				17E55D7B1B0E420400DA11BB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1786AFE31B0E611F005B7559 /* PBXTargetDependency */,
 			);
 			name = ZootExample;
 			productName = ZootExample;
@@ -217,8 +261,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 177E5DD91B00FF42006BCBE2 /* Products */;
-					ProjectRef = 177E5DD81B00FF42006BCBE2 /* THGHybridWeb.xcodeproj */;
+					ProductGroup = 17E55D631B0E419900DA11BB /* Products */;
+					ProjectRef = 17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -230,18 +274,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		177E5DE11B00FF42006BCBE2 /* THGHybridWeb.framework */ = {
+		17E55D681B0E419900DA11BB /* THGHybridWeb.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = THGHybridWeb.framework;
-			remoteRef = 177E5DE01B00FF42006BCBE2 /* PBXContainerItemProxy */;
+			remoteRef = 17E55D671B0E419900DA11BB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		177E5DE31B00FF42006BCBE2 /* THGHybridWebTests.xctest */ = {
+		17E55D6A1B0E419900DA11BB /* THGHybridWebTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = THGHybridWebTests.xctest;
-			remoteRef = 177E5DE21B00FF42006BCBE2 /* PBXContainerItemProxy */;
+			remoteRef = 17E55D691B0E419900DA11BB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -294,6 +338,11 @@
 			isa = PBXTargetDependency;
 			target = 177E5DB21B00FF22006BCBE2 /* ZootExample */;
 			targetProxy = 177E5DC91B00FF22006BCBE2 /* PBXContainerItemProxy */;
+		};
+		1786AFE31B0E611F005B7559 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = THGHybridWeb;
+			targetProxy = 1786AFE21B0E611F005B7559 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -396,6 +445,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ZootExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -406,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ZootExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
