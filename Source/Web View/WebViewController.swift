@@ -11,6 +11,17 @@ import JavaScriptCore
 import THGBridge
 
 /**
+ Defines methods that a delegate of a WebViewController object can optionally 
+ implement to interact with the web view's loading cycle.
+*/
+@objc public protocol WebViewControllerDelegate {
+optional func webViewController(webViewController: WebViewController, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
+    optional func webViewControllerDidStartLoad(webViewController: WebViewController)
+    optional func webViewControllerDidFinishLoad(webViewController: WebViewController)
+    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
+}
+
+/**
  A view controller that integrates a web view with the hybrid JavaScript API.
 */
 public class WebViewController: UIViewController {
@@ -20,6 +31,7 @@ public class WebViewController: UIViewController {
     private(set) public var bridge = Bridge()
     private var hasAppeared = false
     private var showWebViewOnAppear = false
+    public weak var delegate: WebViewControllerDelegate?
 
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
@@ -104,7 +116,7 @@ extension WebViewController {
 extension WebViewController: UIWebViewDelegate {
     
     public func webViewDidStartLoad(webView: UIWebView) {
-        
+        delegate?.webViewControllerDidStartLoad?(self)
     }
     
     public func webViewDidFinishLoad(webView: UIWebView) {
@@ -122,6 +134,8 @@ extension WebViewController: UIWebViewDelegate {
             updateBridgeContext() // todo: listen for context changes
             attemptToShowWebView()
         }
+        
+        delegate?.webViewControllerDidFinishLoad?(self)
     }
     
     public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -130,11 +144,12 @@ extension WebViewController: UIWebViewDelegate {
             pushWebViewController()
         }
         
-        return true
+        return delegate?.webViewController?(self, shouldStartLoadWithRequest: request, navigationType: navigationType) ?? true
     }
     
     public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         println("WebViewController Error: \(error)")
+        delegate?.webViewController?(self, didFailLoadWithError: error)
     }
 }
 
