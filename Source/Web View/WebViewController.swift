@@ -27,7 +27,11 @@ optional func webViewController(webViewController: WebViewController, shouldStar
 public class WebViewController: UIViewController {
     
     private(set) public var url: NSURL?
-    private(set) public var webView = UIWebView(frame: CGRectZero)
+    private(set) public lazy var webView: UIWebView = {
+        let webView =  UIWebView(frame: CGRectZero)
+        webView.delegate = self
+        return webView
+    }()
     private(set) public var bridge = Bridge()
     private var hasAppeared = false
     private var showWebViewOnAppear = false
