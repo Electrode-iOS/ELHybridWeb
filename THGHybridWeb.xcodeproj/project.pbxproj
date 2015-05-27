@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		173E4E641B00FDAE00ACBCCA /* THGHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */; };
+		17558CE21B14F5DA0070DE6B /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD31B0E60AB005B7559 /* THGBridge.framework */; };
+		17558CE31B14F5DA0070DE6B /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD41B0E60AB005B7559 /* THGFoundation.framework */; };
+		17558CE41B14F5DA0070DE6B /* THGLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD51B0E60AB005B7559 /* THGLog.framework */; };
 		177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */; };
 		177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
 		177E5D921B00FE1A006BCBE2 /* HybridAPI+PageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */; };
@@ -19,12 +21,12 @@
 		177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */; };
 		177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */; };
 		177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */; };
+		178412211B16722900EECF8B /* THGBridge.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1786AFD31B0E60AB005B7559 /* THGBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		178412221B16722900EECF8B /* THGFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1786AFD41B0E60AB005B7559 /* THGFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		178412231B16722900EECF8B /* THGLog.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1786AFD51B0E60AB005B7559 /* THGLog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1786AFD61B0E60AB005B7559 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD31B0E60AB005B7559 /* THGBridge.framework */; };
 		1786AFD71B0E60AB005B7559 /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD41B0E60AB005B7559 /* THGFoundation.framework */; };
 		1786AFD81B0E60AB005B7559 /* THGLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD51B0E60AB005B7559 /* THGLog.framework */; };
-		1786AFD91B0E60BC005B7559 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD31B0E60AB005B7559 /* THGBridge.framework */; };
-		1786AFDA1B0E60BC005B7559 /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD41B0E60AB005B7559 /* THGFoundation.framework */; };
-		1786AFDB1B0E60BC005B7559 /* THGLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD51B0E60AB005B7559 /* THGLog.framework */; };
 		17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
 		17E076EA1B025AA2008F89EC /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,21 @@
 			remoteInfo = THGHybridWeb;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		178412201B16721800EECF8B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				178412211B16722900EECF8B /* THGBridge.framework in CopyFiles */,
+				178412221B16722900EECF8B /* THGFoundation.framework in CopyFiles */,
+				178412231B16722900EECF8B /* THGLog.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THGHybridWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,10 +94,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173E4E641B00FDAE00ACBCCA /* THGHybridWeb.framework in Frameworks */,
-				1786AFD91B0E60BC005B7559 /* THGBridge.framework in Frameworks */,
-				1786AFDA1B0E60BC005B7559 /* THGFoundation.framework in Frameworks */,
-				1786AFDB1B0E60BC005B7559 /* THGLog.framework in Frameworks */,
+				17558CE21B14F5DA0070DE6B /* THGBridge.framework in Frameworks */,
+				17558CE31B14F5DA0070DE6B /* THGFoundation.framework in Frameworks */,
+				17558CE41B14F5DA0070DE6B /* THGLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +232,7 @@
 				173E4E5F1B00FDAE00ACBCCA /* Sources */,
 				173E4E601B00FDAE00ACBCCA /* Frameworks */,
 				173E4E611B00FDAE00ACBCCA /* Resources */,
+				178412201B16721800EECF8B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -449,6 +466,7 @@
 		173E4E721B00FDAE00ACBCCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -467,6 +485,7 @@
 		173E4E731B00FDAE00ACBCCA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
