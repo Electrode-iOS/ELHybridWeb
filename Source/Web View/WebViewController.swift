@@ -15,7 +15,7 @@ import THGBridge
  implement to interact with the web view's loading cycle.
 */
 @objc public protocol WebViewControllerDelegate {
-optional func webViewController(webViewController: WebViewController, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
+    optional func webViewController(webViewController: WebViewController, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
     optional func webViewControllerDidStartLoad(webViewController: WebViewController)
     optional func webViewControllerDidFinishLoad(webViewController: WebViewController)
     optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
@@ -41,9 +41,7 @@ public class WebViewController: UIViewController {
         return UIImageView(frame: self.view.bounds)
     }()
     
-    var isAppearingFromPop: Bool {
-        return !isMovingFromParentViewController() && webView.superview != view
-    }
+    var goBackInWebViewOnAppear = false
     
     public convenience init(webView: UIWebView, bridge: Bridge) {
         self.init(nibName: nil, bundle: nil)
@@ -72,7 +70,8 @@ public class WebViewController: UIViewController {
         
         bridge.hybridAPI?.parentViewController = self
         
-        if isAppearingFromPop {
+        if goBackInWebViewOnAppear {
+            goBackInWebViewOnAppear = false
             webView.goBack() // go back before remove/adding web view
         }
         
@@ -98,7 +97,7 @@ public class WebViewController: UIViewController {
     
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        goBackInWebViewOnAppear = true
         placeholderImageView.frame = webView.frame // must align frames for image capture
         placeholderImageView.image = webView.captureImage()
         webView.hidden = true

@@ -10,7 +10,7 @@ import Foundation
 
 protocol ViewControllerChildType {
     weak var parentViewController: UIViewController? {get set}
-     init(parentViewController: UIViewController)
+    init(parentViewController: UIViewController)
 }
 
 @objc public class ViewControllerChild: NSObject, ViewControllerChildType {
