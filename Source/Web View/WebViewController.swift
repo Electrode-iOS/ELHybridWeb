@@ -97,7 +97,7 @@ public class WebViewController: UIViewController {
     
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        goBackInWebViewOnAppear = true
+        
         placeholderImageView.frame = webView.frame // must align frames for image capture
         placeholderImageView.image = webView.captureImage()
         webView.hidden = true
@@ -179,26 +179,25 @@ extension WebViewController {
 
 // MARK: - Web Controller Navigation
 
-extension WebViewController: HybridNavigationViewController {
+extension WebViewController {
 
-    func pushWebViewController() {
+    /**
+     Call to push a new web view controller on the navigation stack using the
+     existing web view instance.
+    */
+    public func pushWebViewController() {
+        goBackInWebViewOnAppear = true
+        
         let webViewController = WebViewController(webView: webView, bridge: bridge)
         navigationController?.pushViewController(webViewController, animated: true)
     }
     
-    func popWebViewController() {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
-    func pushesWebViewControllerForNavigationType(navigationType: UIWebViewNavigationType) -> Bool {
-        switch navigationType {
-        default:
-            return false
-        }
-    }
-    
-    func nextViewController() -> UIViewController {
-        return WebViewController(webView: webView, bridge: bridge)
+    /**
+     Return `true` to have the web view controller push a new web view controller
+     on the stack for a given navigation type of a request.
+    */
+    public func pushesWebViewControllerForNavigationType(navigationType: UIWebViewNavigationType) -> Bool {
+        return false
     }
 }
 

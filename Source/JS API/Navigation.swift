@@ -8,10 +8,6 @@
 
 import JavaScriptCore
 
-protocol HybridNavigationViewController: class {
-    func nextViewController() -> UIViewController
-}
-
 @objc protocol NavigationJSExport: JSExport {
     func animateBackward()
     func animateForward()
@@ -19,15 +15,13 @@ protocol HybridNavigationViewController: class {
 
 @objc public class Navigation: ViewControllerChild, NavigationJSExport {
     
-    weak var hybridNavigationViewController: HybridNavigationViewController? {
-        return parentViewController as? HybridNavigationViewController
+    weak var webViewController: WebViewController? {
+        return parentViewController as? WebViewController
     }
     
     func animateForward() {
         dispatch_async(dispatch_get_main_queue()) {
-            if let viewController = self.hybridNavigationViewController?.nextViewController() {
-                self.parentViewController?.navigationController?.pushViewController(viewController, animated: true)
-            }
+            self.webViewController?.pushWebViewController()
         }
     }
     
