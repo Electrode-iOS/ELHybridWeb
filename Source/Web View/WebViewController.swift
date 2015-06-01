@@ -83,6 +83,8 @@ public class WebViewController: UIViewController {
         if !webView.loading {
             showWebViewOnAppear = true
         }
+        
+        view.disableDoubleTap()
     }
     
     public override func viewDidAppear(animated: Bool) {
@@ -211,5 +213,20 @@ extension UIView {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
+    }
+    
+    func disableDoubleTap() {
+        for view in self.subviews {
+            view.disableDoubleTap()
+        }
+        
+        if let gestureRecognizers = gestureRecognizers {
+            for gesture in gestureRecognizers {
+                if let gesture = gesture as? UITapGestureRecognizer
+                    where gesture.numberOfTapsRequired == 2 {
+                    removeGestureRecognizer(gesture)
+                }
+            }
+        }
     }
 }
