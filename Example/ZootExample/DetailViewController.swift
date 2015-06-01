@@ -39,14 +39,7 @@ class DetailViewController: UIViewController {
     */
     @IBAction func pushWebViewCallback(sender: UIButton) {
         
-        if let previous = previousWebViewController {
-            let webViewController = WebViewController(webView: previous.webView, bridge: previous.bridge)
-            
-            if let webCallback = webCallback {
-                webCallback.callWithArguments([testOutput])
-            }
-            
-            navigationController?.pushViewController(webViewController, animated: true)
-        }
+        webCallback?.callWithArguments([testOutput])
+        previousWebViewController?.pushWebViewController()
     }
 }
