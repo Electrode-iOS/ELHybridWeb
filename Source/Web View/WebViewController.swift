@@ -35,6 +35,7 @@ public class WebViewController: UIViewController {
     private(set) public var bridge = Bridge()
     private var hasAppeared = false
     private var showWebViewOnAppear = false
+    private var storedScreenshotGUID: String? = nil
     public weak var delegate: WebViewControllerDelegate?
 
     private lazy var placeholderImageView: UIImageView = {
@@ -53,6 +54,16 @@ public class WebViewController: UIViewController {
     deinit {
         if webView.delegate === self {
             webView.delegate = nil
+        }
+    }
+    
+    private func showWebView() {
+        // maybe delay this just a tad since loading is unpredictable??  I dunno.
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.webView.hidden = false
+            self.placeholderImageView.image = nil
+            self.view.sendSubviewToBack(self.placeholderImageView)
         }
     }
     
@@ -83,6 +94,13 @@ public class WebViewController: UIViewController {
         if !webView.loading {
             showWebViewOnAppear = true
         }
+
+        // if we have a screenshot stored, load it.
+        if let guid = storedScreenshotGUID {
+            placeholderImageView.image = UIImage.loadImageFromGUID(guid)
+            placeholderImageView.frame = view.bounds
+            view.bringSubviewToFront(placeholderImageView)
+        }
     }
     
     public override func viewDidAppear(animated: Bool) {
@@ -91,16 +109,28 @@ public class WebViewController: UIViewController {
         hasAppeared = true
         
         if showWebViewOnAppear {
-            webView.hidden = false
+            showWebView()
         }
     }
     
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // we're going away, store the screen shot
         placeholderImageView.frame = webView.frame // must align frames for image capture
-        placeholderImageView.image = webView.captureImage()
+        let image = webView.captureImage()
+        placeholderImageView.image = image
+        storedScreenshotGUID = image.saveImageToGUID()
+        view.bringSubviewToFront(placeholderImageView)
+        
         webView.hidden = true
+    }
+    
+    public override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // we're gone.  dump the screenshot, we'll load it later if we need to.
+        placeholderImageView.image = nil
     }
 }
 
@@ -126,7 +156,7 @@ extension WebViewController: UIWebViewDelegate {
         
         func attemptToShowWebView() {
             if hasAppeared {
-                webView.hidden = false
+                showWebView()
             } else {
                 // wait for viewDidAppear to show web view
                 showWebViewOnAppear = true
@@ -212,4 +242,53 @@ extension UIView {
         UIGraphicsEndImageContext()
         return image
     }
+    
+}
+
+// MARK: - UIImage utils
+
+extension UIImage {
+    
+    // saves image to temp directory and returns a GUID so you can fetch it later.
+    func saveImageToGUID() -> String? {
+        let guid = String.GUID()
+        
+        // do this shit in the background.
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            let data = UIImageJPEGRepresentation(self, 1.0)
+            if let data = data {
+                let fileManager = NSFileManager.defaultManager()
+                
+                let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
+                fileManager.createFileAtPath(fullPath, contents: data, attributes: nil)
+            }
+        }
+        
+        return guid
+    }
+    
+    class func loadImageFromGUID(guid: String?) -> UIImage? {
+        if let guid = guid {
+            let fileManager = NSFileManager.defaultManager()
+            let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
+            let image = UIImage(contentsOfFile: fullPath)
+            return image
+        }
+        return nil
+    }
+    
+    /*+ (void)saveImage:(UIImage *)image withName:(NSString *)name {
+    NSData *data = UIImageJPEGRepresentation(image, 1.0);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:name];
+    [fileManager createFileAtPath:fullPath contents:data attributes:nil];
+    }
+    
+    + (UIImage *)loadImage:(NSString *)name {
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:name];
+    UIImage *img = [UIImage imageWithContentsOfFile:fullPath];
+    
+    return img;
+    }*/
+    
 }
