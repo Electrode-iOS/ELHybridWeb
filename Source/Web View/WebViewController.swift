@@ -292,19 +292,4 @@ extension UIImage {
         }
         return nil
     }
-    
-    /*+ (void)saveImage:(UIImage *)image withName:(NSString *)name {
-    NSData *data = UIImageJPEGRepresentation(image, 1.0);
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:name];
-    [fileManager createFileAtPath:fullPath contents:data attributes:nil];
-    }
-    
-    + (UIImage *)loadImage:(NSString *)name {
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:name];
-    UIImage *img = [UIImage imageWithContentsOfFile:fullPath];
-    
-    return img;
-    }*/
-    
 }
