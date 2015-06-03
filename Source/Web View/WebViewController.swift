@@ -15,9 +15,32 @@ import THGBridge
  implement to interact with the web view's loading cycle.
 */
 @objc public protocol WebViewControllerDelegate {
+    /**
+     Sent before the web view begins loading a frame.
+     :param: webViewController The web view controller loading the web view frame.
+     :param: request The request that will load the frame.
+     :param: navigationType The type of user action that started the load.
+     :returns: Return true to
+    */
     optional func webViewController(webViewController: WebViewController, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
+    
+    /**
+     Sent before the web view begins loading a frame.
+     :param: webViewController The web view controller that has begun loading the frame.
+    */
     optional func webViewControllerDidStartLoad(webViewController: WebViewController)
+    
+    /**
+     Sent after the web view as finished loading a frame.
+     :param: webViewController The web view controller that has completed loading the frame.
+    */
     optional func webViewControllerDidFinishLoad(webViewController: WebViewController)
+    
+    /**
+     Sent if the web view fails to load a frame.
+     :param: webViewController The web view controller that failed to load the frame.
+     :param: error The error that occured during loading.
+    */
     optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
 }
 
@@ -36,13 +59,12 @@ public class WebViewController: UIViewController {
     private var hasAppeared = false
     private var showWebViewOnAppear = false
     private var storedScreenshotGUID: String? = nil
-    public weak var delegate: WebViewControllerDelegate?
-
+    private var goBackInWebViewOnAppear = false
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
     
-    var goBackInWebViewOnAppear = false
+    public weak var delegate: WebViewControllerDelegate?
     
     public convenience init(webView: UIWebView, bridge: Bridge) {
         self.init(nibName: nil, bundle: nil)
