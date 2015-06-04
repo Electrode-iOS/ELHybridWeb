@@ -79,16 +79,6 @@ public class WebViewController: UIViewController {
         }
     }
     
-    private func showWebView() {
-        // maybe delay this just a tad since loading is unpredictable??  I dunno.
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.webView.hidden = false
-            self.placeholderImageView.image = nil
-            self.view.sendSubviewToBack(self.placeholderImageView)
-        }
-    }
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,7 +107,7 @@ public class WebViewController: UIViewController {
             showWebViewOnAppear = true
         }
         
-        view.disableDoubleTap()
+        view.removeDoubleTapGestures()
 
         // if we have a screenshot stored, load it.
         if let guid = storedScreenshotGUID {
@@ -155,6 +145,16 @@ public class WebViewController: UIViewController {
         
         // we're gone.  dump the screenshot, we'll load it later if we need to.
         placeholderImageView.image = nil
+    }
+    
+    private func showWebView() {
+        // maybe delay this just a tad since loading is unpredictable??  I dunno.
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.webView.hidden = false
+            self.placeholderImageView.image = nil
+            self.view.sendSubviewToBack(self.placeholderImageView)
+        }
     }
 }
 
@@ -267,9 +267,9 @@ extension UIView {
         return image
     }
     
-    func disableDoubleTap() {
+    func removeDoubleTapGestures() {
         for view in self.subviews {
-            view.disableDoubleTap()
+            view.removeDoubleTapGestures()
         }
         
         if let gestureRecognizers = gestureRecognizers {
