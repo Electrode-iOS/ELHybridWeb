@@ -1,6 +1,8 @@
 Platform API documentation
 ==========================
 
+## Global API functions ##
+
 #### nativeBridgeReady()
 
 An optional callback to invoke after the web view has finished loading and the bridge APIs are ready for use. Note,
@@ -29,7 +31,7 @@ if (window.NativeBridge === undefined) {
 }
 ```
 
-### NativeBridge
+## NativeBridge Object ##
 
 #### share()
 
@@ -90,7 +92,7 @@ window.NativeBridge.dialog(options, function(error, id) {
 
 ```
 
-### NativeBridge.navigationBar
+## NativeBridge.navigationBar ##
 
 #### setTitle()
 
