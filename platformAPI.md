@@ -132,24 +132,6 @@ NativeBridge.navigationBar.setTitle("Item Details");
 
 ```
 
-#### createButton()
-
-Create a navigation bar button object.
-
-**Parameters**
-
-- `title` (string) - Title text of button.
-- `onClick` (function) - Function to call when button is tapped.
-
-**Example**
-
-```
-var cancelButton = NativeBridge.navigationBar.createButton("Cancel", function () {
-   // handle cancel button tap
-});
-
-```
-
 #### setButtons()
 
 Set the navigation bar's buttons with an array of button objects.
@@ -157,20 +139,22 @@ Set the navigation bar's buttons with an array of button objects.
 **Parameters**
 
 - `buttons` (array) - Array of navigation bar button objects to set. The first item in the array sets the `leftBarButtonItem` and the second item sets the `rightBarButtonItem`.
+  - `title` (string) - Title text of button.
+  - `id` (string) -  Unique identifier of button.
+  - `image` (string) -  Optional image asset name to load.
 
 **Example**
 
 ```
-var cancelButton = NativeBridge.navigationBar.createButton("Cancel", function () {
-   // handle cancel button tap
-});
+var buttons = [{
+  title: "Cancel",
+  id: "cancel"
+}, {
+  title: "Done",
+  id: "done"
+}];
 
-var doneButton = NativeBridge.navigationBar.createButton("Done", function () {
-  // handle done button tap
-});
-
-
-NativeBridge.navigationBar.setButtons([cancelButton, doneButton]);
-
+window.NativeBridge.navigationBar.setButtons(buttons, function (buttonID) {
+  // handle button tap
 ```
 
