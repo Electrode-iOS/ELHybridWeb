@@ -10,12 +10,12 @@ import JavaScriptCore
 
 @objc protocol NavigationBarJSExport: JSExport {
     func setTitle(title: String)
-    func setButtons(buttons: [BarButton])
-    func createButton(title: String, _ onClick: JSValue) -> BarButton
+    func setButtons(buttonsToSet: [[String: AnyObject]], _ callback: JSValue)
 }
 
 @objc public class NavigationBar: ViewControllerChild {
     
+    private var callback: JSValue?
     private var buttons: [Int: BarButton]? {
         didSet {
             if let leftButton = buttons?[0]?.barButtonItem {
@@ -37,13 +37,11 @@ extension NavigationBar: NavigationBarJSExport {
         }
     }
     
-    func createButton(title: String, _ onClick: JSValue) -> BarButton {
-        return BarButton(title: title, onClick: onClick)
-    }
-    
-    func setButtons(buttonsToSet: [BarButton]) {
+    func setButtons(buttonsToSet: [[String: AnyObject]], _ callback: JSValue) {
+        self.callback = callback
+
         dispatch_async(dispatch_get_main_queue()) {
-            self.buttons = BarButton.dictionaryFromArray(buttonsToSet)
+            self.buttons = BarButton.dictionaryFromJSONArray(buttonsToSet, callback: callback) // must set buttons on main thread
         }
     }
 }

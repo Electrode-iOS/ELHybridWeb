@@ -8,38 +8,49 @@
 
 import JavaScriptCore
 
-@objc protocol BarButtonJSExport: JSExport {
-    var title: String? {get set}
-    var onClick: JSValue? {get set}
+@objc class BarButton {
+    let id: String
+    let title: String
+    let image: String?
+    var callback: JSValue?
+    
+    init(id: String, title: String, image: String?) {
+        self.id = id
+        self.title = title
+        self.image = image
+    }
 }
 
-@objc class BarButton: NSObject, BarButtonJSExport {
+// MARK: - JSON Serialization
+
+extension BarButton {
     
-    var title: String?
-    var onClick: JSValue?
+    static func dictionaryFromJSONArray(array: [[String: AnyObject]], callback: JSValue) -> [Int: BarButton] {
+        var buttons = [Int: BarButton]()
+        
+        for (index, buttonDictionary) in enumerate(array) {
+            if let id = buttonDictionary["id"] as? String,
+                let title = buttonDictionary["title"] as? String {
+                    let image = buttonDictionary["image"] as? String
+                    var button = BarButton(id: id, title: title, image: image)
+                    button.callback = callback
+                    buttons[index] = button
+            }
+        }
+        
+        return buttons
+    }
+}
+
+// MARK: - UIBarButtonItem
+
+extension BarButton {
+    
     var barButtonItem: UIBarButtonItem {
         return UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: "select")
     }
     
-    init(title: String, onClick: JSValue) {
-        self.title = title
-        self.onClick = onClick
-    }
-    
     func select() {
-        onClick?.callWithArguments(nil)
-    }
-}
-
-extension BarButton {
-    
-    class func dictionaryFromArray(array: [BarButton]) -> [Int: BarButton] {
-        var buttons = [Int: BarButton]()
-        
-        for (index, button) in enumerate(array) {
-            buttons[index] = button
-        }
-        
-        return buttons
+        callback?.callWithArguments([id])
     }
 }
