@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		174CA6C51B20804400A80074 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CA6C41B20804400A80074 /* NavigationBar.swift */; };
 		17558CE21B14F5DA0070DE6B /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD31B0E60AB005B7559 /* THGBridge.framework */; };
 		17558CE31B14F5DA0070DE6B /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD41B0E60AB005B7559 /* THGFoundation.framework */; };
 		17558CE41B14F5DA0070DE6B /* THGLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD51B0E60AB005B7559 /* THGLog.framework */; };
+		17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17711C0D1B20FDFB0043B71E /* BarButton.swift */; };
 		177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */; };
 		177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
 		177E5D921B00FE1A006BCBE2 /* HybridAPI+PageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */; };
@@ -63,6 +65,8 @@
 		173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THGHybridWeb.h; sourceTree = "<group>"; };
 		173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THGHybridWebTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E691B00FDAE00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		174CA6C41B20804400A80074 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		17711C0D1B20FDFB0043B71E /* BarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButton.swift; sourceTree = "<group>"; };
 		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; };
 		177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Logging.swift"; sourceTree = "<group>"; };
 		177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+PageState.swift"; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */,
 				177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */,
 				177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */,
+				174CA6C41B20804400A80074 /* NavigationBar.swift */,
+				17711C0D1B20FDFB0043B71E /* BarButton.swift */,
 			);
 			path = "JS API";
 			sourceTree = "<group>";
@@ -307,8 +313,10 @@
 				177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */,
 				177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */,
 				177E5D921B00FE1A006BCBE2 /* HybridAPI+PageState.swift in Sources */,
+				17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */,
 				177E5D961B00FE1A006BCBE2 /* Navigation.swift in Sources */,
 				177E5D941B00FE1A006BCBE2 /* HybridAPI.swift in Sources */,
+				174CA6C51B20804400A80074 /* NavigationBar.swift in Sources */,
 				177E5D931B00FE1A006BCBE2 /* HybridAPI+Share.swift in Sources */,
 				177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */,
 				177E5D951B00FE1A006BCBE2 /* JSValue+HybridAPI.swift in Sources */,

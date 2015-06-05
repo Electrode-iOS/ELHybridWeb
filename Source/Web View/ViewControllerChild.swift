@@ -13,6 +13,10 @@ protocol ViewControllerChildType {
     init(parentViewController: UIViewController)
 }
 
+/**
+ An abstract class for implementing a bridge object that requires a reference
+ to a parent view controller.
+*/
 @objc public class ViewControllerChild: NSObject, ViewControllerChildType {
     public weak var parentViewController: UIViewController?
 
