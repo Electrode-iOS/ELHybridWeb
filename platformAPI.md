@@ -92,7 +92,30 @@ window.NativeBridge.dialog(options, function(error, id) {
 
 ```
 
-## NativeBridge.navigationBar ##
+## NativeBridge.navigation Object ##
+
+#### animateForward()
+
+Trigger a native push navigation transition. By default it pushes a new web view controller on to the web view controller's navigation stack with the current web view. Does not affect web view history.
+
+**Example**
+
+```
+NativeBridge.navigation.animateForward();
+
+```
+
+#### animateBackward()
+
+Trigger a native pop navigation transition. By default it pops a view controller off of the web view controller's navigation stack. Does not affect web view history.
+
+**Example**
+
+```
+NativeBridge.navigation.animateBackward();
+
+```
+## NativeBridge.navigationBar Object ##
 
 #### setTitle()
 
@@ -151,26 +174,3 @@ NativeBridge.navigationBar.setButtons([cancelButton, doneButton]);
 
 ```
 
-### NativeBridge.navigation
-
-#### animateForward()
-
-Trigger a native push navigation transition. By default it pushes a new web view controller on to the web view controller's navigation stack with the current web view. Does not affect web view history.
-
-**Example**
-
-```
-NativeBridge.navigation.animateForward();
-
-```
-
-#### animateBackward()
-
-Trigger a native pop navigation transition. By default it pops a view controller off of the web view controller's navigation stack. Does not affect web view history.
-
-**Example**
-
-```
-NativeBridge.navigation.animateBackward();
-
-```
