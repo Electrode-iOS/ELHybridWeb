@@ -63,22 +63,6 @@ if (window.NativeBridge === undefined) {
 
 ### NativeBridge
 
-#### updatePageState()
-
-Update the current view controller state using data from options. Currently only supports updating the title.
-
-**Parameters**
-
-- `options` (object) - Options
-  - `title` (string) - Title text of view controller.
-
-**Example**
-
-```
-NativeBridge.updatePageState({title: "Edit Address"});
-
-```
-
 #### share()
 
 Present an activity view controller with `message` and `url` as the activity items.
@@ -135,6 +119,65 @@ var options = {
 window.NativeBridge.dialog(options, function(error, id) {
   // handle action
 });
+
+```
+
+### NativeBridge.navigationBar
+
+#### setTitle()
+
+Set the title text of the navigation bar.
+
+**Parameters**
+
+- `title` (string) -  Title text.
+
+**Example**
+
+```
+NativeBridge.navigationBar.setTitle("Item Details");
+
+```
+
+#### createButton()
+
+Create a navigation bar button object.
+
+**Parameters**
+
+- `title` (string) - Title text of button.
+- `onClick` (function) - Function to call when button is tapped.
+
+**Example**
+
+```
+var cancelButton = NativeBridge.navigationBar.createButton("Cancel", function () {
+   // handle cancel button tap
+});
+
+```
+
+#### setButtons()
+
+Set the navigation bar's buttons with an array of button objects.
+
+**Parameters**
+
+- `buttons` (array) - Array of navigation bar button objects to set. The first item in the array sets the `leftBarButtonItem` and the second item sets the `rightBarButtonItem`.
+
+**Example**
+
+```
+var cancelButton = NativeBridge.navigationBar.createButton("Cancel", function () {
+   // handle cancel button tap
+});
+
+var doneButton = NativeBridge.navigationBar.createButton("Done", function () {
+  // handle done button tap
+});
+
+
+NativeBridge.navigationBar.setButtons([cancelButton, doneButton]);
 
 ```
 
