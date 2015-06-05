@@ -15,7 +15,6 @@
 		17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17711C0D1B20FDFB0043B71E /* BarButton.swift */; };
 		177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */; };
 		177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
-		177E5D921B00FE1A006BCBE2 /* HybridAPI+PageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */; };
 		177E5D931B00FE1A006BCBE2 /* HybridAPI+Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */; };
 		177E5D941B00FE1A006BCBE2 /* HybridAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */; };
 		177E5D951B00FE1A006BCBE2 /* JSValue+HybridAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */; };
@@ -69,7 +68,6 @@
 		17711C0D1B20FDFB0043B71E /* BarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButton.swift; sourceTree = "<group>"; };
 		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; };
 		177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Logging.swift"; sourceTree = "<group>"; };
-		177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+PageState.swift"; sourceTree = "<group>"; };
 		177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Share.swift"; sourceTree = "<group>"; };
 		177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPI.swift; sourceTree = "<group>"; };
 		177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSValue+HybridAPI.swift"; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 			children = (
 				177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */,
 				177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */,
-				177E5D881B00FE1A006BCBE2 /* HybridAPI+PageState.swift */,
 				177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */,
 				177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */,
 				177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */,
@@ -312,7 +309,6 @@
 			files = (
 				177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */,
 				177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */,
-				177E5D921B00FE1A006BCBE2 /* HybridAPI+PageState.swift in Sources */,
 				17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */,
 				177E5D961B00FE1A006BCBE2 /* Navigation.swift in Sources */,
 				177E5D941B00FE1A006BCBE2 /* HybridAPI.swift in Sources */,
