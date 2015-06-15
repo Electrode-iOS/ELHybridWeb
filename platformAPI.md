@@ -115,6 +115,30 @@ Trigger a native pop navigation transition. By default it pops a view controller
 NativeBridge.navigation.animateBackward();
 
 ```
+
+#### presentModal()
+
+Trigger a native modal transition. By default the method presents a new web view controller with the current web view state. Does not affect web view history.
+
+**Example**
+
+```
+NativeBridge.navigation.presentModal();
+
+```
+
+#### dismissModal()
+
+Close the existing native modal view. Does not affect web view history.
+
+**Example**
+
+```
+NativeBridge.navigation.dismissModal();
+
+```
+
+
 ## NativeBridge.navigationBar Object ##
 
 #### setTitle()
