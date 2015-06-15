@@ -17,29 +17,29 @@ import THGBridge
 @objc public protocol WebViewControllerDelegate {
     /**
      Sent before the web view begins loading a frame.
-     :param: webViewController The web view controller loading the web view frame.
-     :param: request The request that will load the frame.
-     :param: navigationType The type of user action that started the load.
-     :returns: Return true to
+     - parameter webViewController: The web view controller loading the web view frame.
+     - parameter request: The request that will load the frame.
+     - parameter navigationType: The type of user action that started the load.
+     - returns: Return true to
     */
     optional func webViewController(webViewController: WebViewController, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
     
     /**
      Sent before the web view begins loading a frame.
-     :param: webViewController The web view controller that has begun loading the frame.
+     - parameter webViewController: The web view controller that has begun loading the frame.
     */
     optional func webViewControllerDidStartLoad(webViewController: WebViewController)
     
     /**
      Sent after the web view as finished loading a frame.
-     :param: webViewController The web view controller that has completed loading the frame.
+     - parameter webViewController: The web view controller that has completed loading the frame.
     */
     optional func webViewControllerDidFinishLoad(webViewController: WebViewController)
     
     /**
      Sent if the web view fails to load a frame.
-     :param: webViewController The web view controller that failed to load the frame.
-     :param: error The error that occured during loading.
+     - parameter webViewController: The web view controller that failed to load the frame.
+     - parameter error: The error that occured during loading.
     */
     optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
 }
@@ -204,8 +204,8 @@ extension WebViewController: UIWebViewDelegate {
         return delegate?.webViewController?(self, shouldStartLoadWithRequest: request, navigationType: navigationType) ?? true
     }
     
-    public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        println("WebViewController Error: \(error)")
+    public func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        print("WebViewController Error: \(error)")
         delegate?.webViewController?(self, didFailLoadWithError: error)
     }
 }
@@ -218,7 +218,7 @@ extension WebViewController {
         if let context = webView.javaScriptContext {
             configureBridgeContext(context)
         } else {
-            println("Failed to retrieve JavaScript context from web view.")
+            print("Failed to retrieve JavaScript context from web view.")
         }
     }
     

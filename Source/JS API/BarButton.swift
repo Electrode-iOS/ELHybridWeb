@@ -28,11 +28,11 @@ extension BarButton {
     static func dictionaryFromJSONArray(array: [[String: AnyObject]], callback: JSValue) -> [Int: BarButton] {
         var buttons = [Int: BarButton]()
         
-        for (index, buttonDictionary) in enumerate(array) {
+        for (index, buttonDictionary) in array.enumerate() {
             if let id = buttonDictionary["id"] as? String,
                 let title = buttonDictionary["title"] as? String {
                     let image = buttonDictionary["image"] as? String
-                    var button = BarButton(id: id, title: title, image: image)
+                    let button = BarButton(id: id, title: title, image: image)
                     button.callback = callback
                     buttons[index] = button
             }
