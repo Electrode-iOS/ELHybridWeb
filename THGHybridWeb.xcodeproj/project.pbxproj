@@ -29,6 +29,7 @@
 		1786AFD61B0E60AB005B7559 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD31B0E60AB005B7559 /* THGBridge.framework */; };
 		1786AFD71B0E60AB005B7559 /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD41B0E60AB005B7559 /* THGFoundation.framework */; };
 		1786AFD81B0E60AB005B7559 /* THGLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFD51B0E60AB005B7559 /* THGLog.framework */; };
+		17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */; };
 		17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
 		17E076EA1B025AA2008F89EC /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		1786AFD31B0E60AB005B7559 /* THGBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGBridge.framework; path = Carthage/Build/iOS/THGBridge.framework; sourceTree = "<group>"; };
 		1786AFD41B0E60AB005B7559 /* THGFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGFoundation.framework; path = Carthage/Build/iOS/THGFoundation.framework; sourceTree = "<group>"; };
 		1786AFD51B0E60AB005B7559 /* THGLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGLog.framework; path = Carthage/Build/iOS/THGLog.framework; sourceTree = "<group>"; };
+		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+Modal.swift"; sourceTree = "<group>"; };
 		17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+JavaScriptContext.swift"; sourceTree = "<group>"; };
 		17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +185,7 @@
 				177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */,
 				177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */,
 				177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */,
+				17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */,
 				174CA6C41B20804400A80074 /* NavigationBar.swift */,
 				17711C0D1B20FDFB0043B71E /* BarButton.swift */,
 			);
@@ -316,6 +319,7 @@
 				177E5D931B00FE1A006BCBE2 /* HybridAPI+Share.swift in Sources */,
 				177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */,
 				177E5D951B00FE1A006BCBE2 /* JSValue+HybridAPI.swift in Sources */,
+				17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);

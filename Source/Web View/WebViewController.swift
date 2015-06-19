@@ -247,6 +247,17 @@ extension WebViewController {
     }
     
     /**
+     Call to present a navigation controller containing a new web view controller
+     as the root view controller. The existing web view instance is reused.
+    */
+    public func presentModalWebViewController() {
+        goBackInWebViewOnAppear = true
+        
+        let navigationController = UINavigationController(rootViewController: WebViewController(webView: webView, bridge: bridge))
+        presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
+    /**
      Return `true` to have the web view controller push a new web view controller
      on the stack for a given navigation type of a request.
     */
