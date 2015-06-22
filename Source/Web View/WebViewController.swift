@@ -257,6 +257,11 @@ extension WebViewController {
         presentViewController(navigationController, animated: true, completion: nil)
     }
     
+    /// Pops until there's only a single view controller left on the navigation stack.
+    public func popToRootWebViewController() {
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
     /**
      Return `true` to have the web view controller push a new web view controller
      on the stack for a given navigation type of a request.
