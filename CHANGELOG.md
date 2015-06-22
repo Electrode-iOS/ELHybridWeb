@@ -1,3 +1,9 @@
+# [0.0.4](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.4)
+
+- Added `popToRootWebViewController ` method for popping nav controller of web view to root
+- Added `presentModal()` and `dismissModal()` JS methods for navigating modal web views
+- Addded `presentModalWebViewController` method to `WebViewController` for animating modal transitions
+
 # [0.0.3](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.3)
 
 - Added `WebViewControllerDelegate` protocol for working with `WebViewController` loading events
