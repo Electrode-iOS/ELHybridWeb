@@ -63,8 +63,15 @@ public class WebViewController: UIViewController {
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
+    private var errorView: UIView?
+    private var errorLabel: UILabel?
+    private var reloadButton: UIButton?
     
+    /// Handles web view controller events.
     public weak var delegate: WebViewControllerDelegate?
+    
+    /// Set `false` to disable error message UI.
+    public var showErrorDisplay = true
     
     public convenience init(webView: UIWebView, bridge: Bridge) {
         self.init(nibName: nil, bundle: nil)
@@ -206,7 +213,11 @@ extension WebViewController: UIWebViewDelegate {
     }
     
     public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        println("WebViewController Error: \(error)")
+        
+        if showErrorDisplay {
+            renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
+        }
+        
         delegate?.webViewController?(self, didFailLoadWithError: error)
     }
 }
@@ -269,6 +280,89 @@ extension WebViewController {
     */
     public func pushesWebViewControllerForNavigationType(navigationType: UIWebViewNavigationType) -> Bool {
         return false
+    }
+}
+
+// MARK: - Error Display
+
+extension WebViewController {
+    
+    private func createErrorLabel() -> UILabel? {
+        let height = CGFloat(50)
+        let y = CGRectGetMidY(view.bounds) - (height / 2) - 100
+        var label = UILabel(frame: CGRectMake(0, y, CGRectGetWidth(view.bounds), height))
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.numberOfLines = 0
+        label.textAlignment = NSTextAlignment.Center
+        label.backgroundColor = view.backgroundColor
+        label.font = UIFont.systemFontOfSize(12, weight: 2)
+        return label
+    }
+    
+    private func createReloadButton() -> UIButton? {
+        if let button = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton {
+            let size = CGSizeMake(170, 38)
+            let x = CGRectGetMidX(view.bounds) - (size.width / 2)
+            var y = CGRectGetMidY(view.bounds) - (size.height / 2)
+            
+            if let label = errorLabel {
+                y = CGRectGetMaxY(label.frame) + 20
+            }
+            
+            button.setTitle(NSLocalizedString("Try again", comment: "Try again"), forState: UIControlState.Normal)
+            button.frame = CGRectMake(x, y, size.width, size.height)
+            button.backgroundColor = UIColor.lightGrayColor()
+            button.titleLabel?.backgroundColor = UIColor.lightGrayColor()
+            button.titleLabel?.textColor = UIColor.whiteColor()
+            
+            return button
+        }
+        
+        return nil
+    }
+}
+
+extension WebViewController {
+    
+    /// Override to completely customize error display. Must also override `removeErrorDisplay`
+     public func renderErrorDisplayWithError(error: NSError, message: String) {
+        let errorView = UIView(frame: view.bounds)
+        view.addSubview(errorView)
+        self.errorView = errorView
+        
+        self.errorLabel = createErrorLabel()
+        self.reloadButton = createReloadButton()
+        
+        if let errorLabel = errorLabel {
+            errorLabel.text = NSLocalizedString(message, comment: "Web View Load Error")
+            errorView.addSubview(errorLabel)
+        }
+        
+        if let button = reloadButton {
+            button.addTarget(self, action: "reloadButtonTapped:", forControlEvents: .TouchUpInside)
+            errorView.addSubview(button)
+        }
+    }
+    
+    /// Override to handle custom error display removal.
+    public func removeErrorDisplay() {
+        errorView?.removeFromSuperview()
+        errorView = nil
+    }
+   
+    /// Override to customize the feature name
+    public func featureNameForError(error: NSError) -> String {
+        return "This feature"
+    }
+   
+    final public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
+        let message = "Sorry!\n \(featureName) isn't working right now."
+        renderErrorDisplayWithError(error, message: message)
+    }
+    
+    final public func reloadButtonTapped(sender: AnyObject) {
+        removeErrorDisplay()
+        map(url) {self.loadURL($0)}
     }
 }
 
