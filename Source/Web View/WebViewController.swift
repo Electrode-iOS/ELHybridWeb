@@ -163,6 +163,7 @@ public class WebViewController: UIViewController {
 extension WebViewController {
     
     public func loadURL(url: NSURL) {
+        self.url = url
         let request = NSURLRequest(URL: url)
         webView.loadRequest(request)
     }
