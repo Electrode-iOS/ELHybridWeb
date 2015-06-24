@@ -32,6 +32,34 @@ Zoot depends on the following [THG](https://github.com/TheHolyGrail/) modules:
 
 ## Usage
 
+Initialize a web view controller and call `loadURL()` to asynchronously load the web view with a URL. 
+
+```
+let webController = WebViewController()
+webController.loadURL(NSURL(string: "foo")!)
+window?.rootViewController = webController
+```
+
+Call `addHybridAPI()` to add the bridged JavaScript API to the web view. The JavaScript API will be accessible to any web pages that are loaded in the web view controller.
+
+```
+let webController = WebViewController()
+webController.addHybridAPI()
+webController.loadURL(NSURL(string: "foo")!)
+window?.rootViewController = webController
+```
+
+To utilize the navigation JavaScript API you must provide a navigation controller for the web view controller.
+
+```
+let webController = WebViewController()
+webController.addHybridAPI()
+webController.loadURL(NSURL(string: "foo")!)
+
+let navigationController = UINavigationController(rootViewController: webController)
+window?.rootViewController = navigationController
+```
+
 [See the Platform API documentation](platformAPI.md)
 
 ## Example
