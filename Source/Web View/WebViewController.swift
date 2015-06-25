@@ -220,7 +220,7 @@ extension WebViewController {
      Load the web view with the provided URL.
      :param: url The URL used to load the web view.
     */
-    public func loadURL(url: NSURL) {
+    final public func loadURL(url: NSURL) {
         self.url = url
         let request = NSURLRequest(URL: url)
         webView.loadRequest(request)
@@ -231,7 +231,7 @@ extension WebViewController {
 
 extension WebViewController: UIWebViewDelegate {
     
-    public func webViewDidStartLoad(webView: UIWebView) {
+    final public func webViewDidStartLoad(webView: UIWebView) {
         delegate?.webViewControllerDidStartLoad?(self)
     }
     
@@ -254,7 +254,7 @@ extension WebViewController: UIWebViewDelegate {
         delegate?.webViewControllerDidFinishLoad?(self)
     }
     
-    public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    final public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         if pushesWebViewControllerForNavigationType(navigationType) {
             pushWebViewController()
@@ -263,7 +263,7 @@ extension WebViewController: UIWebViewDelegate {
         return delegate?.webViewController?(self, shouldStartLoadWithRequest: request, navigationType: navigationType) ?? true
     }
     
-    public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    final public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         
         if showErrorDisplay {
             renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
@@ -281,7 +281,7 @@ extension WebViewController {
      Update the bridge's JavaScript context by attempting to retrieve a context
      from the web view.
     */
-    public func updateBridgeContext() {
+    final public func updateBridgeContext() {
         if let context = webView.javaScriptContext {
             configureBridgeContext(context)
         } else {
@@ -292,7 +292,7 @@ extension WebViewController {
     /**
      Explictly set the bridge's JavaScript context.
     */
-    public func configureBridgeContext(context: JSContext) {
+    final public func configureBridgeContext(context: JSContext) {
         bridge.context = context
         
         if let hybridAPI = bridge.hybridAPI {
