@@ -46,15 +46,55 @@ import THGBridge
 
 /**
  A view controller that integrates a web view with the hybrid JavaScript API.
+ 
+ # Usage
+ 
+ Initialize a web view controller and call `loadURL()` to asynchronously load 
+ the web view with a URL.
+
+ ```
+ let webController = WebViewController()
+ webController.loadURL(NSURL(string: "foo")!)
+ window?.rootViewController = webController
+ ```
+
+ Call `addHybridAPI()` to add the bridged JavaScript API to the web view. 
+ The JavaScript API will be accessible to any web pages that are loaded in the 
+ web view controller.
+
+ ```
+ let webController = WebViewController()
+ webController.addHybridAPI()
+ webController.loadURL(NSURL(string: "foo")!)
+ window?.rootViewController = webController
+ ```
+
+ To utilize the navigation JavaScript API you must provide a navigation 
+ controller for the web view controller.
+
+ ```
+ let webController = WebViewController()
+ webController.addHybridAPI()
+ webController.loadURL(NSURL(string: "foo")!)
+
+ let navigationController = UINavigationController(rootViewController: webController)
+ window?.rootViewController = navigationController
+ ```
+
 */
 public class WebViewController: UIViewController {
     
+    /// The URL that was loaded with `loadURL()`
     private(set) public var url: NSURL?
+    
+    /// The web view used to load and render the web content.
     private(set) public lazy var webView: UIWebView = {
         let webView =  UIWebView(frame: CGRectZero)
         webView.delegate = self
         return webView
     }()
+    
+    /// JavaScript bridge for the web view's JSContext
     private(set) public var bridge = Bridge()
     private var hasAppeared = false
     private var showWebViewOnAppear = false
@@ -73,6 +113,13 @@ public class WebViewController: UIViewController {
     /// Set `false` to disable error message UI.
     public var showErrorDisplay = true
     
+    /**
+     Initialize a web view controller instance with a web view and JavaScript 
+      bridge. The newly initialized web view controller becomes the delegate of
+      the web view.
+     :param: webView The web view to use in the web view controller.
+     :param: bridge The bridge instance to integrate int
+    */
     public convenience init(webView: UIWebView, bridge: Bridge) {
         self.init(nibName: nil, bundle: nil)
         self.bridge = bridge
@@ -169,6 +216,10 @@ public class WebViewController: UIViewController {
 
 extension WebViewController {
     
+    /**
+     Load the web view with the provided URL.
+     :param: url The URL used to load the web view.
+    */
     public func loadURL(url: NSURL) {
         self.url = url
         let request = NSURLRequest(URL: url)
@@ -226,6 +277,10 @@ extension WebViewController: UIWebViewDelegate {
 
 extension WebViewController {
     
+    /**
+     Update the bridge's JavaScript context by attempting to retrieve a context
+     from the web view.
+    */
     public func updateBridgeContext() {
         if let context = webView.javaScriptContext {
             configureBridgeContext(context)
@@ -234,6 +289,9 @@ extension WebViewController {
         }
     }
     
+    /**
+     Explictly set the bridge's JavaScript context.
+    */
     public func configureBridgeContext(context: JSContext) {
         bridge.context = context
         
@@ -283,7 +341,7 @@ extension WebViewController {
     }
 }
 
-// MARK: - Error Display
+// MARK: - Error UI
 
 extension WebViewController {
     
@@ -322,6 +380,8 @@ extension WebViewController {
     }
 }
 
+// MARK: - Error Display Events
+
 extension WebViewController {
     
     /// Override to completely customize error display. Must also override `removeErrorDisplay`
@@ -350,17 +410,19 @@ extension WebViewController {
         errorView = nil
     }
    
-    /// Override to customize the feature name
+    /// Override to customize the feature name that appears in the error display.
     public func featureNameForError(error: NSError) -> String {
         return "This feature"
     }
-   
-    final public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
+    
+    /// Override to customize the error message text.
+    public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
         let message = "Sorry!\n \(featureName) isn't working right now."
         renderErrorDisplayWithError(error, message: message)
     }
     
-    final public func reloadButtonTapped(sender: AnyObject) {
+    /// Removes the error display and attempts to reload the web view.
+    public func reloadButtonTapped(sender: AnyObject) {
         removeErrorDisplay()
         map(url) {self.loadURL($0)}
     }
