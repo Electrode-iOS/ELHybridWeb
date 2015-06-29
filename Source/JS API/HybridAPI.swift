@@ -32,6 +32,7 @@ import THGBridge
     override public weak var parentViewController: UIViewController? {
         didSet {
             navigation.parentViewController = parentViewController
+            navigationBar.parentViewController = parentViewController
         }
     }
 }
