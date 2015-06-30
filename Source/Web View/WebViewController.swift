@@ -324,7 +324,13 @@ extension WebViewController {
         goBackInWebViewOnAppear = false
         
         let navigationController = UINavigationController(rootViewController: WebViewController(webView: webView, bridge: bridge))
-        presentViewController(navigationController, animated: true, completion: nil)
+        
+        if let tabBarController = tabBarController {
+            tabBarController.presentViewController(navigationController, animated: true, completion: nil)
+        } else {
+            presentViewController(navigationController, animated: true, completion: nil)
+        }
+        
     }
     
     /// Pops until there's only a single view controller left on the navigation stack.
