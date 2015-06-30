@@ -180,5 +180,11 @@ var buttons = [{
 
 window.NativeBridge.navigationBar.setButtons(buttons, function (buttonID) {
   // handle button tap
+});
 ```
 
+Remove navigation bar buttons by passing `null` or an empty array as the first parameter to `setButtons()`.
+
+```
+window.NativeBridge.navigationBar.setButtons(null);
+```
