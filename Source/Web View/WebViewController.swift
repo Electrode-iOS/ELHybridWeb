@@ -321,7 +321,7 @@ extension WebViewController {
      as the root view controller. The existing web view instance is reused.
     */
     public func presentModalWebViewController() {
-        goBackInWebViewOnAppear = true
+        goBackInWebViewOnAppear = false
         
         let navigationController = UINavigationController(rootViewController: WebViewController(webView: webView, bridge: bridge))
         presentViewController(navigationController, animated: true, completion: nil)
