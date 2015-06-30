@@ -1,6 +1,6 @@
 # Zoot
 
-Zoot (`THGHybridWeb` module) is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS. Zoot uses [BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath) to bridge Swift objects to JavaScript.
+Zoot (`THGHybridWeb` framework) is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS. Zoot uses [BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath) to bridge Swift objects to JavaScript.
 
 ## Installation
 
@@ -9,20 +9,20 @@ Zoot (`THGHybridWeb` module) is a Swift framework that provides a bridged JavaSc
 Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
 ```
-github "TheHolyGrail/Zoot" ~> 0.0.2
+github "TheHolyGrail/Zoot" ~> 0.0.5
 ```
 
 ### Manual
 
 Install manually by adding THGHybridWeb.xcodeproj to your project and configuring your target to link THGHybridWeb.framework.
 
-Zoot depends on the following [THG](https://github.com/TheHolyGrail/) modules:
+Zoot depends on the following [THG](https://github.com/TheHolyGrail/) frameworks:
 
 - [`THGBridge`/BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath).
   - [`THGFoundation`/Excalibur](https://github.com/TheHolyGrail/Excalibur).
   - [`THGLog`/Shrubbery](https://github.com/TheHolyGrail/Shrubbery).
 
-[THG](https://github.com/TheHolyGrail/) modules are designed to live side-by-side in the file system, like so:
+[THG](https://github.com/TheHolyGrail/) frameworks are designed to live side-by-side in the file system, like so:
 
 * \MyProject
 * \MyProject\Zoot

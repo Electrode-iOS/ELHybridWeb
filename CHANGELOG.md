@@ -1,3 +1,11 @@
+# [0.0.5](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.5)
+
+- Avoid going back in web history after dismissing a modal view controller with `dismissModal()`. Fixes [#11](https://github.com/TheHolyGrail/Zoot/issues/11).
+- Navigation bar items are removed when `null` or empty array is passed to `setButtons` from JS. Fixes #9.
+- Propagate hybrid API's `parentViewController` change to navigation bar API. Fixes #10.
+- Add error UI with customizable label and reload button to `WebViewController`.
+- Retain web view base URL when loading web view controller
+
 # [0.0.4](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.4)
 
 - Added `popToRootWebViewController ` method for popping nav controller of web view to root
