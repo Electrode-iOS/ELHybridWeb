@@ -1,3 +1,7 @@
+# [0.0.6](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.6)
+
+- Default to presenting modal from tab bar controller if one exists when calling `presentModal()`
+
 # [0.0.5](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.5)
 
 - Avoid going back in web history after dismissing a modal view controller with `dismissModal()`. Fixes [#11](https://github.com/TheHolyGrail/Zoot/issues/11).
