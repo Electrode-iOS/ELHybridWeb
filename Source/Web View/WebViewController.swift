@@ -115,13 +115,13 @@ public class WebViewController: UIViewController {
     public var showErrorDisplay = true
     
     /**
-     Initialize a web view controller instance with a web view and JavaScript 
+     Initialize a web view controller instance with a web view and JavaScript
       bridge. The newly initialized web view controller becomes the delegate of
       the web view.
      :param: webView The web view to use in the web view controller.
      :param: bridge The bridge instance to integrate int
     */
-    public convenience init(webView: UIWebView, bridge: Bridge) {
+    public convenience required init(webView: UIWebView, bridge: Bridge) {
         self.init(nibName: nil, bundle: nil)
         self.bridge = bridge
         self.webView = webView
@@ -309,13 +309,13 @@ extension WebViewController {
 extension WebViewController {
 
     /**
-     Call to push a new web view controller on the navigation stack using the
-     existing web view instance. Does not affect web view history. Uses animation.
+     Push a new web view controller on the navigation stack using the existing 
+     web view instance. Does not affect web view history. Uses animation.
     */
     public func pushWebViewController() {
         goBackInWebViewOnAppear = true
         
-        let webViewController = WebViewController(webView: webView, bridge: bridge)
+        let webViewController = self.dynamicType(webView: webView, bridge: bridge)
         navigationController?.pushViewController(webViewController, animated: true)
     }
     
@@ -332,20 +332,19 @@ extension WebViewController {
     }
     
     /**
-     Call to present a navigation controller containing a new web view controller
-     as the root view controller. The existing web view instance is reused.
+     Present a navigation controller containing a new web view controller as the
+     root view controller. The existing web view instance is reused.
     */
     public func presentModalWebViewController() {
         goBackInWebViewOnAppear = false
         
-        let navigationController = UINavigationController(rootViewController: WebViewController(webView: webView, bridge: bridge))
+        let navigationController = UINavigationController(rootViewController: self.dynamicType(webView: webView, bridge: bridge))
         
         if let tabBarController = tabBarController {
             tabBarController.presentViewController(navigationController, animated: true, completion: nil)
         } else {
             presentViewController(navigationController, animated: true, completion: nil)
         }
-        
     }
     
     /// Pops until there's only a single view controller left on the navigation stack.
