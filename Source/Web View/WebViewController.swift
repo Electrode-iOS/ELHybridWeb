@@ -100,6 +100,7 @@ public class WebViewController: UIViewController {
     private var showWebViewOnAppear = false
     private var storedScreenshotGUID: String? = nil
     private var goBackInWebViewOnAppear = false
+    private var firstLoadCycleCompleted = true
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
@@ -157,7 +158,7 @@ public class WebViewController: UIViewController {
         webView.frame = view.bounds
         view.addSubview(webView)
         
-        if !webView.loading {
+        if !webView.loading || firstLoadCycleCompleted {
             showWebViewOnAppear = true
         }
         
@@ -222,6 +223,7 @@ extension WebViewController {
     */
     final public func loadURL(url: NSURL) {
         self.url = url
+        firstLoadCycleCompleted = false
         let request = NSURLRequest(URL: url)
         webView.loadRequest(request)
     }
@@ -247,6 +249,7 @@ extension WebViewController: UIWebViewDelegate {
         }
 
         if !webView.loading {
+            firstLoadCycleCompleted = true
             updateBridgeContext() // todo: listen for context changes
             attemptToShowWebView()
         }
