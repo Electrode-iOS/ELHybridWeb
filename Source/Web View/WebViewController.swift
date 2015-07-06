@@ -324,11 +324,10 @@ extension WebViewController {
      web view history. Uses animation.
     */
     public func popWebViewController() {
-        if let navController = self.navigationController {
-            if navController.viewControllers.count > 1 {
-                (navController.viewControllers[navController.viewControllers.count - 1] as? WebViewController)?.goBackInWebViewOnAppear = false
-                navController.popViewControllerAnimated(true)
-            }
+        if let navController = self.navigationController
+            where navController.viewControllers.count > 1 {
+            (navController.viewControllers[navController.viewControllers.count - 1] as? WebViewController)?.goBackInWebViewOnAppear = false
+            navController.popViewControllerAnimated(true)
         }
     }
     
