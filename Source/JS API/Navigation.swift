@@ -27,7 +27,7 @@ import JavaScriptCore
     
     func animateBackward() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.parentViewController?.navigationController?.popViewControllerAnimated(true)
+            self.webViewController?.popWebViewController()
         }
     }
 }

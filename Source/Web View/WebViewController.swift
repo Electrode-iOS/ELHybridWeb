@@ -310,13 +310,26 @@ extension WebViewController {
 
     /**
      Call to push a new web view controller on the navigation stack using the
-     existing web view instance.
+     existing web view instance. Does not affect web view history. Uses animation.
     */
     public func pushWebViewController() {
         goBackInWebViewOnAppear = true
         
         let webViewController = WebViewController(webView: webView, bridge: bridge)
         navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    /**
+     Pop a web view controller off of the navigation. Does not affect
+     web view history. Uses animation.
+    */
+    public func popWebViewController() {
+        if let navController = self.navigationController {
+            if navController.viewControllers.count > 1 {
+                (navController.viewControllers[navController.viewControllers.count - 1] as? WebViewController)?.goBackInWebViewOnAppear = false
+                navController.popViewControllerAnimated(true)
+            }
+        }
     }
     
     /**
