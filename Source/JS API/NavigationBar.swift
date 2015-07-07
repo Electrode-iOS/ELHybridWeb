@@ -22,9 +22,15 @@ import JavaScriptCore
                 if let leftButton = buttons[0]?.barButtonItem {
                     parentViewController?.navigationItem.leftBarButtonItem = leftButton
                 }
+                else {
+                    parentViewController?.navigationItem.leftBarButtonItem = nil
+                }
                 
                 if let rightButton = buttons[1]?.barButtonItem {
                     parentViewController?.navigationItem.rightBarButtonItem = rightButton
+                }
+                else {
+                    parentViewController?.navigationItem.rightBarButtonItem = nil
                 }
             } else {
                 parentViewController?.navigationItem.leftBarButtonItem = nil
