@@ -41,4 +41,16 @@ internal extension JSValue {
         let jsError = JSValue(newErrorFromMessage: errorMessage, inContext: context)
         return callWithArguments([jsError, JSValue(nullInContext: context)])
     }
+    
+    /**
+    Calls the value like it was a JavaScript function in the form of
+    `function(error, data)`.
+    :param: error The value used to create the JavaScript error message.
+    that is passed to the callback.
+    :return: The return value of the function call.
+    */
+    func callWithErrorType(error: HybridAPIErrorType) -> JSValue! {
+        let jsError = JSValue(newErrorFromMessage: error.message, inContext: context)
+        return callWithArguments([jsError, JSValue(nullInContext: context)])
+    }
 }
