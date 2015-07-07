@@ -1,3 +1,9 @@
+# [0.0.7](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.7)
+
+- `WebViewController` now uses `dynamicType` when spawning new web view controllers instances in order to support subclassed types.
+- Avoid goBack in web history when `animateBackward` is called. Fixes [#16](https://github.com/TheHolyGrail/Zoot/issues/16)
+- Track the web view's first completed loading cycle. Fixes [#15](https://github.com/TheHolyGrail/Zoot/issues/15), a bug that was causing the web view to remain in a hidden state after making `presentModal()` and `animateForward()` bridge calls.
+
 # [0.0.6](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.6)
 
 - Default to presenting modal from tab bar controller if one exists when calling `presentModal()`
