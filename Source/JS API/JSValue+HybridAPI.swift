@@ -8,6 +8,8 @@
 
 import JavaScriptCore
 
+// MARK: - Callback Helpers
+
 internal extension JSValue {
     
     /**
@@ -52,5 +54,14 @@ internal extension JSValue {
     func callWithErrorType(error: HybridAPIErrorType) -> JSValue! {
         let jsError = JSValue(newErrorFromMessage: error.message, inContext: context)
         return callWithArguments([jsError, JSValue(nullInContext: context)])
+    }
+}
+
+// MARK: - String Helpers
+
+internal extension JSValue {
+    var asString: String? {
+        if self.isString() { return self.toString() }
+        return nil
     }
 }
