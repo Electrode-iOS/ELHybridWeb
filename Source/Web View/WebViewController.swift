@@ -80,7 +80,6 @@ import THGBridge
  let navigationController = UINavigationController(rootViewController: webController)
  window?.rootViewController = navigationController
  ```
-
 */
 public class WebViewController: UIViewController {
     
