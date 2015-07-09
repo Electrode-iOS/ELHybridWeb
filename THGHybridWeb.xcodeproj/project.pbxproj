@@ -21,6 +21,7 @@
 		177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */; };
 		177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */; };
 		178412271B16762D00EECF8B /* WebViewControllerDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */; };
+		178822E91B4D4BFC00B5548D /* NavigationBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */; };
 		17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */; };
 		17C479331B4C612200F01703 /* DialogOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C479321B4C612200F01703 /* DialogOptions.swift */; };
 		17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
@@ -147,6 +148,7 @@
 		177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPITests.swift; sourceTree = "<group>"; };
 		178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegateTests.swift; sourceTree = "<group>"; };
+		178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarTests.swift; sourceTree = "<group>"; };
 		17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGLog.xcodeproj; path = ../Shrubbery/THGLog.xcodeproj; sourceTree = "<group>"; };
 		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+Modal.swift"; sourceTree = "<group>"; };
 		17C479321B4C612200F01703 /* DialogOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogOptions.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */,
 				173E4E681B00FDAE00ACBCCA /* Supporting Files */,
 				17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */,
+				178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */,
 			);
 			path = THGHybridWebTests;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				178412271B16762D00EECF8B /* WebViewControllerDelegateTests.swift in Sources */,
 				177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */,
 				17E076EA1B025AA2008F89EC /* WebViewControllerTests.swift in Sources */,
+				178822E91B4D4BFC00B5548D /* NavigationBarTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
