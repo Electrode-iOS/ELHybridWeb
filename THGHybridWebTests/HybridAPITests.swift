@@ -22,6 +22,7 @@ class HybridAPITests: XCTestCase {
         let updateScript = "\(HybridAPI.exportName).updatePageState(\(options))"
         webController.bridge.context.evaluateScript(updateScript)
         
+        XCTAssertNotNil(webController.bridge.context.exception)
         XCTAssertNotNil(webController.title)
         XCTAssertEqual(title, webController.title!)
     }
@@ -49,7 +50,7 @@ class HybridAPITests: XCTestCase {
         webController.addHybridAPI()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.dialog")
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
     
@@ -59,7 +60,7 @@ class HybridAPITests: XCTestCase {
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.share")
         
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
     
@@ -69,7 +70,7 @@ class HybridAPITests: XCTestCase {
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.navigation")
         
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is Navigation)
     }
     

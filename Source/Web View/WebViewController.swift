@@ -41,7 +41,7 @@ import THGBridge
      - parameter webViewController: The web view controller that failed to load the frame.
      - parameter error: The error that occured during loading.
     */
-    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
+    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError?)
 }
 
 /**
@@ -307,7 +307,7 @@ extension UIImage {
     
     class func loadImageFromGUID(guid: String?) -> UIImage? {
         if let guid = guid {
-            let fileManager = NSFileManager.defaultManager()
+            //let fileManager = NSFileManager.defaultManager()
             let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
             let image = UIImage(contentsOfFile: fullPath)
             return image

@@ -9,6 +9,7 @@
 import UIKit
 import XCTest
 import THGHybridWeb
+import THGBridge
 
 class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
     
@@ -81,7 +82,7 @@ class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
         return true
     }
     
-    func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError) {
+    func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError?) {
         didFailLoadExpectation?.fulfill()
     }
 }
