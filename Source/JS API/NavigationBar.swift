@@ -10,7 +10,7 @@ import JavaScriptCore
 
 @objc protocol NavigationBarJSExport: JSExport {
     func setTitle(title: JSValue, _ callback: JSValue?)
-    func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue?)
+    func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue?, _ testingCallback: JSValue?)
 }
 
 @objc public class NavigationBar: ViewControllerChild {
@@ -43,7 +43,7 @@ extension NavigationBar: NavigationBarJSExport {
         }
     }
     
-    func setButtons(options: AnyObject?, _ callback: JSValue? = nil) {
+    func setButtons(options: AnyObject?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
         self.callback = callback
 
         dispatch_async(dispatch_get_main_queue()) {
@@ -55,6 +55,8 @@ extension NavigationBar: NavigationBarJSExport {
             } else {
                 self.buttons = nil
             }
+            
+            testingCallback?.callWithArguments(nil) // only for testing purposes
         }
     }
 }
