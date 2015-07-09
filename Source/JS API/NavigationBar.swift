@@ -9,7 +9,7 @@
 import JavaScriptCore
 
 @objc protocol NavigationBarJSExport: JSExport {
-    func setTitle(title: String)
+    func setTitle(title: JSValue, _ callback: JSValue?)
     func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue?)
 }
 
@@ -36,9 +36,10 @@ import JavaScriptCore
 
 extension NavigationBar: NavigationBarJSExport {
     
-    func setTitle(title: String) {
+    func setTitle(title: JSValue, _ callback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
-            parentViewController?.navigationItem.title = title
+            self.parentViewController?.navigationItem.title = title.asString
+            callback?.callWithArguments(nil)
         }
     }
     
