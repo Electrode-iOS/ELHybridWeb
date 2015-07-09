@@ -24,7 +24,6 @@
 		17E076EA1B025AA2008F89EC /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */; };
 		205A0E6D1B4DEE8400D72DCF /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205A0E451B4DEAB400D72DCF /* THGBridge.framework */; };
 		205A0E6E1B4DEE8400D72DCF /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205A0E561B4DEAE000D72DCF /* THGFoundation.framework */; };
-		205A0E6F1B4DEE8400D72DCF /* THGLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205A0E621B4DEAEE00D72DCF /* THGLog.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +33,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 173E4E571B00FDAD00ACBCCA;
 			remoteInfo = THGHybridWeb;
+		};
+		17558EF21B4F344500065333 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17558EEC1B4F344500065333 /* THGLog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA8D47BB1AAE6FF50028B74D;
+			remoteInfo = THGLog;
+		};
+		17558EF41B4F344500065333 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17558EEC1B4F344500065333 /* THGLog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA8D47C61AAE6FF50028B74D;
+			remoteInfo = THGLogTests;
+		};
+		17558EF61B4F344500065333 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17558EEC1B4F344500065333 /* THGLog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA2410631AF966F600AA4410;
+			remoteInfo = THGLog_osx;
 		};
 		205A0E441B4DEAB400D72DCF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -77,34 +97,6 @@
 			remoteGlobalIDString = CA24104D1AF965B700AA4410;
 			remoteInfo = THGFoundation_osx;
 		};
-		205A0E611B4DEAEE00D72DCF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 205A0E5B1B4DEAEE00D72DCF /* THGLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8D47BB1AAE6FF50028B74D;
-			remoteInfo = THGLog;
-		};
-		205A0E631B4DEAEE00D72DCF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 205A0E5B1B4DEAEE00D72DCF /* THGLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8D47C61AAE6FF50028B74D;
-			remoteInfo = THGLogTests;
-		};
-		205A0E651B4DEAEE00D72DCF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 205A0E5B1B4DEAEE00D72DCF /* THGLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA2410631AF966F600AA4410;
-			remoteInfo = THGLog_osx;
-		};
-		205A0E671B4DEB2600D72DCF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 205A0E5B1B4DEAEE00D72DCF /* THGLog.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CA8D47BA1AAE6FF50028B74D;
-			remoteInfo = THGLog;
-		};
 		205A0E691B4DEB2600D72DCF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 205A0E4F1B4DEAE000D72DCF /* THGFoundation.xcodeproj */;
@@ -140,6 +132,7 @@
 		173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THGHybridWebTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E691B00FDAE00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		174CA6C41B20804400A80074 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		17558EEC1B4F344500065333 /* THGLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGLog.xcodeproj; path = ../Shrubbery/THGLog.xcodeproj; sourceTree = "<group>"; };
 		17711C0D1B20FDFB0043B71E /* BarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButton.swift; sourceTree = "<group>"; };
 		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; };
 		177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Logging.swift"; sourceTree = "<group>"; };
@@ -155,7 +148,6 @@
 		17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
 		205A0E3E1B4DEAB400D72DCF /* THGBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGBridge.xcodeproj; path = ../BridgeOfDeath/THGBridge.xcodeproj; sourceTree = "<group>"; };
 		205A0E4F1B4DEAE000D72DCF /* THGFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGFoundation.xcodeproj; path = ../Excalibur/THGFoundation.xcodeproj; sourceTree = "<group>"; };
-		205A0E5B1B4DEAEE00D72DCF /* THGLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGLog.xcodeproj; path = ../Shubbery/THGLog.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +157,6 @@
 			files = (
 				205A0E6D1B4DEE8400D72DCF /* THGBridge.framework in Frameworks */,
 				205A0E6E1B4DEE8400D72DCF /* THGFoundation.framework in Frameworks */,
-				205A0E6F1B4DEE8400D72DCF /* THGLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +226,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		17558EED1B4F344500065333 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17558EF31B4F344500065333 /* THGLog.framework */,
+				17558EF51B4F344500065333 /* THGLogTests.xctest */,
+				17558EF71B4F344500065333 /* THGLog.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		177E5D841B00FE1A006BCBE2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,7 +273,7 @@
 		205A0E3D1B4DEAA100D72DCF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				205A0E5B1B4DEAEE00D72DCF /* THGLog.xcodeproj */,
+				17558EEC1B4F344500065333 /* THGLog.xcodeproj */,
 				205A0E4F1B4DEAE000D72DCF /* THGFoundation.xcodeproj */,
 				205A0E3E1B4DEAB400D72DCF /* THGBridge.xcodeproj */,
 			);
@@ -295,16 +296,6 @@
 				205A0E561B4DEAE000D72DCF /* THGFoundation.framework */,
 				205A0E581B4DEAE000D72DCF /* THGFoundationTests.xctest */,
 				205A0E5A1B4DEAE000D72DCF /* THGFoundation.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		205A0E5C1B4DEAEE00D72DCF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				205A0E621B4DEAEE00D72DCF /* THGLog.framework */,
-				205A0E641B4DEAEE00D72DCF /* THGLogTests.xctest */,
-				205A0E661B4DEAEE00D72DCF /* THGLog.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -335,7 +326,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				205A0E681B4DEB2600D72DCF /* PBXTargetDependency */,
 				205A0E6A1B4DEB2600D72DCF /* PBXTargetDependency */,
 				205A0E6C1B4DEB2600D72DCF /* PBXTargetDependency */,
 			);
@@ -401,8 +391,8 @@
 					ProjectRef = 205A0E4F1B4DEAE000D72DCF /* THGFoundation.xcodeproj */;
 				},
 				{
-					ProductGroup = 205A0E5C1B4DEAEE00D72DCF /* Products */;
-					ProjectRef = 205A0E5B1B4DEAEE00D72DCF /* THGLog.xcodeproj */;
+					ProductGroup = 17558EED1B4F344500065333 /* Products */;
+					ProjectRef = 17558EEC1B4F344500065333 /* THGLog.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -414,6 +404,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		17558EF31B4F344500065333 /* THGLog.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = THGLog.framework;
+			remoteRef = 17558EF21B4F344500065333 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17558EF51B4F344500065333 /* THGLogTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = THGLogTests.xctest;
+			remoteRef = 17558EF41B4F344500065333 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17558EF71B4F344500065333 /* THGLog.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = THGLog.framework;
+			remoteRef = 17558EF61B4F344500065333 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		205A0E451B4DEAB400D72DCF /* THGBridge.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -454,27 +465,6 @@
 			fileType = wrapper.framework;
 			path = THGFoundation.framework;
 			remoteRef = 205A0E591B4DEAE000D72DCF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		205A0E621B4DEAEE00D72DCF /* THGLog.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = THGLog.framework;
-			remoteRef = 205A0E611B4DEAEE00D72DCF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		205A0E641B4DEAEE00D72DCF /* THGLogTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = THGLogTests.xctest;
-			remoteRef = 205A0E631B4DEAEE00D72DCF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		205A0E661B4DEAEE00D72DCF /* THGLog.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = THGLog.framework;
-			remoteRef = 205A0E651B4DEAEE00D72DCF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -532,11 +522,6 @@
 			isa = PBXTargetDependency;
 			target = 173E4E571B00FDAD00ACBCCA /* THGHybridWeb */;
 			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
-		};
-		205A0E681B4DEB2600D72DCF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = THGLog;
-			targetProxy = 205A0E671B4DEB2600D72DCF /* PBXContainerItemProxy */;
 		};
 		205A0E6A1B4DEB2600D72DCF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
