@@ -120,11 +120,20 @@ public class WebViewController: UIViewController {
      :param: webView The web view to use in the web view controller.
      :param: bridge The bridge instance to integrate int
     */
-    public convenience required init(webView: UIWebView, bridge: Bridge) {
-        self.init(nibName: nil, bundle: nil)
+    public required init(webView: UIWebView, bridge: Bridge) {
+        super.init(nibName: nil, bundle: nil)
+        
         self.bridge = bridge
         self.webView = webView
         self.webView.delegate = self
+    }
+    
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    public required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     deinit {
@@ -133,7 +142,7 @@ public class WebViewController: UIViewController {
         }
     }
     
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
