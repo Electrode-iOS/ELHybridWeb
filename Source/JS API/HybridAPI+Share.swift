@@ -13,7 +13,7 @@ import JavaScriptCore
     func share(options: [String: AnyObject])
 }
 
-extension HybridAPI: ShareJSExport {
+extension HybridAPI {
     
     func share(options: [String: AnyObject]) {
         dispatch_async(dispatch_get_main_queue()) {

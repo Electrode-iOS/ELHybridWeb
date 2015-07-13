@@ -13,7 +13,7 @@ import JavaScriptCore
     func log(value: AnyObject)
 }
 
-extension HybridAPI: JSExport, HybridLoggingJSExport {
+extension HybridAPI {
     func log(value: AnyObject) {
         print("BridgeOfDeath: \(value)")
     }
