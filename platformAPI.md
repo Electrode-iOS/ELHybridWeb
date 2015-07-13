@@ -31,6 +31,17 @@ if (window.NativeBridge === undefined) {
 }
 ```
 
+#### version()
+
+Returns the platform API version as a string.
+
+**Example**
+
+```
+console.log(NativeBridge.version()) // "1.0.0"
+
+```
+
 ## NativeBridge Object ##
 
 #### share()
