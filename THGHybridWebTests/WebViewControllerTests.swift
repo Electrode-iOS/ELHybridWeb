@@ -18,3 +18,24 @@ class WebViewControllerTests: XCTestCase {
         XCTAssert(context != nil)
     }
 }
+
+// MARK: - Subclassing
+
+class TestWebViewController: WebViewController {
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+}
+
+extension WebViewControllerTests {
+    
+    func testSubclassInitialization() {
+        let webViewController = TestWebViewController() // this should not even compile if initializers are defined improperly
+        XCTAssertNotNil(webViewController)
+    }
+}
