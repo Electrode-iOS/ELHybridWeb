@@ -33,6 +33,25 @@ if (window.NativeBridge === undefined) {
 
 ## NativeBridge Object ##
 
+#### info()
+
+Provides information that identifies the device and platform.
+
+**Returns**
+
+- `(object)`  - Object containing the device and platform info.
+  - `device` (string) - The hardware being user. eg: iphone 6, samsung galaxy s6.
+  - `platform` (string) - The device operating system and version. eg: iOs 8, android 5.0
+  - `appVersion` (string) -  The version string that identifies the walmart app being used
+
+
+**Example**
+
+```
+NativeBridge.info();
+
+```
+
 #### share()
 
 Present an activity view controller with `message` and `url` as the activity items.
