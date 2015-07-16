@@ -26,6 +26,7 @@
 		17C479331B4C612200F01703 /* DialogOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C479321B4C612200F01703 /* DialogOptions.swift */; };
 		17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
 		17E076EA1B025AA2008F89EC /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */; };
+		482EEE641B58507B001FA5EE /* THGLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AB907E1B4186DD002BCA0F /* THGLog.framework */; };
 		CA85AA4E1B3B280B0000FEEF /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA491B3B27FF0000FEEF /* THGBridge.framework */; };
 		CA85AA4F1B3B280B0000FEEF /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = CA2410631AF966F600AA4410;
 			remoteInfo = THGLog_osx;
+		};
+		482EEE651B585086001FA5EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CA8D47BA1AAE6FF50028B74D;
+			remoteInfo = THGLog;
 		};
 		CA85AA2E1B3B27EF0000FEEF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -163,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				482EEE641B58507B001FA5EE /* THGLog.framework in Frameworks */,
 				CA85AA4E1B3B280B0000FEEF /* THGBridge.framework in Frameworks */,
 				CA85AA4F1B3B280B0000FEEF /* THGFoundation.framework in Frameworks */,
 			);
@@ -338,6 +347,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				482EEE661B585086001FA5EE /* PBXTargetDependency */,
 				CA85AA521B3B28150000FEEF /* PBXTargetDependency */,
 				CA85AA561B3B28150000FEEF /* PBXTargetDependency */,
 			);
@@ -538,6 +548,11 @@
 			isa = PBXTargetDependency;
 			target = 173E4E571B00FDAD00ACBCCA /* THGHybridWeb */;
 			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
+		};
+		482EEE661B585086001FA5EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = THGLog;
+			targetProxy = 482EEE651B585086001FA5EE /* PBXContainerItemProxy */;
 		};
 		CA85AA521B3B28150000FEEF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
