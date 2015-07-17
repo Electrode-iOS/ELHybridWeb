@@ -8,7 +8,10 @@
 
 import Foundation
 import JavaScriptCore
+#if NOFRAMEWORKS
+#else
 import THGBridge
+#endif
 
 /**
  Defines methods that a delegate of a WebViewController object can optionally 

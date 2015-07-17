@@ -7,7 +7,10 @@
 //
 
 import JavaScriptCore
+#if NOFRAMEWORKS
+#else
 import THGBridge
+#endif
 
 @objc protocol HybridAPIJSExport: JSExport {
     var navigation: Navigation {get}
