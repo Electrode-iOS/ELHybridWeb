@@ -7,6 +7,7 @@
 //
 
 import JavaScriptCore
+import UIKit
 
 @objc class BarButton {
     let id: String

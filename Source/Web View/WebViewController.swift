@@ -8,6 +8,7 @@
 
 import Foundation
 import JavaScriptCore
+import UIKit
 #if NOFRAMEWORKS
 #else
 import THGBridge

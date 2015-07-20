@@ -7,6 +7,7 @@
 //
 
 import JavaScriptCore
+import UIKit
 
 public struct HybridAPIInfo {
     public let device: String

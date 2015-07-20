@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ViewControllerChildType {
     weak var parentViewController: UIViewController? {get set}
