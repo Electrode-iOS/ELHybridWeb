@@ -1,3 +1,12 @@
+# [0.0.8](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.8)
+
+- Added `info()` hybrid API method for getting device information.
+- Added noframeworks check to add compile by source compatibility
+- Added unit test for initializing `WebViewController` subclasses
+- Update `WebViewController` initializer to be designated
+- Added `JSValue` extension method for safely converting string values
+- Pass errors back to `dialog()` callback when missing required options parameters
+
 # [0.0.7](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.7)
 
 - `WebViewController` now uses `dynamicType` when spawning new web view controllers instances in order to support subclassed types.
