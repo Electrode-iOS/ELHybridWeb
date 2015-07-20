@@ -15,6 +15,7 @@ import THGBridge
 @objc protocol HybridAPIJSExport: JSExport {
     var navigation: Navigation {get}
     var navigationBar: NavigationBar {get}
+    func info() -> [String: String]
 }
 
 /**
@@ -37,6 +38,10 @@ import THGBridge
             navigation.parentViewController = parentViewController
             navigationBar.parentViewController = parentViewController
         }
+    }
+    
+    public func info() -> [String: String] {
+        return HybridAPIInfo(appVersion: "1.0").asDictionary
     }
 }
 

@@ -40,9 +40,9 @@ Provides information that identifies the device and platform.
 **Returns**
 
 - `(object)`  - Object containing the device and platform info.
-  - `device` (string) - The hardware being user. eg: iphone 6, samsung galaxy s6.
-  - `platform` (string) - The device operating system and version. eg: iOs 8, android 5.0
-  - `appVersion` (string) -  The version string that identifies the walmart app being used
+  - `device` (string) - The device hardware. eg: iPhone 6, Samsung Galaxy s6.
+  - `platform` (string) - The device operating system and version. eg: iOS 8, Android 5.0.
+  - `appVersion` (string) -  The version string that identifies the walmart app being used.
 
 
 **Example**
