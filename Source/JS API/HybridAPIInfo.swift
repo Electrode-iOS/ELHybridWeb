@@ -20,7 +20,7 @@ public struct HybridAPIInfo {
         self.appVersion = appVersion
     }
     
-    var asDictionary: [String: String] {
+    public var asDictionary: [String: String] {
         return ["device": device, "platform": platform, "appVersion": appVersion]
     }
 }
