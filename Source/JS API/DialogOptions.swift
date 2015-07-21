@@ -7,6 +7,7 @@
 //
 
 import JavaScriptCore
+import UIKit
 
 struct DialogOptions {
     var title: String?
