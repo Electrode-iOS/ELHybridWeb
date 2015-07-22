@@ -16,6 +16,7 @@ import THGBridge
 @objc protocol HybridAPIJSExport: JSExport {
     var navigation: Navigation {get}
     var navigationBar: NavigationBar {get}
+    var view: ViewAPI {get}
     func info() -> [String: String]
 }
 
@@ -27,10 +28,12 @@ import THGBridge
     public static let exportName = "NativeBridge"
     var navigation: Navigation
     var navigationBar: NavigationBar
+    var view: ViewAPI
 
     public required init(parentViewController: UIViewController) {
         navigation = Navigation(parentViewController: parentViewController)
         navigationBar = NavigationBar(parentViewController: parentViewController)
+        view = ViewAPI(parentViewController: parentViewController)
         super.init(parentViewController: parentViewController)
     }
 
@@ -38,6 +41,7 @@ import THGBridge
         didSet {
             navigation.parentViewController = parentViewController
             navigationBar.parentViewController = parentViewController
+            view.parentViewController = parentViewController
         }
     }
     

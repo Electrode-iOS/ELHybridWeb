@@ -214,7 +214,7 @@ public class WebViewController: UIViewController {
         placeholderImageView.image = nil
     }
     
-    private func showWebView() {
+    func showWebView() {
         // maybe delay this just a tad since loading is unpredictable??  I dunno.
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
