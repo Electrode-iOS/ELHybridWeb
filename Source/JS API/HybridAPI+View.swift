@@ -44,7 +44,7 @@ import UIKit
 }
 
 extension ViewAPI: ViewJSExport {
-    
+    /// Show the web view
     func show() {
         webViewController?.showWebView()
     }
