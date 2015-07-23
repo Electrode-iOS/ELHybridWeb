@@ -149,25 +149,14 @@ NativeBridge.navigation.animateBackward();
 
 ```
 
-#### showTabBar()
+#### popToRoot()
 
-Shows the native iOS tab bar. This feature is not applicable to Android and will be ignored.
-
-**Example**
-
-```
-NativeBridge.navigation.showTabBar();
-
-```
-
-#### hideTabBar()
-
-Hides the native iOS tab bar. This feature is not applicable to Android and will be ignored.
+Pops the native navigation stack all the way back to the root view. This will trigger the root views onAppear callback with the appropriate arguments.
 
 **Example**
 
 ```
-NativeBridge.navigation.hideTabBar();
+NativeBridge.navigation.popToRoot();
 
 ```
 
@@ -193,27 +182,27 @@ NativeBridge.navigation.dismissModal();
 
 ```
 
-#### pop()
+## NativeBridge.tabBar Object ##
 
-This is a silent operation that will pop the required levels from the native navigation stack keeping the current level in view intact.
+#### show()
 
-**Parameters**
-- (object) - Optional options object. 
-  - `depth` (number) - Number of levels to pop from the navigation stack. If not provided, will default to 1.
+Shows the native iOS tab bar. This feature is not applicable to Android and will be ignored.
 
 **Example**
 
-Pop entire navigation stack.
-
 ```
-NativeBridge.navigation.pop();
+NativeBridge.tabBar.show();
 
 ```
 
-Pop 2 levels from the navigation stack.
+#### hide()
+
+Hides the native iOS tab bar. This feature is not applicable to Android and will be ignored.
+
+**Example**
 
 ```
-NativeBridge.navigation.pop({depth: 2});
+NativeBridge.tabBar.hide();
 
 ```
 
@@ -283,23 +272,20 @@ NativeBridge.view.show();
 
 #### setOnAppear()
 
-Sets a callback on the current web view that will be triggered when this view is visible to the user. This callback will be triggered in one of two cases:
+Sets a callback on the current web view that will be triggered when it becomes visible to the user. This callback will be triggered in one of three cases:
 - When a user navigates from elsewhere in the native app back to the view that sets this callback.
-- When the view appears as a result of a native "back transition".
+- When the view appears as a result of a native `animateBackward` transition.
+- When the view appears as a results of a native `popToRoot` transition.
 
 **Parameters**
 
-- (function) - Callback to be triggered. The callback will receive a `backPressed` boolean arguement depending on how the current web view appears.
+- (function) - Callback to be triggered.
 
 **Example**
 
 ```
-NativeBridge.view.setOnAppear(function (backPressed) {
-  if (backPressed) {
-    // Do something if view is show as a result of native back transition.
-  } else {
-    // Do something else
-  }
+NativeBridge.view.setOnAppear(function () {
+  // Do something
 });
 
 ```
