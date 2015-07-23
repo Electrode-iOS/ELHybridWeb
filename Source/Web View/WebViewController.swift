@@ -187,6 +187,8 @@ public class WebViewController: UIViewController {
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        bridge.hybridAPI?.view.appeared()
+
         hasAppeared = true
         
         if showWebViewOnAppear {
@@ -205,6 +207,8 @@ public class WebViewController: UIViewController {
         view.bringSubviewToFront(placeholderImageView)
         
         webView.hidden = true
+        
+        bridge.hybridAPI?.view.disappeared() // needs to be called in viewWillDisappear not Did
     }
     
     public override func viewDidDisappear(animated: Bool) {
