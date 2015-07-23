@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */; };
 		172F077E1B4C67A100C96ABF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F077D1B4C67A100C96ABF /* Util.swift */; };
 		173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		174CA6C51B20804400A80074 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CA6C41B20804400A80074 /* NavigationBar.swift */; };
@@ -131,6 +132,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+View.swift"; sourceTree = "<group>"; };
 		172F077D1B4C67A100C96ABF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THGHybridWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E5C1B00FDAD00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */,
 				177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */,
 				177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */,
+				172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */,
 				17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */,
 				177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */,
 				177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */,
@@ -507,6 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */,
+				172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */,
 				177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */,
 				17C479331B4C612200F01703 /* DialogOptions.swift in Sources */,
 				17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */,

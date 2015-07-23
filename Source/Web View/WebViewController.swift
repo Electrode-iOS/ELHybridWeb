@@ -99,8 +99,6 @@ public class WebViewController: UIViewController {
     
     /// JavaScript bridge for the web view's JSContext
     private(set) public var bridge = Bridge()
-    private var hasAppeared = false
-    private var showWebViewOnAppear = false
     private var storedScreenshotGUID: String? = nil
     private var goBackInWebViewOnAppear = false
     private var firstLoadCycleCompleted = true
@@ -170,10 +168,6 @@ public class WebViewController: UIViewController {
         webView.frame = view.bounds
         view.addSubview(webView)
         
-        if !webView.loading || firstLoadCycleCompleted {
-            showWebViewOnAppear = true
-        }
-        
         view.removeDoubleTapGestures()
 
         // if we have a screenshot stored, load it.
@@ -187,11 +181,7 @@ public class WebViewController: UIViewController {
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        hasAppeared = true
-        
-        if showWebViewOnAppear {
-            showWebView()
-        }
+        bridge.hybridAPI?.view.appeared()
     }
     
     public override func viewWillDisappear(animated: Bool) {
@@ -205,6 +195,8 @@ public class WebViewController: UIViewController {
         view.bringSubviewToFront(placeholderImageView)
         
         webView.hidden = true
+        
+        bridge.hybridAPI?.view.disappeared() // needs to be called in viewWillDisappear not Did
     }
     
     public override func viewDidDisappear(animated: Bool) {
@@ -214,14 +206,10 @@ public class WebViewController: UIViewController {
         placeholderImageView.image = nil
     }
     
-    private func showWebView() {
-        // maybe delay this just a tad since loading is unpredictable??  I dunno.
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.webView.hidden = false
-            self.placeholderImageView.image = nil
-            self.view.sendSubviewToBack(self.placeholderImageView)
-        }
+    internal final func showWebView() {
+        webView.hidden = false
+        placeholderImageView.image = nil
+        view.sendSubviewToBack(placeholderImageView)
     }
 }
 
@@ -251,19 +239,8 @@ extension WebViewController: UIWebViewDelegate {
     
     public func webViewDidFinishLoad(webView: UIWebView) {
         
-        func attemptToShowWebView() {
-            if hasAppeared {
-                showWebView()
-            } else {
-                // wait for viewDidAppear to show web view
-                showWebViewOnAppear = true
-            }
-        }
-
         if !webView.loading {
-            firstLoadCycleCompleted = true
             updateBridgeContext() // todo: listen for context changes
-            attemptToShowWebView()
         }
         
         delegate?.webViewControllerDidFinishLoad?(self)
