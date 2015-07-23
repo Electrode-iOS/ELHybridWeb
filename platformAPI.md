@@ -117,10 +117,24 @@ window.NativeBridge.dialog(options, function(error, id) {
 
 Trigger a native push navigation transition. By default it pushes a new web view controller on to the web view controller's navigation stack with the current web view. Does not affect web view history.
 
+**Parameters**
+
+- (object) - Optional options object.
+  - `tabBarHidden` (boolean) -  Determines whether the page we're animating to, shows or hides the tab bar in iOS. If this option is not provided, the default behavior in iOS would be to show the tab bar. This option is not applicable to Android will be ignored.
+
 **Example**
+
+Trigger a simple animate forward transition.
 
 ```
 NativeBridge.navigation.animateForward();
+
+```
+
+Trigger an animate forward transition that hides the tab bar.
+
+```
+NativeBridge.navigation.animateForward({tabBarHidden: true});
 
 ```
 
@@ -132,6 +146,17 @@ Trigger a native pop navigation transition. By default it pops a view controller
 
 ```
 NativeBridge.navigation.animateBackward();
+
+```
+
+#### popToRoot()
+
+Pops the native navigation stack all the way back to the root view. This will trigger the root views onAppear callback with the appropriate arguments.
+
+**Example**
+
+```
+NativeBridge.navigation.popToRoot();
 
 ```
 
@@ -154,6 +179,30 @@ Close the existing native modal view. Does not affect web view history.
 
 ```
 NativeBridge.navigation.dismissModal();
+
+```
+
+## NativeBridge.tabBar Object ##
+
+#### show()
+
+Shows the native iOS tab bar. This feature is not applicable to Android and will be ignored.
+
+**Example**
+
+```
+NativeBridge.tabBar.show();
+
+```
+
+#### hide()
+
+Hides the native iOS tab bar. This feature is not applicable to Android and will be ignored.
+
+**Example**
+
+```
+NativeBridge.tabBar.hide();
 
 ```
 
@@ -206,4 +255,50 @@ Remove navigation bar buttons by passing `null` or an empty array as the first p
 
 ```
 window.NativeBridge.navigationBar.setButtons(null);
+```
+
+## NativeBridge.view Object ##
+
+#### show()
+
+Shows the current web view. This allows to webapp to indicate to the native app thats its ready to be shown.
+
+**Example**
+
+```
+NativeBridge.view.show();
+
+```
+
+#### setOnAppear()
+
+Sets a callback on the current web view that will be triggered when it becomes visible to the user. This callback will be triggered in one of three cases:
+- When a user navigates from elsewhere in the native app back to the view that sets this callback.
+- When the view appears as a result of a native `animateBackward` transition.
+- When the view appears as a results of a native `popToRoot` transition.
+
+**Parameters**
+
+- (function) - Callback to be triggered.
+
+**Example**
+
+```
+NativeBridge.view.setOnAppear(function () {
+  // Do something
+});
+
+```
+
+#### setOnDisappear()
+
+Sets a callback on the current web view that will be triggered when this view is about to be transitioned out of.
+
+**Example**
+
+```
+NativeBridge.view.setOnDisappear(function () {
+  // Do something
+});
+
 ```
