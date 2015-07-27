@@ -222,6 +222,7 @@ extension WebViewController {
      :param: url The URL used to load the web view.
     */
     final public func loadURL(url: NSURL) {
+        webView.stopLoading()
         self.url = url
         firstLoadCycleCompleted = false
         let request = NSURLRequest(URL: url)
@@ -244,6 +245,9 @@ extension WebViewController: UIWebViewDelegate {
         }
         
         delegate?.webViewControllerDidFinishLoad?(self)
+        if self.errorView != nil {
+            self.removeErrorDisplay()
+        }
     }
     
     final public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -257,11 +261,13 @@ extension WebViewController: UIWebViewDelegate {
     
     final public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         
-        if showErrorDisplay {
-            renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
+        if error.code != NSURLErrorCancelled {
+            if showErrorDisplay {
+                renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
+            }
+
+            delegate?.webViewController?(self, didFailLoadWithError: error)
         }
-        
-        delegate?.webViewController?(self, didFailLoadWithError: error)
     }
 }
 
