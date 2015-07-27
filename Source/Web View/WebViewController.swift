@@ -265,9 +265,8 @@ extension WebViewController: UIWebViewDelegate {
             if showErrorDisplay {
                 renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
             }
-
-            delegate?.webViewController?(self, didFailLoadWithError: error)
         }
+        delegate?.webViewController?(self, didFailLoadWithError: error)
     }
 }
 
