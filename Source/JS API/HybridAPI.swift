@@ -17,6 +17,7 @@ import THGBridge
     var navigation: Navigation {get}
     var navigationBar: NavigationBar {get}
     var view: ViewAPI {get}
+    var tabBar: TabBar {get}
     func info() -> [String: String]
 }
 
@@ -29,11 +30,13 @@ import THGBridge
     var navigation: Navigation
     var navigationBar: NavigationBar
     var view: ViewAPI
+    var tabBar: TabBar
 
     public required init(parentViewController: UIViewController) {
         navigation = Navigation(parentViewController: parentViewController)
         navigationBar = NavigationBar(parentViewController: parentViewController)
         view = ViewAPI(parentViewController: parentViewController)
+        tabBar = TabBar(parentViewController: parentViewController)
         super.init(parentViewController: parentViewController)
     }
 
@@ -42,6 +45,7 @@ import THGBridge
             navigation.parentViewController = parentViewController
             navigationBar.parentViewController = parentViewController
             view.parentViewController = parentViewController
+            tabBar.parentViewController = parentViewController
         }
     }
     
