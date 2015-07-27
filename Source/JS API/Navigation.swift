@@ -9,8 +9,8 @@
 import JavaScriptCore
 
 @objc protocol NavigationJSExport: JSExport {
+    func animateForward(options: [String: AnyObject]?)
     func animateBackward()
-    func animateForward()
     func popToRoot()
 }
 
@@ -20,9 +20,11 @@ import JavaScriptCore
         return parentViewController as? WebViewController
     }
     
-    func animateForward() {
+    func animateForward(options: [String: AnyObject]?) {
+        let hideBottomBar = options?["tabBarHidden"]?.boolValue ?? false
+        
         dispatch_async(dispatch_get_main_queue()) {
-            self.webViewController?.pushWebViewController()
+            self.webViewController?.pushWebViewController(hideBottomBar: hideBottomBar)
         }
     }
     

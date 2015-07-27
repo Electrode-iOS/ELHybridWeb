@@ -23,6 +23,7 @@
 		177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */; };
 		178412271B16762D00EECF8B /* WebViewControllerDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */; };
 		178822E91B4D4BFC00B5548D /* NavigationBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */; };
+		17B4356A1B667B4D00446D71 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B435691B667B4D00446D71 /* TabBar.swift */; };
 		17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */; };
 		17C479331B4C612200F01703 /* DialogOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C479321B4C612200F01703 /* DialogOptions.swift */; };
 		17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
@@ -153,6 +154,7 @@
 		178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegateTests.swift; sourceTree = "<group>"; };
 		178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarTests.swift; sourceTree = "<group>"; };
 		17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGLog.xcodeproj; path = ../Shrubbery/THGLog.xcodeproj; sourceTree = "<group>"; };
+		17B435691B667B4D00446D71 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+Modal.swift"; sourceTree = "<group>"; };
 		17C479321B4C612200F01703 /* DialogOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogOptions.swift; sourceTree = "<group>"; };
 		17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+JavaScriptContext.swift"; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */,
 				17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */,
 				174CA6C41B20804400A80074 /* NavigationBar.swift */,
+				17B435691B667B4D00446D71 /* TabBar.swift */,
 			);
 			path = "JS API";
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */,
 				177E5D961B00FE1A006BCBE2 /* Navigation.swift in Sources */,
 				177E5D941B00FE1A006BCBE2 /* HybridAPI.swift in Sources */,
+				17B4356A1B667B4D00446D71 /* TabBar.swift in Sources */,
 				174CA6C51B20804400A80074 /* NavigationBar.swift in Sources */,
 				17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */,
 				177E5D931B00FE1A006BCBE2 /* HybridAPI+Share.swift in Sources */,

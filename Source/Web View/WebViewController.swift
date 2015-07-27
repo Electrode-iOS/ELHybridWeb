@@ -296,15 +296,25 @@ extension WebViewController {
 // MARK: - Web Controller Navigation
 
 extension WebViewController {
-
+    
     /**
-     Push a new web view controller on the navigation stack using the existing 
+     Push a new web view controller on the navigation stack using the existing
      web view instance. Does not affect web view history. Uses animation.
     */
     public func pushWebViewController() {
+        pushWebViewController(hideBottomBar: false)
+    }
+    
+    /**
+     Push a new web view controller on the navigation stack using the existing
+     web view instance. Does not affect web view history. Uses animation.
+     :param: hideBottomBar Hides the bottom bar of the view controller when true.
+    */
+    public func pushWebViewController(#hideBottomBar: Bool) {
         goBackInWebViewOnAppear = true
         
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        webViewController.hidesBottomBarWhenPushed = hideBottomBar
         navigationController?.pushViewController(webViewController, animated: true)
     }
     
