@@ -447,7 +447,6 @@ extension WebViewController {
     
     /// Removes the error display and attempts to reload the web view.
     public func reloadButtonTapped(sender: AnyObject) {
-        removeErrorDisplay()
         map(url) {self.loadURL($0)}
     }
 }
