@@ -1,3 +1,13 @@
+# [0.1.0](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.1.0)
+
+- Make `showWebView()` public
+- Added `popToRoot()` method in navigation API. Fixes [#32](https://github.com/TheHolyGrail/Zoot/issues/32)
+- Wait for view.show() bridge call to unhide web view after `animateForward()` and `presentModal()`. Fixes [#30](https://github.com/TheHolyGrail/Zoot/issues/30). You must now explicitly call `view.show()` to show the web view after a call to `navigation.animateForward()` or `navigation.presentModal()`.
+- Removed delay before showing web view
+- Update `WebViewController` to trigger onAppear/onDisappear JS callbacks. Fixes [#29](https://github.com/TheHolyGrail/Zoot/issues/29)
+- Added `onAppear` and `onDisappear` JS callbacks to view API
+- Added view API with show() method for unhiding web view
+
 # [0.0.8](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.0.8)
 
 - Added `info()` hybrid API method for getting device information.
