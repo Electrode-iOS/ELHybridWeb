@@ -11,6 +11,7 @@ import JavaScriptCore
 @objc protocol NavigationJSExport: JSExport {
     func animateForward(options: [String: AnyObject]?)
     func animateBackward()
+    func popToRoot()
 }
 
 @objc public class Navigation: ViewControllerChild, NavigationJSExport {
@@ -30,6 +31,12 @@ import JavaScriptCore
     func animateBackward() {
         dispatch_async(dispatch_get_main_queue()) {
             self.webViewController?.popWebViewController()
+        }
+    }
+    
+    func popToRoot() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.parentViewController?.navigationController?.popToRootViewControllerAnimated(false)
         }
     }
 }

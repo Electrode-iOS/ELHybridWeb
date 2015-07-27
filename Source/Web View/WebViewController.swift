@@ -206,7 +206,7 @@ public class WebViewController: UIViewController {
         placeholderImageView.image = nil
     }
     
-    internal final func showWebView() {
+    public final func showWebView() {
         webView.hidden = false
         placeholderImageView.image = nil
         view.sendSubviewToBack(placeholderImageView)
