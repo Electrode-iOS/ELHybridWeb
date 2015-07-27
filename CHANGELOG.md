@@ -1,5 +1,8 @@
 # [0.1.0](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.1.0)
 
+- Added `tabBarHidden` option to navigation API's `animateForward()` method. Fixes [#28](https://github.com/TheHolyGrail/Zoot/issues/28).
+- Added new `pushWebViewController` method with `hideBottomBar` option
+- Added hide/show tab bar API. Fixes [#31](https://github.com/TheHolyGrail/Zoot/issues/31)
 - Make `showWebView()` public
 - Added `popToRoot()` method in navigation API. Fixes [#32](https://github.com/TheHolyGrail/Zoot/issues/32)
 - Wait for view.show() bridge call to unhide web view after `animateForward()` and `presentModal()`. Fixes [#30](https://github.com/TheHolyGrail/Zoot/issues/30). You must now explicitly call `view.show()` to show the web view after a call to `navigation.animateForward()` or `navigation.presentModal()`.
