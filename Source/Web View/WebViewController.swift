@@ -155,8 +155,6 @@ public class WebViewController: UIViewController {
         self.bridge = bridge
         self.webView = webView
         self.webView.delegate = self
-        
-        webViews.addObject(webView)
     }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
