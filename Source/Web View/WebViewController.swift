@@ -46,6 +46,13 @@ import THGBridge
      :param: error The error that occured during loading.
     */
     optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
+    
+    /**
+     Sent when the web view creates the JS context for the frame.
+     :param: webViewController The web view controller that failed to load the frame.
+     :param: context The newly created JavaScript context.
+    */
+    optional func webViewControllerDidCreateJavaScriptContext(webViewController: WebViewController, context: JSContext)
 }
 
 /**
@@ -94,6 +101,7 @@ public class WebViewController: UIViewController {
     private(set) public lazy var webView: UIWebView = {
         let webView =  UIWebView(frame: CGRectZero)
         webView.delegate = self
+        webViews.addObject(webView)
         return webView
     }()
     
@@ -128,6 +136,8 @@ public class WebViewController: UIViewController {
         self.bridge = bridge
         self.webView = webView
         self.webView.delegate = self
+        
+        webViews.addObject(webView)
     }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -151,6 +161,13 @@ public class WebViewController: UIViewController {
         
         edgesForExtendedLayout = .None
         view.addSubview(placeholderImageView)
+        
+        let button = UIBarButtonItem(title: "Reload", style: UIBarButtonItemStyle.Done, target: self, action: "reloadFoo")
+        navigationItem.rightBarButtonItem = button
+    }
+    
+    func reloadFoo() {
+        loadURL(url!)
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -235,13 +252,17 @@ extension WebViewController {
 extension WebViewController: UIWebViewDelegate {
     
     final public func webViewDidStartLoad(webView: UIWebView) {
+        bridge.context.evaluateScript("console.log('webViewDidStartLoad')")
         delegate?.webViewControllerDidStartLoad?(self)
     }
     
     public func webViewDidFinishLoad(webView: UIWebView) {
-        
+        bridge.context.evaluateScript("console.log('webViewDidFinishLoad')")
+        println("webViewDidFinishLoad")
+        println(webView.javaScriptContext)
+
         if !webView.loading {
-            updateBridgeContext() // todo: listen for context changes
+//            updateBridgeContext() // todo: listen for context changes
         }
         
         delegate?.webViewControllerDidFinishLoad?(self)
@@ -286,15 +307,27 @@ extension WebViewController {
         }
     }
     
+    private func didCreateJavaScriptContext(context: JSContext) {
+        configureBridgeContext(context)
+        delegate?.webViewControllerDidCreateJavaScriptContext?(self, context: context)
+        configureContext(context)
+        
+        if let hybridAPI = bridge.hybridAPI {
+            bridge.contextValueForName("nativeBridgeReady").callWithData(hybridAPI)
+        }
+    }
+    
     /**
      Explictly set the bridge's JavaScript context.
     */
     final public func configureBridgeContext(context: JSContext) {
         bridge.context = context
-        
-        if let hybridAPI = bridge.hybridAPI {
-            bridge.contextValueForName("nativeBridgeReady").callWithData(hybridAPI)
-        }
+    }
+    
+    public func configureContext(context: JSContext) {
+        let platform = HybridAPI(parentViewController: self)
+        context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
+        platform.parentViewController = self
     }
 }
 
@@ -509,5 +542,30 @@ extension UIImage {
             return image
         }
         return nil
+    }
+}
+
+// MARK: - JSContext Event
+
+private var webViews = NSHashTable.weakObjectsHashTable()
+
+private struct Statics {
+    static var webViewOnceToken: dispatch_once_t = 0
+}
+
+extension NSObject {
+    func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
+        
+        if let allWebViews = webViews.allObjects as? [UIWebView] {
+            for webView in allWebViews {
+                webView.didCreateJavaScriptContext(context)
+            }
+        }
+    }
+}
+
+extension UIWebView {
+    func didCreateJavaScriptContext(context: JSContext) {
+        (delegate as? WebViewController)?.didCreateJavaScriptContext(context)
     }
 }
