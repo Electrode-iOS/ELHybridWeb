@@ -94,8 +94,8 @@ import THGBridge
 */
 public class WebViewController: UIViewController {
     
-    enum DisappearenceCause {
-        case Unknown, Push, Modal
+    enum AppearenceCause {
+        case Unknown, WebPush, WebPop, WebModal, WebDismiss
     }
     
     /// The URL that was loaded with `loadURL()`
@@ -114,8 +114,21 @@ public class WebViewController: UIViewController {
     private var storedScreenshotGUID: String? = nil
     private var goBackInWebViewOnAppear = false
     private var firstLoadCycleCompleted = true
-    private var causeOfDisappearance = DisappearenceCause.Unknown
-    
+    private var disappearedBy = AppearenceCause.Unknown
+    private var storedAppearence = AppearenceCause.WebPush
+    private var appearedFrom: AppearenceCause {
+        get {
+            switch disappearedBy {
+            case .WebPush: return .WebPop
+            case .WebModal: return .WebDismiss
+            default: return storedAppearence
+            }
+        }
+        set {
+            storedAppearence = newValue
+        }
+    }
+
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
@@ -178,23 +191,30 @@ public class WebViewController: UIViewController {
         
         bridge.hybridAPI?.parentViewController = self
         
-        if goBackInWebViewOnAppear {
-            goBackInWebViewOnAppear = false
-            webView.goBack() // go back before remove/adding web view
-        }
         
-        webView.delegate = self
-        webView.removeFromSuperview()
-        webView.frame = view.bounds
-        view.addSubview(webView)
-        
-        view.removeDoubleTapGestures()
-
-        // if we have a screenshot stored, load it.
-        if let guid = storedScreenshotGUID {
-            placeholderImageView.image = UIImage.loadImageFromGUID(guid)
-            placeholderImageView.frame = view.bounds
-            view.bringSubviewToFront(placeholderImageView)
+        switch appearedFrom {
+            
+        case .WebPush, .WebModal, .WebPop, .WebDismiss:
+            if goBackInWebViewOnAppear {
+                goBackInWebViewOnAppear = false
+                webView.goBack() // go back before remove/adding web view
+            }
+            
+            webView.delegate = self
+            webView.removeFromSuperview()
+            webView.frame = view.bounds
+            view.addSubview(webView)
+            
+            view.removeDoubleTapGestures()
+            
+            // if we have a screenshot stored, load it.
+            if let guid = storedScreenshotGUID {
+                placeholderImageView.image = UIImage.loadImageFromGUID(guid)
+                placeholderImageView.frame = view.bounds
+                view.bringSubviewToFront(placeholderImageView)
+            }
+            
+        case .Unknown: break
         }
     }
     
@@ -202,35 +222,51 @@ public class WebViewController: UIViewController {
         super.viewDidAppear(animated)
         bridge.hybridAPI?.view.appeared()
         
-        // show web view based on how VC previously disappeared
-        switch causeOfDisappearance {
-        case .Push, .Modal: showWebView()
-        case .Unknown: break
-        }
         
-        causeOfDisappearance = .Unknown // reset cause of disappearence
+        switch appearedFrom {
+            
+        case .WebPop, .WebDismiss:
+            showWebView()
+            
+        case .WebPush, .WebModal, .Unknown: break
+        }
     }
     
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // we're going away, store the screen shot
-        placeholderImageView.frame = webView.frame // must align frames for image capture
-        let image = webView.captureImage()
-        placeholderImageView.image = image
-        storedScreenshotGUID = image.saveImageToGUID()
-        view.bringSubviewToFront(placeholderImageView)
-        
-        webView.hidden = true
-        
+        switch disappearedBy {
+            
+        case .WebPop, .WebDismiss, .WebPush, .WebModal:
+            // only store screen shot when disappearing by web transition
+            placeholderImageView.frame = webView.frame // must align frames for image capture
+            let image = webView.captureImage()
+            placeholderImageView.image = image
+            storedScreenshotGUID = image.saveImageToGUID()
+            view.bringSubviewToFront(placeholderImageView)
+            
+            webView.hidden = true
+            
+        case .Unknown: break
+
+        }
+
         bridge.hybridAPI?.view.disappeared() // needs to be called in viewWillDisappear not Did
     }
     
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
-        // we're gone.  dump the screenshot, we'll load it later if we need to.
-        placeholderImageView.image = nil
+        switch disappearedBy {
+            
+        case .WebPop, .WebDismiss, .WebPush, .WebModal:
+            // we're gone.  dump the screenshot, we'll load it later if we need to.
+            placeholderImageView.image = nil
+            
+        case .Unknown:
+            // we don't know how it will appear if we don't know how it disappeared
+            appearedFrom = .Unknown
+        }
     }
     
     public final func showWebView() {
@@ -270,10 +306,6 @@ extension WebViewController: UIWebViewDelegate {
         bridge.context.evaluateScript("console.log('webViewDidFinishLoad')")
         println("webViewDidFinishLoad")
         println(webView.javaScriptContext)
-
-        if !webView.loading {
-//            updateBridgeContext() // todo: listen for context changes
-        }
         
         delegate?.webViewControllerDidFinishLoad?(self)
         if self.errorView != nil {
@@ -360,9 +392,10 @@ extension WebViewController {
     */
     public func pushWebViewController(#hideBottomBar: Bool) {
         goBackInWebViewOnAppear = true
-        causeOfDisappearance = .Push
+        disappearedBy = .WebPush
         
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        webViewController.appearedFrom = .WebPush
         webViewController.hidesBottomBarWhenPushed = hideBottomBar
         navigationController?.pushViewController(webViewController, animated: true)
     }
@@ -385,7 +418,10 @@ extension WebViewController {
     */
     public func presentModalWebViewController() {
         goBackInWebViewOnAppear = false
-        causeOfDisappearance = .Modal
+        disappearedBy = .WebModal
+        
+        let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        webViewController.appearedFrom = .WebModal
         
         let navigationController = UINavigationController(rootViewController: self.dynamicType(webView: webView, bridge: bridge))
         
