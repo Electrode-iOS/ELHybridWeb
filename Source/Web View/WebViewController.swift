@@ -94,6 +94,10 @@ import THGBridge
 */
 public class WebViewController: UIViewController {
     
+    enum DisappearenceCause {
+        case Unknown, Push, Modal
+    }
+    
     /// The URL that was loaded with `loadURL()`
     private(set) public var url: NSURL?
     
@@ -110,6 +114,8 @@ public class WebViewController: UIViewController {
     private var storedScreenshotGUID: String? = nil
     private var goBackInWebViewOnAppear = false
     private var firstLoadCycleCompleted = true
+    private var causeOfDisappearance = DisappearenceCause.Unknown
+    
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
@@ -194,8 +200,15 @@ public class WebViewController: UIViewController {
     
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         bridge.hybridAPI?.view.appeared()
+        
+        // show web view based on how VC previously disappeared
+        switch causeOfDisappearance {
+        case .Push, .Modal: showWebView()
+        case .Unknown: break
+        }
+        
+        causeOfDisappearance = .Unknown // reset cause of disappearence
     }
     
     public override func viewWillDisappear(animated: Bool) {
@@ -347,6 +360,7 @@ extension WebViewController {
     */
     public func pushWebViewController(#hideBottomBar: Bool) {
         goBackInWebViewOnAppear = true
+        causeOfDisappearance = .Push
         
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
         webViewController.hidesBottomBarWhenPushed = hideBottomBar
@@ -371,6 +385,7 @@ extension WebViewController {
     */
     public func presentModalWebViewController() {
         goBackInWebViewOnAppear = false
+        causeOfDisappearance = .Modal
         
         let navigationController = UINavigationController(rootViewController: self.dynamicType(webView: webView, bridge: bridge))
         
