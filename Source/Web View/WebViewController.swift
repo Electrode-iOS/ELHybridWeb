@@ -182,15 +182,10 @@ public class WebViewController: UIViewController {
         view.addSubview(placeholderImageView)
     }
     
-    func reloadFoo() {
-        loadURL(url!)
-    }
-    
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         bridge.hybridAPI?.parentViewController = self
-        
         
         switch appearedFrom {
             
@@ -221,7 +216,6 @@ public class WebViewController: UIViewController {
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         bridge.hybridAPI?.view.appeared()
-        
         
         switch appearedFrom {
             
