@@ -161,9 +161,6 @@ public class WebViewController: UIViewController {
         
         edgesForExtendedLayout = .None
         view.addSubview(placeholderImageView)
-        
-        let button = UIBarButtonItem(title: "Reload", style: UIBarButtonItemStyle.Done, target: self, action: "reloadFoo")
-        navigationItem.rightBarButtonItem = button
     }
     
     func reloadFoo() {
