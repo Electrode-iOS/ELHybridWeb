@@ -282,7 +282,10 @@ extension WebViewController {
         webView.stopLoading()
         self.url = url
         firstLoadCycleCompleted = false
-        let request = NSURLRequest(URL: url)
+        let request = NSMutableURLRequest(URL: url)
+        let cookies: NSArray = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!
+        let headers = NSHTTPCookie.requestHeaderFieldsWithCookies(cookies as [AnyObject])
+        request.allHTTPHeaderFields = headers
         webView.loadRequest(request)
     }
 }
