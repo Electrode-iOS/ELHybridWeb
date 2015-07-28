@@ -155,8 +155,6 @@ public class WebViewController: UIViewController {
         self.bridge = bridge
         self.webView = webView
         self.webView.delegate = self
-        
-        webViews.addObject(webView)
     }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -295,16 +293,12 @@ extension WebViewController {
 extension WebViewController: UIWebViewDelegate {
     
     final public func webViewDidStartLoad(webView: UIWebView) {
-        bridge.context.evaluateScript("console.log('webViewDidStartLoad')")
         delegate?.webViewControllerDidStartLoad?(self)
     }
     
     public func webViewDidFinishLoad(webView: UIWebView) {
-        bridge.context.evaluateScript("console.log('webViewDidFinishLoad')")
-        println("webViewDidFinishLoad")
-        println(webView.javaScriptContext)
-        
         delegate?.webViewControllerDidFinishLoad?(self)
+        
         if self.errorView != nil {
             self.removeErrorDisplay()
         }
