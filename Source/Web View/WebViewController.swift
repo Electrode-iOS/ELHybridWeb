@@ -46,6 +46,13 @@ import THGBridge
      :param: error The error that occured during loading.
     */
     optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
+    
+    /**
+     Sent when the web view creates the JS context for the frame.
+     :param: webViewController The web view controller that failed to load the frame.
+     :param: context The newly created JavaScript context.
+    */
+    optional func webViewControllerDidCreateJavaScriptContext(webViewController: WebViewController, context: JSContext)
 }
 
 /**
@@ -87,6 +94,10 @@ import THGBridge
 */
 public class WebViewController: UIViewController {
     
+    enum AppearenceCause {
+        case Unknown, WebPush, WebPop, WebModal, WebDismiss
+    }
+    
     /// The URL that was loaded with `loadURL()`
     private(set) public var url: NSURL?
     
@@ -94,6 +105,7 @@ public class WebViewController: UIViewController {
     private(set) public lazy var webView: UIWebView = {
         let webView =  UIWebView(frame: CGRectZero)
         webView.delegate = self
+        webViews.addObject(webView)
         return webView
     }()
     
@@ -102,6 +114,21 @@ public class WebViewController: UIViewController {
     private var storedScreenshotGUID: String? = nil
     private var goBackInWebViewOnAppear = false
     private var firstLoadCycleCompleted = true
+    private var disappearedBy = AppearenceCause.Unknown
+    private var storedAppearence = AppearenceCause.WebPush
+    private var appearedFrom: AppearenceCause {
+        get {
+            switch disappearedBy {
+            case .WebPush: return .WebPop
+            case .WebModal: return .WebDismiss
+            default: return storedAppearence
+            }
+        }
+        set {
+            storedAppearence = newValue
+        }
+    }
+
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
@@ -128,6 +155,8 @@ public class WebViewController: UIViewController {
         self.bridge = bridge
         self.webView = webView
         self.webView.delegate = self
+        
+        webViews.addObject(webView)
     }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -153,57 +182,91 @@ public class WebViewController: UIViewController {
         view.addSubview(placeholderImageView)
     }
     
+    func reloadFoo() {
+        loadURL(url!)
+    }
+    
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         bridge.hybridAPI?.parentViewController = self
         
-        if goBackInWebViewOnAppear {
-            goBackInWebViewOnAppear = false
-            webView.goBack() // go back before remove/adding web view
-        }
         
-        webView.delegate = self
-        webView.removeFromSuperview()
-        webView.frame = view.bounds
-        view.addSubview(webView)
-        
-        view.removeDoubleTapGestures()
-
-        // if we have a screenshot stored, load it.
-        if let guid = storedScreenshotGUID {
-            placeholderImageView.image = UIImage.loadImageFromGUID(guid)
-            placeholderImageView.frame = view.bounds
-            view.bringSubviewToFront(placeholderImageView)
+        switch appearedFrom {
+            
+        case .WebPush, .WebModal, .WebPop, .WebDismiss:
+            if goBackInWebViewOnAppear {
+                goBackInWebViewOnAppear = false
+                webView.goBack() // go back before remove/adding web view
+            }
+            
+            webView.delegate = self
+            webView.removeFromSuperview()
+            webView.frame = view.bounds
+            view.addSubview(webView)
+            
+            view.removeDoubleTapGestures()
+            
+            // if we have a screenshot stored, load it.
+            if let guid = storedScreenshotGUID {
+                placeholderImageView.image = UIImage.loadImageFromGUID(guid)
+                placeholderImageView.frame = view.bounds
+                view.bringSubviewToFront(placeholderImageView)
+            }
+            
+        case .Unknown: break
         }
     }
     
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         bridge.hybridAPI?.view.appeared()
+        
+        
+        switch appearedFrom {
+            
+        case .WebPop, .WebDismiss:
+            showWebView()
+            
+        case .WebPush, .WebModal, .Unknown: break
+        }
     }
     
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // we're going away, store the screen shot
-        placeholderImageView.frame = webView.frame // must align frames for image capture
-        let image = webView.captureImage()
-        placeholderImageView.image = image
-        storedScreenshotGUID = image.saveImageToGUID()
-        view.bringSubviewToFront(placeholderImageView)
-        
-        webView.hidden = true
-        
+        switch disappearedBy {
+            
+        case .WebPop, .WebDismiss, .WebPush, .WebModal:
+            // only store screen shot when disappearing by web transition
+            placeholderImageView.frame = webView.frame // must align frames for image capture
+            let image = webView.captureImage()
+            placeholderImageView.image = image
+            storedScreenshotGUID = image.saveImageToGUID()
+            view.bringSubviewToFront(placeholderImageView)
+            
+            webView.hidden = true
+            
+        case .Unknown: break
+
+        }
+
         bridge.hybridAPI?.view.disappeared() // needs to be called in viewWillDisappear not Did
     }
     
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
-        // we're gone.  dump the screenshot, we'll load it later if we need to.
-        placeholderImageView.image = nil
+        switch disappearedBy {
+            
+        case .WebPop, .WebDismiss, .WebPush, .WebModal:
+            // we're gone.  dump the screenshot, we'll load it later if we need to.
+            placeholderImageView.image = nil
+            
+        case .Unknown:
+            // we don't know how it will appear if we don't know how it disappeared
+            appearedFrom = .Unknown
+        }
     }
     
     public final func showWebView() {
@@ -235,14 +298,14 @@ extension WebViewController {
 extension WebViewController: UIWebViewDelegate {
     
     final public func webViewDidStartLoad(webView: UIWebView) {
+        bridge.context.evaluateScript("console.log('webViewDidStartLoad')")
         delegate?.webViewControllerDidStartLoad?(self)
     }
     
     public func webViewDidFinishLoad(webView: UIWebView) {
-        
-        if !webView.loading {
-            updateBridgeContext() // todo: listen for context changes
-        }
+        bridge.context.evaluateScript("console.log('webViewDidFinishLoad')")
+        println("webViewDidFinishLoad")
+        println(webView.javaScriptContext)
         
         delegate?.webViewControllerDidFinishLoad?(self)
         if self.errorView != nil {
@@ -286,15 +349,27 @@ extension WebViewController {
         }
     }
     
+    private func didCreateJavaScriptContext(context: JSContext) {
+        configureBridgeContext(context)
+        delegate?.webViewControllerDidCreateJavaScriptContext?(self, context: context)
+        configureContext(context)
+        
+        if let hybridAPI = bridge.hybridAPI {
+            bridge.contextValueForName("nativeBridgeReady").callWithData(hybridAPI)
+        }
+    }
+    
     /**
      Explictly set the bridge's JavaScript context.
     */
     final public func configureBridgeContext(context: JSContext) {
         bridge.context = context
-        
-        if let hybridAPI = bridge.hybridAPI {
-            bridge.contextValueForName("nativeBridgeReady").callWithData(hybridAPI)
-        }
+    }
+    
+    public func configureContext(context: JSContext) {
+        let platform = HybridAPI(parentViewController: self)
+        context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
+        platform.parentViewController = self
     }
 }
 
@@ -317,8 +392,10 @@ extension WebViewController {
     */
     public func pushWebViewController(#hideBottomBar: Bool) {
         goBackInWebViewOnAppear = true
+        disappearedBy = .WebPush
         
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        webViewController.appearedFrom = .WebPush
         webViewController.hidesBottomBarWhenPushed = hideBottomBar
         navigationController?.pushViewController(webViewController, animated: true)
     }
@@ -341,6 +418,10 @@ extension WebViewController {
     */
     public func presentModalWebViewController() {
         goBackInWebViewOnAppear = false
+        disappearedBy = .WebModal
+        
+        let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        webViewController.appearedFrom = .WebModal
         
         let navigationController = UINavigationController(rootViewController: self.dynamicType(webView: webView, bridge: bridge))
         
@@ -509,5 +590,30 @@ extension UIImage {
             return image
         }
         return nil
+    }
+}
+
+// MARK: - JSContext Event
+
+private var webViews = NSHashTable.weakObjectsHashTable()
+
+private struct Statics {
+    static var webViewOnceToken: dispatch_once_t = 0
+}
+
+extension NSObject {
+    func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
+        
+        if let allWebViews = webViews.allObjects as? [UIWebView] {
+            for webView in allWebViews {
+                webView.didCreateJavaScriptContext(context)
+            }
+        }
+    }
+}
+
+extension UIWebView {
+    func didCreateJavaScriptContext(context: JSContext) {
+        (delegate as? WebViewController)?.didCreateJavaScriptContext(context)
     }
 }
