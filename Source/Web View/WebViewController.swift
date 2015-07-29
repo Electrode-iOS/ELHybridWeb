@@ -135,6 +135,7 @@ public class WebViewController: UIViewController {
     private var errorView: UIView?
     private var errorLabel: UILabel?
     private var reloadButton: UIButton?
+    public weak var bridgeObject: HybridAPI?
     
     /// Handles web view controller events.
     public weak var delegate: WebViewControllerDelegate?
@@ -183,13 +184,14 @@ public class WebViewController: UIViewController {
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        bridge.hybridAPI?.parentViewController = self
+        bridgeObject?.parentViewController = self
         
         switch appearedFrom {
             
         case .WebPush, .WebModal, .WebPop, .WebDismiss:
             if goBackInWebViewOnAppear {
                 goBackInWebViewOnAppear = false
+                bridgeObject = nil
                 webView.goBack() // go back before remove/adding web view
             }
             
@@ -278,8 +280,10 @@ extension WebViewController {
     */
     final public func loadURL(url: NSURL) {
         webView.stopLoading()
-        self.url = url
+        bridgeObject = nil
         firstLoadCycleCompleted = false
+
+        self.url = url
         let request = NSURLRequest(URL: url)
         webView.loadRequest(request)
     }
@@ -355,9 +359,13 @@ extension WebViewController {
     }
     
     public func configureContext(context: JSContext) {
-        let platform = HybridAPI(parentViewController: self)
-        context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
-        platform.parentViewController = self
+        if let bridgeObject = bridgeObject {
+            bridge.context.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName)
+        } else {
+            let platform = HybridAPI(parentViewController: self)
+            bridge.context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
+            bridgeObject = platform
+        }
     }
 }
 
@@ -383,6 +391,7 @@ extension WebViewController {
         disappearedBy = .WebPush
         
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        webViewController.bridgeObject = bridgeObject
         webViewController.appearedFrom = .WebPush
         webViewController.hidesBottomBarWhenPushed = hideBottomBar
         navigationController?.pushViewController(webViewController, animated: true)
@@ -409,9 +418,10 @@ extension WebViewController {
         disappearedBy = .WebModal
         
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        webViewController.bridgeObject = bridgeObject
         webViewController.appearedFrom = .WebModal
         
-        let navigationController = UINavigationController(rootViewController: self.dynamicType(webView: webView, bridge: bridge))
+        let navigationController = UINavigationController(rootViewController: webViewController)
         
         if let tabBarController = tabBarController {
             tabBarController.presentViewController(navigationController, animated: true, completion: nil)
@@ -591,6 +601,11 @@ private struct Statics {
 
 extension NSObject {
     func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
+        if let webFrameClass = NSClassFromString("WebFrame") {
+            if !(frame.dynamicType === webFrameClass) {
+                return
+            }
+        }
         
         if let allWebViews = webViews.allObjects as? [UIWebView] {
             for webView in allWebViews {
