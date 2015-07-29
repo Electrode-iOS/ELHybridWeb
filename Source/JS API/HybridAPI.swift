@@ -63,12 +63,3 @@ public extension WebViewController {
         bridge.addExport(platform, name: HybridAPI.exportName)
     }
 }
-
-// MARK: - Bridge Integration
-
-public extension Bridge {
-    
-    public var hybridAPI: HybridAPI? {
-        return contextValueForName(HybridAPI.exportName).toObject() as? HybridAPI
-    }
-}

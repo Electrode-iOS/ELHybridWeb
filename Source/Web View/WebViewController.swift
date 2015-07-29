@@ -191,7 +191,6 @@ public class WebViewController: UIViewController {
         case .WebPush, .WebModal, .WebPop, .WebDismiss:
             if goBackInWebViewOnAppear {
                 goBackInWebViewOnAppear = false
-                bridgeObject = nil
                 webView.goBack() // go back before remove/adding web view
             }
             
@@ -215,7 +214,7 @@ public class WebViewController: UIViewController {
     
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        bridge.hybridAPI?.view.appeared()
+        bridgeObject?.view.appeared()
         
         switch appearedFrom {
             
@@ -245,7 +244,7 @@ public class WebViewController: UIViewController {
 
         }
 
-        bridge.hybridAPI?.view.disappeared() // needs to be called in viewWillDisappear not Did
+        bridgeObject?.view.disappeared() // needs to be called in viewWillDisappear not Did
     }
     
     public override func viewDidDisappear(animated: Bool) {
@@ -346,7 +345,7 @@ extension WebViewController {
         delegate?.webViewControllerDidCreateJavaScriptContext?(self, context: context)
         configureContext(context)
         
-        if let hybridAPI = bridge.hybridAPI {
+        if let hybridAPI = bridgeObject {
             bridge.contextValueForName("nativeBridgeReady").callWithData(hybridAPI)
         }
     }
