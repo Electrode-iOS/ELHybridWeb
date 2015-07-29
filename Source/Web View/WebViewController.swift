@@ -600,10 +600,9 @@ private struct Statics {
 
 extension NSObject {
     func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
-        if let webFrameClass = NSClassFromString("WebFrame") {
-            if !(frame.dynamicType === webFrameClass) {
-                return
-            }
+        if let webFrameClass: AnyClass = NSClassFromString("WebFrame")
+            where !(frame.dynamicType === webFrameClass) {
+            return
         }
         
         if let allWebViews = webViews.allObjects as? [UIWebView] {
