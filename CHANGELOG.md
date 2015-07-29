@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.2.0)
+
+- Use bridgeObject reference to call appearence APIs
+- Do not set owner of managed JS value so callback is released when garbage collected
+- Weakly store bridge API reference to set parent vc
+- Track both appearance and disappearance states in order to configure web view properly after dismissModal/animateBackward transitions. Fixes [#39](https://github.com/TheHolyGrail/Zoot/issues/39).
+- Added `didCreateJavaScriptContext` in order to add bridge scripts prior to page load
+- Prevent error display on tab bar double tap
+
 # [0.1.0](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.1.0)
 
 - Added `tabBarHidden` option to navigation API's `animateForward()` method. Fixes [#28](https://github.com/TheHolyGrail/Zoot/issues/28).

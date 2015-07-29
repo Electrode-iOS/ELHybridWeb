@@ -9,7 +9,7 @@ Zoot (`THGHybridWeb` framework) is a Swift framework that provides a bridged Jav
 Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
 ```
-github "TheHolyGrail/Zoot" ~> 0.1.0
+github "TheHolyGrail/Zoot" ~> 0.2.0
 ```
 
 ### Manual
