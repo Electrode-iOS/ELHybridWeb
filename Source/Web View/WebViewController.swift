@@ -353,7 +353,12 @@ extension WebViewController {
         configureContext(context)
         
         if let hybridAPI = bridgeObject {
-            bridge.contextValueForName("nativeBridgeReady").callWithData(hybridAPI)
+            var readyCallback = bridge.contextValueForName("nativeBridgeReady")
+            
+            if !readyCallback.isUndefined() {
+                readyCallback.callWithData(hybridAPI)
+            }
+            
         }
     }
     
