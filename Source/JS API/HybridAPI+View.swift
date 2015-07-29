@@ -35,11 +35,16 @@ import UIKit
     
     func appeared() {
         hasAppeared = true
-        onAppearCallback?.value?.callWithArguments(nil)
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.onAppearCallback?.value?.callWithArguments(nil)
+        }
     }
     
     func disappeared() {
-        onDisappearCallback?.value?.callWithArguments(nil)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.onDisappearCallback?.value?.callWithArguments(nil)
+        }
     }
 }
 
@@ -50,10 +55,14 @@ extension ViewAPI: ViewJSExport {
     }
     
     func setOnAppear(callback: JSValue) {
-        onAppearCallback = JSManagedValue(value: callback)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.onAppearCallback = JSManagedValue(value: callback)
+        }
     }
     
     func setOnDisappear(callback: JSValue) {
-        onDisappearCallback = JSManagedValue(value: callback)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.onDisappearCallback = JSManagedValue(value: callback)
+        }
     }
 }
