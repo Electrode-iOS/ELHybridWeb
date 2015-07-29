@@ -50,10 +50,10 @@ extension ViewAPI: ViewJSExport {
     }
     
     func setOnAppear(callback: JSValue) {
-        onAppearCallback = JSManagedValue(value: callback, andOwner: self)
+        onAppearCallback = JSManagedValue(value: callback)
     }
     
     func setOnDisappear(callback: JSValue) {
-        onDisappearCallback = JSManagedValue(value: callback, andOwner: self)
+        onDisappearCallback = JSManagedValue(value: callback)
     }
 }
