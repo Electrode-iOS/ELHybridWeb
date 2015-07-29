@@ -218,7 +218,7 @@ public class WebViewController: UIViewController {
         
         switch appearedFrom {
             
-        case .WebPop, .WebDismiss: break
+        case .WebPop, .WebDismiss:
             showWebView()
             
         case .WebPush, .WebModal, .Unknown: break
