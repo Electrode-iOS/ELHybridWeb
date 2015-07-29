@@ -283,8 +283,15 @@ extension WebViewController {
         firstLoadCycleCompleted = false
 
         self.url = url
-        let request = NSURLRequest(URL: url)
-        webView.loadRequest(request)
+        webView.loadRequest(requestWithURL(url))
+    }
+    
+    /**
+     Create a request with the provided URL.
+     :param: url The URL for the request.
+    */
+    public func requestWithURL(url: NSURL) -> NSURLRequest {
+        return NSURLRequest(URL: url)
     }
 }
 
