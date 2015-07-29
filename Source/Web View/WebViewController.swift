@@ -218,7 +218,7 @@ public class WebViewController: UIViewController {
         
         switch appearedFrom {
             
-        case .WebPop, .WebDismiss:
+        case .WebPop, .WebDismiss: break
             showWebView()
             
         case .WebPush, .WebModal, .Unknown: break
@@ -370,6 +370,10 @@ extension WebViewController {
     }
     
     public func configureContext(context: JSContext) {
+        addBridgeAPIObject()
+    }
+    
+    public func addBridgeAPIObject() {
         if let bridgeObject = bridgeObject {
             bridge.context.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName)
         } else {
@@ -402,7 +406,8 @@ extension WebViewController {
         disappearedBy = .WebPush
         
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
-        webViewController.bridgeObject = bridgeObject
+        webViewController.addBridgeAPIObject()
+        
         webViewController.appearedFrom = .WebPush
         webViewController.hidesBottomBarWhenPushed = hideBottomBar
         navigationController?.pushViewController(webViewController, animated: true)
@@ -429,9 +434,9 @@ extension WebViewController {
         disappearedBy = .WebModal
         
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
-        webViewController.bridgeObject = bridgeObject
         webViewController.appearedFrom = .WebModal
-        
+        webViewController.addBridgeAPIObject()
+
         let navigationController = UINavigationController(rootViewController: webViewController)
         
         if let tabBarController = tabBarController {
