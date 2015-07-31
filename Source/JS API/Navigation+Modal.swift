@@ -9,15 +9,15 @@
 import JavaScriptCore
 
 @objc protocol ModalNavigationJSExport: JSExport {
-    func presentModal()
+    func presentModal(callback: JSValue)
     func dismissModal()
 }
 
 extension Navigation: ModalNavigationJSExport {
     
-    func presentModal() {
+    func presentModal(callback: JSValue) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.webViewController?.presentModalWebViewController()
+            self.webViewController?.presentModalWebViewController(callback)
         }
     }
     

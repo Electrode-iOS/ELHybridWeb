@@ -135,7 +135,7 @@ public class WebViewController: UIViewController {
     private var errorView: UIView?
     private var errorLabel: UILabel?
     private var reloadButton: UIButton?
-    public weak var bridgeObject: HybridAPI?
+    public weak var hybridAPI: HybridAPI?
     
     /// Handles web view controller events.
     public weak var delegate: WebViewControllerDelegate?
@@ -184,7 +184,7 @@ public class WebViewController: UIViewController {
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        bridgeObject?.parentViewController = self
+        hybridAPI?.parentViewController = self
         
         switch appearedFrom {
             
@@ -214,12 +214,13 @@ public class WebViewController: UIViewController {
     
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        bridgeObject?.view.appeared()
+        hybridAPI?.view.appeared()
         
         switch appearedFrom {
             
         case .WebPop, .WebDismiss:
             showWebView()
+            addBridgeAPIObject()
             
         case .WebPush, .WebModal, .Unknown: break
         }
@@ -244,7 +245,7 @@ public class WebViewController: UIViewController {
 
         }
 
-        bridgeObject?.view.disappeared() // needs to be called in viewWillDisappear not Did
+        hybridAPI?.view.disappeared() // needs to be called in viewWillDisappear not Did
     }
     
     public override func viewDidDisappear(animated: Bool) {
@@ -279,7 +280,7 @@ extension WebViewController {
     */
     final public func loadURL(url: NSURL) {
         webView.stopLoading()
-        bridgeObject = nil
+        hybridAPI = nil
         firstLoadCycleCompleted = false
 
         self.url = url
@@ -352,13 +353,12 @@ extension WebViewController {
         delegate?.webViewControllerDidCreateJavaScriptContext?(self, context: context)
         configureContext(context)
         
-        if let hybridAPI = bridgeObject {
+        if let hybridAPI = hybridAPI {
             var readyCallback = bridge.contextValueForName("nativeBridgeReady")
             
             if !readyCallback.isUndefined() {
                 readyCallback.callWithData(hybridAPI)
             }
-            
         }
     }
     
@@ -372,16 +372,6 @@ extension WebViewController {
     public func configureContext(context: JSContext) {
         addBridgeAPIObject()
     }
-    
-    public func addBridgeAPIObject() {
-        if let bridgeObject = bridgeObject {
-            bridge.context.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName)
-        } else {
-            let platform = HybridAPI(parentViewController: self)
-            bridge.context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
-            bridgeObject = platform
-        }
-    }
 }
 
 // MARK: - Web Controller Navigation
@@ -393,7 +383,7 @@ extension WebViewController {
      web view instance. Does not affect web view history. Uses animation.
     */
     public func pushWebViewController() {
-        pushWebViewController(hideBottomBar: false)
+        pushWebViewController(hideBottomBar: false, callback: nil)
     }
     
     /**
@@ -401,14 +391,14 @@ extension WebViewController {
      web view instance. Does not affect web view history. Uses animation.
      :param: hideBottomBar Hides the bottom bar of the view controller when true.
     */
-    public func pushWebViewController(#hideBottomBar: Bool) {
+    public func pushWebViewController(#hideBottomBar: Bool, callback: JSValue?) {
         goBackInWebViewOnAppear = true
         disappearedBy = .WebPush
         
-        let webViewController = self.dynamicType(webView: webView, bridge: bridge)
-        webViewController.addBridgeAPIObject()
-        
+        let webViewController = newWebViewController()
         webViewController.appearedFrom = .WebPush
+        callback?.asValidValue?.callWithArguments(nil)
+        
         webViewController.hidesBottomBarWhenPushed = hideBottomBar
         navigationController?.pushViewController(webViewController, animated: true)
     }
@@ -429,13 +419,13 @@ extension WebViewController {
      Present a navigation controller containing a new web view controller as the
      root view controller. The existing web view instance is reused.
     */
-    public func presentModalWebViewController() {
+    public func presentModalWebViewController(callback: JSValue?) {
         goBackInWebViewOnAppear = false
         disappearedBy = .WebModal
         
-        let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        let webViewController = newWebViewController()
         webViewController.appearedFrom = .WebModal
-        webViewController.addBridgeAPIObject()
+        callback?.asValidValue?.callWithArguments(nil)
 
         let navigationController = UINavigationController(rootViewController: webViewController)
         
@@ -457,6 +447,12 @@ extension WebViewController {
     */
     public func pushesWebViewControllerForNavigationType(navigationType: UIWebViewNavigationType) -> Bool {
         return false
+    }
+    
+    public func newWebViewController() -> WebViewController {
+        let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        webViewController.addBridgeAPIObject()
+        return webViewController
     }
 }
 
@@ -543,6 +539,21 @@ extension WebViewController {
     /// Removes the error display and attempts to reload the web view.
     public func reloadButtonTapped(sender: AnyObject) {
         map(url) {self.loadURL($0)}
+    }
+}
+
+// MARK: - Bridge API
+
+extension WebViewController {
+    
+    public func addBridgeAPIObject() {
+        if let bridgeObject = hybridAPI {
+            bridge.context.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName)
+        } else {
+            let platform = HybridAPI(parentViewController: self)
+            bridge.context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
+            hybridAPI = platform
+        }
     }
 }
 
