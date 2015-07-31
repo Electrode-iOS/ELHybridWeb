@@ -397,7 +397,7 @@ extension WebViewController {
         
         let webViewController = newWebViewController()
         webViewController.appearedFrom = .WebPush
-        callback?.asValidValue?.callWithArguments([webViewController.bridgeAPIAsContextValue])
+        callback?.asValidValue?.callWithArguments(nil)
         
         webViewController.hidesBottomBarWhenPushed = hideBottomBar
         navigationController?.pushViewController(webViewController, animated: true)
@@ -425,7 +425,7 @@ extension WebViewController {
         
         let webViewController = newWebViewController()
         webViewController.appearedFrom = .WebModal
-        callback?.asValidValue?.callWithArguments([webViewController.bridgeAPIAsContextValue])
+        callback?.asValidValue?.callWithArguments(nil)
 
         let navigationController = UINavigationController(rootViewController: webViewController)
         
@@ -545,10 +545,6 @@ extension WebViewController {
 // MARK: - Bridge API
 
 extension WebViewController {
-    
-    var bridgeAPIAsContextValue: JSValue {
-        return bridge.contextValueForName(HybridAPI.exportName)
-    }
     
     public func addBridgeAPIObject() {
         if let bridgeObject = hybridAPI {
