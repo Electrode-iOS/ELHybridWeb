@@ -9,7 +9,7 @@
 import JavaScriptCore
 
 @objc protocol NavigationJSExport: JSExport {
-    func animateForward(options: [String: AnyObject]?,  _ callback: JSValue)
+    func animateForward(options: JSValue,  _ callback: JSValue)
     func animateBackward()
     func popToRoot()
 }
@@ -20,11 +20,10 @@ import JavaScriptCore
         return parentViewController as? WebViewController
     }
     
-    func animateForward(options: [String: AnyObject]?, _ callback: JSValue) {
-        let hideBottomBar = options?["tabBarHidden"]?.boolValue ?? false
+    func animateForward(options: JSValue, _ callback: JSValue) {
         
         dispatch_async(dispatch_get_main_queue()) {
-            self.webViewController?.pushWebViewController(hideBottomBar: hideBottomBar, callback: callback)
+            self.webViewController?.pushWebViewControllerWithOptions(options)
         }
     }
     

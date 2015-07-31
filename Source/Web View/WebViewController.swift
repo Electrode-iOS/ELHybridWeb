@@ -136,7 +136,6 @@ public class WebViewController: UIViewController {
     private var errorLabel: UILabel?
     private var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
-    public var navigationCallback: JSValue?
     
     /// Handles web view controller events.
     public weak var delegate: WebViewControllerDelegate?
@@ -207,10 +206,6 @@ public class WebViewController: UIViewController {
                 placeholderImageView.image = UIImage.loadImageFromGUID(guid)
                 placeholderImageView.frame = view.bounds
                 view.bringSubviewToFront(placeholderImageView)
-            }
-            
-            if appearedFrom == .WebModal || appearedFrom == .WebPush {
-                navigationCallback?.asValidValue?.callWithArguments(nil)
             }
             
         case .Unknown: break
@@ -388,7 +383,7 @@ extension WebViewController {
      web view instance. Does not affect web view history. Uses animation.
     */
     public func pushWebViewController() {
-        pushWebViewController(hideBottomBar: false, callback: nil)
+        pushWebViewControllerWithOptions(nil)
     }
     
     /**
@@ -396,15 +391,13 @@ extension WebViewController {
      web view instance. Does not affect web view history. Uses animation.
      :param: hideBottomBar Hides the bottom bar of the view controller when true.
     */
-    public func pushWebViewController(#hideBottomBar: Bool, callback: JSValue?) {
+    public func pushWebViewControllerWithOptions(options: JSValue?) {
         goBackInWebViewOnAppear = true
         disappearedBy = .WebPush
         
-        let webViewController = newWebViewControllerWithOptions(nil)
+        let webViewController = newWebViewControllerWithOptions(options)
         webViewController.appearedFrom = .WebPush
-        webViewController.navigationCallback = callback
         
-        webViewController.hidesBottomBarWhenPushed = hideBottomBar
         navigationController?.pushViewController(webViewController, animated: true)
     }
     
@@ -430,7 +423,6 @@ extension WebViewController {
         
         let webViewController = newWebViewControllerWithOptions(options)
         webViewController.appearedFrom = .WebModal
-//        webViewController.navigationCallback = callback
         
         let navigationController = UINavigationController(rootViewController: webViewController)
         
@@ -471,6 +463,8 @@ extension WebViewController {
             if let onAppear = options.valueForProperty("onAppear") {
                 webViewController.hybridAPI?.view.setOnAppear(onAppear)
             }
+            
+            webViewController.hidesBottomBarWhenPushed = options.valueForProperty("tabBarHidden").toBool() ?? false
         }
         
         return webViewController
