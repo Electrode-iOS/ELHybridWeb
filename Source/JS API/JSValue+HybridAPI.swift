@@ -65,3 +65,15 @@ internal extension JSValue {
         return nil
     }
 }
+
+// MARK: - Optional Helpers
+
+extension JSValue {
+    var asValidValue: JSValue? {
+        if isUndefined() || isNull() {
+            return nil
+        }
+        return self
+    }
+}
+
