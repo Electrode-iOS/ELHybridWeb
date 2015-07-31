@@ -16,17 +16,6 @@ import JavaScriptCore
 extension HybridAPI: DialogJSExport {
     
     func dialog(options: [String: AnyObject], _ callback: JSValue) {
-        
-        switch DialogOptions.initOrErrorWithOptions(options) {
-            
-        case .Result(let dialogOptions):
-            dispatch_async(dispatch_get_main_queue()) {
-                let alertController = dialogOptions.alertControllerWithCallback(callback)
-                self.parentViewController?.presentViewController(alertController, animated: true, completion: nil)
-            }
-            
-        case .Failure(let error):
-            callback.callWithErrorMessage(error.message)
-        }
+        dialog.show(options, callback: callback)
     }
 }

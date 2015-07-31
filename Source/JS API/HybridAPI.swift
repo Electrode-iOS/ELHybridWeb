@@ -31,12 +31,14 @@ import THGBridge
     var navigationBar: NavigationBar
     var view: ViewAPI
     var tabBar: TabBar
+    var dialog: Dialog
 
     public required init(parentViewController: UIViewController) {
         navigation = Navigation(parentViewController: parentViewController)
         navigationBar = NavigationBar(parentViewController: parentViewController)
         view = ViewAPI(parentViewController: parentViewController)
         tabBar = TabBar(parentViewController: parentViewController)
+        dialog = Dialog()
         super.init(parentViewController: parentViewController)
     }
 
