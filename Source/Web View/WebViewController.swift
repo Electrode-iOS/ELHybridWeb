@@ -112,7 +112,6 @@ public class WebViewController: UIViewController {
     /// JavaScript bridge for the web view's JSContext
     private(set) public var bridge = Bridge()
     private var storedScreenshotGUID: String? = nil
-    private var goBackInWebViewOnAppear = false
     private var firstLoadCycleCompleted = true
     private var disappearedBy = AppearenceCause.Unknown
     private var storedAppearence = AppearenceCause.WebPush
@@ -189,10 +188,6 @@ public class WebViewController: UIViewController {
         switch appearedFrom {
             
         case .WebPush, .WebModal, .WebPop, .WebDismiss:
-            if goBackInWebViewOnAppear {
-                goBackInWebViewOnAppear = false
-                webView.goBack() // go back before remove/adding web view
-            }
             
             webView.delegate = self
             webView.removeFromSuperview()
@@ -392,7 +387,6 @@ extension WebViewController {
      :param: hideBottomBar Hides the bottom bar of the view controller when true.
     */
     public func pushWebViewControllerWithOptions(options: JSValue?) {
-        goBackInWebViewOnAppear = true
         disappearedBy = .WebPush
         
         let webViewController = newWebViewControllerWithOptions(options)
@@ -408,8 +402,7 @@ extension WebViewController {
     public func popWebViewController() {
         if let navController = self.navigationController
             where navController.viewControllers.count > 1 {
-            (navController.viewControllers[navController.viewControllers.count - 1] as? WebViewController)?.goBackInWebViewOnAppear = false
-            navController.popViewControllerAnimated(true)
+                navController.popViewControllerAnimated(true)
         }
     }
     
@@ -418,7 +411,6 @@ extension WebViewController {
      root view controller. The existing web view instance is reused.
     */
     public func presentModalWebViewController(options: JSValue) {
-        goBackInWebViewOnAppear = false
         disappearedBy = .WebModal
         
         let webViewController = newWebViewControllerWithOptions(options)
