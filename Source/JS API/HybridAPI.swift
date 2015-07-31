@@ -53,13 +53,3 @@ import THGBridge
         return HybridAPIInfo(appVersion: "1.0").asDictionary
     }
 }
-
-// MARK: - WebViewController Integration
-
-public extension WebViewController {
-    
-    public func addHybridAPI() {
-        let platform = HybridAPI(parentViewController: self)
-        bridge.addExport(platform, name: HybridAPI.exportName)
-    }
-}
