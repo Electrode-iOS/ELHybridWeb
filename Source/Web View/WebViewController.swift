@@ -400,7 +400,7 @@ extension WebViewController {
         goBackInWebViewOnAppear = true
         disappearedBy = .WebPush
         
-        let webViewController = newWebViewController()
+        let webViewController = newWebViewControllerWithOptions(nil)
         webViewController.appearedFrom = .WebPush
         webViewController.navigationCallback = callback
         
@@ -424,13 +424,13 @@ extension WebViewController {
      Present a navigation controller containing a new web view controller as the
      root view controller. The existing web view instance is reused.
     */
-    public func presentModalWebViewController(callback: JSValue?) {
+    public func presentModalWebViewController(options: JSValue) {
         goBackInWebViewOnAppear = false
         disappearedBy = .WebModal
         
-        let webViewController = newWebViewController()
+        let webViewController = newWebViewControllerWithOptions(options)
         webViewController.appearedFrom = .WebModal
-        webViewController.navigationCallback = callback
+//        webViewController.navigationCallback = callback
         
         let navigationController = UINavigationController(rootViewController: webViewController)
         
@@ -454,9 +454,25 @@ extension WebViewController {
         return false
     }
     
-    public func newWebViewController() -> WebViewController {
+    public func newWebViewControllerWithOptions(options: JSValue?) -> WebViewController {
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
         webViewController.addBridgeAPIObject()
+        
+        if let options = options {
+            if let buttons = options.valueForProperty("navigationBarButtons").toObject() as? [[String: AnyObject]],
+                let callback = options.valueForProperty("onNavigationBarButtonTap") {
+                    webViewController.hybridAPI?.navigationBar.setButtons(buttons, callback: callback)
+            }
+            
+            if let title = options.valueForProperty("title") {
+                webViewController.hybridAPI?.navigationBar.setTitle(title)
+            }
+            
+            if let onAppear = options.valueForProperty("onAppear") {
+                webViewController.hybridAPI?.view.setOnAppear(onAppear)
+            }
+        }
+        
         return webViewController
     }
 }
