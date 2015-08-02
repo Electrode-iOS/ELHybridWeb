@@ -120,7 +120,14 @@ Trigger a native push navigation transition. By default it pushes a new web view
 **Parameters**
 
 - (object) - Optional options object.
-  - `tabBarHidden` (boolean) -  Determines whether the page we're animating to, shows or hides the tab bar in iOS. If this option is not provided, the default behavior in iOS would be to show the tab bar. This option is not applicable to Android will be ignored.
+  - `tabBarHidden` (boolean) - Determines whether the page we're animating to, shows or hides the tab bar in iOS. If this option is not provided, the default behavior in iOS would be to show the tab bar. This option is not applicable to Android will be ignored.
+  - `title` (string) - Header title text to show on the view that is being animated to.
+  - `navigationBarButtons` (array) - Array of navigation bar button objects to set. The first item in the array sets the `leftBarButtonItem` and the second item sets the `rightBarButtonItem`. If this option is not passed, the default native `back` button is displayed.
+    - `title` (string) - Title text of button.
+    - `id` (string) -  Unique identifier of button.
+    - `image` (string) -  Optional image asset name to load.
+  - onNavigationBarButtonTap (function) - Callback to be triggered when `navigationBarButtons` are clicked. It will recieve an argument with the `id` of the button clicked.
+  - onAppear (function) - Callback to be triggered once the animation is completed and new view is ready.
 
 **Example**
 
@@ -135,6 +142,32 @@ Trigger an animate forward transition that hides the tab bar.
 
 ```
 NativeBridge.navigation.animateForward({tabBarHidden: true});
+
+```
+
+Trigger an animate forward transition sets the title and buttons of the new view.
+
+```
+NativeBridge.navigation.animateForward({
+  title: "Title text",
+  navigationBarButtons: [{
+    title: "Cancel",
+    id: "cancel"
+  }, {
+    title: "Done",
+    id: "done"
+  }],
+  onNavigationBarButtonTap: function (id) {
+    if (id === "cancel") {
+      // Do something on cancel
+    } else if (id === "done") {
+      // Do something on done
+    }
+  }, 
+  onAppear: function () {
+    // Animation is compete and new view is ready
+  }
+});
 
 ```
 
