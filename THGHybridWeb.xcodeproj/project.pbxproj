@@ -21,6 +21,8 @@
 		177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */; };
 		177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */; };
 		177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */; };
+		1782B2361B6B0EC800FC0E4B /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1782B2351B6B0EC800FC0E4B /* Dialog.swift */; };
+		1782B23F1B6B0EF800FC0E4B /* DialogAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1782B23E1B6B0EF800FC0E4B /* DialogAlert.swift */; };
 		178412271B16762D00EECF8B /* WebViewControllerDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */; };
 		178822E91B4D4BFC00B5548D /* NavigationBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */; };
 		17B4356A1B667B4D00446D71 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B435691B667B4D00446D71 /* TabBar.swift */; };
@@ -151,6 +153,8 @@
 		177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerChild.swift; sourceTree = "<group>"; };
 		177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPITests.swift; sourceTree = "<group>"; };
+		1782B2351B6B0EC800FC0E4B /* Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
+		1782B23E1B6B0EF800FC0E4B /* DialogAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogAlert.swift; sourceTree = "<group>"; };
 		178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegateTests.swift; sourceTree = "<group>"; };
 		178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarTests.swift; sourceTree = "<group>"; };
 		17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGLog.xcodeproj; path = ../Shrubbery/THGLog.xcodeproj; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 			isa = PBXGroup;
 			children = (
 				17711C0D1B20FDFB0043B71E /* BarButton.swift */,
+				1782B2351B6B0EC800FC0E4B /* Dialog.swift */,
+				1782B23E1B6B0EF800FC0E4B /* DialogAlert.swift */,
 				17C479321B4C612200F01703 /* DialogOptions.swift */,
 				177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */,
 				177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */,
@@ -514,7 +520,9 @@
 			files = (
 				177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */,
 				172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */,
+				1782B23F1B6B0EF800FC0E4B /* DialogAlert.swift in Sources */,
 				177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */,
+				1782B2361B6B0EC800FC0E4B /* Dialog.swift in Sources */,
 				17C479331B4C612200F01703 /* DialogOptions.swift in Sources */,
 				17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */,
 				177E5D961B00FE1A006BCBE2 /* Navigation.swift in Sources */,
