@@ -635,19 +635,36 @@ extension NSObject {
     func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
         if let webFrameClass: AnyClass = NSClassFromString("WebFrame")
             where !(frame.dynamicType === webFrameClass) {
-            return
+                return
         }
         
-        if let allWebViews = webViews.allObjects as? [UIWebView] {
-            for webView in allWebViews {
-                webView.didCreateJavaScriptContext(context)
+        let notifyWebviews = { () -> Void in
+            if let allWebViews = webViews.allObjects as? [UIWebView] {
+                for webView in allWebViews {
+                    let cookie = "__thgWebviewCookie\(webView.hash)"
+                    webView.stringByEvaluatingJavaScriptFromString("var \(cookie) = '\(cookie)'")
+                    
+                    if context.objectForKeyedSubscript(cookie).toString() == cookie {
+                        webView.didCreateJavaScriptContext(context)
+                    }
+                }
             }
+        }
+        
+        if NSThread.isMainThread() {
+            notifyWebviews()
+        } else {
+            dispatch_async(dispatch_get_main_queue(), notifyWebviews)
         }
     }
 }
 
+// TODO: Remove this later!! - BKS
+public var hackContext: JSContext? = nil
+
 extension UIWebView {
     func didCreateJavaScriptContext(context: JSContext) {
+        hackContext = context
         (delegate as? WebViewController)?.didCreateJavaScriptContext(context)
     }
 }
