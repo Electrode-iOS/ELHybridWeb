@@ -44,25 +44,31 @@ extension NavigationBar: NavigationBarJSExport {
     
     func setTitle(title: JSValue, _ callback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.parentViewController?.navigationItem.title = title.asString
+            self.configureTitle(title)
             callback?.callWithArguments(nil)
         }
     }
     
-    func setButtons(options: AnyObject?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
-        self.callback = callback
-
+    func configureTitle(title: JSValue?) {
+        self.parentViewController?.navigationItem.title = title?.asString
+    }
+    
+    func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
-            
-            if let buttonsToSet = options as? [[String: AnyObject]],
-                let callback = callback
-                where buttonsToSet.count > 0 {
-                    self.buttons = BarButton.dictionaryFromJSONArray(buttonsToSet, callback: callback) // must set buttons on main thread
-            } else {
-                self.buttons = nil
-            }
-            
+            self.setButtons(buttonsToSet, callback: callback)
             testingCallback?.callWithArguments(nil) // only for testing purposes
+        }
+    }
+    
+    func setButtons(buttonsToSet: AnyObject?, callback: JSValue? = nil) {
+        self.callback = callback
+        
+        if let buttonsToSet = buttonsToSet as? [[String: AnyObject]],
+            let callback = callback
+            where buttonsToSet.count > 0 {
+                self.buttons = BarButton.dictionaryFromJSONArray(buttonsToSet, callback: callback) // must set buttons on main thread
+        } else {
+            self.buttons = nil
         }
     }
 }

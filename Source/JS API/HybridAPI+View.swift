@@ -35,16 +35,11 @@ import UIKit
     
     func appeared() {
         hasAppeared = true
-        
-        //dispatch_async(dispatch_get_main_queue()) {
-            self.onAppearCallback?.value?.callWithArguments(nil)
-        //}
+        self.onAppearCallback?.value?.callWithArguments(nil)
     }
     
     func disappeared() {
-        //dispatch_async(dispatch_get_main_queue()) {
-            self.onDisappearCallback?.value?.callWithArguments(nil)
-        //}
+        self.onDisappearCallback?.value?.callWithArguments(nil)
     }
 }
 
