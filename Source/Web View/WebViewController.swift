@@ -182,9 +182,7 @@ public class WebViewController: UIViewController {
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        hybridAPI?.parentViewController = self
-        
+                
         switch appearedFrom {
             
         case .WebPush, .WebModal, .WebPop, .WebDismiss:
