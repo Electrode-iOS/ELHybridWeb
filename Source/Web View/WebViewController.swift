@@ -186,20 +186,12 @@ public class WebViewController: UIViewController {
         switch appearedFrom {
             
         case .WebPush, .WebModal, .WebPop, .WebDismiss:
-            
             webView.delegate = self
             webView.removeFromSuperview()
             webView.frame = view.bounds
             view.addSubview(webView)
             
             view.removeDoubleTapGestures()
-            
-            // if we have a screenshot stored, load it.
-            if let guid = storedScreenshotGUID {
-                placeholderImageView.image = UIImage.loadImageFromGUID(guid)
-                placeholderImageView.frame = view.bounds
-                view.bringSubviewToFront(placeholderImageView)
-            }
             
         case .Unknown: break
         }
@@ -210,10 +202,8 @@ public class WebViewController: UIViewController {
         hybridAPI?.view.appeared()
         
         switch appearedFrom {
-            
-        case .WebPop, .WebDismiss:
-            showWebView()
-            addBridgeAPIObject()
+        
+        case .WebPop, .WebDismiss: addBridgeAPIObject()
             
         case .WebPush, .WebModal, .Unknown: break
         }
