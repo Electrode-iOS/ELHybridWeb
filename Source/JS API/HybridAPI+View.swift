@@ -19,7 +19,7 @@ import UIKit
 
     private var hasAppeared = false
     
-    private var onAppearCallback: JSManagedValue? {
+    private var onAppearCallback: JSValue? {
         didSet {
             if hasAppeared {
                 appeared()
@@ -27,7 +27,7 @@ import UIKit
         }
     }
     
-    private var onDisappearCallback: JSManagedValue?
+    private var onDisappearCallback: JSValue?
     
     weak var webViewController: WebViewController? {
         return parentViewController as? WebViewController
@@ -35,11 +35,11 @@ import UIKit
     
     func appeared() {
         hasAppeared = true
-        self.onAppearCallback?.value?.callWithArguments(nil)
+        onAppearCallback?.callWithArguments(nil)
     }
     
     func disappeared() {
-        self.onDisappearCallback?.value?.callWithArguments(nil)
+        onDisappearCallback?.callWithArguments(nil)
     }
 }
 
@@ -51,23 +51,21 @@ extension ViewAPI: ViewJSExport {
     
     func setOnAppear(callback: JSValue) {
         if NSThread.isMainThread() {
-            onAppearCallback = JSManagedValue(value: callback)
+            onAppearCallback = callback
         } else {
             dispatch_sync(dispatch_get_main_queue()) {
-                self.onAppearCallback = JSManagedValue(value: callback)
+                self.onAppearCallback = callback
             }
         }
     }
     
     func setOnDisappear(callback: JSValue) {
         if NSThread.isMainThread() {
-            onAppearCallback = JSManagedValue(value: callback)
+            onDisappearCallback = callback
         } else {
             dispatch_sync(dispatch_get_main_queue()) {
-                self.onAppearCallback = JSManagedValue(value: callback)
+                self.onDisappearCallback = callback
             }
         }
-        
-        onDisappearCallback = JSManagedValue(value: callback)
     }
 }
