@@ -50,14 +50,24 @@ extension ViewAPI: ViewJSExport {
     }
     
     func setOnAppear(callback: JSValue) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.onAppearCallback = JSManagedValue(value: callback)
+        if NSThread.isMainThread() {
+            onAppearCallback = JSManagedValue(value: callback)
+        } else {
+            dispatch_sync(dispatch_get_main_queue()) {
+                self.onAppearCallback = JSManagedValue(value: callback)
+            }
         }
     }
     
     func setOnDisappear(callback: JSValue) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.onDisappearCallback = JSManagedValue(value: callback)
+        if NSThread.isMainThread() {
+            onAppearCallback = JSManagedValue(value: callback)
+        } else {
+            dispatch_sync(dispatch_get_main_queue()) {
+                self.onAppearCallback = JSManagedValue(value: callback)
+            }
         }
+        
+        onDisappearCallback = JSManagedValue(value: callback)
     }
 }
