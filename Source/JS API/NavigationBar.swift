@@ -45,7 +45,7 @@ extension NavigationBar: NavigationBarJSExport {
     func setTitle(title: JSValue, _ callback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
             self.configureTitle(title)
-            callback?.callWithArguments(nil)
+            callback?.asValidValue?.callWithArguments(nil)
         }
     }
     
@@ -56,7 +56,7 @@ extension NavigationBar: NavigationBarJSExport {
     func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
             self.setButtons(buttonsToSet, callback: callback)
-            testingCallback?.callWithArguments(nil) // only for testing purposes
+            testingCallback?.asValidValue?.callWithArguments(nil) // only for testing purposes
         }
     }
     
