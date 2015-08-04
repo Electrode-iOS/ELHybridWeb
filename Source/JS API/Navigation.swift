@@ -20,8 +20,9 @@ import JavaScriptCore
         return parentViewController as? WebViewController
     }
     
+    private var onBackCallback: JSValue?
+
     func animateForward(options: JSValue, _ callback: JSValue) {
-        
         dispatch_async(dispatch_get_main_queue()) {
             self.webViewController?.pushWebViewControllerWithOptions(options)
         }
@@ -37,5 +38,13 @@ import JavaScriptCore
         dispatch_async(dispatch_get_main_queue()) {
             self.parentViewController?.navigationController?.popToRootViewControllerAnimated(false)
         }
+    }
+
+    func back() {
+        onBackCallback?.callWithArguments(nil)
+    }
+
+    func setOnBack(callback: JSValue) {
+        onBackCallback = callback
     }
 }

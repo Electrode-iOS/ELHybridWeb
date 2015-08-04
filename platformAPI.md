@@ -125,8 +125,9 @@ Trigger a native push navigation transition. By default it pushes a new web view
   - `navigationBarButtons` (array) - Array of navigation bar button objects to be set. The first item in the array sets the `leftBarButtonItem` and the second item sets the `rightBarButtonItem`. If this option is not passed, the default native `back` button is displayed.
     - `title` (string) - Title text of button.
     - `id` (string) -  Unique identifier of button.
-  - onNavigationBarButtonTap (function) - Callback to be triggered when `navigationBarButtons` are clicked. It will receive an argument with the `id` of the button clicked.
-  - onAppear (function) - Callback to be triggered once the animation is completed and new view is ready.
+  - `onNavigationBarButtonTap` (function) - Callback to be triggered when `navigationBarButtons` are clicked. It will receive an argument with the `id` of the button clicked.
+  - `onAppear` (function) - Callback to be triggered once the animation is completed and new view is ready.
+  - `onBack` (function) - Callback to be triggered when back button is tapped in navigation bar.
 
 **Example**
 
@@ -165,6 +166,9 @@ NativeBridge.navigation.animateForward({
   }, 
   onAppear: function () {
     // Animation is compete and new view is ready
+  },
+  onBack: function () {
+    // native back button tapped
   }
 });
 

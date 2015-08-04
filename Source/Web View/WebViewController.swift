@@ -222,6 +222,10 @@ public class WebViewController: UIViewController {
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        if disappearedBy != .WebPop && isMovingFromParentViewController() {
+            hybridAPI?.navigation.back()
+        }
+
         switch disappearedBy {
             
         case .WebPop, .WebDismiss, .WebPush, .WebModal:
@@ -398,6 +402,8 @@ extension WebViewController {
      web view history. Uses animation.
     */
     public func popWebViewController() {
+        disappearedBy = .WebPop
+
         if let navController = self.navigationController
             where navController.viewControllers.count > 1 {
                 navController.popViewControllerAnimated(true)
@@ -454,6 +460,10 @@ extension WebViewController {
                 webViewController.hybridAPI?.view.setOnAppear(onAppear)
             }
             
+            if let onBack = options.valueForProperty("onBack") {
+                webViewController.hybridAPI?.navigation.setOnBack(onBack)
+            }
+
             webViewController.hidesBottomBarWhenPushed = options.valueForProperty("tabBarHidden").toBool() ?? false
         }
         
