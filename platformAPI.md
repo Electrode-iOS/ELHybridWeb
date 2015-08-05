@@ -122,12 +122,6 @@ Trigger a native push navigation transition. By default it pushes a new web view
 - (object) - Optional options object.
   - `tabBarHidden` (boolean) - Determines whether the page we're animating to, shows or hides the tab bar in iOS. If this option is not provided, the default behavior in iOS would be to show the tab bar. This option is not applicable to Android, and will be ignored.
   - `title` (string) - Header title text to show on the view that is being animated to.
-  - `navigationBarButtons` (array) - Array of navigation bar button objects to be set. The first item in the array sets the `leftBarButtonItem` and the second item sets the `rightBarButtonItem`. If this option is not passed, the default native `back` button is displayed.
-    - `title` (string) - Title text of button.
-    - `id` (string) -  Unique identifier of button.
-  - `onNavigationBarButtonTap` (function) - Callback to be triggered when `navigationBarButtons` are clicked. It will receive an argument with the `id` of the button clicked.
-  - `onAppear` (function) - Callback to be triggered once the animation is completed and new view is ready.
-  - `onBack` (function) - Callback to be triggered when back button is tapped in navigation bar.
 
 **Example**
 
@@ -145,31 +139,12 @@ NativeBridge.navigation.animateForward({tabBarHidden: true});
 
 ```
 
-Trigger an animate forward transition sets the title and buttons of the new view.
+Trigger an animate forward transition sets the title of the new view.
 
 ```
 NativeBridge.navigation.animateForward({
   title: "Title text",
-  navigationBarButtons: [{
-    title: "Cancel",
-    id: "cancel"
-  }, {
-    title: "Done",
-    id: "done"
-  }],
-  onNavigationBarButtonTap: function (id) {
-    if (id === "cancel") {
-      // Do something on cancel
-    } else if (id === "done") {
-      // Do something on done
-    }
-  }, 
-  onAppear: function () {
-    // Animation is compete and new view is ready
-  },
-  onBack: function () {
-    // native back button tapped
-  }
+  tabBarHidden: false
 });
 
 ```
@@ -205,12 +180,7 @@ Trigger a native modal transition. By default the method presents a new web view
 - (object) - Optional options object.
   - `tabBarHidden` (boolean) - Determines whether the modal being presented, shows or hides the tab bar in iOS. If this option is not provided, the default behavior in iOS would be to show the tab bar. This option is not applicable to Android, and will be ignored.
   - `title` (string) - Header title text to show on the view that is being animated to.
-  - `navigationBarButtons` (array) - Array of navigation bar button objects to be set. The first item in the array sets the `leftBarButtonItem` and the second item sets the `rightBarButtonItem`. If this option is not passed, the default native `back` button is displayed.
-    - `title` (string) - Title text of button.
-    - `id` (string) -  Unique identifier of button.
-  - onNavigationBarButtonTap (function) - Callback to be triggered when `navigationBarButtons` are clicked. It will receive an argument with the `id` of the button clicked.
-  - onAppear (function) - Callback to be triggered once the animation is completed and new view is ready.
-
+  
 **Example**
 
 Trigger a simple present modal transition.
@@ -220,28 +190,11 @@ NativeBridge.navigation.presentModal();
 
 ```
 
-Present a modal and set the title and buttons of the new view.
+Present a modal and set the title of the new view.
 
 ```
 NativeBridge.navigation.presentModal({
   title: "Title text",
-  navigationBarButtons: [{
-    title: "Cancel",
-    id: "cancel"
-  }, {
-    title: "Done",
-    id: "done"
-  }],
-  onNavigationBarButtonTap: function (id) {
-    if (id === "cancel") {
-      // Do something on cancel
-    } else if (id === "done") {
-      // Do something on done
-    }
-  }, 
-  onAppear: function () {
-    // Animation is compete and new view is ready
-  }
 });
 
 ```
