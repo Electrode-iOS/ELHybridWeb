@@ -12,6 +12,7 @@ import JavaScriptCore
     func animateForward(options: JSValue,  _ callback: JSValue)
     func animateBackward()
     func popToRoot()
+    func setOnBack(callback: JSValue)
 }
 
 @objc public class Navigation: ViewControllerChild, NavigationJSExport {
@@ -42,7 +43,11 @@ import JavaScriptCore
     }
 
     func back() {
-        onBackCallback?.callWithArguments(nil)
+        if let validCallbackValue = onBackCallback?.asValidValue {
+            onBackCallback?.callWithArguments(nil)
+        } else {
+            webViewController?.webView.goBack()
+        }
     }
 
     func setOnBack(callback: JSValue) {
