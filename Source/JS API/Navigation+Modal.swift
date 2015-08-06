@@ -17,7 +17,8 @@ extension Navigation: ModalNavigationJSExport {
     
     func presentModal(options: JSValue) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.webViewController?.presentModalWebViewController(options)
+            let vcOptions = WebViewControllerOptions(javaScriptValue: options)
+            self.webViewController?.presentModalWebViewController(vcOptions)
         }
     }
     

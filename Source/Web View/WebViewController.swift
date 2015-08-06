@@ -378,7 +378,7 @@ extension WebViewController {
      web view instance. Does not affect web view history. Uses animation.
      :param: hideBottomBar Hides the bottom bar of the view controller when true.
     */
-    public func pushWebViewControllerWithOptions(options: JSValue?) {
+    public func pushWebViewControllerWithOptions(options: WebViewControllerOptions?) {
         disappearedBy = .WebPush
         
         let webViewController = newWebViewControllerWithOptions(options)
@@ -404,7 +404,7 @@ extension WebViewController {
      Present a navigation controller containing a new web view controller as the
      root view controller. The existing web view instance is reused.
     */
-    public func presentModalWebViewController(options: JSValue) {
+    public func presentModalWebViewController(options: WebViewControllerOptions?) {
         disappearedBy = .WebModal
         
         let webViewController = newWebViewControllerWithOptions(options)
@@ -432,31 +432,11 @@ extension WebViewController {
         return false
     }
     
-    public func newWebViewControllerWithOptions(options: JSValue?) -> WebViewController {
+    public func newWebViewControllerWithOptions(options: WebViewControllerOptions?) -> WebViewController {
         let webViewController = self.dynamicType(webView: webView, bridge: bridge)
         webViewController.addBridgeAPIObject()
-        
-        if let options = options {
-            if let buttons = options.valueForProperty("navigationBarButtons").toObject() as? [[String: AnyObject]],
-                let callback = options.valueForProperty("onNavigationBarButtonTap") {
-                    webViewController.hybridAPI?.navigationBar.setButtons(buttons, callback: callback)
-            }
-            
-            if let title = options.valueForProperty("title") {
-                webViewController.hybridAPI?.navigationBar.setTitle(title)
-            }
-            
-            if let onAppear = options.valueForProperty("onAppear").asValidValue {
-                webViewController.hybridAPI?.view.setOnAppear(onAppear)
-            }
-            
-            if let onBack = options.valueForProperty("onBack").asValidValue {
-                webViewController.hybridAPI?.navigation.setOnBack(onBack)
-            }
-
-            webViewController.hidesBottomBarWhenPushed = options.valueForProperty("tabBarHidden").toBool() ?? false
-        }
-        
+        webViewController.hybridAPI?.navigationBar.title = options?.title
+        webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
         return webViewController
     }
 }

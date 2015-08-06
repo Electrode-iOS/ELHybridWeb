@@ -24,7 +24,8 @@ import JavaScriptCore
 
     func animateForward(options: JSValue, _ callback: JSValue) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.webViewController?.pushWebViewControllerWithOptions(options)
+            let vcOptions = WebViewControllerOptions(javaScriptValue: options)
+            self.webViewController?.pushWebViewControllerWithOptions(vcOptions)
         }
     }
     

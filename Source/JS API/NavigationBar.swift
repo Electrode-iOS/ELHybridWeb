@@ -15,6 +15,11 @@ import JavaScriptCore
 
 @objc public class NavigationBar: ViewControllerChild {
     
+    public var title: String? {
+        didSet {
+            parentViewController?.navigationItem.title = title
+        }
+    }
     private var callback: JSValue?
     private var buttons: [Int: BarButton]? {
         didSet {
@@ -44,13 +49,9 @@ extension NavigationBar: NavigationBarJSExport {
     
     func setTitle(title: JSValue, _ callback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.configureTitle(title)
+            self.title = title.asString
             callback?.asValidValue?.callWithArguments(nil)
         }
-    }
-    
-    func configureTitle(title: JSValue?) {
-        self.parentViewController?.navigationItem.title = title?.asString
     }
     
     func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
