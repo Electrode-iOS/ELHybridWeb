@@ -55,6 +55,25 @@ internal extension JSValue {
         let jsError = JSValue(newErrorFromMessage: error.message, inContext: context)
         return callWithArguments([jsError, JSValue(nullInContext: context)])
     }
+    
+    /**
+    Calls the javascript function with a timeout to prevent deadlocks.
+    :param: arguments The arguments array to be passed to the javascript function.
+    */
+    func safelyCallWithArguments(arguments: [AnyObject]!) {
+        if isUndefined() || isNull() {
+            return
+        }
+        
+        var args: [AnyObject] = [self, NSNumber(integer: 0)]
+        if arguments != nil {
+            args += arguments
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.context.objectForKeyedSubscript("setTimeout").callWithArguments(args)
+        })
+    }
 }
 
 // MARK: - String Helpers
