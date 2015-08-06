@@ -212,10 +212,6 @@ public class WebViewController: UIViewController {
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if disappearedBy != .WebPop && isMovingFromParentViewController() {
-            hybridAPI?.navigation.back()
-        }
-
         switch disappearedBy {
             
         case .WebPop, .WebDismiss, .WebPush, .WebModal:
@@ -230,6 +226,10 @@ public class WebViewController: UIViewController {
             
         case .Unknown: break
 
+        }
+
+        if disappearedBy != .WebPop && isMovingFromParentViewController() {
+            hybridAPI?.navigation.back()
         }
 
         hybridAPI?.view.disappeared() // needs to be called in viewWillDisappear not Did
@@ -437,6 +437,8 @@ extension WebViewController {
         webViewController.addBridgeAPIObject()
         webViewController.hybridAPI?.navigationBar.title = options?.title
         webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
+        webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
+        webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
         return webViewController
     }
 }

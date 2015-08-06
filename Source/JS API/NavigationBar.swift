@@ -56,20 +56,19 @@ extension NavigationBar: NavigationBarJSExport {
     
     func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.setButtons(buttonsToSet, callback: callback)
+            self.configureButtons(buttonsToSet, callback: callback)
             testingCallback?.asValidValue?.callWithArguments(nil) // only for testing purposes
         }
     }
     
-    func setButtons(buttonsToSet: AnyObject?, callback: JSValue? = nil) {
-        self.callback = callback
-        
+    func configureButtons(buttonsToSet: AnyObject?, callback: JSValue?) {
         if let buttonsToSet = buttonsToSet as? [[String: AnyObject]],
             let callback = callback
             where buttonsToSet.count > 0 {
-                self.buttons = BarButton.dictionaryFromJSONArray(buttonsToSet, callback: callback) // must set buttons on main thread
+                self.callback = callback
+                buttons = BarButton.dictionaryFromJSONArray(buttonsToSet, callback: callback) // must set buttons on main thread
         } else {
-            self.buttons = nil
+            buttons = nil
         }
     }
 }

@@ -180,7 +180,13 @@ Trigger a native modal transition. By default the method presents a new web view
 - (object) - Optional options object.
   - `tabBarHidden` (boolean) - Determines whether the modal being presented, shows or hides the tab bar in iOS. If this option is not provided, the default behavior in iOS would be to show the tab bar. This option is not applicable to Android, and will be ignored.
   - `title` (string) - Header title text to show on the view that is being animated to.
-  
+  - `navigationBarButtons` (array) - Array of navigation bar button objects to be set. The first item in the array sets the `leftBarButtonItem` and the second item sets the `rightBarButtonItem`. If this option is not passed, the default native `back` button is displayed.
+    - `title` (string) - Title text of button.
+    - `id` (string) -  Unique identifier of button.
+  - onNavigationBarButtonTap (function) - Callback to be triggered when `navigationBarButtons` are clicked. It will receive an argument with the `id` of the button clicked.
+  - onAppear (function) - Callback to be triggered once the animation is completed and new view is ready.
+
+
 **Example**
 
 Trigger a simple present modal transition.
@@ -207,6 +213,19 @@ Close the existing native modal view. Does not affect web view history.
 
 ```
 NativeBridge.navigation.dismissModal();
+
+```
+
+#### setOnBack()
+
+Set a function callback to call when the native back button is tapped. If the native back button is tapped and the callback is not set the bridge will fallback to going back one item in web history (calling `goBack()` on the web view).
+
+**Example**
+
+```
+NativeBridge.navigation.setOnBack(function () {
+  // update page state based on back button tap
+});
 
 ```
 
