@@ -19,7 +19,7 @@ import UIKit
 
     private var hasAppeared = false
     
-    private var onAppearCallback: JSValue? {
+    internal var onAppearCallback: JSValue? {
         didSet {
             if hasAppeared {
                 appeared()

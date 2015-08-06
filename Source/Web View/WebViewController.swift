@@ -437,6 +437,8 @@ extension WebViewController {
         webViewController.addBridgeAPIObject()
         webViewController.hybridAPI?.navigationBar.title = options?.title
         webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
+        webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
+        webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
         return webViewController
     }
 }
