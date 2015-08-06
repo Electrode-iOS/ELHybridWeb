@@ -52,6 +52,6 @@ extension BarButton {
     }
     
     func select() {
-        callback?.callWithArguments([id])
+        callback?.safelyCallWithArguments([id])
     }
 }

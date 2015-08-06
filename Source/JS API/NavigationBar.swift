@@ -50,14 +50,14 @@ extension NavigationBar: NavigationBarJSExport {
     func setTitle(title: JSValue, _ callback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
             self.title = title.asString
-            callback?.asValidValue?.callWithArguments(nil)
+            callback?.safelyCallWithArguments(nil)
         }
     }
     
     func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
             self.configureButtons(buttonsToSet, callback: callback)
-            testingCallback?.asValidValue?.callWithArguments(nil) // only for testing purposes
+            testingCallback?.safelyCallWithArguments(nil) // only for testing purposes
         }
     }
     

@@ -44,7 +44,7 @@ import JavaScriptCore
 
     func back() {
         if let validCallbackValue = onBackCallback?.asValidValue {
-            onBackCallback?.callWithArguments(nil)
+            onBackCallback?.safelyCallWithArguments(nil)
         } else {
             webViewController?.webView.goBack()
         }

@@ -35,11 +35,11 @@ import UIKit
     
     func appeared() {
         hasAppeared = true
-        onAppearCallback?.callWithArguments(nil)
+        onAppearCallback?.safelyCallWithArguments(nil)
     }
     
     func disappeared() {
-        onDisappearCallback?.callWithArguments(nil)
+        onDisappearCallback?.safelyCallWithArguments(nil)
     }
 }
 
@@ -50,22 +50,10 @@ extension ViewAPI: ViewJSExport {
     }
     
     func setOnAppear(callback: JSValue) {
-        if NSThread.isMainThread() {
-            onAppearCallback = callback
-        } else {
-            dispatch_sync(dispatch_get_main_queue()) {
-                self.onAppearCallback = callback
-            }
-        }
+        onAppearCallback = callback
     }
     
     func setOnDisappear(callback: JSValue) {
-        if NSThread.isMainThread() {
-            onDisappearCallback = callback
-        } else {
-            dispatch_sync(dispatch_get_main_queue()) {
-                self.onDisappearCallback = callback
-            }
-        }
+        onDisappearCallback = callback
     }
 }
