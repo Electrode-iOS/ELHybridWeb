@@ -446,11 +446,11 @@ extension WebViewController {
                 webViewController.hybridAPI?.navigationBar.setTitle(title)
             }
             
-            if let onAppear = options.valueForProperty("onAppear") {
+            if let onAppear = options.valueForProperty("onAppear").asValidValue {
                 webViewController.hybridAPI?.view.setOnAppear(onAppear)
             }
             
-            if let onBack = options.valueForProperty("onBack") {
+            if let onBack = options.valueForProperty("onBack").asValidValue {
                 webViewController.hybridAPI?.navigation.setOnBack(onBack)
             }
 
