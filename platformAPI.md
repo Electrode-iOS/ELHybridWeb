@@ -210,6 +210,19 @@ NativeBridge.navigation.dismissModal();
 
 ```
 
+#### setOnBack()
+
+Set a function callback to call when the native back button is tapped. If the native back button is tapped and the callback is not set the bridge will fallback to going back one item in web history (calling `goBack()` on the web view).
+
+**Example**
+
+```
+NativeBridge.navigation.setOnBack(function () {
+  // update page state based on back button tap
+});
+
+```
+
 ## NativeBridge.tabBar Object ##
 
 #### show()
