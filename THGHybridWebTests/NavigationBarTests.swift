@@ -33,7 +33,7 @@ class NavigationBarTests: XCTestCase {
         let completedExpectation = expectationWithDescription("Set title complete")
         
         let webController = WebViewController()
-        webController.addHybridAPI()
+        webController.addBridgeAPIObject()
         
         let callback: @objc_block () -> Void = {
             self.validateSetTitleWithWebViewController(webController)
@@ -58,7 +58,7 @@ class NavigationBarTests: XCTestCase {
         let removeExpectation = expectationWithDescription("Remove title complete")
 
         let webController = WebViewController()
-        webController.addHybridAPI()
+        webController.addBridgeAPIObject()
         
         // set title
         let callback: @objc_block () -> Void = {
@@ -89,7 +89,7 @@ class NavigationBarTests: XCTestCase {
         let completedExpectation = expectationWithDescription("Set buttons complete")
         
         let webViewController = WebViewController()
-        webViewController.addHybridAPI()
+        webViewController.addBridgeAPIObject()
         
         let callback: @objc_block () -> Void = {
             self.validateSetButtonsWithWebViewController(webViewController)
@@ -117,7 +117,7 @@ class NavigationBarTests: XCTestCase {
         let removeExpectation = expectationWithDescription("Remove buttons complete")
         
         let webViewController = WebViewController()
-        webViewController.addHybridAPI()
+        webViewController.addBridgeAPIObject()
         
         // set buttons
         let callback: @objc_block () -> Void = {
