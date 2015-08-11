@@ -118,7 +118,6 @@ public class WebViewController: UIViewController {
     private (set) var appearedFrom: AppearenceCause {
         get {
             switch disappearedBy {
-            case .WebPush: return .WebPop
             case .WebModal: return .WebDismiss
             default: return storedAppearence
             }
@@ -224,8 +223,10 @@ public class WebViewController: UIViewController {
             
             webView.hidden = true
             
-        case .Unknown: break
-
+        case .Unknown:
+            if isMovingFromParentViewController() {
+                webView.hidden = true
+            }
         }
 
         if disappearedBy != .WebPop && isMovingFromParentViewController() {
