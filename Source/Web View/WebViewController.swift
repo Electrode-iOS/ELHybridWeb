@@ -113,9 +113,9 @@ public class WebViewController: UIViewController {
     private(set) public var bridge = Bridge()
     private var storedScreenshotGUID: String? = nil
     private var firstLoadCycleCompleted = true
-    private var disappearedBy = AppearenceCause.Unknown
+    private (set) var disappearedBy = AppearenceCause.Unknown
     private var storedAppearence = AppearenceCause.WebPush
-    private var appearedFrom: AppearenceCause {
+    private (set) var appearedFrom: AppearenceCause {
         get {
             switch disappearedBy {
             case .WebPush: return .WebPop
