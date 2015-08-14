@@ -447,7 +447,11 @@ extension WebViewController {
         webViewController.hybridAPI?.navigationBar.title = options?.title
         webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
         webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
-        webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
+        
+        if let navigationBarButtons = options?.navigationBarButtons {
+            webViewController.hybridAPI?.navigationBar.configureButtons(navigationBarButtons, callback: options?.navigationBarButtonCallback)
+        }
+        
         return webViewController
     }
 }

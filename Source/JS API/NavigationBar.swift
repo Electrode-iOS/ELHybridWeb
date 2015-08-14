@@ -38,6 +38,7 @@ import JavaScriptCore
                     parentViewController?.navigationItem.rightBarButtonItem = nil
                 }
             } else {
+                parentViewController?.navigationItem.hidesBackButton = true
                 parentViewController?.navigationItem.leftBarButtonItem = nil
                 parentViewController?.navigationItem.rightBarButtonItem = nil
             }
