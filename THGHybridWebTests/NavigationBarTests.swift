@@ -29,6 +29,7 @@ class NavigationBarTests: XCTestCase {
     
     // MARK: Title Tests
     
+    // TODO: safelyCallWithArguments is breaking this test
     func testSetTitle() {
         let completedExpectation = expectationWithDescription("Set title complete")
         
@@ -85,6 +86,7 @@ class NavigationBarTests: XCTestCase {
     
     // MARK: Buttons Tests
     
+    // TODO: safelyCallWithArguments is breaking this test
     func testSetButtons() {
         let completedExpectation = expectationWithDescription("Set buttons complete")
         
@@ -112,6 +114,7 @@ class NavigationBarTests: XCTestCase {
         XCTAssertNotNil(webViewController.navigationItem.rightBarButtonItem!)
     }
     
+    // TODO: safelyCallWithArguments is breaking this test
     func testRemoveButtons(){
         let setExpectation = expectationWithDescription("Set buttons complete")
         let removeExpectation = expectationWithDescription("Remove buttons complete")

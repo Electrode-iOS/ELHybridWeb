@@ -29,8 +29,8 @@ import THGBridge
     public static let exportName = "NativeBridge"
     var navigation: Navigation
     var navigationBar: NavigationBar
-    var view: ViewAPI
-    var tabBar: TabBar
+    private (set) public var view: ViewAPI
+    private (set) public var tabBar: TabBar
     var dialog: Dialog
 
     public required init(parentViewController: UIViewController) {

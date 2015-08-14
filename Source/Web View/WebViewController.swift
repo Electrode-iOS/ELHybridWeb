@@ -69,13 +69,13 @@ import THGBridge
  window?.rootViewController = webController
  ```
 
- Call `addHybridAPI()` to add the bridged JavaScript API to the web view. 
+ Call `addBridgeAPIObject()` to add the bridged JavaScript API to the web view.
  The JavaScript API will be accessible to any web pages that are loaded in the 
  web view controller.
 
  ```
  let webController = WebViewController()
- webController.addHybridAPI()
+ webController.addBridgeAPIObject()
  webController.loadURL(NSURL(string: "foo")!)
  window?.rootViewController = webController
  ```
@@ -85,7 +85,7 @@ import THGBridge
 
  ```
  let webController = WebViewController()
- webController.addHybridAPI()
+ webController.addBridgeAPIObject()
  webController.loadURL(NSURL(string: "foo")!)
 
  let navigationController = UINavigationController(rootViewController: webController)

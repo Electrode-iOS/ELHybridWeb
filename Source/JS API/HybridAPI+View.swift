@@ -33,27 +33,27 @@ import UIKit
         return parentViewController as? WebViewController
     }
     
-    func appeared() {
+    public func appeared() {
         hasAppeared = true
         onAppearCallback?.safelyCallWithArguments(nil)
     }
     
-    func disappeared() {
+    public func disappeared() {
         onDisappearCallback?.safelyCallWithArguments(nil)
     }
 }
 
 extension ViewAPI: ViewJSExport {
     /// Show the web view
-    func show() {
+    public func show() {
         webViewController?.showWebView()
     }
     
-    func setOnAppear(callback: JSValue) {
+    public func setOnAppear(callback: JSValue) {
         onAppearCallback = callback
     }
     
-    func setOnDisappear(callback: JSValue) {
+    public func setOnDisappear(callback: JSValue) {
         onDisappearCallback = callback
     }
 }
