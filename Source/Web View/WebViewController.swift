@@ -113,12 +113,11 @@ public class WebViewController: UIViewController {
     private(set) public var bridge = Bridge()
     private var storedScreenshotGUID: String? = nil
     private var firstLoadCycleCompleted = true
-    private var disappearedBy = AppearenceCause.Unknown
+    private (set) var disappearedBy = AppearenceCause.Unknown
     private var storedAppearence = AppearenceCause.WebPush
-    private var appearedFrom: AppearenceCause {
+    private (set) var appearedFrom: AppearenceCause {
         get {
             switch disappearedBy {
-            case .WebPush: return .WebPop
             case .WebModal: return .WebDismiss
             default: return storedAppearence
             }
@@ -224,8 +223,10 @@ public class WebViewController: UIViewController {
             
             webView.hidden = true
             
-        case .Unknown: break
-
+        case .Unknown:
+            if isMovingFromParentViewController() {
+                webView.hidden = true
+            }
         }
 
         if disappearedBy != .WebPop && isMovingFromParentViewController() {
@@ -233,6 +234,14 @@ public class WebViewController: UIViewController {
         }
 
         hybridAPI?.view.disappeared() // needs to be called in viewWillDisappear not Did
+
+        switch disappearedBy {
+        // clear out parent reference to prevent the popping view's onAppear from
+        // showing the web view too early
+        case .WebPop, .Unknown where isMovingFromParentViewController():
+            hybridAPI?.parentViewController = nil
+        default: break
+        }
     }
     
     public override func viewDidDisappear(animated: Bool) {
