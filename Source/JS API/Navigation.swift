@@ -20,7 +20,9 @@ import JavaScriptCore
     weak var webViewController: WebViewController? {
         return parentViewController as? WebViewController
     }
-    
+    var topWebViewController: WebViewController? {
+        return parentViewController?.navigationController?.topViewController as? WebViewController
+    }
     private var onBackCallback: JSValue?
 
     func animateForward(options: JSValue, _ callback: JSValue) {
@@ -46,6 +48,8 @@ import JavaScriptCore
         if let validCallbackValue = onBackCallback?.asValidValue {
             onBackCallback?.safelyCallWithArguments(nil)
         } else {
+            webViewController?.webView.stopLoading()
+            webViewController?.webView.delegate = topWebViewController
             webViewController?.webView.goBack()
         }
     }
