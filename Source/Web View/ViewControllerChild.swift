@@ -25,3 +25,12 @@ protocol ViewControllerChildType {
         self.parentViewController = parentViewController
     }
 }
+
+// MARK: WebViewController Integration
+
+extension ViewControllerChild {
+    
+    weak var webViewController: WebViewController? {
+        return parentViewController as? WebViewController
+    }
+}

@@ -18,7 +18,6 @@ import UIKit
 @objc public class ViewAPI: ViewControllerChild  {
 
     private var hasAppeared = false
-    
     internal var onAppearCallback: JSValue? {
         didSet {
             if hasAppeared {
@@ -26,12 +25,7 @@ import UIKit
             }
         }
     }
-    
     private var onDisappearCallback: JSValue?
-    
-    weak var webViewController: WebViewController? {
-        return parentViewController as? WebViewController
-    }
     
     func appeared() {
         hasAppeared = true

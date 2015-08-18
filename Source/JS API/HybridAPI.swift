@@ -19,6 +19,7 @@ import THGBridge
     var view: ViewAPI {get}
     var tabBar: TabBar {get}
     func info() -> [String: String]
+    func newState()
 }
 
 /**
@@ -53,5 +54,10 @@ import THGBridge
     
     public func info() -> [String: String] {
         return HybridAPIInfo(appVersion: "1.0").asDictionary
+    }
+    
+    func newState() {
+        webViewController?.hybridAPI = nil
+        webViewController?.addBridgeAPIObject()
     }
 }
