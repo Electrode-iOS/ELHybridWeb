@@ -33,6 +33,18 @@ if (window.NativeBridge === undefined) {
 
 ## NativeBridge Object ##
 
+
+#### newState()
+
+Creates a new `NativeBridge` object and adds it to the existing view and JavaScript context.
+
+**Example**
+
+```
+NativeBridge.newState();
+
+```
+
 #### info()
 
 Provides information that identifies the device and platform.
