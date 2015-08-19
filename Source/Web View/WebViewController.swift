@@ -310,7 +310,6 @@ extension WebViewController: UIWebViewDelegate {
     }
     
     final public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
         if pushesWebViewControllerForNavigationType(navigationType) {
             pushWebViewController()
         }
@@ -450,7 +449,7 @@ extension WebViewController {
         webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
         
         if let navigationBarButtons = options?.navigationBarButtons {
-            webViewController.hybridAPI?.navigationBar.configureButtons(navigationBarButtons, callback: options?.navigationBarButtonCallback)
+            webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
         }
         
         return webViewController

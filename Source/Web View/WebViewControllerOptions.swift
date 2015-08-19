@@ -13,13 +13,13 @@ public struct WebViewControllerOptions {
     private (set) var tabBarHidden = false
     private (set) var onAppearCallback: JSValue?
     private (set) var navigationBarButtonCallback: JSValue?
-    private (set) var navigationBarButtons: [[String: AnyObject]]?
+    private (set) var navigationBarButtons: JSValue?
 
     public init(javaScriptValue: JSValue) {
         self.title = javaScriptValue.valueForProperty("title").asString
         self.tabBarHidden = javaScriptValue.valueForProperty("tabBarHidden").toBool() ?? false
         self.onAppearCallback = javaScriptValue.valueForProperty("onAppear")
         self.navigationBarButtonCallback = javaScriptValue.valueForProperty("onNavigationBarButtonTap")
-        self.navigationBarButtons = javaScriptValue.valueForProperty("navigationBarButtons").toObject() as? [[String: AnyObject]]
+        self.navigationBarButtons = javaScriptValue.valueForProperty("navigationBarButtons")
     }
 }
