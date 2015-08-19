@@ -19,7 +19,7 @@ public struct WebViewControllerOptions {
         self.title = javaScriptValue.valueForProperty("title").asString
         self.tabBarHidden = javaScriptValue.valueForProperty("tabBarHidden").toBool() ?? false
         self.onAppearCallback = javaScriptValue.valueForProperty("onAppear")
-        self.navigationBarButtonCallback = javaScriptValue.valueForProperty("onNavigationBarButtonTap")
-        self.navigationBarButtons = javaScriptValue.valueForProperty("navigationBarButtons")
+        self.navigationBarButtonCallback = javaScriptValue.valueForProperty("onNavigationBarButtonTap").asValidValue
+        self.navigationBarButtons = javaScriptValue.valueForProperty("navigationBarButtons").asValidValue
     }
 }
