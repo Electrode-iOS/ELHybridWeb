@@ -17,9 +17,6 @@ import JavaScriptCore
 
 @objc public class Navigation: ViewControllerChild, NavigationJSExport {
     
-    weak var webViewController: WebViewController? {
-        return parentViewController as? WebViewController
-    }
     var topWebViewController: WebViewController? {
         return parentViewController?.navigationController?.topViewController as? WebViewController
     }
