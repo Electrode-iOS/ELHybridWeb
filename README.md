@@ -40,15 +40,6 @@ webController.loadURL(NSURL(string: "foo")!)
 window?.rootViewController = webController
 ```
 
-Call `addHybridAPI()` to add the bridged JavaScript API to the web view. The JavaScript API will be accessible to any web pages that are loaded in the web view controller.
-
-```
-let webController = WebViewController()
-webController.addHybridAPI()
-webController.loadURL(NSURL(string: "foo")!)
-window?.rootViewController = webController
-```
-
 To utilize the navigation JavaScript API you must provide a navigation controller for the web view controller.
 
 ```
