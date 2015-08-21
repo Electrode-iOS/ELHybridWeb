@@ -13,8 +13,6 @@ import JavaScriptCore
     func animateBackward()
     func popToRoot()
     func setOnBack(callback: JSValue)
-    func presentExternalURL(urlString: String, _ redirectURLString: String?)
-    func dismissExternalURL(urlString: String)
 }
 
 @objc public class Navigation: ViewControllerChild, NavigationJSExport {
@@ -56,20 +54,26 @@ import JavaScriptCore
     func setOnBack(callback: JSValue) {
         onBackCallback = callback
     }
+}
 
-    func presentExternalURL(urlString: String, _ redirectURLString: String? = nil)  {
-        if let url = NSURL(string: urlString) {
+
+// MARK: - External Navigation
+
+@objc protocol ExternalNavigationJSExport: JSExport {
+    func presentExternalURL(options: [String: String])
+    func dismissExternalURL(urlString: String)
+}
+
+extension Navigation: ExternalNavigationJSExport {
+    
+    func presentExternalURL(options: [String: String])  {
+        if let presentExternalOptions = PresentExternalOptions(options: options) {
             dispatch_async(dispatch_get_main_queue()) {
-                
-                if let redirectURLString = redirectURLString {
-                    self.webViewController?.presentExternalURL(url, redirectURL: NSURL(string: redirectURLString))
-                } else {
-                    self.webViewController?.presentExternalURL(url, redirectURL: nil)
-                }
+                self.webViewController?.presentExternalURL(presentExternalOptions.url, redirectURL: presentExternalOptions.returnURL)
             }
         }
     }
-
+    
     func dismissExternalURL(urlString: String) {
         if let url = NSURL(string: urlString) {
             if let presentingWebViewController = webViewController?.externalPresentingWebViewController {
@@ -77,8 +81,27 @@ import JavaScriptCore
             } else {
                 webViewController?.loadURL(url)
             }
-
+            
             parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+}
+
+struct PresentExternalOptions {
+    let url: NSURL
+    var returnURL: NSURL?
+    
+    init?(options: [String: String]) {
+        if let urlString = options["url"],
+            let url = NSURL(string: urlString) {
+                self.url = url
+                
+                if let returnURLString = options["returnURL"],
+                    let returnURL = NSURL(string: returnURLString) {
+                    self.returnURL = returnURL
+                }
+        } else {
+            return nil
         }
     }
 }
