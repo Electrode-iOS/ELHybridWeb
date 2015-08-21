@@ -135,6 +135,7 @@ public class WebViewController: UIViewController {
     private var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
     private (set) weak var externalPresentingWebViewController: WebViewController?
+    private var externalReturnURL: NSURL?
     
     /// Handles web view controller events.
     public weak var delegate: WebViewControllerDelegate?
@@ -315,6 +316,16 @@ extension WebViewController: UIWebViewDelegate {
             pushWebViewController()
         }
         
+        if appearedFrom == .External {
+            if let requestedURL = request.URL,
+                let requestedURLString = requestedURL.absoluteString,
+                let returnURLString = externalReturnURL?.absoluteString
+                where requestedURLString.rangeOfString(returnURLString) != nil {
+                returnFromExternalWithReturnURL(requestedURL)
+                return false
+            }
+        }
+        
         return delegate?.webViewController?(self, shouldStartLoadWithRequest: request, navigationType: navigationType) ?? true
     }
     
@@ -465,29 +476,40 @@ extension WebViewController {
         return !webView.canGoBack
     }
     
-    func presentExternalURL(url: NSURL) {
+    func presentExternalURL(url: NSURL, redirectURL: NSURL?) {
         let externalWebViewController = self.dynamicType()
         externalWebViewController.externalPresentingWebViewController = self
         externalWebViewController.addBridgeAPIObject()
         externalWebViewController.loadURL(url)
         externalWebViewController.appearedFrom = .External
+        externalWebViewController.externalReturnURL = redirectURL
         
         let backText = NSLocalizedString("Back", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
-        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: "externalBackButtonTapped:")
+        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: "externalBackButtonTapped")
+        
+        let doneText = NSLocalizedString("Done", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        externalWebViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: doneText, style: .Done, target: externalWebViewController, action: "dismissExternalURL")
         
         let navigationController = UINavigationController(rootViewController: externalWebViewController)
         presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    func externalBackButtonTapped(sender: AnyObject) {
+    func externalBackButtonTapped() {
         if shouldDismissExternalURLModal {
-            if let externalPresentingWebViewController = externalPresentingWebViewController {
-                externalPresentingWebViewController.showWebView()
-                dismissViewControllerAnimated(true, completion: nil)
-            }
+            externalPresentingWebViewController?.showWebView()
+            dismissExternalURL()
         }
         
         webView.goBack()
+    }
+    
+    func returnFromExternalWithReturnURL(url: NSURL) {
+        externalPresentingWebViewController?.loadURL(url)
+        dismissExternalURL()
+    }
+    
+    func dismissExternalURL() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

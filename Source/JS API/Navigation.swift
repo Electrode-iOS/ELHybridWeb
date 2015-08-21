@@ -13,7 +13,7 @@ import JavaScriptCore
     func animateBackward()
     func popToRoot()
     func setOnBack(callback: JSValue)
-    func presentExternalURL(urlString: String)
+    func presentExternalURL(urlString: String, _ redirectURLString: String?)
     func dismissExternalURL(urlString: String)
 }
 
@@ -57,10 +57,15 @@ import JavaScriptCore
         onBackCallback = callback
     }
 
-    func presentExternalURL(urlString: String)  {
+    func presentExternalURL(urlString: String, _ redirectURLString: String? = nil)  {
         if let url = NSURL(string: urlString) {
             dispatch_async(dispatch_get_main_queue()) {
-                webViewController?.presentExternalURL(url)
+                
+                if let redirectURLString = redirectURLString {
+                    self.webViewController?.presentExternalURL(url, redirectURL: NSURL(string: redirectURLString))
+                } else {
+                    self.webViewController?.presentExternalURL(url, redirectURL: nil)
+                }
             }
         }
     }
