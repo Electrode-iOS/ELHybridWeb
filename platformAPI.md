@@ -275,6 +275,38 @@ NativeBridge.navigation.setOnBack(function () {
 
 ```
 
+#### presentExternalURL()
+ 
+Present a new web view modally and the load the provided URL. Adds a custom back button that when tapped, checks web view history to determine if the web view should be dismissed or if history.back() should be called. If the external web view is at the beginning of its page history the modal is dismissed, displaying the original page that presented the external web view.
+
+
+**Parameters**
+
+- `url` (string) - External URL to load into the new modal web view.
+
+**Example**
+
+```
+NativeBridge.navigation.presentExternalURL("http://www.apple.com/");
+
+```
+
+#### dismissExternalURL()
+
+Dismiss the external web view and load the provided URL into the previous web view that had presented the external URL.
+
+**Parameters**
+
+- `url` (string) - URL to load into the original web view that had presented the external web view. The URL to return to.
+
+**Example**
+
+```
+NativeBridge.navigation.dismissExternalURL("http://www.walmart.com/");
+
+```
+
+
 ## NativeBridge.tabBar Object ##
 
 #### show()

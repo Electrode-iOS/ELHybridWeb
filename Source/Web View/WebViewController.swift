@@ -95,7 +95,7 @@ import THGBridge
 public class WebViewController: UIViewController {
     
     enum AppearenceCause {
-        case Unknown, WebPush, WebPop, WebModal, WebDismiss
+        case Unknown, WebPush, WebPop, WebModal, WebDismiss, External
     }
     
     /// The URL that was loaded with `loadURL()`
@@ -127,7 +127,6 @@ public class WebViewController: UIViewController {
             storedAppearence = newValue
         }
     }
-
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
@@ -135,6 +134,7 @@ public class WebViewController: UIViewController {
     private var errorLabel: UILabel?
     private var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
+    private (set) weak var externalPresentingWebViewController: WebViewController?
     
     /// Handles web view controller events.
     public weak var delegate: WebViewControllerDelegate?
@@ -185,7 +185,7 @@ public class WebViewController: UIViewController {
                 
         switch appearedFrom {
             
-        case .WebPush, .WebModal, .WebPop, .WebDismiss:
+        case .WebPush, .WebModal, .WebPop, .WebDismiss, .External:
             webView.delegate = self
             webView.removeFromSuperview()
             webView.frame = view.bounds
@@ -205,7 +205,7 @@ public class WebViewController: UIViewController {
         
         case .WebPop, .WebDismiss: addBridgeAPIObject()
             
-        case .WebPush, .WebModal, .Unknown: break
+        case .WebPush, .WebModal, .External, .Unknown: break
         }
     }
     
@@ -228,6 +228,7 @@ public class WebViewController: UIViewController {
             if isMovingFromParentViewController() {
                 webView.hidden = true
             }
+        case .External: break
         }
 
         if disappearedBy != .WebPop && isMovingFromParentViewController() {
@@ -250,7 +251,7 @@ public class WebViewController: UIViewController {
         
         switch disappearedBy {
             
-        case .WebPop, .WebDismiss, .WebPush, .WebModal:
+        case .WebPop, .WebDismiss, .WebPush, .WebModal, .External:
             // we're gone.  dump the screenshot, we'll load it later if we need to.
             placeholderImageView.image = nil
             
@@ -456,6 +457,40 @@ extension WebViewController {
     }
 }
 
+// MARK: - External Navigation
+
+extension WebViewController {
+    
+    var shouldDismissExternalURLModal: Bool {
+        return !webView.canGoBack
+    }
+    
+    func presentExternalURL(url: NSURL) {
+        let externalWebViewController = self.dynamicType()
+        externalWebViewController.externalPresentingWebViewController = self
+        externalWebViewController.addBridgeAPIObject()
+        externalWebViewController.loadURL(url)
+        externalWebViewController.appearedFrom = .External
+        
+        let backText = NSLocalizedString("Back", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: "externalBackButtonTapped:")
+        
+        let navigationController = UINavigationController(rootViewController: externalWebViewController)
+        presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
+    func externalBackButtonTapped(sender: AnyObject) {
+        if shouldDismissExternalURLModal {
+            if let externalPresentingWebViewController = externalPresentingWebViewController {
+                externalPresentingWebViewController.showWebView()
+                dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        
+        webView.goBack()
+    }
+}
+
 // MARK: - Error UI
 
 extension WebViewController {
@@ -627,6 +662,7 @@ private struct Statics {
 }
 
 extension NSObject {
+    
     func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
         if let webFrameClass: AnyClass = NSClassFromString("WebFrame")
             where !(frame.dynamicType === webFrameClass) {
@@ -658,6 +694,7 @@ extension NSObject {
 public var hackContext: JSContext? = nil
 
 extension UIWebView {
+    
     func didCreateJavaScriptContext(context: JSContext) {
         hackContext = context
         (delegate as? WebViewController)?.didCreateJavaScriptContext(context)

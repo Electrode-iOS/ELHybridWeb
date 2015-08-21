@@ -13,6 +13,8 @@ import JavaScriptCore
     func animateBackward()
     func popToRoot()
     func setOnBack(callback: JSValue)
+    func presentExternalURL(urlString: String)
+    func dismissExternalURL(urlString: String)
 }
 
 @objc public class Navigation: ViewControllerChild, NavigationJSExport {
@@ -53,5 +55,25 @@ import JavaScriptCore
 
     func setOnBack(callback: JSValue) {
         onBackCallback = callback
+    }
+
+    func presentExternalURL(urlString: String)  {
+        if let url = NSURL(string: urlString) {
+            dispatch_async(dispatch_get_main_queue()) {
+                webViewController?.presentExternalURL(url)
+            }
+        }
+    }
+
+    func dismissExternalURL(urlString: String) {
+        if let url = NSURL(string: urlString) {
+            if let presentingWebViewController = webViewController?.externalPresentingWebViewController {
+                presentingWebViewController.loadURL(url)
+            } else {
+                webViewController?.loadURL(url)
+            }
+
+            parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 }
