@@ -293,6 +293,18 @@ extension WebViewController {
     public func requestWithURL(url: NSURL) -> NSURLRequest {
         return NSURLRequest(URL: url)
     }
+    
+    private func didInterceptRequest(request: NSURLRequest) -> Bool {
+        if appearedFrom == .External {
+            // intercept requests that match external return URL
+            if let url = request.URL where shouldInterceptExternalURL(url) {
+                returnFromExternalWithReturnURL(url)
+                return true
+            }
+        }
+        
+        return false
+    }
 }
 
 // MARK: - UIWebViewDelegate
@@ -316,21 +328,14 @@ extension WebViewController: UIWebViewDelegate {
             pushWebViewController()
         }
         
-        if appearedFrom == .External {
-            if let requestedURL = request.URL,
-                let requestedURLString = requestedURL.absoluteString,
-                let returnURLString = externalReturnURL?.absoluteString
-                where requestedURLString.rangeOfString(returnURLString) != nil {
-                returnFromExternalWithReturnURL(requestedURL)
-                return false
-            }
+        if didInterceptRequest(request) {
+            return false
+        } else {
+            return delegate?.webViewController?(self, shouldStartLoadWithRequest: request, navigationType: navigationType) ?? true
         }
-        
-        return delegate?.webViewController?(self, shouldStartLoadWithRequest: request, navigationType: navigationType) ?? true
     }
     
     final public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        
         if error.code != NSURLErrorCancelled {
             if showErrorDisplay {
                 renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
@@ -472,11 +477,21 @@ extension WebViewController {
 
 extension WebViewController {
     
-    var shouldDismissExternalURLModal: Bool {
+    final var shouldDismissExternalURLModal: Bool {
         return !webView.canGoBack
     }
     
-    func presentExternalURL(url: NSURL, redirectURL: NSURL?) {
+    final func shouldInterceptExternalURL(url: NSURL) -> Bool {
+        if let requestedURLString = url.absoluteString,
+            let returnURLString = externalReturnURL?.absoluteString
+            where requestedURLString.rangeOfString(returnURLString) != nil {
+                return true
+        }
+        
+        return false
+    }
+    
+    final func presentExternalURL(url: NSURL, redirectURL: NSURL?) {
         let externalWebViewController = self.dynamicType()
         externalWebViewController.externalPresentingWebViewController = self
         externalWebViewController.addBridgeAPIObject()
@@ -494,7 +509,7 @@ extension WebViewController {
         presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    func externalBackButtonTapped() {
+    final func externalBackButtonTapped() {
         if shouldDismissExternalURLModal {
             externalPresentingWebViewController?.showWebView()
             dismissExternalURL()
@@ -503,12 +518,12 @@ extension WebViewController {
         webView.goBack()
     }
     
-    func returnFromExternalWithReturnURL(url: NSURL) {
+    final func returnFromExternalWithReturnURL(url: NSURL) {
         externalPresentingWebViewController?.loadURL(url)
         dismissExternalURL()
     }
     
-    func dismissExternalURL() {
+    final func dismissExternalURL() {
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
