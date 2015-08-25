@@ -491,13 +491,14 @@ extension WebViewController {
         return false
     }
     
-    final func presentExternalURL(url: NSURL, redirectURL: NSURL?) {
+    final func presentExternalURLWithOptions(options: PresentExternalOptions) {
         let externalWebViewController = self.dynamicType()
         externalWebViewController.externalPresentingWebViewController = self
         externalWebViewController.addBridgeAPIObject()
-        externalWebViewController.loadURL(url)
+        externalWebViewController.loadURL(options.url)
         externalWebViewController.appearedFrom = .External
-        externalWebViewController.externalReturnURL = redirectURL
+        externalWebViewController.externalReturnURL = options.returnURL
+        externalWebViewController.title = options.title
         
         let backText = NSLocalizedString("Back", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
         externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: "externalBackButtonTapped")

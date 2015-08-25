@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170DE10D1B8C872300E9C3E9 /* Navigation+External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */; };
 		172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */; };
 		172F077E1B4C67A100C96ABF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F077D1B4C67A100C96ABF /* Util.swift */; };
 		173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -136,6 +137,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+External.swift"; sourceTree = "<group>"; };
 		172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+View.swift"; sourceTree = "<group>"; };
 		172F077D1B4C67A100C96ABF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THGHybridWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +275,7 @@
 				177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */,
 				177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */,
 				17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */,
+				170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */,
 				174CA6C41B20804400A80074 /* NavigationBar.swift */,
 				17B435691B667B4D00446D71 /* TabBar.swift */,
 			);
@@ -537,6 +540,7 @@
 				177E5D931B00FE1A006BCBE2 /* HybridAPI+Share.swift in Sources */,
 				177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */,
 				177E5D951B00FE1A006BCBE2 /* JSValue+HybridAPI.swift in Sources */,
+				170DE10D1B8C872300E9C3E9 /* Navigation+External.swift in Sources */,
 				17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */,
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
