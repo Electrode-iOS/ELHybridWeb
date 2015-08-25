@@ -10,7 +10,7 @@ import JavaScriptCore
 
 @objc protocol NavigationBarJSExport: JSExport {
     func setTitle(title: JSValue, _ callback: JSValue?)
-    func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue?, _ testingCallback: JSValue?)
+    func setButtons(buttonsToSet: JSValue?, _ callback: JSValue?, _ testingCallback: JSValue?)
 }
 
 @objc public class NavigationBar: ViewControllerChild {
@@ -20,7 +20,6 @@ import JavaScriptCore
             parentViewController?.navigationItem.title = title
         }
     }
-    private var callback: JSValue?
     private var buttons: [Int: BarButton]? {
         didSet {
             if let buttons = buttons {
@@ -38,6 +37,7 @@ import JavaScriptCore
                     parentViewController?.navigationItem.rightBarButtonItem = nil
                 }
             } else {
+                parentViewController?.navigationItem.hidesBackButton = true
                 parentViewController?.navigationItem.leftBarButtonItem = nil
                 parentViewController?.navigationItem.rightBarButtonItem = nil
             }
@@ -54,19 +54,16 @@ extension NavigationBar: NavigationBarJSExport {
         }
     }
     
-    func setButtons(buttonsToSet: AnyObject?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
+    func setButtons(buttonsToSet: JSValue?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
         dispatch_async(dispatch_get_main_queue()) {
             self.configureButtons(buttonsToSet, callback: callback)
             testingCallback?.safelyCallWithArguments(nil) // only for testing purposes
         }
     }
     
-    func configureButtons(buttonsToSet: AnyObject?, callback: JSValue?) {
-        if let buttonsToSet = buttonsToSet as? [[String: AnyObject]],
-            let callback = callback
-            where buttonsToSet.count > 0 {
-                self.callback = callback
-                buttons = BarButton.dictionaryFromJSONArray(buttonsToSet, callback: callback) // must set buttons on main thread
+    func configureButtons(buttonsToSet: JSValue?, callback: JSValue?) {
+        if let buttonOptions = buttonsToSet?.toObject() as? [AnyObject] {
+            buttons = BarButton.dictionaryFromJSONArray(buttonOptions, callback: callback) // must set buttons on main thread
         } else {
             buttons = nil
         }

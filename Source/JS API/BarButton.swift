@@ -26,16 +26,20 @@ import UIKit
 
 extension BarButton {
     
-    static func dictionaryFromJSONArray(array: [[String: AnyObject]], callback: JSValue) -> [Int: BarButton] {
+    static func dictionaryFromJSONArray(array: [AnyObject], callback: JSValue?) -> [Int: BarButton] {
         var buttons = [Int: BarButton]()
         
-        for (index, buttonDictionary) in enumerate(array) {
-            if let id = buttonDictionary["id"] as? String,
-                let title = buttonDictionary["title"] as? String {
-                    let image = buttonDictionary["image"] as? String
-                    var button = BarButton(id: id, title: title, image: image)
-                    button.callback = callback
-                    buttons[index] = button
+        for (index, buttonOptions) in enumerate(array) {
+            if let buttonOptions = buttonOptions as? [String: String],
+                let id = buttonOptions["id"],
+                let title = buttonOptions["title"] {
+                    
+                let image = buttonOptions["image"]
+                var button = BarButton(id: id, title: title, image: image)
+                button.callback = callback
+                buttons[index] = button
+            } else if buttonOptions is NSNull {
+                buttons[index] = nil
             }
         }
         

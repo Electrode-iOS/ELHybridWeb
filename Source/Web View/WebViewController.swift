@@ -95,7 +95,7 @@ import THGBridge
 public class WebViewController: UIViewController {
     
     enum AppearenceCause {
-        case Unknown, WebPush, WebPop, WebModal, WebDismiss
+        case Unknown, WebPush, WebPop, WebModal, WebDismiss, External
     }
     
     /// The URL that was loaded with `loadURL()`
@@ -118,6 +118,7 @@ public class WebViewController: UIViewController {
     private (set) var appearedFrom: AppearenceCause {
         get {
             switch disappearedBy {
+            case .WebPush: return .WebPop
             case .WebModal: return .WebDismiss
             default: return storedAppearence
             }
@@ -126,7 +127,6 @@ public class WebViewController: UIViewController {
             storedAppearence = newValue
         }
     }
-
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
@@ -134,6 +134,8 @@ public class WebViewController: UIViewController {
     private var errorLabel: UILabel?
     private var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
+    private (set) weak var externalPresentingWebViewController: WebViewController?
+    private var externalReturnURL: NSURL?
     
     /// Handles web view controller events.
     public weak var delegate: WebViewControllerDelegate?
@@ -184,7 +186,7 @@ public class WebViewController: UIViewController {
                 
         switch appearedFrom {
             
-        case .WebPush, .WebModal, .WebPop, .WebDismiss:
+        case .WebPush, .WebModal, .WebPop, .WebDismiss, .External:
             webView.delegate = self
             webView.removeFromSuperview()
             webView.frame = view.bounds
@@ -204,7 +206,7 @@ public class WebViewController: UIViewController {
         
         case .WebPop, .WebDismiss: addBridgeAPIObject()
             
-        case .WebPush, .WebModal, .Unknown: break
+        case .WebPush, .WebModal, .External, .Unknown: break
         }
     }
     
@@ -227,6 +229,7 @@ public class WebViewController: UIViewController {
             if isMovingFromParentViewController() {
                 webView.hidden = true
             }
+        case .External: break
         }
 
         if disappearedBy != .WebPop && isMovingFromParentViewController() {
@@ -249,7 +252,7 @@ public class WebViewController: UIViewController {
         
         switch disappearedBy {
             
-        case .WebPop, .WebDismiss, .WebPush, .WebModal:
+        case .WebPop, .WebDismiss, .WebPush, .WebModal, .External:
             // we're gone.  dump the screenshot, we'll load it later if we need to.
             placeholderImageView.image = nil
             
@@ -290,6 +293,18 @@ extension WebViewController {
     public func requestWithURL(url: NSURL) -> NSURLRequest {
         return NSURLRequest(URL: url)
     }
+    
+    private func didInterceptRequest(request: NSURLRequest) -> Bool {
+        if appearedFrom == .External {
+            // intercept requests that match external return URL
+            if let url = request.URL where shouldInterceptExternalURL(url) {
+                returnFromExternalWithReturnURL(url)
+                return true
+            }
+        }
+        
+        return false
+    }
 }
 
 // MARK: - UIWebViewDelegate
@@ -309,16 +324,18 @@ extension WebViewController: UIWebViewDelegate {
     }
     
     final public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
         if pushesWebViewControllerForNavigationType(navigationType) {
             pushWebViewController()
         }
         
-        return delegate?.webViewController?(self, shouldStartLoadWithRequest: request, navigationType: navigationType) ?? true
+        if didInterceptRequest(request) {
+            return false
+        } else {
+            return delegate?.webViewController?(self, shouldStartLoadWithRequest: request, navigationType: navigationType) ?? true
+        }
     }
     
     final public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        
         if error.code != NSURLErrorCancelled {
             if showErrorDisplay {
                 renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
@@ -447,8 +464,68 @@ extension WebViewController {
         webViewController.hybridAPI?.navigationBar.title = options?.title
         webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
         webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
-        webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
+        
+        if let navigationBarButtons = options?.navigationBarButtons {
+            webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
+        }
+        
         return webViewController
+    }
+}
+
+// MARK: - External Navigation
+
+extension WebViewController {
+    
+    final var shouldDismissExternalURLModal: Bool {
+        return !webView.canGoBack
+    }
+    
+    final func shouldInterceptExternalURL(url: NSURL) -> Bool {
+        if let requestedURLString = url.absoluteString,
+            let returnURLString = externalReturnURL?.absoluteString
+            where requestedURLString.rangeOfString(returnURLString) != nil {
+                return true
+        }
+        
+        return false
+    }
+    
+    final func presentExternalURLWithOptions(options: PresentExternalOptions) {
+        let externalWebViewController = self.dynamicType()
+        externalWebViewController.externalPresentingWebViewController = self
+        externalWebViewController.addBridgeAPIObject()
+        externalWebViewController.loadURL(options.url)
+        externalWebViewController.appearedFrom = .External
+        externalWebViewController.externalReturnURL = options.returnURL
+        externalWebViewController.title = options.title
+        
+        let backText = NSLocalizedString("Back", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: "externalBackButtonTapped")
+        
+        let doneText = NSLocalizedString("Done", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        externalWebViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: doneText, style: .Done, target: externalWebViewController, action: "dismissExternalURL")
+        
+        let navigationController = UINavigationController(rootViewController: externalWebViewController)
+        presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
+    final func externalBackButtonTapped() {
+        if shouldDismissExternalURLModal {
+            externalPresentingWebViewController?.showWebView()
+            dismissExternalURL()
+        }
+        
+        webView.goBack()
+    }
+    
+    final func returnFromExternalWithReturnURL(url: NSURL) {
+        externalPresentingWebViewController?.loadURL(url)
+        dismissExternalURL()
+    }
+    
+    final func dismissExternalURL() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
@@ -623,6 +700,7 @@ private struct Statics {
 }
 
 extension NSObject {
+    
     func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
         if let webFrameClass: AnyClass = NSClassFromString("WebFrame")
             where !(frame.dynamicType === webFrameClass) {
@@ -654,6 +732,7 @@ extension NSObject {
 public var hackContext: JSContext? = nil
 
 extension UIWebView {
+    
     func didCreateJavaScriptContext(context: JSContext) {
         hackContext = context
         (delegate as? WebViewController)?.didCreateJavaScriptContext(context)

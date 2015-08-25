@@ -33,6 +33,17 @@ if (window.NativeBridge === undefined) {
 
 ## NativeBridge Object ##
 
+#### newState()
+
+Creates a new `NativeBridge` object and adds it to the existing view and JavaScript context.
+
+**Example**
+
+```
+NativeBridge.newState();
+
+```
+
 #### info()
 
 Provides information that identifies the device and platform.
@@ -76,7 +87,7 @@ NativeBridge.share(options);
 
 #### dialog()
 
-Present an activity view controller with `message` and `url` as the activity items.
+Present an alert view.
 
 **Parameters**
 
@@ -115,7 +126,7 @@ window.NativeBridge.dialog(options, function(error, id) {
 
 #### animateForward()
 
-Trigger a native push navigation transition. By default it pushes a new web view controller on to the web view controller's navigation stack with the current web view. Does not affect web view history.
+Trigger a native push navigation transition. Pushes a new web view controller on to the web view controller's navigation stack with the existing web view. `animateForward` hides the web view in order to allow the web app to show the view when it has completed loading its state. The web view will remain hidden until `view.show()` is called. This method does not affect web view history.
 
 **Parameters**
 
@@ -151,7 +162,7 @@ NativeBridge.navigation.animateForward({
 
 #### animateBackward()
 
-Trigger a native pop navigation transition. By default it pops a view controller off of the web view controller's navigation stack. Does not affect web view history.
+Pops the visible web view controller off of the web view controller's navigation stack. `animateBackward` hides the web view in order to allow the web app to show the view when it has completed loading its state. The web view will remain hidden until `view.show()` is called.  Does not affect web view history.
 
 **Example**
 
@@ -162,7 +173,7 @@ NativeBridge.navigation.animateBackward();
 
 #### popToRoot()
 
-Pops the native navigation stack all the way back to the root view. This will trigger the root views onAppear callback with the appropriate arguments.
+Pops the native navigation stack all the way back to the root view. This will trigger the root view's `onAppear` callback.
 
 **Example**
 
@@ -173,7 +184,9 @@ NativeBridge.navigation.popToRoot();
 
 #### presentModal()
 
-Trigger a native modal transition. By default the method presents a new web view controller with the current web view state. Does not affect web view history.
+Trigger a native modal transition. 
+
+Presents a new web view controller as a modal transition using the existing web view state. `presentModal` hides the web view in order to allow the web app to show the view when it has completed loading its state. The web view will remain hidden until `view.show()` is called. Does not affect web view history.
 
 **Parameters**
 
@@ -183,8 +196,8 @@ Trigger a native modal transition. By default the method presents a new web view
   - `navigationBarButtons` (array) - Array of navigation bar button objects to be set. The first item in the array sets the `leftBarButtonItem` and the second item sets the `rightBarButtonItem`. If this option is not passed, the default native `back` button is displayed.
     - `title` (string) - Title text of button.
     - `id` (string) -  Unique identifier of button.
-  - onNavigationBarButtonTap (function) - Callback to be triggered when `navigationBarButtons` are clicked. It will receive an argument with the `id` of the button clicked.
-  - onAppear (function) - Callback to be triggered once the animation is completed and new view is ready.
+  - `onNavigationBarButtonTap` (function) - Callback to be triggered when `navigationBarButtons` are clicked. It will receive an argument with the `id` of the button clicked.
+  - `onAppear` (function) - Callback to be triggered once the animation is completed and new view is ready.
 
 
 **Example**
@@ -203,6 +216,39 @@ NativeBridge.navigation.presentModal({
   title: "Title text",
 });
 
+```
+
+Present a modal with navigation bar buttons.
+
+```
+NativeBridge.navigation.presentModal({
+  title: "Modal View Title",
+  navigationBarButtons: [{
+    title: "Cancel",
+    id: "cancel"
+  }, {
+    title: "Done",
+    id: "done"
+  }],
+  onNavigationBarButtonTap: function(id) {
+    NativeBridge.navigation.dismissModal();
+  }
+});
+```
+
+Present a modal with only a right navigation bar button.
+
+```
+NativeBridge.navigation.presentModal({
+  title: "Modal View Title",
+  navigationBarButtons: [null, {
+    title: "Done",
+    id: "done"
+  }],
+  onNavigationBarButtonTap: function(id) {
+    NativeBridge.navigation.dismissModal();
+  }
+});
 ```
 
 #### dismissModal()
@@ -228,6 +274,49 @@ NativeBridge.navigation.setOnBack(function () {
 });
 
 ```
+
+#### presentExternalURL()
+ 
+Present a new web view modally and the load the provided URL. Adds a custom back button that when tapped, checks web view history to determine if the web view should be dismissed or if history.back() should be called. If the external web view is at the beginning of its page history the modal is dismissed, displaying the original page that presented the external web view.
+
+The external web view modal contains "Back" left navigation bar button and a "Done" right navigation bar button. The Back button goes back in web history on each tap. If the external web view history is at the beginning the modal web view will be dismissed.
+
+The Done button dismisses the external web view regardless of the web history.
+
+
+**Parameters**
+
+- (object) - Options object.
+  - `url` (string) - External URL to load into the new modal web view.
+  - `returnURL` (string) - URL that the external web view should intercept and load into the original web view that had presented the external web view. The external web view modal will be dismissed and the URL will not be loaded in the external web view. The the intercepted URL can match any part of the return URL. For example the returnURL value of `"www.walmart.com" will intercept any URL that contains the host `www.walmart.com`.
+  - `title` (string) - Title text for the navigation bar of the external web view.
+
+**Example**
+
+```
+var options = {
+  url: "http://www.apple.com/", 
+  returnURL: "www.walmart.com"
+};
+NativeBridge.navigation.presentExternalURL(options);
+
+```
+
+#### dismissExternalURL()
+
+Dismiss the external web view and load the provided URL into the previous web view that had presented the external URL.
+
+**Parameters**
+
+- `url` (string) - URL to load into the original web view that had presented the external web view. The URL to return to.
+
+**Example**
+
+```
+NativeBridge.navigation.dismissExternalURL("http://www.walmart.com/");
+
+```
+
 
 ## NativeBridge.tabBar Object ##
 
@@ -284,6 +373,8 @@ Set the navigation bar's buttons with an array of button objects.
 
 **Example**
 
+Two navigation bar buttons can be set, left and right. Adding a "Cancel" left navigation bar button and a "Done" right navigation bar button:
+
 ```
 var buttons = [{
   title: "Cancel",
@@ -293,7 +384,7 @@ var buttons = [{
   id: "done"
 }];
 
-window.NativeBridge.navigationBar.setButtons(buttons, function (buttonID) {
+NativeBridge.navigationBar.setButtons(buttons, function (buttonID) {
   // handle button tap
 });
 ```
@@ -304,11 +395,25 @@ Remove navigation bar buttons by passing `null` or an empty array as the first p
 window.NativeBridge.navigationBar.setButtons(null);
 ```
 
+`null` can also be used to add only a right or left navigation bar button. With `null` as the first value in the array only a right navigation bar button is added.
+
+```
+var buttons = [null, {
+  title: "Done",
+  id: "done"
+}];
+
+NativeBridge.navigationBar.setButtons(buttons, function (buttonID) {
+  // handle button tap
+});
+```
+
+
 ## NativeBridge.view Object ##
 
 #### show()
 
-Shows the current web view. This allows to webapp to indicate to the native app thats its ready to be shown.
+Shows the current web view. This allows to web app to indicate to the native app thats its ready to be shown.
 
 **Example**
 
@@ -319,10 +424,9 @@ NativeBridge.view.show();
 
 #### setOnAppear()
 
-Sets a callback on the current web view that will be triggered when it becomes visible to the user. This callback will be triggered in one of three cases:
-- When a user navigates from elsewhere in the native app back to the view that sets this callback.
-- When the view appears as a result of a native `animateBackward` transition.
-- When the view appears as a results of a native `popToRoot` transition.
+Sets a callback on the current web view that will be triggered when it becomes visible to the user. For iOS developers this is the equivalent of `UIViewController`'s `viewWillAppear(animated:)` method.
+
+The callback is triggered anytime a view appears on screen which means it is called as a result of `animateForward`, `animateBackward`, `presentModal`, `dismissModal` and  `popToRoot` calls. All of these methods cause an animation transition to occur with a new or previous view appearing on screen. This method is also called when a view appears as a result of switching tabs in a tab bar controller.
 
 **Parameters**
 
@@ -339,7 +443,10 @@ NativeBridge.view.setOnAppear(function () {
 
 #### setOnDisappear()
 
-Sets a callback on the current web view that will be triggered when this view is about to be transitioned out of.
+Sets a callback on the current web view that will be triggered when this view is about to be transitioned out of. For iOS developers this is the equivalent of `UIViewController`'s `viewWillDisappear(animated:)` method.
+
+The callback is triggered anytime a view disappears from screen which means it is called as a result of `animateForward`, `animateBackward`, `presentModal`, `dismissModal` and  `popToRoot` calls. All of these methods cause an animation transition to occur with a new or previous view appearing on screen. This method is also called when a view disappears as a result of switching tabs in a tab bar controller.
+
 
 **Example**
 
