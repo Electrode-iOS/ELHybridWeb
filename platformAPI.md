@@ -289,6 +289,7 @@ The Done button dismisses the external web view regardless of the web history.
 - (object) - Options object.
   - `url` (string) - External URL to load into the new modal web view.
   - `returnURL` (string) - URL that the external web view should intercept and load into the original web view that had presented the external web view. The external web view modal will be dismissed and the URL will not be loaded in the external web view. The the intercepted URL can match any part of the return URL. For example the returnURL value of `"www.walmart.com" will intercept any URL that contains the host `www.walmart.com`.
+  - `title` (string) - Title text for the navigation bar of the external web view.
 
 **Example**
 
