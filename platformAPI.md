@@ -1,11 +1,15 @@
 Platform API documentation
 ==========================
 
-## Global API functions ##
+The platform API is a JavaScript API that provides a bridge to native device APIs for iOS and Android. [Zoot](https://github.com/TheHolyGrail/Zoot) is the implementation for iOS that bridges the platform API to native Objective-C-based APIs. Her twin, [Dingo](https://github.com/TheHolyGrail/Dingo), is a Java framework that bridges the API to native Android APIs. 
+
+The platform API enables web applications to use native device APIs for building hybrid experiences.
+
+## Global Functions ##
 
 #### nativeBridgeReady()
 
-An optional callback to invoke after the web view has finished loading and the bridge APIs are ready for use. Note,
+An optional callback function to invoke after the web view has finished loading and the bridge APIs are ready for use. Note,
 this function is called *from* the Native application and is not bound to the NativeBridge object.
 
 **Parameters**
