@@ -168,6 +168,41 @@ extension WebViewControllerTests {
     }
 }
 
+// MARK: - External Navigation
+
+extension WebViewControllerTests {
+    
+    func testPresentExternalURLWithOptions() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let options = ExternalNavigationOptions.testOptions()!
+        let externalWebViewController = webController.presentExternalURLWithOptions(options)
+        
+        XCTAssertEqual(externalWebViewController.appearedFrom, WebViewController.AppearenceCause.External, "appearedFrom should be .External")
+        XCTAssertNotNil(externalWebViewController.url)
+        XCTAssertEqual(externalWebViewController.url!, options.url, "Should equal the original URL option value")
+        XCTAssertEqual(externalWebViewController.externalReturnURL!, options.returnURL!, "Should equal the original return URL option value")
+        XCTAssertNotEqual(webController.webView, externalWebViewController.webView, "Web views should be different instances")
+    }
+    
+    func testPresentExternalURLWithOptionsNavigationBar() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let options = ExternalNavigationOptions.testOptions()!
+        let externalWebViewController = webController.presentExternalURLWithOptions(options)
+        
+        let backButton = externalWebViewController.navigationItem.leftBarButtonItem
+        XCTAssertNotNil(backButton, "Back bar button should not be nil")
+        XCTAssertEqual(backButton!.title!, "Back")
+        
+        let doneButton = externalWebViewController.navigationItem.rightBarButtonItem
+        XCTAssertNotNil(doneButton, "Done bar button should not be nil")
+        XCTAssertEqual(doneButton!.title!, "Done")
+    }
+}
+
 // MARK: - Subclassing
 
 class TestWebViewController: WebViewController {
