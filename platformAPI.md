@@ -128,6 +128,8 @@ window.NativeBridge.dialog(options, function(error, id) {
 
 ## NativeBridge.navigation Object ##
 
+The native navigation API enables web apps to push and pop native views on and off of the native navigation stack via `animateForward()` and `animateBackward()` calls. Calls to these methods do not afffect web history state which allows the web application to have complete control over loading the page's state.
+
 #### animateForward()
 
 Trigger a native push navigation transition. Pushes a new web view controller on to the web view controller's navigation stack with the existing web view. `animateForward` hides the web view in order to allow the web app to show the view when it has completed loading its state. The web view will remain hidden until `view.show()` is called. This method does not affect web view history.
