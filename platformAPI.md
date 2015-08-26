@@ -294,7 +294,7 @@ The Done button dismisses the external web view regardless of the web history.
 
 - (object) - Options object.
   - `url` (string) - External URL to load into the new modal web view.
-  - `returnURL` (string) - A subset of the URL that should be intercepted and loaded into the original web view. The external web view modal will be dismissed and the URL will not be loaded in the external web view. Ignoring the query string value, the returnURL will match against any subset of the intercepted URL inlucding the scheme, domain, port, and path. For example the `returnURL` value of `"https//github.com/TheHolyGrail"` will intercept the URLs `"https//github.com/TheHolyGrail/Zoot"` and `"https//github.com/TheHolyGrail/BridgeOfDeath"` but not the URL `"https//github.com/"`.
+  - `returnURL` (string) - A subset of the URL that should be intercepted and loaded into the original web view. The external web view modal will be dismissed and the URL will not be loaded in the external web view. Ignoring the query string value, the `returnURL` will match against any subset of the intercepted URL including the scheme, domain, port, and path. For example the `returnURL` value of `"https//github.com/TheHolyGrail"` will intercept the URLs `"https//github.com/TheHolyGrail/Zoot"` and `"https//github.com/TheHolyGrail/BridgeOfDeath"` but not the URL `"https//github.com/"`.
   - `title` (string) - Title text for the navigation bar of the external web view.
 
 **Example**
