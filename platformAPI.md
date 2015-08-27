@@ -9,7 +9,7 @@ The platform API enables web applications to use native device APIs for building
 
 - **"bridge"** - The native code that exposes a JavaScript API as a `NativeBridge` object and provides a web view for the hybrid web application
 - **"`NativeBridge` object"** - the JavaScript object that encapsulates the platform API
-- **"web view"** - On iOS this is the `UIWebView` instance that is responsible for loading and rendering the hybrid web application's content. The same instance is reused throughout all native navigation transitions. Any time the bridge animates forward/backward or presents/dismisses a modal it is moving the same web view instance between views.
+- **"web view"** - On iOS this is the `UIWebView` instance that is responsible for loading and rendering the hybrid web application's content. The same instance is reused throughout all native navigation transitions. Any time the bridge animates forward/backward or presents/dismisses a modal it is moving the same web view instance between native views.
 - **"native view"** - the native view(`UIView`) that contains the web view. The term is used to describe the separate views that animate on and off screen when calling navigation APIs methods like `animateForward()`, `animateBackward()`, `popToRoot()`, `presentModal()`, and `dismissModal()`.
 - **"hybrid web application"** - The web application that is being loaded into the web view
 - **"native navigation stack"** - The stack of native views that is pushed to and popped from when making animateForward/animateBackward calls.
@@ -105,7 +105,7 @@ Present an alert view.
 
 **Usage**
 
-Enables the hybrid web application to display a native alert view (UIAlertView) with a message and buttons. Each dialog action represents a button. When a button is tapped the `callback` function will be called with the action ID allowing the hybrid web application to handle the button tap.
+Enables the hybrid web application to display a native alert view (`UIAlertView`) with a message and buttons. Each dialog action represents a button. When a button is tapped the `callback` function will be called with the action ID allowing the hybrid web application to handle the button tap.
 
 **Parameters**
 
