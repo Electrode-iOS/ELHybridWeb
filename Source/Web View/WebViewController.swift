@@ -482,8 +482,8 @@ extension WebViewController {
     }
     
     final func shouldInterceptExternalURL(url: NSURL) -> Bool {
-        if let requestedURLString = url.absoluteString,
-            let returnURLString = externalReturnURL?.absoluteString
+        if let requestedURLString = url.absoluteStringWithoutQuery,
+            let returnURLString = externalReturnURL?.absoluteStringWithoutQuery
             where requestedURLString.rangeOfString(returnURLString) != nil {
                 return true
         }
@@ -737,5 +737,14 @@ extension UIWebView {
     func didCreateJavaScriptContext(context: JSContext) {
         hackContext = context
         (delegate as? WebViewController)?.didCreateJavaScriptContext(context)
+    }
+}
+
+extension NSURL {
+    /// Get the absolute URL string value without the query string.
+    var absoluteStringWithoutQuery: String? {
+        let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)
+        components?.query = nil
+        return components?.string
     }
 }
