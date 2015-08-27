@@ -57,6 +57,17 @@ internal extension JSValue {
     }
     
     /**
+     Calls the javascript function with a timeout to prevent deadlocks.
+     Calls the value like it was a JavaScript function in the form of
+     `function(error, data)`.
+     :param: data The data that is passed to the callback
+     :return: The return value of the function call.
+    */
+    func safelyCallWithData(data: AnyObject) {
+        return safelyCallWithArguments([JSValue(nullInContext: context), data])
+    }
+    
+    /**
     Calls the javascript function with a timeout to prevent deadlocks.
     :param: arguments The arguments array to be passed to the javascript function.
     */
