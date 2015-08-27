@@ -1,11 +1,15 @@
 Platform API documentation
 ==========================
 
-## Global API functions ##
+The platform API is a JavaScript API that provides a bridge to native device APIs for iOS and Android. [Zoot](https://github.com/TheHolyGrail/Zoot) is the implementation for iOS that bridges the platform API to native Objective-C-based APIs. Her twin, [Dingo](https://github.com/TheHolyGrail/Dingo), is a Java framework that bridges the API to native Android APIs. 
+
+The platform API enables web applications to use native device APIs for building hybrid experiences.
+
+## Global Functions ##
 
 #### nativeBridgeReady()
 
-An optional callback to invoke after the web view has finished loading and the bridge APIs are ready for use. Note,
+An optional callback function to invoke after the web view has finished loading and the bridge APIs are ready for use. Note,
 this function is called *from* the Native application and is not bound to the NativeBridge object.
 
 **Parameters**
@@ -123,6 +127,8 @@ window.NativeBridge.dialog(options, function(error, id) {
 ```
 
 ## NativeBridge.navigation Object ##
+
+The native navigation API enables web apps to push and pop native views on and off of the native navigation stack via `animateForward()` and `animateBackward()` calls. Calls to these methods do not afffect web history state which allows the web application to have complete control over loading the page's state.
 
 #### animateForward()
 
@@ -288,7 +294,7 @@ The Done button dismisses the external web view regardless of the web history.
 
 - (object) - Options object.
   - `url` (string) - External URL to load into the new modal web view.
-  - `returnURL` (string) - URL that the external web view should intercept and load into the original web view that had presented the external web view. The external web view modal will be dismissed and the URL will not be loaded in the external web view. The the intercepted URL can match any part of the return URL. For example the returnURL value of `"www.walmart.com" will intercept any URL that contains the host `www.walmart.com`.
+  - `returnURL` (string) - URL that the external web view should intercept and load into the original web view that had presented the external web view. The external web view modal will be dismissed and the URL will not be loaded in the external web view. The the intercepted URL can match any part of the return URL. For example the returnURL value of `"www.walmart.com"` will intercept any URL that contains the host `www.walmart.com`.
   - `title` (string) - Title text for the navigation bar of the external web view.
 
 **Example**

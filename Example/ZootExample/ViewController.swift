@@ -12,7 +12,7 @@ import THGHybridWeb
 
 class ViewController: UIViewController {
     
-    var webViewURL = NSURL(string: "http://bridgeofdeath.herokuapp.com/hybrid")
+    var webViewURL = NSURL(string: "http://bridgeofdeath.herokuapp.com/")
         
     /**
      Example of pusing a web view from a native view.
