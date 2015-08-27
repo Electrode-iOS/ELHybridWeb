@@ -606,6 +606,7 @@ extension WebViewController {
     /// Override to customize the error message text.
     public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
         let message = "Sorry!\n \(featureName) isn't working right now."
+        webView.hidden = true
         renderErrorDisplayWithError(error, message: message)
     }
     
