@@ -289,12 +289,19 @@ The external web view modal contains "Back" left navigation bar button and a "Do
 
 The Done button dismisses the external web view regardless of the web history.
 
+**Usage**
+
+The `presentExternalURL()` method can be used when the hybrid web application needs to navigate to an external web application or website that the hybrid web app developer does not control. It allows the user to freely navigate forward and backward in a new web view instance without modfiying the web history of the hybrid web application.
+
+An optional `returnURL` option can be set that enables the hybrid web application to intercept a request of the external web view in order to return to the original hybrid web application's web view. When the external web view attempts to load a request the request's URL will be compared against the `returnURL` value to determine if the request should be intercepted. Ignoring the query string value, the `returnURL` will match against any subset of the intercepted URL including the scheme, domain, port, and path. For example the `returnURL` value of `"https//github.com/TheHolyGrail"` will intercept the URLs `"https//github.com/TheHolyGrail/Zoot"` and `"https//github.com/TheHolyGrail/BridgeOfDeath"` but not the URL `"https//github.com/"`.
+
+After a request has been matched against the `returnURL` value the bridge prevents the request from loading inside the external web view and instead loads it into the original hybrid web application's web view. The external web view is dismissed and the user returns to the original web application's web view with the intercepted request loaded into it.
 
 **Parameters**
 
 - (object) - Options object.
   - `url` (string) - External URL to load into the new modal web view.
-  - `returnURL` (string) - A subset of the URL that should be intercepted and loaded into the original web view. The external web view modal will be dismissed and the URL will not be loaded in the external web view. Ignoring the query string value, the `returnURL` will match against any subset of the intercepted URL including the scheme, domain, port, and path. For example the `returnURL` value of `"https//github.com/TheHolyGrail"` will intercept the URLs `"https//github.com/TheHolyGrail/Zoot"` and `"https//github.com/TheHolyGrail/BridgeOfDeath"` but not the URL `"https//github.com/"`.
+  - `returnURL` (string) - A subset of the URL to be intercepted in order to return to the presenting web view.
   - `title` (string) - Title text for the navigation bar of the external web view.
 
 **Example**
