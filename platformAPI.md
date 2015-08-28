@@ -47,6 +47,17 @@ if (window.NativeBridge === undefined) {
 
 ## NativeBridge Object ##
 
+The `NativeBridge` object is the JavaScript object that encapsulates the platform API.
+
+### Lifecycle
+
+The `NativeBridge` object is added to the JavaScript context as soon as the context is created by the web view. Typically this means that the `NativeBridge` will already have been created by the time the hybrid web application's scripts are loaded allowing the scripts to access the API. For the cases that the `NativeBridge` object is `undefined` when the hybrid web app's scripts run, the `nativeBridgeReady()` callback should be set so that the web app can be notified that the `NativeBridge` object has been initialized.
+
+A new `NativeBridge` object is initialized when the hybrid web application transitions to a new native view as a result of `animateForward()` and `presentModal()` calls. This enables the hybrid web application to configure the `NativeBridge` object relative to the native view that is containing the web app. For example this allows callbacks such as `onAppear`, `onDisappear`, and `onBack` to be configured differently for each native view.
+
+The `NativeBridge` object instances are persisted in each native view. This means that when you `animateBackward()` or `dismissModal()` back to a previous native view, any callbacks set on the previous view will remain intact.
+
+
 #### newState()
 
 Creates a new `NativeBridge` object and adds it to the existing view and JavaScript context.
@@ -80,6 +91,10 @@ NativeBridge.info();
 #### share()
 
 Present an activity view controller with `message` and `url` as the activity items.
+
+**Usage**
+
+The web application uses the `share()` method to enable the user to share content via social media or e-mail. In iOS this method presents the system default activity view controller.
 
 **Parameters**
 
