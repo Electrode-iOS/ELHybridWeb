@@ -10,9 +10,9 @@ The platform API enables web applications to use native device APIs for building
 - **"bridge"** - The native code that exposes a JavaScript API as a `NativeBridge` object and provides a web view for the hybrid web application
 - **"`NativeBridge` object"** - the JavaScript object that encapsulates the platform API
 - **"web view"** - On iOS this is the `UIWebView` instance that is responsible for loading and rendering the hybrid web application's content. The same instance is reused throughout all native navigation transitions. Any time the bridge animates forward/backward or presents/dismisses a modal it is moving the same web view instance between native views.
-- **"native view"** - the native view(`UIView`) that contains the web view. The term is used to describe the separate views that animate on and off screen when calling navigation APIs methods like `animateForward()`, `animateBackward()`, `popToRoot()`, `presentModal()`, and `dismissModal()`.
+- **"native view"** - the native view(`UIView`) that contains the web view. The term is used to describe the separate views that animate on and off screen when calling navigation API methods like `animateForward()`, `animateBackward()`, `popToRoot()`, `presentModal()`, and `dismissModal()`.
 - **"hybrid web application"** - The web application that is being loaded into the web view
-- **"native navigation stack"** - The stack of native views that is pushed to and popped from when making animateForward/animateBackward calls.
+- **"native navigation stack"** - The stack of native views that is pushed to and popped from when making `animateForward()` and `animateBackward()` calls.
 
 
 ## Global Functions ##
@@ -49,7 +49,7 @@ if (window.NativeBridge === undefined) {
 
 The `NativeBridge` object is the JavaScript object that encapsulates the platform API.
 
-### Lifecycle
+#### Lifecycle
 
 The `NativeBridge` object is added to the JavaScript context as soon as the context is created by the web view. Typically this means that the `NativeBridge` will already have been created by the time the hybrid web application's scripts are loaded allowing the scripts to access the API. For the cases that the `NativeBridge` object is `undefined` when the hybrid web app's scripts run, the `nativeBridgeReady()` callback should be set so that the web app can be notified that the `NativeBridge` object has been initialized.
 
@@ -58,7 +58,7 @@ A new `NativeBridge` object is initialized when the hybrid web application trans
 The `NativeBridge` object instances are persisted in each native view. This means that when you `animateBackward()` or `dismissModal()` back to a previous native view, any callbacks set on the previous view will remain intact.
 
 
-#### newState()
+### newState()
 
 Creates a new `NativeBridge` object and adds it to the existing view and JavaScript context.
 
@@ -69,7 +69,7 @@ NativeBridge.newState();
 
 ```
 
-#### info()
+### info()
 
 Provides information that identifies the device and platform.
 
@@ -88,7 +88,7 @@ NativeBridge.info();
 
 ```
 
-#### share()
+### share()
 
 Present an activity view controller with `message` and `url` as the activity items.
 
@@ -114,7 +114,7 @@ NativeBridge.share(options);
 
 ```
 
-#### dialog()
+### dialog()
 
 Present an alert view.
 
@@ -159,7 +159,7 @@ window.NativeBridge.dialog(options, function(error, id) {
 
 The native navigation API enables web apps to push and pop native views on and off of the native navigation stack via `animateForward()` and `animateBackward()` calls. Calls to these methods do not afffect web history state which allows the web application to have complete control over loading the page's state.
 
-#### animateForward()
+### animateForward()
 
 Pushes a new native view on to the native navigation stack while reusing the existing web view. `animateForward` hides the web view in order to allow the web app to show the web view when it has completed loading its state. The web view will remain hidden until `view.show()` is called. This method does not affect web view history.
 
@@ -204,7 +204,7 @@ NativeBridge.navigation.animateForward({
 window.location.href = "/pageTwo"
 ```
 
-#### animateBackward()
+### animateBackward()
 
 Pops the visible native view off of the native navigation stack. `animateBackward()` hides the web view in order to allow the web app to show the view when it has completed loading its state. The web view will remain hidden until `view.show()` is called.  Does not affect web view history.
 
@@ -219,7 +219,7 @@ NativeBridge.navigation.animateBackward();
 
 ```
 
-#### popToRoot()
+### popToRoot()
 
 Pops the native navigation stack all the way back to the root view. This will trigger the root view's `onAppear` callback.
 
@@ -234,7 +234,7 @@ NativeBridge.navigation.popToRoot();
 
 ```
 
-#### presentModal()
+### presentModal()
 
 Presents a new native modal view containing the web view. `presentModal()` hides the web view in order to allow the hybrid web app to show the view when it has completed loading its state. The web view will remain hidden until `view.show()` is called. The modal native view will be presented over top of the native view that presents it and will remain on screen until `dismissModal()` is called. This method does not modify web history.
 
@@ -305,7 +305,7 @@ NativeBridge.navigation.presentModal({
 });
 ```
 
-#### dismissModal()
+### dismissModal()
 
 Closes the visible modal view that was presented by a `presentModal()` call, returning the user to the original presenting view. This method does not modify web view history.
 
@@ -320,7 +320,7 @@ NativeBridge.navigation.dismissModal();
 
 ```
 
-#### setOnBack()
+### setOnBack()
 
 Set a function callback to call when the native back button is tapped. If the native back button is tapped and the callback is not set the bridge will fallback to going back one item in web history (calling `goBack()` on the web view).
 
@@ -333,7 +333,7 @@ NativeBridge.navigation.setOnBack(function () {
 
 ```
 
-#### presentExternalURL()
+### presentExternalURL()
  
 Present a new web view modally and the load the provided URL. Adds a custom back button that when tapped, checks web view history to determine if the web view should be dismissed or if history.back() should be called. If the external web view is at the beginning of its page history the modal is dismissed, displaying the original page that presented the external web view.
 
@@ -366,7 +366,7 @@ var options = {
 NativeBridge.navigation.presentExternalURL(options);
 ```
 
-#### dismissExternalURL()
+### dismissExternalURL()
 
 Dismiss the external web view and load the provided URL into the previous web view that had presented the external URL.
 
@@ -384,7 +384,7 @@ NativeBridge.navigation.dismissExternalURL("http://www.walmart.com/");
 
 ## NativeBridge.tabBar Object ##
 
-#### show()
+### show()
 
 Shows the native iOS tab bar. This feature is not applicable to Android and will be ignored.
 
@@ -395,7 +395,7 @@ NativeBridge.tabBar.show();
 
 ```
 
-#### hide()
+### hide()
 
 Hides the native iOS tab bar. This feature is not applicable to Android and will be ignored.
 
@@ -409,7 +409,7 @@ NativeBridge.tabBar.hide();
 
 ## NativeBridge.navigationBar Object ##
 
-#### setTitle()
+### setTitle()
 
 Set the title text of the navigation bar.
 
@@ -424,7 +424,7 @@ NativeBridge.navigationBar.setTitle("Item Details");
 
 ```
 
-#### setButtons()
+### setButtons()
 
 Set the navigation bar's buttons with an array of button objects.
 
@@ -475,7 +475,7 @@ NativeBridge.navigationBar.setButtons(buttons, function (buttonID) {
 
 ## NativeBridge.view Object ##
 
-#### show()
+### show()
 
 Shows the web view that was previously hidden. 
 
@@ -490,7 +490,7 @@ NativeBridge.view.show();
 
 ```
 
-#### setOnAppear()
+### setOnAppear()
 
 Sets a callback on the current native view that will be called when the native view becomes visible to the user. For iOS developers this is the equivalent of `UIViewController`'s `viewWillAppear(animated:)` method.
 
@@ -513,7 +513,7 @@ NativeBridge.view.setOnAppear(function () {
 
 ```
 
-#### setOnDisappear()
+### setOnDisappear()
 
 Sets a callback on the current native view that will be called when the native view is transitions off of the screen. For iOS developers this is the equivalent of `UIViewController`'s `viewWillDisappear(animated:)` method.
 
