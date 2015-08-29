@@ -283,7 +283,34 @@ extension WebViewController {
         firstLoadCycleCompleted = false
 
         self.url = url
-        webView.loadRequest(requestWithURL(url))
+        let request = requestWithURL(url)
+
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+            if let urlResponse = response as? NSHTTPURLResponse {
+                if (urlResponse.statusCode >= 400) || (error != nil) {
+                    // handle error condition
+                    var httpError = error
+                    if httpError == nil {
+                        httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
+                    }
+                    if self.showErrorDisplay {
+                        self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(error))
+                    }
+                }
+                else {
+                    self.webView.loadData(data, MIMEType: response.MIMEType, textEncodingName: response.textEncodingName, baseURL: response.URL)
+                }
+            }
+            else {
+                if self.showErrorDisplay {
+                    var httpError = error
+                    if httpError == nil {
+                        httpError = NSError(domain: "WebViewController", code: -1, userInfo: [NSLocalizedDescriptionKey : "Invalid NSHTTPURLResponse"])
+                    }
+                    self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(error))
+                }
+            }
+        }
     }
     
     /**
@@ -317,7 +344,7 @@ extension WebViewController: UIWebViewDelegate {
     
     public func webViewDidFinishLoad(webView: UIWebView) {
         delegate?.webViewControllerDidFinishLoad?(self)
-        
+
         if self.errorView != nil {
             self.removeErrorDisplay()
         }
@@ -573,7 +600,7 @@ extension WebViewController {
 extension WebViewController {
     
     /// Override to completely customize error display. Must also override `removeErrorDisplay`
-     public func renderErrorDisplayWithError(error: NSError, message: String) {
+     public func renderErrorDisplayWithError(error: NSError?, message: String) {
         let errorView = UIView(frame: view.bounds)
         view.addSubview(errorView)
         self.errorView = errorView
@@ -599,12 +626,12 @@ extension WebViewController {
     }
    
     /// Override to customize the feature name that appears in the error display.
-    public func featureNameForError(error: NSError) -> String {
+    public func featureNameForError(error: NSError?) -> String {
         return "This feature"
     }
     
     /// Override to customize the error message text.
-    public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
+    public func renderFeatureErrorDisplayWithError(error: NSError?, featureName: String) {
         let message = "Sorry!\n \(featureName) isn't working right now."
         webView.hidden = true
         renderErrorDisplayWithError(error, message: message)
