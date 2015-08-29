@@ -130,9 +130,9 @@ public class WebViewController: UIViewController {
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
-    private var errorView: UIView?
-    private var errorLabel: UILabel?
-    private var reloadButton: UIButton?
+    var errorView: UIView?
+    var errorLabel: UILabel?
+    var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
     private (set) weak var externalPresentingWebViewController: WebViewController?
     private var externalReturnURL: NSURL?
