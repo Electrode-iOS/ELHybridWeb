@@ -21,7 +21,7 @@ import JavaScriptCore
                 
                 self.dialogAlert?.show { buttonIndex in
                     if let action = dialogOptions.actionAtIndex(buttonIndex) {
-                        callback.callWithData(action)
+                        callback.safelyCallWithData(action)
                     }
                 }
             }
