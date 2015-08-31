@@ -623,6 +623,7 @@ extension WebViewController {
     public func removeErrorDisplay() {
         errorView?.removeFromSuperview()
         errorView = nil
+        showWebView()
     }
    
     /// Override to customize the feature name that appears in the error display.
