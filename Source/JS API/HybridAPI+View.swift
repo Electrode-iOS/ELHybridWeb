@@ -17,18 +17,10 @@ import UIKit
 
 @objc public class ViewAPI: ViewControllerChild  {
 
-    private var hasAppeared = false
-    internal var onAppearCallback: JSValue? {
-        didSet {
-            if hasAppeared {
-                appeared()
-            }
-        }
-    }
+    internal var onAppearCallback: JSValue?
     private var onDisappearCallback: JSValue?
     
     func appeared() {
-        hasAppeared = true
         onAppearCallback?.safelyCallWithArguments(nil)
     }
     
