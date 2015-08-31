@@ -285,7 +285,7 @@ extension WebViewController {
         self.url = url
         let request = requestWithURL(url)
 
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+        let dataTask: NSURLSessionDataTask = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
             if let urlResponse = response as? NSHTTPURLResponse {
                 if (urlResponse.statusCode >= 400) || (error != nil) {
                     // handle error condition
@@ -311,6 +311,7 @@ extension WebViewController {
                 }
             }
         }
+        dataTask.resume()
     }
     
     /**
