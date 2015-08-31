@@ -294,7 +294,7 @@ extension WebViewController {
                         httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
                     }
                     if self.showErrorDisplay {
-                        self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(error))
+                        self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                     }
                 }
                 else {
@@ -307,7 +307,7 @@ extension WebViewController {
                     if httpError == nil {
                         httpError = NSError(domain: "WebViewController", code: -1, userInfo: [NSLocalizedDescriptionKey : "Invalid NSHTTPURLResponse"])
                     }
-                    self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(error))
+                    self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                 }
             }
         }
@@ -601,7 +601,7 @@ extension WebViewController {
 extension WebViewController {
     
     /// Override to completely customize error display. Must also override `removeErrorDisplay`
-     public func renderErrorDisplayWithError(error: NSError?, message: String) {
+     public func renderErrorDisplayWithError(error: NSError, message: String) {
         let errorView = UIView(frame: view.bounds)
         view.addSubview(errorView)
         self.errorView = errorView
@@ -628,12 +628,12 @@ extension WebViewController {
     }
    
     /// Override to customize the feature name that appears in the error display.
-    public func featureNameForError(error: NSError?) -> String {
+    public func featureNameForError(error: NSError) -> String {
         return "This feature"
     }
     
     /// Override to customize the error message text.
-    public func renderFeatureErrorDisplayWithError(error: NSError?, featureName: String) {
+    public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
         let message = "Sorry!\n \(featureName) isn't working right now."
         webView.hidden = true
         renderErrorDisplayWithError(error, message: message)
