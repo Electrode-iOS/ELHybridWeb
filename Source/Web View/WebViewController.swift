@@ -142,7 +142,20 @@ public class WebViewController: UIViewController {
     
     /// Set `false` to disable error message UI.
     public var showErrorDisplay = true
-    
+
+    public var userAgent: String?
+
+    public lazy var urlSession: NSURLSession = {
+            let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            if let agent = self.userAgent {
+                configuration.HTTPAdditionalHeaders = [
+                    "User-Agent": agent
+                ]
+            }
+            let session = NSURLSession(configuration: configuration)
+            return session
+    }()
+
     /**
      Initialize a web view controller instance with a web view and JavaScript
       bridge. The newly initialized web view controller becomes the delegate of
@@ -285,7 +298,7 @@ extension WebViewController {
         self.url = url
         let request = requestWithURL(url)
 
-        let dataTask: NSURLSessionDataTask = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let dataTask: NSURLSessionDataTask = self.urlSession.dataTaskWithRequest(request) { (data, response, error) -> Void in
             if let urlResponse = response as? NSHTTPURLResponse {
                 if (urlResponse.statusCode >= 400) || (error != nil) {
                     // handle error condition
