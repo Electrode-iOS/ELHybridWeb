@@ -145,7 +145,7 @@ public class WebViewController: UIViewController {
 
     public var userAgent: String?
 
-    public lazy var urlSession: NSURLSession = {
+    lazy var urlSession: NSURLSession = {
             let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
             if let agent = self.userAgent {
                 configuration.HTTPAdditionalHeaders = [
