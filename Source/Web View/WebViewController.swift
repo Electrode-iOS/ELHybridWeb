@@ -582,7 +582,7 @@ extension WebViewController {
         label.numberOfLines = 0
         label.textAlignment = NSTextAlignment.Center
         label.backgroundColor = view.backgroundColor
-        label.font = UIFont.systemFontOfSize(12, weight: 2)
+        label.font = UIFont.boldSystemFontOfSize(12)
         return label
     }
     
