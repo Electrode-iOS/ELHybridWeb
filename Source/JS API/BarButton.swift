@@ -9,7 +9,7 @@
 import JavaScriptCore
 import UIKit
 
-// TODO: make this internal after migrating to Swift 2 for testability
+// TODO: change all public members to internal after migrating to Swift 2 for testability
 @objc public class BarButton {
     public let id: String
     public let title: String
