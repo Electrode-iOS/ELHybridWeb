@@ -29,10 +29,14 @@
 		1795F5EB1B73A3B60070BB49 /* WebViewControllerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795F5EA1B73A3B60070BB49 /* WebViewControllerOptions.swift */; };
 		17B4356A1B667B4D00446D71 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B435691B667B4D00446D71 /* TabBar.swift */; };
 		17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */; };
+		17C41D5D1B7E1F27009431C0 /* ViewAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C41D5C1B7E1F27009431C0 /* ViewAPITests.swift */; };
+		17C41D661B7E25E9009431C0 /* TabBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C41D651B7E25E9009431C0 /* TabBarTests.swift */; };
 		17C479331B4C612200F01703 /* DialogOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C479321B4C612200F01703 /* DialogOptions.swift */; };
+		17C763F41B8CBBFE00951A8C /* NavigationExternalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C763F31B8CBBFE00951A8C /* NavigationExternalTests.swift */; };
 		17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
 		17E076EA1B025AA2008F89EC /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */; };
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
+		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
 		CA85AA4E1B3B280B0000FEEF /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA491B3B27FF0000FEEF /* THGBridge.framework */; };
 		CA85AA4F1B3B280B0000FEEF /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */; };
 /* End PBXBuildFile section */
@@ -164,10 +168,14 @@
 		17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGLog.xcodeproj; path = ../Shrubbery/THGLog.xcodeproj; sourceTree = "<group>"; };
 		17B435691B667B4D00446D71 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+Modal.swift"; sourceTree = "<group>"; };
+		17C41D5C1B7E1F27009431C0 /* ViewAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAPITests.swift; sourceTree = "<group>"; };
+		17C41D651B7E25E9009431C0 /* TabBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTests.swift; sourceTree = "<group>"; };
 		17C479321B4C612200F01703 /* DialogOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogOptions.swift; sourceTree = "<group>"; };
+		17C763F31B8CBBFE00951A8C /* NavigationExternalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationExternalTests.swift; sourceTree = "<group>"; };
 		17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+JavaScriptContext.swift"; sourceTree = "<group>"; };
 		17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
 		17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPIInfo.swift; sourceTree = "<group>"; };
+		19FECF611B9615720095440B /* BarButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonTests.swift; sourceTree = "<group>"; };
 		CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGFoundation.xcodeproj; path = ../Excalibur/THGFoundation.xcodeproj; sourceTree = "<group>"; };
 		CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGBridge.xcodeproj; path = ../BridgeOfDeath/THGBridge.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,11 +240,15 @@
 		173E4E671B00FDAE00ACBCCA /* THGHybridWebTests */ = {
 			isa = PBXGroup;
 			children = (
-				178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */,
-				177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */,
 				173E4E681B00FDAE00ACBCCA /* Supporting Files */,
-				17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */,
+				177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */,
+				17C41D5C1B7E1F27009431C0 /* ViewAPITests.swift */,
 				178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */,
+				17C41D651B7E25E9009431C0 /* TabBarTests.swift */,
+				17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */,
+				178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */,
+				17C763F31B8CBBFE00951A8C /* NavigationExternalTests.swift */,
+				19FECF611B9615720095440B /* BarButtonTests.swift */,
 			);
 			path = THGHybridWebTests;
 			sourceTree = "<group>";
@@ -555,6 +567,10 @@
 				178412271B16762D00EECF8B /* WebViewControllerDelegateTests.swift in Sources */,
 				177E5DFE1B01444C006BCBE2 /* HybridAPITests.swift in Sources */,
 				17E076EA1B025AA2008F89EC /* WebViewControllerTests.swift in Sources */,
+				19FECF621B9615720095440B /* BarButtonTests.swift in Sources */,
+				17C41D661B7E25E9009431C0 /* TabBarTests.swift in Sources */,
+				17C763F41B8CBBFE00951A8C /* NavigationExternalTests.swift in Sources */,
+				17C41D5D1B7E1F27009431C0 /* ViewAPITests.swift in Sources */,
 				178822E91B4D4BFC00B5548D /* NavigationBarTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
