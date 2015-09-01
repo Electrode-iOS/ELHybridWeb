@@ -69,13 +69,13 @@ import THGBridge
  window?.rootViewController = webController
  ```
 
- Call `addHybridAPI()` to add the bridged JavaScript API to the web view. 
+ Call `addBridgeAPIObject()` to add the bridged JavaScript API to the web view.
  The JavaScript API will be accessible to any web pages that are loaded in the 
  web view controller.
 
  ```
  let webController = WebViewController()
- webController.addHybridAPI()
+ webController.addBridgeAPIObject()
  webController.loadURL(NSURL(string: "foo")!)
  window?.rootViewController = webController
  ```
@@ -85,7 +85,7 @@ import THGBridge
 
  ```
  let webController = WebViewController()
- webController.addHybridAPI()
+ webController.addBridgeAPIObject()
  webController.loadURL(NSURL(string: "foo")!)
 
  let navigationController = UINavigationController(rootViewController: webController)
@@ -94,7 +94,7 @@ import THGBridge
 */
 public class WebViewController: UIViewController {
     
-    enum AppearenceCause {
+    public enum AppearenceCause {
         case Unknown, WebPush, WebPop, WebModal, WebDismiss, External
     }
     
@@ -115,7 +115,8 @@ public class WebViewController: UIViewController {
     private var firstLoadCycleCompleted = true
     private (set) var disappearedBy = AppearenceCause.Unknown
     private var storedAppearence = AppearenceCause.WebPush
-    private (set) var appearedFrom: AppearenceCause {
+    // TODO: make appearedFrom internal in Swift 2 with @testable
+    private (set) public var appearedFrom: AppearenceCause {
         get {
             switch disappearedBy {
             case .WebPush: return .WebPop
@@ -135,7 +136,7 @@ public class WebViewController: UIViewController {
     var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
     private (set) weak var externalPresentingWebViewController: WebViewController?
-    private var externalReturnURL: NSURL?
+    private(set) public var externalReturnURL: NSURL?
     
     /// Handles web view controller events.
     public weak var delegate: WebViewControllerDelegate?
@@ -532,7 +533,8 @@ extension WebViewController {
         return false
     }
     
-    final func presentExternalURLWithOptions(options: PresentExternalOptions) {
+    // TODO: make internal after migrating to Swift 2 and @testable
+    final public func presentExternalURLWithOptions(options: ExternalNavigationOptions) -> WebViewController{
         let externalWebViewController = self.dynamicType()
         externalWebViewController.externalPresentingWebViewController = self
         externalWebViewController.addBridgeAPIObject()
@@ -549,6 +551,7 @@ extension WebViewController {
         
         let navigationController = UINavigationController(rootViewController: externalWebViewController)
         presentViewController(navigationController, animated: true, completion: nil)
+        return externalWebViewController
     }
     
     final func externalBackButtonTapped() {

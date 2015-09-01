@@ -9,13 +9,14 @@
 import JavaScriptCore
 import UIKit
 
-@objc class BarButton {
-    let id: String
-    let title: String
-    let image: String?
-    var callback: JSValue?
+// TODO: change all public members to internal after migrating to Swift 2 for testability
+@objc public class BarButton {
+    public let id: String
+    public let title: String
+    public let image: String?
+    public var callback: JSValue?
     
-    init(id: String, title: String, image: String?) {
+    public init(id: String, title: String, image: String?) {
         self.id = id
         self.title = title
         self.image = image
@@ -26,7 +27,7 @@ import UIKit
 
 extension BarButton {
     
-    static func dictionaryFromJSONArray(array: [AnyObject], callback: JSValue?) -> [Int: BarButton] {
+    public static func dictionaryFromJSONArray(array: [AnyObject], callback: JSValue?) -> [Int: BarButton] {
         var buttons = [Int: BarButton]()
         
         for (index, buttonOptions) in enumerate(array) {
@@ -51,11 +52,11 @@ extension BarButton {
 
 extension BarButton {
     
-    var barButtonItem: UIBarButtonItem {
+    public var barButtonItem: UIBarButtonItem {
         return UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: "select")
     }
     
-    func select() {
+    public func select() {
         callback?.safelyCallWithArguments([id])
     }
 }
