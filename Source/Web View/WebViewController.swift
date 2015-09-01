@@ -143,6 +143,7 @@ public class WebViewController: UIViewController {
     /// Set `false` to disable error message UI.
     public var showErrorDisplay = true
 
+    /// An optional custom user agent string to be used in the header when loading the URL.
     public var userAgent: String?
 
     lazy var urlSession: NSURLSession = {
@@ -155,6 +156,9 @@ public class WebViewController: UIViewController {
             let session = NSURLSession(configuration: configuration)
             return session
     }()
+
+    /// A NSURLSessionDataTask object used to load the URLs
+    var dataTask: NSURLSessionDataTask?
 
     /**
      Initialize a web view controller instance with a web view and JavaScript
@@ -291,40 +295,47 @@ extension WebViewController {
      :param: url The URL used to load the web view.
     */
     final public func loadURL(url: NSURL) {
-        webView.stopLoading()
+        if self.dataTask?.state == .Running { // allow running task to finish
+            return
+        }
         hybridAPI = nil
         firstLoadCycleCompleted = false
 
         self.url = url
         let request = requestWithURL(url)
 
-        let dataTask: NSURLSessionDataTask = self.urlSession.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if let urlResponse = response as? NSHTTPURLResponse {
-                if (urlResponse.statusCode >= 400) || (error != nil) {
-                    // handle error condition
-                    var httpError = error
-                    if httpError == nil {
-                        httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
+        self.dataTask = self.urlSession.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if error?.code == -999 || self.dataTask?.state != .Completed { // cancelled
+                    return
+                }
+                if let urlResponse = response as? NSHTTPURLResponse {
+                    if (urlResponse.statusCode >= 400) || (error != nil) {
+                        // handle error condition
+                        var httpError = error
+                        if httpError == nil {
+                            httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
+                        }
+                        if self.showErrorDisplay {
+                            self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
+                        }
                     }
-                    if self.showErrorDisplay {
-                        self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
+                    else {
+                        self.webView.loadData(data, MIMEType: response.MIMEType, textEncodingName: response.textEncodingName, baseURL: response.URL)
                     }
                 }
                 else {
-                    self.webView.loadData(data, MIMEType: response.MIMEType, textEncodingName: response.textEncodingName, baseURL: response.URL)
-                }
-            }
-            else {
-                if self.showErrorDisplay {
-                    var httpError = error
-                    if httpError == nil {
-                        httpError = NSError(domain: "WebViewController", code: -1, userInfo: [NSLocalizedDescriptionKey : "Invalid NSHTTPURLResponse"])
+                    if self.showErrorDisplay {
+                        var httpError = error
+                        if httpError == nil {
+                            httpError = NSError(domain: "WebViewController", code: -1, userInfo: [NSLocalizedDescriptionKey : "Invalid NSHTTPURLResponse"])
+                        }
+                        self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                     }
-                    self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                 }
-            }
+            })
         }
-        dataTask.resume()
+        self.dataTask?.resume()
     }
     
     /**
