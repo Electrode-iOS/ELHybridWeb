@@ -131,9 +131,9 @@ public class WebViewController: UIViewController {
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
-    private var errorView: UIView?
-    private var errorLabel: UILabel?
-    private var reloadButton: UIButton?
+    var errorView: UIView?
+    var errorLabel: UILabel?
+    var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
     private (set) weak var externalPresentingWebViewController: WebViewController?
     private(set) public var externalReturnURL: NSURL?
@@ -143,7 +143,20 @@ public class WebViewController: UIViewController {
     
     /// Set `false` to disable error message UI.
     public var showErrorDisplay = true
-    
+
+    public var userAgent: String?
+
+    lazy var urlSession: NSURLSession = {
+            let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            if let agent = self.userAgent {
+                configuration.HTTPAdditionalHeaders = [
+                    "User-Agent": agent
+                ]
+            }
+            let session = NSURLSession(configuration: configuration)
+            return session
+    }()
+
     /**
      Initialize a web view controller instance with a web view and JavaScript
       bridge. The newly initialized web view controller becomes the delegate of
@@ -284,7 +297,35 @@ extension WebViewController {
         firstLoadCycleCompleted = false
 
         self.url = url
-        webView.loadRequest(requestWithURL(url))
+        let request = requestWithURL(url)
+
+        let dataTask: NSURLSessionDataTask = self.urlSession.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            if let urlResponse = response as? NSHTTPURLResponse {
+                if (urlResponse.statusCode >= 400) || (error != nil) {
+                    // handle error condition
+                    var httpError = error
+                    if httpError == nil {
+                        httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
+                    }
+                    if self.showErrorDisplay {
+                        self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
+                    }
+                }
+                else {
+                    self.webView.loadData(data, MIMEType: response.MIMEType, textEncodingName: response.textEncodingName, baseURL: response.URL)
+                }
+            }
+            else {
+                if self.showErrorDisplay {
+                    var httpError = error
+                    if httpError == nil {
+                        httpError = NSError(domain: "WebViewController", code: -1, userInfo: [NSLocalizedDescriptionKey : "Invalid NSHTTPURLResponse"])
+                    }
+                    self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
+                }
+            }
+        }
+        dataTask.resume()
     }
     
     /**
@@ -318,7 +359,7 @@ extension WebViewController: UIWebViewDelegate {
     
     public func webViewDidFinishLoad(webView: UIWebView) {
         delegate?.webViewControllerDidFinishLoad?(self)
-        
+
         if self.errorView != nil {
             self.removeErrorDisplay()
         }
@@ -483,8 +524,8 @@ extension WebViewController {
     }
     
     final func shouldInterceptExternalURL(url: NSURL) -> Bool {
-        if let requestedURLString = url.absoluteString,
-            let returnURLString = externalReturnURL?.absoluteString
+        if let requestedURLString = url.absoluteStringWithoutQuery,
+            let returnURLString = externalReturnURL?.absoluteStringWithoutQuery
             where requestedURLString.rangeOfString(returnURLString) != nil {
                 return true
         }
@@ -599,6 +640,7 @@ extension WebViewController {
     public func removeErrorDisplay() {
         errorView?.removeFromSuperview()
         errorView = nil
+        showWebView()
     }
    
     /// Override to customize the feature name that appears in the error display.
@@ -609,6 +651,7 @@ extension WebViewController {
     /// Override to customize the error message text.
     public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
         let message = "Sorry!\n \(featureName) isn't working right now."
+        webView.hidden = true
         renderErrorDisplayWithError(error, message: message)
     }
     
@@ -739,5 +782,14 @@ extension UIWebView {
     func didCreateJavaScriptContext(context: JSContext) {
         hackContext = context
         (delegate as? WebViewController)?.didCreateJavaScriptContext(context)
+    }
+}
+
+extension NSURL {
+    /// Get the absolute URL string value without the query string.
+    var absoluteStringWithoutQuery: String? {
+        let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)
+        components?.query = nil
+        return components?.string
     }
 }

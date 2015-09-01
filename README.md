@@ -4,14 +4,6 @@ Zoot (`THGHybridWeb` framework) is a Swift framework that provides a bridged Jav
 
 ## Installation
 
-### Carthage
-
-Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
-
-```
-github "TheHolyGrail/Zoot" ~> 0.2.0
-```
-
 ### Manual
 
 Install manually by adding THGHybridWeb.xcodeproj to your project and configuring your target to link THGHybridWeb.framework.
@@ -30,7 +22,17 @@ Zoot depends on the following [THG](https://github.com/TheHolyGrail/) frameworks
 * \MyProject\Excalibur
 * \MyProject\Shrubbery
 
+### Carthage
+
+Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+
+```
+github "TheHolyGrail/Zoot" ~> 0.2.0
+```
+
 ## Usage
+
+### iOS
 
 Initialize a web view controller and call `loadURL()` to asynchronously load the web view with a URL. 
 
@@ -51,7 +53,9 @@ let navigationController = UINavigationController(rootViewController: webControl
 window?.rootViewController = navigationController
 ```
 
-[See the Platform API documentation](platformAPI.md)
+### Web
+
+See the [Platform API documentation](platformAPI.md) for a reference of the JavaScript API. An example web application is available at [http://bridgeofdeath.herokuapp.com/](http://bridgeofdeath.herokuapp.com/) that demonstrates basic web usage of Zoot.
 
 ## Example
 
