@@ -16,9 +16,9 @@ import JavaScriptCore
 extension Navigation: ExternalNavigationJSExport {
     
     func presentExternalURL(options: [String: String])  {
-        if let presentExternalOptions = PresentExternalOptions(options: options) {
+        if let externalOptions = ExternalNavigationOptions(options: options) {
             dispatch_async(dispatch_get_main_queue()) {
-                self.webViewController?.presentExternalURLWithOptions(presentExternalOptions)
+                self.webViewController?.presentExternalURLWithOptions(externalOptions)
             }
         }
     }
@@ -36,12 +36,13 @@ extension Navigation: ExternalNavigationJSExport {
     }
 }
 
-struct PresentExternalOptions {
-    let url: NSURL
-    var returnURL: NSURL?
-    var title: String?
+// TODO: Make internal after migrating to Swift 2 and @testable
+public struct ExternalNavigationOptions {
+    public let url: NSURL
+    private(set) public var returnURL: NSURL?
+    private(set) public var title: String?
     
-    init?(options: [String: String]) {
+    public init?(options: [String: String]) {
         if let urlString = options["url"],
             let url = NSURL(string: urlString) {
                 self.url = url
