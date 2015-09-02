@@ -146,6 +146,9 @@ public class WebViewController: UIViewController {
 
     public var userAgent: String?
 
+    /// Host for NSURLSessionDelegate challenge
+    public var challengeHost: String?
+
     lazy var urlSession: NSURLSession = {
             let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
             if let agent = self.userAgent {
@@ -153,7 +156,7 @@ public class WebViewController: UIViewController {
                     "User-Agent": agent
                 ]
             }
-            let session = NSURLSession(configuration: configuration)
+            let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
             return session
     }()
 
@@ -346,6 +349,21 @@ extension WebViewController {
         }
         
         return false
+    }
+
+}
+
+// MARK: - NSURLSessionDelegate
+
+extension WebViewController: NSURLSessionDelegate {
+    public func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            if let host = challengeHost
+                where challenge.protectionSpace.host == host {
+                    let credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust)
+                    completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+            }
+        }
     }
 }
 
