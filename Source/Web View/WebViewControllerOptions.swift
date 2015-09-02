@@ -9,11 +9,11 @@
 import JavaScriptCore
 
 public struct WebViewControllerOptions {
-    private (set) var title: String?
-    private (set) var tabBarHidden = false
-    private (set) var onAppearCallback: JSValue?
-    private (set) var navigationBarButtonCallback: JSValue?
-    private (set) var navigationBarButtons: JSValue?
+    private (set) public var title: String?
+    private (set) public var tabBarHidden = false
+    private (set) public var onAppearCallback: JSValue?
+    private (set) public var navigationBarButtonCallback: JSValue?
+    private (set) public var navigationBarButtons: JSValue?
 
     public init(javaScriptValue: JSValue) {
         // TODO: make this a `guard` statement after migrating to Swift 2
