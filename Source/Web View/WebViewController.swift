@@ -296,9 +296,7 @@ extension WebViewController {
      :param: url The URL used to load the web view.
     */
     final public func loadURL(url: NSURL) {
-        if self.dataTask?.state == .Running { // allow running task to finish
-            return
-        }
+        self.dataTask?.cancel() // cancel any running task
         hybridAPI = nil
         firstLoadCycleCompleted = false
 
@@ -307,31 +305,20 @@ extension WebViewController {
 
         self.dataTask = self.urlSession.dataTaskWithRequest(request) { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if error?.code == -999 || self.dataTask?.state != .Completed { // cancelled
-                    return
-                }
-                if let urlResponse = response as? NSHTTPURLResponse {
-                    if (urlResponse.statusCode >= 400) || (error != nil) {
-                        // handle error condition
-                        var httpError = error
-                        if httpError == nil {
-                            httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
-                        }
+                if let httpError = error {
+                    // render error display
+                    if self.showErrorDisplay {
+                        self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
+                    }
+                } else if let urlResponse = response as? NSHTTPURLResponse {
+                    if urlResponse.statusCode >= 400 {
+                        // render error display
                         if self.showErrorDisplay {
+                            var httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
                             self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                         }
-                    }
-                    else {
+                    } else {
                         self.webView.loadData(data, MIMEType: response.MIMEType, textEncodingName: response.textEncodingName, baseURL: response.URL)
-                    }
-                }
-                else {
-                    if self.showErrorDisplay {
-                        var httpError = error
-                        if httpError == nil {
-                            httpError = NSError(domain: "WebViewController", code: -1, userInfo: [NSLocalizedDescriptionKey : "Invalid NSHTTPURLResponse"])
-                        }
-                        self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                     }
                 }
             })
