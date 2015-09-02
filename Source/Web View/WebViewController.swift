@@ -147,6 +147,9 @@ public class WebViewController: UIViewController {
     /// An optional custom user agent string to be used in the header when loading the URL.
     public var userAgent: String?
 
+    /// Host for NSURLSessionDelegate challenge
+    public var challengeHost: String?
+
     lazy var urlSession: NSURLSession = {
             let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
             if let agent = self.userAgent {
@@ -154,7 +157,7 @@ public class WebViewController: UIViewController {
                     "User-Agent": agent
                 ]
             }
-            let session = NSURLSession(configuration: configuration)
+            let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
             return session
     }()
 
@@ -344,6 +347,21 @@ extension WebViewController {
         }
         
         return false
+    }
+
+}
+
+// MARK: - NSURLSessionDelegate
+
+extension WebViewController: NSURLSessionDelegate {
+    public func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            if let host = challengeHost
+                where challenge.protectionSpace.host == host {
+                    let credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust)
+                    completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+            }
+        }
     }
 }
 
@@ -788,6 +806,8 @@ extension NSURL {
     var absoluteStringWithoutQuery: String? {
         let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)
         components?.query = nil
-        return components?.string
+        // TODO: if we ever drop iOS 7 support make this return `components?.string` instead.
+        // would also be great to upgrade to Swift 2's availability API to conditionally call each supported method
+        return components?.URL?.absoluteString
     }
 }
