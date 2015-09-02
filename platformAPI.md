@@ -122,6 +122,8 @@ Present an alert view.
 
 Enables the hybrid web application to display a native alert view (`UIAlertView`) with a message and buttons. Each dialog action represents a button. When a button is tapped the `callback` function will be called with the action ID allowing the hybrid web application to handle the button tap.
 
+Note: Since dialogs can be cancelled on Android, the action ID `back` will be returned if the dialog is cancelled, eg. by pressing the back button. This is not applicable for iOS.
+
 **Parameters**
 
 - `options` (object) - Options
