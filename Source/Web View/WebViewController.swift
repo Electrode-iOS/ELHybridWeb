@@ -787,6 +787,8 @@ extension NSURL {
     var absoluteStringWithoutQuery: String? {
         let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)
         components?.query = nil
-        return components?.string
+        // TODO: if we ever drop iOS 7 support make this return `components?.string` instead.
+        // would also be great to upgrade to Swift 2's availability API to conditionally call each supported method
+        return components?.URL?.absoluteString
     }
 }
