@@ -360,6 +360,8 @@ extension WebViewController: NSURLSessionDelegate {
                 where challenge.protectionSpace.host == host {
                     let credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust)
                     completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+            } else {
+                completionHandler(NSURLSessionAuthChallengeDisposition.PerformDefaultHandling, nil)
             }
         }
     }
