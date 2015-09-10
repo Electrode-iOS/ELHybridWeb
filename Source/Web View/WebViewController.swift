@@ -215,6 +215,8 @@ public class WebViewController: UIViewController {
             
             view.removeDoubleTapGestures()
             
+            hybridAPI?.view.willAppear()
+            
         case .Unknown: break
         }
     }
@@ -523,8 +525,9 @@ extension WebViewController {
         webViewController.addBridgeAPIObject()
         webViewController.hybridAPI?.navigationBar.title = options?.title
         webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
-        webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
-        
+        webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback
+        webViewController.hybridAPI?.view.willAppearCallback = options?.willAppearCallback
+
         if let navigationBarButtons = options?.navigationBarButtons {
             webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
         }
