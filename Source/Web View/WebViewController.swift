@@ -105,7 +105,8 @@ public class WebViewController: UIViewController {
     private(set) public lazy var webView: UIWebView = {
         let webView =  UIWebView(frame: CGRectZero)
         webView.delegate = self
-        webViews.addObject(webView)
+        //webViews.addObject(webView)
+        //WebViewManager.addBridgedWebView(webView)
         return webView
     }()
     
@@ -407,7 +408,7 @@ extension WebViewController: UIWebViewDelegate {
 
 // MARK: - JavaScript Context
 
-extension WebViewController {
+extension WebViewController: WebViewBridging {
     
     /**
      Update the bridge's JavaScript context by attempting to retrieve a context
@@ -421,7 +422,7 @@ extension WebViewController {
         }
     }
     
-    private func didCreateJavaScriptContext(context: JSContext) {
+    public func didCreateJavaScriptContext(context: JSContext) {
         configureBridgeContext(context)
         delegate?.webViewControllerDidCreateJavaScriptContext?(self, context: context)
         configureContext(context)
@@ -757,13 +758,37 @@ extension UIImage {
 
 // MARK: - JSContext Event
 
-private var webViews = NSHashTable.weakObjectsHashTable()
+private var globalWebViews = NSHashTable.weakObjectsHashTable()
 
 private struct Statics {
     static var webViewOnceToken: dispatch_once_t = 0
 }
 
-extension NSObject {
+@objc(WebViewBridging)
+public protocol WebViewBridging {
+    func didCreateJavaScriptContext(context: JSContext)
+}
+
+@objc(WebViewManager)
+public class WebViewManager: NSObject {
+    @objc static public func addBridgedWebView(webView: UIWebView?) {
+        if let webView = webView {
+            globalWebViews.addObject(webView)
+        }
+    }
+
+    @objc static public func removeBridgedWebView(webView: UIWebView?) {
+        if let webView = webView {
+            globalWebViews.removeObject(webView)
+        }
+    }
+    
+    @objc static public func webViews() -> NSHashTable {
+        return globalWebViews
+    }
+}
+
+/*public extension NSObject {
     
     func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
         if let webFrameClass: AnyClass = NSClassFromString("WebFrame")
@@ -772,13 +797,19 @@ extension NSObject {
         }
         
         let notifyWebviews = { () -> Void in
-            if let allWebViews = webViews.allObjects as? [UIWebView] {
+            if let allWebViews = globalWebViews.allObjects as? [UIWebView] {
                 for webView in allWebViews {
                     let cookie = "__thgWebviewCookie\(webView.hash)"
                     webView.stringByEvaluatingJavaScriptFromString("var \(cookie) = '\(cookie)'")
                     
-                    if context.objectForKeyedSubscript(cookie).toString() == cookie {
-                        webView.didCreateJavaScriptContext(context)
+                    let contextCookie = context.objectForKeyedSubscript(cookie).toString()
+                    if contextCookie == cookie {
+                        if let bridgingDelegate = webView.delegate as? WebViewBridging {
+                            bridgingDelegate.didCreateJavaScriptContext(context)
+                        } else {
+                            NSLog("BridgingDelegate = \(webView.delegate)")
+                        }
+                        //webView.didCreateJavaScriptContext(context)
                     }
                 }
             }
@@ -790,10 +821,10 @@ extension NSObject {
             dispatch_async(dispatch_get_main_queue(), notifyWebviews)
         }
     }
-}
+}*/
 
 // TODO: Remove this later!! - BKS
-public var hackContext: JSContext? = nil
+/*public var hackContext: JSContext? = nil
 
 extension UIWebView {
     
@@ -801,7 +832,7 @@ extension UIWebView {
         hackContext = context
         (delegate as? WebViewController)?.didCreateJavaScriptContext(context)
     }
-}
+}*/
 
 extension NSURL {
     /// Get the absolute URL string value without the query string.
