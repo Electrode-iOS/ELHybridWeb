@@ -105,7 +105,7 @@ public class WebViewController: UIViewController {
     private(set) public lazy var webView: UIWebView = {
         let webView =  UIWebView(frame: CGRectZero)
         webView.delegate = self
-        webViews.addObject(webView)
+        WebViewManager.addBridgedWebView(webView)
         return webView
     }()
     
@@ -407,7 +407,7 @@ extension WebViewController: UIWebViewDelegate {
 
 // MARK: - JavaScript Context
 
-extension WebViewController {
+extension WebViewController: WebViewBridging {
     
     /**
      Update the bridge's JavaScript context by attempting to retrieve a context
@@ -421,7 +421,7 @@ extension WebViewController {
         }
     }
     
-    private func didCreateJavaScriptContext(context: JSContext) {
+    public func didCreateJavaScriptContext(context: JSContext) {
         configureBridgeContext(context)
         delegate?.webViewControllerDidCreateJavaScriptContext?(self, context: context)
         configureContext(context)
@@ -757,49 +757,73 @@ extension UIImage {
 
 // MARK: - JSContext Event
 
-private var webViews = NSHashTable.weakObjectsHashTable()
-
 private struct Statics {
     static var webViewOnceToken: dispatch_once_t = 0
 }
 
-extension NSObject {
+@objc(WebViewBridging)
+public protocol WebViewBridging {
+    func didCreateJavaScriptContext(context: JSContext)
+}
+
+private var globalWebViews = NSHashTable.weakObjectsHashTable()
+
+@objc(WebViewManager)
+public class WebViewManager: NSObject {
+    // globalWebViews is a weak hash table.  No need to remove items.
+    @objc static public func addBridgedWebView(webView: UIWebView?) {
+        if let webView = webView {
+            globalWebViews.addObject(webView)
+        }
+    }
+}
+
+public extension NSObject {
+    
+    private struct AssociatedKeys {
+        static var uniqueIDKey = "nsobject_uniqueID"
+    }
+    
+    @objc
+    var uniqueWebViewID: String! {
+        let currentValue = objc_getAssociatedObject(self, &AssociatedKeys.uniqueIDKey) as? String
+        if let value = currentValue {
+            return currentValue
+        } else {
+            let newValue = NSUUID().UUIDString
+            objc_setAssociatedObject(self, &AssociatedKeys.uniqueIDKey, newValue as NSString?, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            return newValue
+        }
+    }
     
     func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
-        if let webFrameClass: AnyClass = NSClassFromString("WebFrame")
-            where !(frame.dynamicType === webFrameClass) {
-                return
-        }
-        
         let notifyWebviews = { () -> Void in
-            if let allWebViews = webViews.allObjects as? [UIWebView] {
+            if let allWebViews = globalWebViews.allObjects as? [UIWebView] {
                 for webView in allWebViews {
                     let cookie = "__thgWebviewCookie\(webView.hash)"
-                    webView.stringByEvaluatingJavaScriptFromString("var \(cookie) = '\(cookie)'")
+                    let js = "var \(cookie) = '\(cookie)'"
+                    webView.stringByEvaluatingJavaScriptFromString(js)
                     
-                    if context.objectForKeyedSubscript(cookie).toString() == cookie {
-                        webView.didCreateJavaScriptContext(context)
+                    let contextCookie = context.objectForKeyedSubscript(cookie).toString()
+                    if contextCookie == cookie {
+                        if let bridgingDelegate = webView.delegate as? WebViewBridging {
+                            bridgingDelegate.didCreateJavaScriptContext(context)
+                        }
                     }
                 }
             }
         }
         
-        if NSThread.isMainThread() {
-            notifyWebviews()
-        } else {
-            dispatch_async(dispatch_get_main_queue(), notifyWebviews)
+        let webFrameClass1: AnyClass! = NSClassFromString("WebFrame") // Most web-views
+        let webFrameClass2: AnyClass! = NSClassFromString("NSKVONotifying_WebFrame") // Objc webviews accessed via swift
+        
+        if (frame.dynamicType === webFrameClass1) || (frame.dynamicType === webFrameClass2) {
+            if NSThread.isMainThread() {
+                notifyWebviews()
+            } else {
+                dispatch_async(dispatch_get_main_queue(), notifyWebviews)
+            }
         }
-    }
-}
-
-// TODO: Remove this later!! - BKS
-public var hackContext: JSContext? = nil
-
-extension UIWebView {
-    
-    func didCreateJavaScriptContext(context: JSContext) {
-        hackContext = context
-        (delegate as? WebViewController)?.didCreateJavaScriptContext(context)
     }
 }
 
