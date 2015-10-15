@@ -106,6 +106,7 @@ public class WebViewController: UIViewController {
         let webView =  UIWebView(frame: CGRectZero)
         webView.delegate = self
         WebViewManager.addBridgedWebView(webView)
+        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return webView
     }()
     
@@ -212,7 +213,15 @@ public class WebViewController: UIViewController {
             webView.removeFromSuperview()
             webView.frame = view.bounds
             view.addSubview(webView)
-            
+            let tlg = self.topLayoutGuide
+            // Pin web view top to top layout guide
+            let webViewTopLayoutConstraint = NSLayoutConstraint(item: webView, attribute: .Top, relatedBy: .Equal, toItem: tlg, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+            self.view.addConstraint(webViewTopLayoutConstraint)
+            // Pin web view bottom to bottom of view
+            self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
+            // Pin web view sides to sides of view
+            self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
+
             view.removeDoubleTapGestures()
             
         case .Unknown: break
