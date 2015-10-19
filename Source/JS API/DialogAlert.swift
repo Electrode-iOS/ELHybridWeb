@@ -12,18 +12,24 @@ import UIKit
 @objc class DialogAlert: NSObject {
     var callback: ((Int) -> Void)?
     private (set) var dialogOptions: DialogOptions
+    private var alertView: UIAlertView?
     
     init(dialogOptions: DialogOptions) {
         self.dialogOptions = dialogOptions
     }
     
+    deinit {
+        alertView?.delegate = nil
+    }
+    
     func show(callback: (Int) -> Void) {
         self.callback = callback
         
-        alertView.show()
+        alertView = createAlertView()
+        alertView?.show()
     }
     
-    var alertView: UIAlertView {
+    func createAlertView() -> UIAlertView {
         let alert = UIAlertView(title: dialogOptions.title, message: dialogOptions.message, delegate: self, cancelButtonTitle: nil)
         
         for action in dialogOptions.actions {
