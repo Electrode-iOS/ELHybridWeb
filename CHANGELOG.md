@@ -1,6 +1,62 @@
+# [1.0.1](https://github.com/TheHolyGrail/Zoot/releases/tag/v1.0.1)
+
+- Prevent multiple alert views from displaying while an alert view is currently visible
+- Keep reference to dialog API's alert view so the delegate can be set to nil. Fixes a crash on iOS 7.
+- Use auto-layout to pin sides of web view
+
+# [1.0.0](https://github.com/TheHolyGrail/Zoot/releases/tag/v1.0.0)
+
+- Added `WebViewManager` to propogate JS context creation events to registered web views. Fixes an issue that was causing the didCreateContext method to clash with another bridge's implementation
+- Allow `NSURLSessionDelegate` to perform default handling of an auth challenge when `challengeHost` does not match
+- Change to `NSURL`'s `absoluteString` method in order to support pre iOS 8
+- Check for a valid options value before attempting to reference the value's properties
+- Added support for server trust challenge
+- Change to use `boldSystemFontOfSize()` in order to support iOS 7
+- Added support for custom User Agent header
+- Change to not invoke `onAppear` callback at the time the callback function is set
+- Change to use `NSURLSession` to load web view request
+- Change to use `safelyCallWithData()` to invoke dialog action callback
+- Hide web view when displaying error UI
+- Ignore the query string when matching external URLs against the `returnURL` value. Fixes #56
+- Added optional`title` parameter to `presentExternalURL()`
+- Moved the decision logic for intercepting external requests to `didInterceptRequest:` method
+- Updated `presentExternalURL()` method to use options hash object instead of function parameters
+- Added `returnURL` parameter to `presentExternalURL()` for intercepting matching requests and returning to original web view
+- Added `presentExternalURL()` and `dismissExternalURL()` for transitioning to external web pages and back
+- Check for `null` and `undefined` before using navigation bar buttons in web controller options
+- Allow `null` to be passed as first item in nav bar buttons array to avoid setting left button
+- Added `newState()` method that allows web to explicitly create a new bridge API object
+- Stop loading and set web view delegate when disappearing from back button tap/pop
+- Added unit tests for view and tab bar APIs
+- Prevent onAppear from running after the view is popped
+- Hide web view when popping as a result of navbar back press
+- Publicly expose `appearedFrom` and `disappearedBy` as read only
+- Added `safelyCallWithArguments` function to fix deadlocks with JS callbacks.
+- Removed dispatch_async calls and switched to safelyCallWithArguments()
+- Added navigation bar options and onAppear callback to presentModal
+- Filtered out undefined and null values when setting onAppear and onBack callbacks of a new web view controller
+- Use asValidValue to check for undefined before invoking JSValue callback
+- Change to not automatically show web view when popping view controllers
+- Use JSValue to strongly retain  appearance callbacks
+- Added callback to presentModal/animateForward API for handling native back button
+- Set appearance callbacks on main thread only when needed
+- Removed dispatches here as they caused lockups.  Angelo to replace with safer method soon.
+- Removed dispatch_async to main thread in hybrid view.appeared since this is always on the main thread
+- Change to not set `parentViewController` reference of Hybrid APIs in `viewWillAppear:`
+- Change to not affect web history when popping back in native navigation
+- Added options to `animateForward()` for configuring the next view's nav bar and appear callback
+- Added options to `presentModal()` for configuring the modal view's nav bar and appear callback
+- Added callback `animateForward` and `presentModal` for referencing the next view's bridge API object
+- Added `asValidValue` for creating an optional from and undefined or null `JSValue`
+- Refactor dialog API to use `UIAlertView` for iOS 7 compatibility. Fixes #43
+- Added fresh bridge API object to context after animateForward/presentModal
+- Change to only call `nativeBridgeReady` callback when defined
+- Added  method to allow  customization of web view requests
+- Change to set and run appearance callbacks on the main thread
+
 # [0.2.0](https://github.com/TheHolyGrail/Zoot/releases/tag/v0.2.0)
 
-- Use bridgeObject reference to call appearence APIs
+- Use bridgeObject reference to call appearance APIs
 - Do not set owner of managed JS value so callback is released when garbage collected
 - Weakly store bridge API reference to set parent vc
 - Track both appearance and disappearance states in order to configure web view properly after dismissModal/animateBackward transitions. Fixes [#39](https://github.com/TheHolyGrail/Zoot/issues/39).
