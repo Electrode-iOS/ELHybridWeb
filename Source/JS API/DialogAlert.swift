@@ -13,6 +13,9 @@ import UIKit
     var callback: ((Int) -> Void)?
     private (set) var dialogOptions: DialogOptions
     private var alertView: UIAlertView?
+    var visible: Bool {
+        return alertView?.visible ?? false
+    }
     
     init(dialogOptions: DialogOptions) {
         self.dialogOptions = dialogOptions

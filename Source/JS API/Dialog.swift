@@ -16,6 +16,12 @@ import JavaScriptCore
             
         case .Success(let box):
             dispatch_async(dispatch_get_main_queue()) {
+                // bail out if an alert is currently visible to prevent showing multiple alerts
+                if let visible = self.dialogAlert?.visible
+                    where visible == true {
+                    return
+                }
+                
                 let dialogOptions = box.value
                 self.dialogAlert = DialogAlert(dialogOptions: dialogOptions)
                 
