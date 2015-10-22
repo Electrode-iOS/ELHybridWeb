@@ -28,8 +28,10 @@ import UIKit
     func show(callback: (Int) -> Void) {
         self.callback = callback
         
-        alertView = createAlertView()
-        alertView?.show()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.alertView = self.createAlertView()
+            self.alertView?.show()
+        }
     }
     
     func createAlertView() -> UIAlertView {
