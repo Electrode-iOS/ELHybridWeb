@@ -1,3 +1,7 @@
+# [1.0.2](https://github.com/TheHolyGrail/Zoot/releases/tag/v1.0.2)
+
+- Run `view.show()` on the main thread.
+
 # [1.0.1](https://github.com/TheHolyGrail/Zoot/releases/tag/v1.0.1)
 
 - Prevent multiple alert views from displaying while an alert view is currently visible
