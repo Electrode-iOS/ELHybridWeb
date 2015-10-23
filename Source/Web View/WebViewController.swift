@@ -517,8 +517,9 @@ extension WebViewController {
     }
     
     /// Pops until there's only a single view controller left on the navigation stack.
-    public func popToRootWebViewController() {
-        navigationController?.popToRootViewControllerAnimated(true)
+    public func popToRootWebViewController(animated: Bool) {
+        disappearedBy = .WebPop
+        navigationController?.popToRootViewControllerAnimated(animated)
     }
     
     /**
