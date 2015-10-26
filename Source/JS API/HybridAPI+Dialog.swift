@@ -16,6 +16,7 @@ import JavaScriptCore
 extension HybridAPI: DialogJSExport {
     
     func dialog(options: [String: AnyObject], _ callback: JSValue) {
+        THGHybridWebLogger.sharedLogger.log(.Debug, message: "options:\(options), callback\(callback)") // provide breadcrumbs
         dialog.show(options, callback: callback)
     }
 }
