@@ -37,7 +37,7 @@ import JavaScriptCore
     
     func popToRoot() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.parentViewController?.navigationController?.popToRootViewControllerAnimated(false)
+            self.webViewController?.popToRootWebViewController(false)
         }
     }
 
