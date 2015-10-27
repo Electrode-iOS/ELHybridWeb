@@ -26,6 +26,7 @@ import UIKit
     }
     
     func show(callback: (Int) -> Void) {
+        THGHybridWebLogger.sharedLogger.log(.Debug, message: "callback:\(callback)") // provide breadcrumbs
         self.callback = callback
         
         alertView = createAlertView()

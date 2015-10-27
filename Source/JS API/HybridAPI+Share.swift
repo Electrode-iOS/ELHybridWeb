@@ -17,6 +17,7 @@ import UIKit
 extension HybridAPI: ShareJSExport {
     
     func share(options: [String: AnyObject]) {
+        THGHybridWebLogger.sharedLogger.log(.Debug, message: "options:\(options)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             if let activityViewController = HybridAPI.activityViewControllerWithOptions(options) {
                 self.parentViewController?.presentViewController(activityViewController, animated: true, completion: nil)
