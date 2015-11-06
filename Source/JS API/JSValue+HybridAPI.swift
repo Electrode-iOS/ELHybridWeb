@@ -72,7 +72,7 @@ internal extension JSValue {
     :param: arguments The arguments array to be passed to the javascript function.
     */
     func safelyCallWithArguments(arguments: [AnyObject]!) {
-        if isUndefined() || isNull() {
+        if isUndefined || isNull {
             return
         }
         
@@ -91,7 +91,7 @@ internal extension JSValue {
 
 internal extension JSValue {
     var asString: String? {
-        if self.isString() { return self.toString() }
+        if self.isString { return self.toString() }
         return nil
     }
 }
@@ -100,7 +100,7 @@ internal extension JSValue {
 
 extension JSValue {
     var asValidValue: JSValue? {
-        if isUndefined() || isNull() {
+        if isUndefined || isNull {
             return nil
         }
         return self

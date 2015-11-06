@@ -15,6 +15,6 @@ import JavaScriptCore
 
 extension HybridAPI: HybridLoggingJSExport {
     func log(value: AnyObject) {
-        println("HybridAPI: \(value)")
+        print("HybridAPI: \(value)")
     }
 }

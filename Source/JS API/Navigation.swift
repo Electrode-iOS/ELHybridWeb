@@ -43,7 +43,7 @@ import JavaScriptCore
 
     func back() {
         if let validCallbackValue = onBackCallback?.asValidValue {
-            onBackCallback?.safelyCallWithArguments(nil)
+            validCallbackValue.safelyCallWithArguments(nil)
         } else {
             webViewController?.webView.stopLoading()
             webViewController?.webView.delegate = topWebViewController
