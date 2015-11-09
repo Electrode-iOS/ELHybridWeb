@@ -176,24 +176,25 @@ By default when the user taps the back button the web view will go back in web h
 - (object) - Optional options object.
   - `tabBarHidden` (boolean) - Determines whether the page we're animating to, shows or hides the tab bar in iOS. If this option is not provided, the default behavior in iOS would be to show the tab bar. This option is not applicable to Android, and will be ignored.
   - `title` (string) - Header title text to show on the view that is being animated to.
+  - `onWillAppear` (function) - Callback that will be run before the view appears on screen as a result of the animation. The callback runs before `onAppear`.
 
 **Example**
 
-Trigger a simple animate forward transition.
+Perform a simple animate forward transition.
 
 ```
 NativeBridge.navigation.animateForward();
 
 ```
 
-Trigger an animate forward transition that hides the tab bar.
+Perform a forward animation transition and hide the tab bar.
 
 ```
 NativeBridge.navigation.animateForward({tabBarHidden: true});
 
 ```
 
-Trigger an animate forward transition sets the title of the new view.
+Perform a forward animation transition and set the title of the new view.
 
 ```
 // indicate to the native bridge to animate forward to a new view
@@ -204,6 +205,18 @@ NativeBridge.navigation.animateForward({
 
 // load new page state
 window.location.href = "/pageTwo"
+```
+
+Perform a forward animation transition with an `onWillAppear` callback.
+
+```
+NativeBridge.navigation.animateForward({
+  title: "Page Two",
+  tabBarHidden: false,
+  onWillAppear: function () {
+    NativeBridge.view.show();
+  }
+});
 ```
 
 ### animateBackward()

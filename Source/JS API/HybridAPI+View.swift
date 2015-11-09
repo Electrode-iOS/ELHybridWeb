@@ -19,6 +19,11 @@ import UIKit
 
     internal var onAppearCallback: JSValue?
     private var onDisappearCallback: JSValue?
+    internal var willAppearCallback: JSValue?
+
+    public func willAppear() {
+        willAppearCallback?.safelyCallWithArguments(nil)
+    }
     
     public func appeared() {
         onAppearCallback?.safelyCallWithArguments(nil)
