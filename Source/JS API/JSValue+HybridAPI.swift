@@ -10,7 +10,7 @@ import JavaScriptCore
 
 // MARK: - Callback Helpers
 
-internal extension JSValue {
+public extension JSValue {
     
     /**
      Calls the value like it was a JavaScript function in the form of 

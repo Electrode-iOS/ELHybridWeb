@@ -132,9 +132,9 @@ public class WebViewController: UIViewController {
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
-    var errorView: UIView?
-    var errorLabel: UILabel?
-    var reloadButton: UIButton?
+    public var errorView: UIView?
+    public var errorLabel: UILabel?
+    public var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
     private (set) weak var externalPresentingWebViewController: WebViewController?
     private(set) public var externalReturnURL: NSURL?
@@ -151,7 +151,7 @@ public class WebViewController: UIViewController {
     /// Host for NSURLSessionDelegate challenge
     public var challengeHost: String?
 
-    lazy var urlSession: NSURLSession = {
+    lazy public var urlSession: NSURLSession = {
             let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
             if let agent = self.userAgent {
                 configuration.HTTPAdditionalHeaders = [
@@ -163,7 +163,7 @@ public class WebViewController: UIViewController {
     }()
 
     /// A NSURLSessionDataTask object used to load the URLs
-    var dataTask: NSURLSessionDataTask?
+    public var dataTask: NSURLSessionDataTask?
 
     /**
      Initialize a web view controller instance with a web view and JavaScript
@@ -467,7 +467,7 @@ extension WebViewController: WebViewBridging {
 
 // MARK: - Web Controller Navigation
 
-extension WebViewController {
+public extension WebViewController {
     
     /**
      Push a new web view controller on the navigation stack using the existing
