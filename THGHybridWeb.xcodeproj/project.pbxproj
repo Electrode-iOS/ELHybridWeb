@@ -38,8 +38,9 @@
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
-		81E286F81BE292480082DAF4 /* THGBridge_osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA491B3B27FF0000FEEF /* THGBridge_osx.framework */; };
+		81E286F81BE292480082DAF4 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA491B3B27FF0000FEEF /* THGBridge.framework */; };
 		81E286F91BE292480082DAF4 /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */; };
+		DBF3D5EA1BFBB36400A6A1E6 /* THGHybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +195,7 @@
 		19FECF611B9615720095440B /* BarButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonTests.swift; sourceTree = "<group>"; };
 		CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGFoundation.xcodeproj; path = ../Excalibur/THGFoundation.xcodeproj; sourceTree = "<group>"; };
 		CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGBridge.xcodeproj; path = ../BridgeOfDeath/THGBridge.xcodeproj; sourceTree = "<group>"; };
+		DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THGHybridWebLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81E286F81BE292480082DAF4 /* THGBridge_osx.framework in Frameworks */,
+				81E286F81BE292480082DAF4 /* THGBridge.framework in Frameworks */,
 				81E286F91BE292480082DAF4 /* THGFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +285,7 @@
 			children = (
 				177E5D851B00FE1A006BCBE2 /* JS API */,
 				177E5D8D1B00FE1A006BCBE2 /* Web View */,
+				DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */,
 				172F077D1B4C67A100C96ABF /* Util.swift */,
 			);
 			path = Source;
@@ -356,7 +359,7 @@
 		CA85AA411B3B27FF0000FEEF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CA85AA491B3B27FF0000FEEF /* THGBridge_osx.framework */,
+				CA85AA491B3B27FF0000FEEF /* THGBridge.framework */,
 				CA85AA4B1B3B27FF0000FEEF /* THGBridgeTests.xctest */,
 				CA85AA4D1B3B27FF0000FEEF /* THGBridge_osx.framework */,
 				81E286EB1BE2922D0082DAF4 /* THGBridge_osxTests.xctest */,
@@ -524,10 +527,10 @@
 			remoteRef = CA85AA321B3B27EF0000FEEF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA85AA491B3B27FF0000FEEF /* THGBridge_osx.framework */ = {
+		CA85AA491B3B27FF0000FEEF /* THGBridge.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = THGBridge_osx.framework;
+			path = THGBridge.framework;
 			remoteRef = CA85AA481B3B27FF0000FEEF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -589,6 +592,7 @@
 				17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */,
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
+				DBF3D5EA1BFBB36400A6A1E6 /* THGHybridWebLogger.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
