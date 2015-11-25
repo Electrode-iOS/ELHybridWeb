@@ -219,6 +219,7 @@ public class WebViewController: UIViewController {
             self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             view.removeDoubleTapGestures()
             placeholderImageView.image = UIImage.loadImageFromGUID(storedScreenshotGUID)
+            view.bringSubviewToFront(placeholderImageView)
         case .Unknown: break
         }
     }
