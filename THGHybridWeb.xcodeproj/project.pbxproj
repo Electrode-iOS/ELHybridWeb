@@ -38,8 +38,9 @@
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
-		CA85AA4E1B3B280B0000FEEF /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA491B3B27FF0000FEEF /* THGBridge.framework */; };
-		CA85AA4F1B3B280B0000FEEF /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */; };
+		81E286F81BE292480082DAF4 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA491B3B27FF0000FEEF /* THGBridge.framework */; };
+		81E286F91BE292480082DAF4 /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */; };
+		DBF3D5EA1BFBB36400A6A1E6 /* THGHybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = CA2410631AF966F600AA4410;
 			remoteInfo = THGLog_osx;
+		};
+		81E286EA1BE2922D0082DAF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA41FF9E1BBC85DC0009CB83;
+			remoteInfo = THGBridge_osxTests;
+		};
+		81E286EF1BE2922D0082DAF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA8CD5631B7A9DCB00DA8BF7;
+			remoteInfo = THGFoundation_osxTests;
+		};
+		81E286F41BE2923D0082DAF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CAC38A9C1AC3130B005A3CE0;
+			remoteInfo = THGBridge;
+		};
+		81E286F61BE2923D0082DAF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CACF2A091A9614D20084EFAE;
+			remoteInfo = THGFoundation;
 		};
 		CA85AA2E1B3B27EF0000FEEF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -112,20 +141,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = CA24107F1AF9692000AA4410;
 			remoteInfo = THGBridge_osx;
-		};
-		CA85AA511B3B28150000FEEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CAC38A9C1AC3130B005A3CE0;
-			remoteInfo = THGBridge;
-		};
-		CA85AA551B3B28150000FEEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CACF2A091A9614D20084EFAE;
-			remoteInfo = THGFoundation;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -180,6 +195,7 @@
 		19FECF611B9615720095440B /* BarButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonTests.swift; sourceTree = "<group>"; };
 		CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGFoundation.xcodeproj; path = ../Excalibur/THGFoundation.xcodeproj; sourceTree = "<group>"; };
 		CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGBridge.xcodeproj; path = ../BridgeOfDeath/THGBridge.xcodeproj; sourceTree = "<group>"; };
+		DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THGHybridWebLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,8 +203,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA85AA4E1B3B280B0000FEEF /* THGBridge.framework in Frameworks */,
-				CA85AA4F1B3B280B0000FEEF /* THGFoundation.framework in Frameworks */,
+				81E286F81BE292480082DAF4 /* THGBridge.framework in Frameworks */,
+				81E286F91BE292480082DAF4 /* THGFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +285,7 @@
 			children = (
 				177E5D851B00FE1A006BCBE2 /* JS API */,
 				177E5D8D1B00FE1A006BCBE2 /* Web View */,
+				DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */,
 				172F077D1B4C67A100C96ABF /* Util.swift */,
 			);
 			path = Source;
@@ -334,6 +351,7 @@
 				CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */,
 				CA85AA311B3B27EF0000FEEF /* THGFoundationTests.xctest */,
 				CA85AA331B3B27EF0000FEEF /* THGFoundation.framework */,
+				81E286F01BE2922D0082DAF4 /* THGFoundation_osxTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,7 +361,8 @@
 			children = (
 				CA85AA491B3B27FF0000FEEF /* THGBridge.framework */,
 				CA85AA4B1B3B27FF0000FEEF /* THGBridgeTests.xctest */,
-				CA85AA4D1B3B27FF0000FEEF /* THGBridge.framework */,
+				CA85AA4D1B3B27FF0000FEEF /* THGBridge_osx.framework */,
+				81E286EB1BE2922D0082DAF4 /* THGBridge_osxTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,8 +393,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				CA85AA521B3B28150000FEEF /* PBXTargetDependency */,
-				CA85AA561B3B28150000FEEF /* PBXTargetDependency */,
+				81E286F51BE2923D0082DAF4 /* PBXTargetDependency */,
+				81E286F71BE2923D0082DAF4 /* PBXTargetDependency */,
 			);
 			name = THGHybridWeb;
 			productName = THGHybridWeb;
@@ -473,6 +492,20 @@
 			remoteRef = 17AB90811B4186DD002BCA0F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		81E286EB1BE2922D0082DAF4 /* THGBridge_osxTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = THGBridge_osxTests.xctest;
+			remoteRef = 81E286EA1BE2922D0082DAF4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		81E286F01BE2922D0082DAF4 /* THGFoundation_osxTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = THGFoundation_osxTests.xctest;
+			remoteRef = 81E286EF1BE2922D0082DAF4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -508,10 +541,10 @@
 			remoteRef = CA85AA4A1B3B27FF0000FEEF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA85AA4D1B3B27FF0000FEEF /* THGBridge.framework */ = {
+		CA85AA4D1B3B27FF0000FEEF /* THGBridge_osx.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = THGBridge.framework;
+			path = THGBridge_osx.framework;
 			remoteRef = CA85AA4C1B3B27FF0000FEEF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -559,6 +592,7 @@
 				17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */,
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
+				DBF3D5EA1BFBB36400A6A1E6 /* THGHybridWebLogger.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,15 +621,15 @@
 			target = 173E4E571B00FDAD00ACBCCA /* THGHybridWeb */;
 			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
 		};
-		CA85AA521B3B28150000FEEF /* PBXTargetDependency */ = {
+		81E286F51BE2923D0082DAF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = THGBridge;
-			targetProxy = CA85AA511B3B28150000FEEF /* PBXContainerItemProxy */;
+			targetProxy = 81E286F41BE2923D0082DAF4 /* PBXContainerItemProxy */;
 		};
-		CA85AA561B3B28150000FEEF /* PBXTargetDependency */ = {
+		81E286F71BE2923D0082DAF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = THGFoundation;
-			targetProxy = CA85AA551B3B28150000FEEF /* PBXContainerItemProxy */;
+			targetProxy = 81E286F61BE2923D0082DAF4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -637,7 +671,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -679,7 +713,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -745,6 +779,84 @@
 			};
 			name = Release;
 		};
+		20DC78721BFEA224004AF8C8 /* QADeployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = QADeployment;
+		};
+		20DC78731BFEA224004AF8C8 /* QADeployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = THGHybridWeb/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = QADeployment;
+		};
+		20DC78741BFEA224004AF8C8 /* QADeployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = THGHybridWebTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = QADeployment;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -752,6 +864,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E6C1B00FDAE00ACBCCA /* Debug */,
+				20DC78721BFEA224004AF8C8 /* QADeployment */,
 				173E4E6D1B00FDAE00ACBCCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -761,6 +874,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E6F1B00FDAE00ACBCCA /* Debug */,
+				20DC78731BFEA224004AF8C8 /* QADeployment */,
 				173E4E701B00FDAE00ACBCCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -770,6 +884,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E721B00FDAE00ACBCCA /* Debug */,
+				20DC78741BFEA224004AF8C8 /* QADeployment */,
 				173E4E731B00FDAE00ACBCCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
