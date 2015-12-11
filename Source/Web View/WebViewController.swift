@@ -106,7 +106,7 @@ public class WebViewController: UIViewController {
         let webView =  UIWebView(frame: CGRectZero)
         webView.delegate = self
         WebViewManager.addBridgedWebView(webView)
-        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
     
@@ -132,9 +132,9 @@ public class WebViewController: UIViewController {
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
-    var errorView: UIView?
-    var errorLabel: UILabel?
-    var reloadButton: UIButton?
+    public var errorView: UIView?
+    public var errorLabel: UILabel?
+    public var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
     private (set) weak var externalPresentingWebViewController: WebViewController?
     private(set) public var externalReturnURL: NSURL?
@@ -151,7 +151,7 @@ public class WebViewController: UIViewController {
     /// Host for NSURLSessionDelegate challenge
     public var challengeHost: String?
 
-    lazy var urlSession: NSURLSession = {
+    lazy public var urlSession: NSURLSession = {
             let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
             if let agent = self.userAgent {
                 configuration.HTTPAdditionalHeaders = [
@@ -163,7 +163,7 @@ public class WebViewController: UIViewController {
     }()
 
     /// A NSURLSessionDataTask object used to load the URLs
-    var dataTask: NSURLSessionDataTask?
+    public var dataTask: NSURLSessionDataTask?
 
     /**
      Initialize a web view controller instance with a web view and JavaScript
@@ -184,7 +184,7 @@ public class WebViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -210,15 +210,16 @@ public class WebViewController: UIViewController {
             
         case .WebPush, .WebModal, .WebPop, .WebDismiss, .External:
             webView.delegate = self
-            webView.removeFromSuperview()
+            webView.removeFromSuperview() // remove webView from previous view controller's view
             webView.frame = view.bounds
-            view.addSubview(webView)
+            view.addSubview(webView) // add webView to this view controller's view
             // Pin web view top and bottom to top and bottom of view
             self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             // Pin web view sides to sides of view
             self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             view.removeDoubleTapGestures()
-            
+            placeholderImageView.image = UIImage.loadImageFromGUID(storedScreenshotGUID)
+            view.bringSubviewToFront(placeholderImageView)
         case .Unknown: break
         }
     }
@@ -245,7 +246,7 @@ public class WebViewController: UIViewController {
             placeholderImageView.frame = webView.frame // must align frames for image capture
             let image = webView.captureImage()
             placeholderImageView.image = image
-            storedScreenshotGUID = image.saveImageToGUID()
+            storedScreenshotGUID = image?.saveImageToGUID()
             view.bringSubviewToFront(placeholderImageView)
             
             webView.hidden = true
@@ -323,11 +324,16 @@ extension WebViewController {
                     if urlResponse.statusCode >= 400 {
                         // render error display
                         if self.showErrorDisplay {
-                            var httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
+                            let httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
                             self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                         }
+                    } else if let data = data, 
+                                  mime = urlResponse.MIMEType, 
+                                  name = urlResponse.textEncodingName, 
+                                  url = urlResponse.URL {
+                        self.webView.loadData(data, MIMEType: mime, textEncodingName: name, baseURL: url)
                     } else {
-                        self.webView.loadData(data, MIMEType: response.MIMEType, textEncodingName: response.textEncodingName, baseURL: response.URL)
+                        // TODO: should we handle the case where some of that stuff was nil?
                     }
                 }
             })
@@ -360,11 +366,11 @@ extension WebViewController {
 // MARK: - NSURLSessionDelegate
 
 extension WebViewController: NSURLSessionDelegate {
-    public func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
+    public func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if let host = challengeHost
-                where challenge.protectionSpace.host == host {
-                    let credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust)
+            if let host = challengeHost, trust = challenge.protectionSpace.serverTrust
+                where host == challenge.protectionSpace.host {
+                    let credential = NSURLCredential(forTrust: trust)
                     completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
             } else {
                 completionHandler(NSURLSessionAuthChallengeDisposition.PerformDefaultHandling, nil)
@@ -401,13 +407,15 @@ extension WebViewController: UIWebViewDelegate {
         }
     }
     
-    final public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        if error.code != NSURLErrorCancelled {
-            if showErrorDisplay {
-                renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
+    final public func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        if let error = error {
+            if error.code != NSURLErrorCancelled {
+                if showErrorDisplay {
+                    renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
+                }
             }
+            delegate?.webViewController?(self, didFailLoadWithError: error)
         }
-        delegate?.webViewController?(self, didFailLoadWithError: error)
     }
 }
 
@@ -423,7 +431,7 @@ extension WebViewController: WebViewBridging {
         if let context = webView.javaScriptContext {
             configureBridgeContext(context)
         } else {
-            println("Failed to retrieve JavaScript context from web view.")
+            print("Failed to retrieve JavaScript context from web view.")
         }
     }
     
@@ -433,9 +441,9 @@ extension WebViewController: WebViewBridging {
         configureContext(context)
         
         if let hybridAPI = hybridAPI {
-            var readyCallback = bridge.contextValueForName("nativeBridgeReady")
+            let readyCallback = bridge.contextValueForName("nativeBridgeReady")
             
-            if !readyCallback.isUndefined() {
+            if !readyCallback.isUndefined {
                 readyCallback.callWithData(hybridAPI)
             }
         }
@@ -455,7 +463,7 @@ extension WebViewController: WebViewBridging {
 
 // MARK: - Web Controller Navigation
 
-extension WebViewController {
+public extension WebViewController {
     
     /**
      Push a new web view controller on the navigation stack using the existing
@@ -526,14 +534,14 @@ extension WebViewController {
     }
     
     public func newWebViewControllerWithOptions(options: WebViewControllerOptions?) -> WebViewController {
-        let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        let webViewController = self.dynamicType.init(webView: webView, bridge: bridge)
         webViewController.addBridgeAPIObject()
         webViewController.hybridAPI?.navigationBar.title = options?.title
         webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
         webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
         
         if let navigationBarButtons = options?.navigationBarButtons {
-            webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
+            webViewController.hybridAPI?.navigationBar.configureButtons(navigationBarButtons, callback: options?.navigationBarButtonCallback)
         }
         
         return webViewController
@@ -560,7 +568,7 @@ extension WebViewController {
     
     // TODO: make internal after migrating to Swift 2 and @testable
     final public func presentExternalURLWithOptions(options: ExternalNavigationOptions) -> WebViewController{
-        let externalWebViewController = self.dynamicType()
+        let externalWebViewController = self.dynamicType.init()
         externalWebViewController.externalPresentingWebViewController = self
         externalWebViewController.addBridgeAPIObject()
         externalWebViewController.loadURL(options.url)
@@ -605,7 +613,7 @@ extension WebViewController {
     private func createErrorLabel() -> UILabel? {
         let height = CGFloat(50)
         let y = CGRectGetMidY(view.bounds) - (height / 2) - 100
-        var label = UILabel(frame: CGRectMake(0, y, CGRectGetWidth(view.bounds), height))
+        let label = UILabel(frame: CGRectMake(0, y, CGRectGetWidth(view.bounds), height))
         label.lineBreakMode = NSLineBreakMode.ByWordWrapping
         label.numberOfLines = 0
         label.textAlignment = NSTextAlignment.Center
@@ -614,26 +622,24 @@ extension WebViewController {
         return label
     }
     
-    private func createReloadButton() -> UIButton? {
-        if let button = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton {
-            let size = CGSizeMake(170, 38)
-            let x = CGRectGetMidX(view.bounds) - (size.width / 2)
-            var y = CGRectGetMidY(view.bounds) - (size.height / 2)
-            
-            if let label = errorLabel {
-                y = CGRectGetMaxY(label.frame) + 20
-            }
-            
-            button.setTitle(NSLocalizedString("Try again", comment: "Try again"), forState: UIControlState.Normal)
-            button.frame = CGRectMake(x, y, size.width, size.height)
-            button.backgroundColor = UIColor.lightGrayColor()
-            button.titleLabel?.backgroundColor = UIColor.lightGrayColor()
-            button.titleLabel?.textColor = UIColor.whiteColor()
-            
-            return button
+    private func createReloadButton() -> UIButton {
+        let button = UIButton(type: .Custom)
+    
+        let size = CGSizeMake(170, 38)
+        let x = CGRectGetMidX(view.bounds) - (size.width / 2)
+        var y = CGRectGetMidY(view.bounds) - (size.height / 2)
+        
+        if let label = errorLabel {
+            y = CGRectGetMaxY(label.frame) + 20
         }
         
-        return nil
+        button.setTitle(NSLocalizedString("Try again", comment: "Try again"), forState: UIControlState.Normal)
+        button.frame = CGRectMake(x, y, size.width, size.height)
+        button.backgroundColor = UIColor.lightGrayColor()
+        button.titleLabel?.backgroundColor = UIColor.lightGrayColor()
+        button.titleLabel?.textColor = UIColor.whiteColor()
+        
+        return button
     }
 }
 
@@ -682,7 +688,7 @@ extension WebViewController {
     
     /// Removes the error display and attempts to reload the web view.
     public func reloadButtonTapped(sender: AnyObject) {
-        map(url) {self.loadURL($0)}
+        if let url = self.url { self.loadURL(url) }
     }
 }
 
@@ -705,12 +711,15 @@ extension WebViewController {
 
 extension UIView {
     
-    func captureImage() -> UIImage {
+    func captureImage() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(bounds.size, opaque, 0.0)
-        layer.renderInContext(UIGraphicsGetCurrentContext())
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
+        if let context = UIGraphicsGetCurrentContext() {
+            layer.renderInContext(context)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image
+        }
+        return nil
     }
     
     func removeDoubleTapGestures() {
@@ -743,8 +752,10 @@ extension UIImage {
             if let data = data {
                 let fileManager = NSFileManager.defaultManager()
                 
-                let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
-                fileManager.createFileAtPath(fullPath, contents: data, attributes: nil)
+                if let fullPath = NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid).absoluteString
+                {
+                    fileManager.createFileAtPath(fullPath, contents: data, attributes: nil)
+                }
             }
         }
         
@@ -752,11 +763,8 @@ extension UIImage {
     }
     
     class func loadImageFromGUID(guid: String?) -> UIImage? {
-        if let guid = guid {
-            let fileManager = NSFileManager.defaultManager()
-            let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
-            let image = UIImage(contentsOfFile: fullPath)
-            return image
+        if let guid = guid, fullPath = NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid).absoluteString {
+            return UIImage(contentsOfFile: fullPath)
         }
         return nil
     }
@@ -793,12 +801,11 @@ public extension NSObject {
     
     @objc
     var uniqueWebViewID: String! {
-        let currentValue = objc_getAssociatedObject(self, &AssociatedKeys.uniqueIDKey) as? String
-        if let value = currentValue {
+        if let currentValue = objc_getAssociatedObject(self, &AssociatedKeys.uniqueIDKey) as? String {
             return currentValue
         } else {
             let newValue = NSUUID().UUIDString
-            objc_setAssociatedObject(self, &AssociatedKeys.uniqueIDKey, newValue as NSString?, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            objc_setAssociatedObject(self, &AssociatedKeys.uniqueIDKey, newValue as NSString?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return newValue
         }
     }

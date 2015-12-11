@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HybridAPIErrorType {
+public protocol HybridAPIErrorType {
     var message: String {get}
 }
 

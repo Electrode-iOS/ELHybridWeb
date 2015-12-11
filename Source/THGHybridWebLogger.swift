@@ -7,8 +7,8 @@
 //
 
 import Foundation
+import THGLog
 
-@objc
 public class THGHybridWebLogger {
 
     public static let sharedLogger = THGHybridWebLogger.thgHybridWebLogger()

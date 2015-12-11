@@ -47,7 +47,7 @@ import JavaScriptCore
     func back() {
         THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
         if let validCallbackValue = onBackCallback?.asValidValue {
-            onBackCallback?.safelyCallWithArguments(nil)
+            validCallbackValue.safelyCallWithArguments(nil)
         } else {
             webViewController?.webView.stopLoading()
             webViewController?.webView.delegate = topWebViewController
