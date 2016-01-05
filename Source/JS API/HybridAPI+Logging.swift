@@ -15,6 +15,6 @@ import JavaScriptCore
 
 extension HybridAPI {
     func log(value: AnyObject) {
-        print("BridgeOfDeath: \(value)")
+        print("HybridAPI: \(value)")
     }
 }

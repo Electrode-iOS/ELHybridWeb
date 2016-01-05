@@ -9,25 +9,49 @@
 import JavaScriptCore
 
 @objc protocol NavigationJSExport: JSExport {
+    func animateForward(options: JSValue,  _ callback: JSValue)
     func animateBackward()
-    func animateForward()
+    func popToRoot()
+    func setOnBack(callback: JSValue)
 }
 
 @objc public class Navigation: ViewControllerChild, NavigationJSExport {
     
-    weak var webViewController: WebViewController? {
-        return parentViewController as? WebViewController
+    var topWebViewController: WebViewController? {
+        return parentViewController?.navigationController?.topViewController as? WebViewController
     }
-    
-    func animateForward() {
+    private var onBackCallback: JSValue?
+
+    func animateForward(options: JSValue, _ callback: JSValue) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.webViewController?.pushWebViewController()
+            let vcOptions = WebViewControllerOptions(javaScriptValue: options)
+            self.webViewController?.pushWebViewControllerWithOptions(vcOptions)
         }
     }
     
     func animateBackward() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.parentViewController?.navigationController?.popViewControllerAnimated(true)
+            self.webViewController?.popWebViewController()
         }
+    }
+    
+    func popToRoot() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.webViewController?.popToRootWebViewController(false)
+        }
+    }
+
+    func back() {
+        if let validCallbackValue = onBackCallback?.asValidValue {
+            onBackCallback?.safelyCallWithArguments(nil)
+        } else {
+            webViewController?.webView.stopLoading()
+            webViewController?.webView.delegate = topWebViewController
+            webViewController?.webView.goBack()
+        }
+    }
+
+    func setOnBack(callback: JSValue) {
+        onBackCallback = callback
     }
 }

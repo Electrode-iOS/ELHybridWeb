@@ -15,9 +15,6 @@
 		177E5DC31B00FF22006BCBE2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177E5DC11B00FF22006BCBE2 /* LaunchScreen.xib */; };
 		177E5DCF1B00FF22006BCBE2 /* ZootExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */; };
 		1786AFE11B0E611F005B7559 /* THGHybridWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17E55D681B0E419900DA11BB /* THGHybridWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1786AFED1B0E6220005B7559 /* THGBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFEA1B0E6220005B7559 /* THGBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1786AFEE1B0E6220005B7559 /* THGFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFEB1B0E6220005B7559 /* THGFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1786AFEF1B0E6220005B7559 /* THGLog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1786AFEC1B0E6220005B7559 /* THGLog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		17E55D6B1B0E41A900DA11BB /* THGHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E55D681B0E419900DA11BB /* THGHybridWeb.framework */; };
 		17EA19721B0ABB5300E011CB /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EA19711B0ABB5300E011CB /* ViewController.xib */; };
 		17ED5C971B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */; };
@@ -62,9 +59,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1786AFE11B0E611F005B7559 /* THGHybridWeb.framework in Embed Frameworks */,
-				1786AFED1B0E6220005B7559 /* THGBridge.framework in Embed Frameworks */,
-				1786AFEE1B0E6220005B7559 /* THGFoundation.framework in Embed Frameworks */,
-				1786AFEF1B0E6220005B7559 /* THGLog.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,9 +77,6 @@
 		177E5DC81B00FF22006BCBE2 /* ZootExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZootExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		177E5DCD1B00FF22006BCBE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZootExampleTests.swift; sourceTree = "<group>"; };
-		1786AFEA1B0E6220005B7559 /* THGBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGBridge.framework; path = ../Carthage/Build/iOS/THGBridge.framework; sourceTree = "<group>"; };
-		1786AFEB1B0E6220005B7559 /* THGFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGFoundation.framework; path = ../Carthage/Build/iOS/THGFoundation.framework; sourceTree = "<group>"; };
-		1786AFEC1B0E6220005B7559 /* THGLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THGLog.framework; path = ../Carthage/Build/iOS/THGLog.framework; sourceTree = "<group>"; };
 		17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGHybridWeb.xcodeproj; path = ../THGHybridWeb.xcodeproj; sourceTree = "<group>"; };
 		17EA19711B0ABB5300E011CB /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+NativeDetailView.swift"; sourceTree = "<group>"; };
@@ -113,7 +104,6 @@
 		177E5DAA1B00FF22006BCBE2 = {
 			isa = PBXGroup;
 			children = (
-				1786AFF01B0E62BC005B7559 /* Frameworks */,
 				17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */,
 				177E5DB51B00FF22006BCBE2 /* ZootExample */,
 				177E5DCB1B00FF22006BCBE2 /* ZootExampleTests */,
@@ -169,16 +159,6 @@
 				177E5DCD1B00FF22006BCBE2 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1786AFF01B0E62BC005B7559 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1786AFEA1B0E6220005B7559 /* THGBridge.framework */,
-				1786AFEB1B0E6220005B7559 /* THGFoundation.framework */,
-				1786AFEC1B0E6220005B7559 /* THGLog.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		17E55D631B0E419900DA11BB /* Products */ = {
