@@ -8,7 +8,7 @@
 
 import JavaScriptCore
 
-@objc class BarButton {
+@objc class BarButton: NSObject {
     let id: String
     let title: String
     let image: String?
