@@ -297,25 +297,21 @@ extension UIImage {
         
         // do this shit in the background.
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            let data = UIImageJPEGRepresentation(self, 1.0)
-            if let data = data {
-                let fileManager = NSFileManager.defaultManager()
-                
-                let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
-                fileManager.createFileAtPath(fullPath, contents: data, attributes: nil)
+            if let imageData = UIImageJPEGRepresentation(self, 1.0),
+                let filePath = UIImage.absoluteFilePath(guid: guid) {
+                    NSFileManager.defaultManager().createFileAtPath(filePath, contents: imageData, attributes: nil)
             }
         }
         
         return guid
     }
     
-    class func loadImageFromGUID(guid: String?) -> UIImage? {
-        if let guid = guid {
-            //let fileManager = NSFileManager.defaultManager()
-            let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
-            let image = UIImage(contentsOfFile: fullPath)
-            return image
-        }
-        return nil
+    class func loadImageFromGUID(guid: String) -> UIImage? {
+        guard let filePath = UIImage.absoluteFilePath(guid: guid) else { return nil }
+        return UIImage(contentsOfFile: filePath)
+    }
+    
+    private class func absoluteFilePath(guid guid: String) -> String? {
+        return NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid).absoluteString
     }
 }
