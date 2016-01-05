@@ -1,0 +1,10 @@
+language: objective-c
+osx_image: xcode7.2
+
+install: 
+  - git clone https://github.com/TheHolyGrail/BridgeOfDeath.git ../BridgeOfDeath --branch v1.0.0
+  - git clone https://github.com/TheHolyGrail/Excalibur.git ../Excalibur
+  - git clone https://github.com/TheHolyGrail/Shrubbery.git ../Shrubbery
+
+script:
+   - xctool -project THGHybridWeb.xcodeproj -scheme THGHybridWeb -sdk iphonesimulator build test

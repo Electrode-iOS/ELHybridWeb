@@ -1,4 +1,4 @@
-# Zoot
+# Zoot [![Build Status](https://travis-ci.org/TheHolyGrail/Zoot.svg)](https://travis-ci.org/TheHolyGrail/Zoot)
 
 Zoot (`THGHybridWeb` module) is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS. Zoot uses [BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath) to bridge Swift objects to JavaScript.
 
