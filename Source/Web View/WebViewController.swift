@@ -132,11 +132,13 @@ public class WebViewController: UIViewController {
         
         // we're going away, store the screen shot
         placeholderImageView.frame = webView.frame // must align frames for image capture
-        let image = webView.captureImage()
-        placeholderImageView.image = image
-        storedScreenshotGUID = image.saveImageToGUID()
-        view.bringSubviewToFront(placeholderImageView)
         
+        if let screenshotImage = webView.captureImage() {
+            placeholderImageView.image = screenshotImage
+            storedScreenshotGUID = screenshotImage.saveImageToGUID()
+        }
+        
+        view.bringSubviewToFront(placeholderImageView)
         webView.hidden = true
     }
     
@@ -259,9 +261,11 @@ extension WebViewController {
 
 extension UIView {
     
-    func captureImage() -> UIImage {
+    func captureImage() -> UIImage? {
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+
         UIGraphicsBeginImageContextWithOptions(bounds.size, opaque, 0.0)
-        layer.renderInContext(UIGraphicsGetCurrentContext())
+        layer.renderInContext(context)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
