@@ -1,3 +1,7 @@
+# [1.0.3](https://github.com/TheHolyGrail/Zoot/releases/tag/v1.0.3)
+
+- track disappearance cause when popping to root to prevent web view from going back
+
 # [1.0.2](https://github.com/TheHolyGrail/Zoot/releases/tag/v1.0.2)
 
 - Run `view.show()` on the main thread.

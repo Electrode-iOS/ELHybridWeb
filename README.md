@@ -27,7 +27,7 @@ Zoot depends on the following [THG](https://github.com/TheHolyGrail/) frameworks
 Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
 ```
-github "TheHolyGrail/Zoot" ~> 0.2.0
+github "TheHolyGrail/Zoot" ~> 1.0.3
 ```
 
 ## Usage
