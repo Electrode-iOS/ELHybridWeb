@@ -33,7 +33,7 @@ extension NavigationBar: NavigationBarJSExport {
     
     func setTitle(title: String) {
         dispatch_async(dispatch_get_main_queue()) {
-            parentViewController?.title = title
+            self.parentViewController?.title = title
         }
     }
     
