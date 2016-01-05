@@ -15,7 +15,7 @@ class HybridAPITests: XCTestCase {
 
     func testUpdateState() {
         let webController = WebViewController()
-        webController.addHybridAPI()
+        webController.addBridgeAPIObject()
 
         let title = "What is your name?"
         let options = "{title: '\(title)'}"
@@ -27,27 +27,9 @@ class HybridAPITests: XCTestCase {
         XCTAssertEqual(title, webController.title!)
     }
     
-    func testAddHybridAPI() {
-        let webController = WebViewController()
-        webController.addHybridAPI()
-        
-        let platform: AnyObject = webController.bridge.contextValueForName(HybridAPI.exportName).toObject()
-        
-        XCTAssert(platform is HybridAPI)
-    }
-    
-    func testHybridAPIProperty() {
-        let bridge = Bridge()
-        let hybridAPI = HybridAPI(parentViewController: WebViewController())
-        bridge.addExport(hybridAPI, name: HybridAPI.exportName)
-        
-        XCTAssertNotNil(bridge.hybridAPI)
-        XCTAssertEqual(bridge.hybridAPI!, hybridAPI)
-    }
-    
     func testDialogExport() {
         let webController = WebViewController()
-        webController.addHybridAPI()
+        webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.dialog")
         XCTAssert(result.isObject)
@@ -56,7 +38,7 @@ class HybridAPITests: XCTestCase {
     
     func testShareExport() {
         let webController = WebViewController()
-        webController.addHybridAPI()
+        webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.share")
         
@@ -66,24 +48,12 @@ class HybridAPITests: XCTestCase {
     
     func testNavigationExport() {
         let webController = WebViewController()
-        webController.addHybridAPI()
+        webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.navigation")
         
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is Navigation)
-    }
-    
-    func testDidSetParentViewControllers() {
-        let webController = WebViewController()
-        webController.addHybridAPI()
-        let newWebController = WebViewController()
-        let bridge = webController.bridge
-        
-        bridge.hybridAPI?.parentViewController = newWebController
-        let navigation = bridge.context.evaluateScript("NativeBridge.navigation").toObject() as! Navigation
-        
-        XCTAssertEqual(navigation.parentViewController!, newWebController)
     }
     
     func testExportName() {

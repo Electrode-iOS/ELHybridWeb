@@ -55,18 +55,6 @@ class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
         }
     }
     
-    func testDelegateDidFail() {
-        let vc = WebViewController()
-        vc.delegate = self
-        
-        if let url = NSURL(string: "http://foosomecrazydomainthatwillneverwork.org/somecrazypath") {
-            didFailLoadExpectation = expectationWithDescription("did fail load")
-            
-            vc.loadURL(url)
-            waitForExpectationsWithTimeout(4.0, handler: nil)
-        }
-    }
-    
     // MARK: WebViewControllerDelegate
     
     func webViewControllerDidStartLoad(webViewController: WebViewController) {

@@ -1,28 +1,20 @@
 # Zoot [![Build Status](https://travis-ci.org/TheHolyGrail/Zoot.svg)](https://travis-ci.org/TheHolyGrail/Zoot)
 
-Zoot (`THGHybridWeb` module) is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS. Zoot uses [BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath) to bridge Swift objects to JavaScript.
+Zoot (`THGHybridWeb` framework) is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS. Zoot uses [BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath) to bridge Swift objects to JavaScript.
 
 ## Installation
-
-### Carthage
-
-Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
-
-```
-github "TheHolyGrail/Zoot" ~> 0.0.2
-```
 
 ### Manual
 
 Install manually by adding THGHybridWeb.xcodeproj to your project and configuring your target to link THGHybridWeb.framework.
 
-Zoot depends on the following [THG](https://github.com/TheHolyGrail/) modules:
+Zoot depends on the following [THG](https://github.com/TheHolyGrail/) frameworks:
 
 - [`THGBridge`/BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath).
   - [`THGFoundation`/Excalibur](https://github.com/TheHolyGrail/Excalibur).
   - [`THGLog`/Shrubbery](https://github.com/TheHolyGrail/Shrubbery).
 
-[THG](https://github.com/TheHolyGrail/) modules are designed to live side-by-side in the file system, like so:
+[THG](https://github.com/TheHolyGrail/) frameworks are designed to live side-by-side in the file system, like so:
 
 * \MyProject
 * \MyProject\Zoot
@@ -30,9 +22,40 @@ Zoot depends on the following [THG](https://github.com/TheHolyGrail/) modules:
 * \MyProject\Excalibur
 * \MyProject\Shrubbery
 
+### Carthage
+
+Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+
+```
+github "TheHolyGrail/Zoot" ~> 1.0.3
+```
+
 ## Usage
 
-[See the Platform API documentation](platformAPI.md)
+### iOS
+
+Initialize a web view controller and call `loadURL()` to asynchronously load the web view with a URL. 
+
+```
+let webController = WebViewController()
+webController.loadURL(NSURL(string: "foo")!)
+window?.rootViewController = webController
+```
+
+To utilize the navigation JavaScript API you must provide a navigation controller for the web view controller.
+
+```
+let webController = WebViewController()
+webController.addHybridAPI()
+webController.loadURL(NSURL(string: "foo")!)
+
+let navigationController = UINavigationController(rootViewController: webController)
+window?.rootViewController = navigationController
+```
+
+### Web
+
+See the [Platform API documentation](platformAPI.md) for a reference of the JavaScript API. An example web application is available at [http://bridgeofdeath.herokuapp.com/](http://bridgeofdeath.herokuapp.com/) that demonstrates basic web usage of Zoot.
 
 ## Example
 

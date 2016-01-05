@@ -11,20 +11,16 @@ import JavaScriptCore
 import THGHybridWeb
 
 class ViewController: UIViewController {
-    
     var webViewURL = NSURL(string: "http://bridgeofdeath.herokuapp.com/")
-
+    
     /**
      Example of pusing a web view from a native view.
     */
     @IBAction func pushWebView(sender: UIButton) {
         if let url = webViewURL {
             let webController = WebViewController()
-            webController.addHybridAPI()
             webController.loadURL(url)
             navigationController?.pushViewController(webController, animated: true)
         }
     }
-    
-    
 }

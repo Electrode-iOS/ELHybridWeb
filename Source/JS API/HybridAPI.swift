@@ -7,11 +7,19 @@
 //
 
 import JavaScriptCore
+import UIKit
+#if NOFRAMEWORKS
+#else
 import THGBridge
+#endif
 
 @objc protocol HybridAPIJSExport: JSExport {
     var navigation: Navigation {get}
     var navigationBar: NavigationBar {get}
+    var view: ViewAPI {get}
+    var tabBar: TabBar {get}
+    func info() -> [String: String]
+    func newState()
 }
 
 /**
@@ -22,35 +30,34 @@ import THGBridge
     public static let exportName = "NativeBridge"
     var navigation: Navigation
     var navigationBar: NavigationBar
+    private (set) public var view: ViewAPI
+    private (set) public var tabBar: TabBar
+    var dialog: Dialog
 
     public required init(parentViewController: UIViewController) {
         navigation = Navigation(parentViewController: parentViewController)
         navigationBar = NavigationBar(parentViewController: parentViewController)
+        view = ViewAPI(parentViewController: parentViewController)
+        tabBar = TabBar(parentViewController: parentViewController)
+        dialog = Dialog()
         super.init(parentViewController: parentViewController)
     }
 
     override public weak var parentViewController: UIViewController? {
         didSet {
             navigation.parentViewController = parentViewController
+            navigationBar.parentViewController = parentViewController
+            view.parentViewController = parentViewController
+            tabBar.parentViewController = parentViewController
         }
     }
-}
-
-// MARK: - WebViewController Integration
-
-public extension WebViewController {
     
-    public func addHybridAPI() {
-        let platform = HybridAPI(parentViewController: self)
-        bridge.addExport(platform, name: HybridAPI.exportName)
+    public func info() -> [String: String] {
+        return HybridAPIInfo(appVersion: "1.0").asDictionary
     }
-}
-
-// MARK: - Bridge Integration
-
-public extension Bridge {
     
-    public var hybridAPI: HybridAPI? {
-        return contextValueForName(HybridAPI.exportName).toObject() as? HybridAPI
+    func newState() {
+        webViewController?.hybridAPI = nil
+        webViewController?.addBridgeAPIObject()
     }
 }

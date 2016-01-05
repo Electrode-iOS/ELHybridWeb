@@ -7,14 +7,16 @@
 //
 
 import JavaScriptCore
+import UIKit
 
-@objc class BarButton: NSObject {
-    let id: String
-    let title: String
-    let image: String?
-    var callback: JSValue?
+// TODO: change all public members to internal after migrating to Swift 2 for testability
+    @objc public class BarButton: NSObject {
+    internal let id: String
+    internal let title: String
+    internal let image: String?
+    internal var callback: JSValue?
     
-    init(id: String, title: String, image: String?) {
+    public init(id: String, title: String, image: String?) {
         self.id = id
         self.title = title
         self.image = image
@@ -25,16 +27,20 @@ import JavaScriptCore
 
 extension BarButton {
     
-    static func dictionaryFromJSONArray(array: [[String: AnyObject]], callback: JSValue) -> [Int: BarButton] {
+    public static func dictionaryFromJSONArray(array: [AnyObject], callback: JSValue?) -> [Int: BarButton] {
         var buttons = [Int: BarButton]()
-        
-        for (index, buttonDictionary) in array.enumerate() {
-            if let id = buttonDictionary["id"] as? String,
-                let title = buttonDictionary["title"] as? String {
-                    let image = buttonDictionary["image"] as? String
-                    let button = BarButton(id: id, title: title, image: image)
-                    button.callback = callback
-                    buttons[index] = button
+
+        for (index, buttonOptions) in array.enumerate() {
+            if let buttonOptions = buttonOptions as? [String: String],
+                let id = buttonOptions["id"],
+                let title = buttonOptions["title"] {
+                    
+                let image = buttonOptions["image"]
+                let button = BarButton(id: id, title: title, image: image)
+                button.callback = callback
+                buttons[index] = button
+            } else if buttonOptions is NSNull {
+                buttons[index] = nil
             }
         }
         
@@ -46,11 +52,11 @@ extension BarButton {
 
 extension BarButton {
     
-    var barButtonItem: UIBarButtonItem {
+    public var barButtonItem: UIBarButtonItem {
         return UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: "select")
     }
     
-    func select() {
-        callback?.callWithArguments([id])
+    public func select() {
+        callback?.safelyCallWithArguments([id])
     }
 }

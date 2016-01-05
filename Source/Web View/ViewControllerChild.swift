@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ViewControllerChildType {
     weak var parentViewController: UIViewController? {get set}
@@ -22,5 +23,14 @@ protocol ViewControllerChildType {
 
     public required init(parentViewController: UIViewController) {
         self.parentViewController = parentViewController
+    }
+}
+
+// MARK: WebViewController Integration
+
+extension ViewControllerChild {
+    
+    weak var webViewController: WebViewController? {
+        return parentViewController as? WebViewController
     }
 }
