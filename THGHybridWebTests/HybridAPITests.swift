@@ -12,20 +12,6 @@ import THGHybridWeb
 import THGBridge
 
 class HybridAPITests: XCTestCase {
-
-    func testUpdateState() {
-        let webController = WebViewController()
-        webController.addBridgeAPIObject()
-
-        let title = "What is your name?"
-        let options = "{title: '\(title)'}"
-        let updateScript = "\(HybridAPI.exportName).updatePageState(\(options))"
-        webController.bridge.context.evaluateScript(updateScript)
-        
-        XCTAssertNotNil(webController.bridge.context.exception)
-        XCTAssertNotNil(webController.title)
-        XCTAssertEqual(title, webController.title!)
-    }
     
     func testDialogExport() {
         let webController = WebViewController()

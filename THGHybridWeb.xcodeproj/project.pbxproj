@@ -358,7 +358,7 @@
 			children = (
 				CA85AA491B3B27FF0000FEEF /* THGBridge.framework */,
 				CA85AA4B1B3B27FF0000FEEF /* THGBridgeTests.xctest */,
-				CA85AA4D1B3B27FF0000FEEF /* THGBridge.framework */,
+				CA85AA4D1B3B27FF0000FEEF /* THGBridge_osx.framework */,
 				1725B4F11C3C3FCE00936061 /* THGBridge_osxTests.xctest */,
 			);
 			name = Products;
@@ -538,7 +538,7 @@
 			remoteRef = CA85AA4A1B3B27FF0000FEEF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA85AA4D1B3B27FF0000FEEF /* THGBridge.framework */ = {
+		CA85AA4D1B3B27FF0000FEEF /* THGBridge_osx.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = THGBridge_osx.framework;

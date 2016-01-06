@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 import THGBridge
-import THGHybridWeb
+@testable import THGHybridWeb
 
 class WebViewControllerTests: XCTestCase {
     
@@ -94,8 +94,16 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         webController.webView.hidden = true
         
+        let showCompleteExpectation = expectationWithDescription("web view show completion callback ran")
+        webController.hybridAPI?.view.onShowCallback = {
+            showCompleteExpectation.fulfill()
+        }
+        
         webController.bridge.context.evaluateScript("NativeBridge.view.show()")
-        XCTAssertFalse(webController.webView.hidden)
+        
+        waitForExpectationsWithTimeout(3) { error in
+            XCTAssertFalse(webController.webView.hidden)
+        }
     }
 }
 
