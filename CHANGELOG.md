@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/TheHolyGrail/Zoot/releases/tag/v2.0.0)
+
+- Updated to support Swift 2 and iOS SDK 9
+
+### API Changes for Swift 2 and iOS SDK 9
+
+- `BarButton` now explicitly inherits from `NSObject` 
+- Declare all API export protocols in `HybridAPI` class declaration
+- The `webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError?)` method of the protocol `WebViewControllerDelegate` has been changed to pass an optional `NSError` type in order to adapt to `UIWebViewDelegate`'s `didFailLoadWithError` method now passing an optional error value.
+
 # [1.0.3](https://github.com/TheHolyGrail/Zoot/releases/tag/v1.0.3)
 
 - track disappearance cause when popping to root to prevent web view from going back
