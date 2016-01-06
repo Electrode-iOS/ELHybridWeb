@@ -19,6 +19,7 @@ import UIKit
 
     internal var onAppearCallback: JSValue?
     private var onDisappearCallback: JSValue?
+    internal var onShowCallback: (() -> Void)?
     
     public func appeared() {
         onAppearCallback?.safelyCallWithArguments(nil)
@@ -32,7 +33,10 @@ import UIKit
 extension ViewAPI: ViewJSExport {
     /// Show the web view
     public func show() {
-        webViewController?.showWebView()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.webViewController?.showWebView()
+            self.onShowCallback?()
+        }
     }
     
     public func setOnAppear(callback: JSValue) {

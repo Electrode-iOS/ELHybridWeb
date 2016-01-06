@@ -296,11 +296,9 @@ public class WebViewController: UIViewController {
     }
     
     public final func showWebView() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.webView.hidden = false
-            self.placeholderImageView.image = nil
-            self.view.sendSubviewToBack(self.placeholderImageView)
-        })
+        self.webView.hidden = false
+        self.placeholderImageView.image = nil
+        self.view.sendSubviewToBack(self.placeholderImageView)
     }
 }
 
