@@ -25,7 +25,7 @@ import THGBridge
 /**
  Exports the hybrid API to JavaScript.
 */
-@objc public class HybridAPI: ViewControllerChild, HybridAPIJSExport {
+@objc public class HybridAPI: ViewControllerChild, HybridAPIJSExport, ShareJSExport, DialogJSExport {
     
     public static let exportName = "NativeBridge"
     var navigation: Navigation

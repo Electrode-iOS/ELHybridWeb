@@ -15,7 +15,7 @@ internal extension JSValue {
     /**
      Calls the value like it was a JavaScript function in the form of 
      `function(error, data)`.
-     :param: data The data that is passed to the callback
+     - parameter data: The data that is passed to the callback
      :return: The return value of the function call.
     */
     func callWithData(data: AnyObject) -> JSValue! {
@@ -25,7 +25,7 @@ internal extension JSValue {
     /**
      Calls the value like it was a JavaScript function in the form of
      `function(error, data)`.
-     :param: error The error that is passed to the callback.
+     - parameter error: The error that is passed to the callback.
      :return: The return value of the function call.
     */
     func callWithError(error: NSError) -> JSValue! {
@@ -35,7 +35,7 @@ internal extension JSValue {
     /**
     Calls the value like it was a JavaScript function in the form of
     `function(error, data)`.
-    :param: errorMessage The message used to create the JavaScript error
+    - parameter errorMessage: The message used to create the JavaScript error
      that is passed to the callback.
     :return: The return value of the function call.
     */
@@ -72,7 +72,7 @@ internal extension JSValue {
     :param: arguments The arguments array to be passed to the javascript function.
     */
     func safelyCallWithArguments(arguments: [AnyObject]!) {
-        if isUndefined() || isNull() {
+        if isUndefined || isNull {
             return
         }
         
@@ -91,7 +91,7 @@ internal extension JSValue {
 
 internal extension JSValue {
     var asString: String? {
-        if self.isString() { return self.toString() }
+        if self.isString { return self.toString() }
         return nil
     }
 }
@@ -100,7 +100,7 @@ internal extension JSValue {
 
 extension JSValue {
     var asValidValue: JSValue? {
-        if isUndefined() || isNull() {
+        if isUndefined || isNull {
             return nil
         }
         return self

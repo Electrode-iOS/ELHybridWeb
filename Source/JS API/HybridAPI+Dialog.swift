@@ -13,7 +13,7 @@ import JavaScriptCore
     func dialog(options: [String: AnyObject], _ callback: JSValue)
 }
 
-extension HybridAPI: DialogJSExport {
+extension HybridAPI {
     
     func dialog(options: [String: AnyObject], _ callback: JSValue) {
         dialog.show(options, callback: callback)

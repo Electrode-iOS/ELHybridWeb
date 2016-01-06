@@ -21,36 +21,36 @@ import THGBridge
 @objc public protocol WebViewControllerDelegate {
     /**
      Sent before the web view begins loading a frame.
-     :param: webViewController The web view controller loading the web view frame.
-     :param: request The request that will load the frame.
-     :param: navigationType The type of user action that started the load.
-     :returns: Return true to
+     - parameter webViewController: The web view controller loading the web view frame.
+     - parameter request: The request that will load the frame.
+     - parameter navigationType: The type of user action that started the load.
+     - returns: Return true to
     */
     optional func webViewController(webViewController: WebViewController, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
     
     /**
      Sent before the web view begins loading a frame.
-     :param: webViewController The web view controller that has begun loading the frame.
+     - parameter webViewController: The web view controller that has begun loading the frame.
     */
     optional func webViewControllerDidStartLoad(webViewController: WebViewController)
     
     /**
      Sent after the web view as finished loading a frame.
-     :param: webViewController The web view controller that has completed loading the frame.
+     - parameter webViewController: The web view controller that has completed loading the frame.
     */
     optional func webViewControllerDidFinishLoad(webViewController: WebViewController)
     
     /**
      Sent if the web view fails to load a frame.
-     :param: webViewController The web view controller that failed to load the frame.
-     :param: error The error that occured during loading.
+     - parameter webViewController: The web view controller that failed to load the frame.
+     - parameter error: The error that occured during loading.
     */
-    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
-    
+    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError?)
+
     /**
      Sent when the web view creates the JS context for the frame.
-     :param: webViewController The web view controller that failed to load the frame.
-     :param: context The newly created JavaScript context.
+     parameter webViewController: The web view controller that failed to load the frame.
+     parameter context: The newly created JavaScript context.
     */
     optional func webViewControllerDidCreateJavaScriptContext(webViewController: WebViewController, context: JSContext)
 }
@@ -106,7 +106,7 @@ public class WebViewController: UIViewController {
         let webView =  UIWebView(frame: CGRectZero)
         webView.delegate = self
         WebViewManager.addBridgedWebView(webView)
-        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
     
@@ -184,7 +184,7 @@ public class WebViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -248,9 +248,12 @@ public class WebViewController: UIViewController {
         case .WebPop, .WebDismiss, .WebPush, .WebModal:
             // only store screen shot when disappearing by web transition
             placeholderImageView.frame = webView.frame // must align frames for image capture
-            let image = webView.captureImage()
-            placeholderImageView.image = image
-            storedScreenshotGUID = image.saveImageToGUID()
+            
+            if let screenshotImage = webView.captureImage() {
+                placeholderImageView.image = screenshotImage
+                storedScreenshotGUID = screenshotImage.saveImageToGUID()
+            }
+
             view.bringSubviewToFront(placeholderImageView)
             
             webView.hidden = true
@@ -328,11 +331,14 @@ extension WebViewController {
                     if urlResponse.statusCode >= 400 {
                         // render error display
                         if self.showErrorDisplay {
-                            var httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
+                            let httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
                             self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                         }
-                    } else {
-                        self.webView.loadData(data, MIMEType: response.MIMEType, textEncodingName: response.textEncodingName, baseURL: response.URL)
+                    } else if let data = data,
+                        MIMEType = urlResponse.MIMEType,
+                        textEncodingName = urlResponse.textEncodingName,
+                        url = urlResponse.URL {
+                        self.webView.loadData(data, MIMEType: MIMEType, textEncodingName: textEncodingName, baseURL: url)
                     }
                 }
             })
@@ -365,11 +371,13 @@ extension WebViewController {
 // MARK: - NSURLSessionDelegate
 
 extension WebViewController: NSURLSessionDelegate {
-    public func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
+    
+    public func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if let host = challengeHost
+            if let host = challengeHost,
+                let serverTrust = challenge.protectionSpace.serverTrust
                 where challenge.protectionSpace.host == host {
-                    let credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust)
+                    let credential = NSURLCredential(forTrust: serverTrust)
                     completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
             } else {
                 completionHandler(NSURLSessionAuthChallengeDisposition.PerformDefaultHandling, nil)
@@ -406,12 +414,11 @@ extension WebViewController: UIWebViewDelegate {
         }
     }
     
-    final public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        if error.code != NSURLErrorCancelled {
-            if showErrorDisplay {
-                renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
-            }
+    final public func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        if let error = error where error.code != NSURLErrorCancelled && showErrorDisplay {
+            renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
         }
+
         delegate?.webViewController?(self, didFailLoadWithError: error)
     }
 }
@@ -428,7 +435,7 @@ extension WebViewController: WebViewBridging {
         if let context = webView.javaScriptContext {
             configureBridgeContext(context)
         } else {
-            println("Failed to retrieve JavaScript context from web view.")
+            print("Failed to retrieve JavaScript context from web view.")
         }
     }
     
@@ -440,7 +447,7 @@ extension WebViewController: WebViewBridging {
         if let hybridAPI = hybridAPI {
             var readyCallback = bridge.contextValueForName("nativeBridgeReady")
             
-            if !readyCallback.isUndefined() {
+            if !readyCallback.isUndefined {
                 readyCallback.callWithData(hybridAPI)
             }
         }
@@ -531,14 +538,14 @@ extension WebViewController {
     }
     
     public func newWebViewControllerWithOptions(options: WebViewControllerOptions?) -> WebViewController {
-        let webViewController = self.dynamicType(webView: webView, bridge: bridge)
+        let webViewController = self.dynamicType.init(webView: webView, bridge: bridge)
         webViewController.addBridgeAPIObject()
         webViewController.hybridAPI?.navigationBar.title = options?.title
         webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
         webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
         
         if let navigationBarButtons = options?.navigationBarButtons {
-            webViewController.hybridAPI?.navigationBar.configureButtons(options?.navigationBarButtons, callback: options?.navigationBarButtonCallback)
+            webViewController.hybridAPI?.navigationBar.configureButtons(navigationBarButtons, callback: options?.navigationBarButtonCallback)
         }
         
         return webViewController
@@ -565,7 +572,7 @@ extension WebViewController {
     
     // TODO: make internal after migrating to Swift 2 and @testable
     final public func presentExternalURLWithOptions(options: ExternalNavigationOptions) -> WebViewController{
-        let externalWebViewController = self.dynamicType()
+        let externalWebViewController = self.dynamicType.init()
         externalWebViewController.externalPresentingWebViewController = self
         externalWebViewController.addBridgeAPIObject()
         externalWebViewController.loadURL(options.url)
@@ -610,7 +617,7 @@ extension WebViewController {
     private func createErrorLabel() -> UILabel? {
         let height = CGFloat(50)
         let y = CGRectGetMidY(view.bounds) - (height / 2) - 100
-        var label = UILabel(frame: CGRectMake(0, y, CGRectGetWidth(view.bounds), height))
+        let label = UILabel(frame: CGRectMake(0, y, CGRectGetWidth(view.bounds), height))
         label.lineBreakMode = NSLineBreakMode.ByWordWrapping
         label.numberOfLines = 0
         label.textAlignment = NSTextAlignment.Center
@@ -620,25 +627,22 @@ extension WebViewController {
     }
     
     private func createReloadButton() -> UIButton? {
-        if let button = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton {
-            let size = CGSizeMake(170, 38)
-            let x = CGRectGetMidX(view.bounds) - (size.width / 2)
-            var y = CGRectGetMidY(view.bounds) - (size.height / 2)
-            
-            if let label = errorLabel {
-                y = CGRectGetMaxY(label.frame) + 20
-            }
-            
-            button.setTitle(NSLocalizedString("Try again", comment: "Try again"), forState: UIControlState.Normal)
-            button.frame = CGRectMake(x, y, size.width, size.height)
-            button.backgroundColor = UIColor.lightGrayColor()
-            button.titleLabel?.backgroundColor = UIColor.lightGrayColor()
-            button.titleLabel?.textColor = UIColor.whiteColor()
-            
-            return button
+        let button = UIButton(type: .Custom)
+        let size = CGSizeMake(170, 38)
+        let x = CGRectGetMidX(view.bounds) - (size.width / 2)
+        var y = CGRectGetMidY(view.bounds) - (size.height / 2)
+        
+        if let label = errorLabel {
+            y = CGRectGetMaxY(label.frame) + 20
         }
         
-        return nil
+        button.setTitle(NSLocalizedString("Try again", comment: "Try again"), forState: UIControlState.Normal)
+        button.frame = CGRectMake(x, y, size.width, size.height)
+        button.backgroundColor = UIColor.lightGrayColor()
+        button.titleLabel?.backgroundColor = UIColor.lightGrayColor()
+        button.titleLabel?.textColor = UIColor.whiteColor()
+        
+        return button
     }
 }
 
@@ -687,7 +691,8 @@ extension WebViewController {
     
     /// Removes the error display and attempts to reload the web view.
     public func reloadButtonTapped(sender: AnyObject) {
-        map(url) {self.loadURL($0)}
+        guard let url = url else { return }
+        loadURL(url)
     }
 }
 
@@ -710,9 +715,11 @@ extension WebViewController {
 
 extension UIView {
     
-    func captureImage() -> UIImage {
+    func captureImage() -> UIImage? {
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+
         UIGraphicsBeginImageContextWithOptions(bounds.size, opaque, 0.0)
-        layer.renderInContext(UIGraphicsGetCurrentContext())
+        layer.renderInContext(context)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -744,26 +751,22 @@ extension UIImage {
         
         // do this shit in the background.
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            let data = UIImageJPEGRepresentation(self, 1.0)
-            if let data = data {
-                let fileManager = NSFileManager.defaultManager()
-                
-                let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
-                fileManager.createFileAtPath(fullPath, contents: data, attributes: nil)
+            if let imageData = UIImageJPEGRepresentation(self, 1.0),
+                let filePath = UIImage.absoluteFilePath(guid: guid) {
+                    NSFileManager.defaultManager().createFileAtPath(filePath, contents: imageData, attributes: nil)
             }
         }
         
         return guid
     }
     
-    class func loadImageFromGUID(guid: String?) -> UIImage? {
-        if let guid = guid {
-            let fileManager = NSFileManager.defaultManager()
-            let fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid)
-            let image = UIImage(contentsOfFile: fullPath)
-            return image
-        }
-        return nil
+    class func loadImageFromGUID(guid: String) -> UIImage? {
+        guard let filePath = UIImage.absoluteFilePath(guid: guid) else { return nil }
+        return UIImage(contentsOfFile: filePath)
+    }
+    
+    private class func absoluteFilePath(guid guid: String) -> String? {
+        return NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid).absoluteString
     }
 }
 
@@ -798,12 +801,11 @@ public extension NSObject {
     
     @objc
     var uniqueWebViewID: String! {
-        let currentValue = objc_getAssociatedObject(self, &AssociatedKeys.uniqueIDKey) as? String
-        if let value = currentValue {
+        if let currentValue = objc_getAssociatedObject(self, &AssociatedKeys.uniqueIDKey) as? String {
             return currentValue
         } else {
             let newValue = NSUUID().UUIDString
-            objc_setAssociatedObject(self, &AssociatedKeys.uniqueIDKey, newValue as NSString?, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            objc_setAssociatedObject(self, &AssociatedKeys.uniqueIDKey, newValue as NSString?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return newValue
         }
     }

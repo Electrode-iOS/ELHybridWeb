@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import THGHybridWeb
+@testable import THGHybridWeb
 
 class BarButtonTests: XCTestCase {
     

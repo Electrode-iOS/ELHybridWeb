@@ -29,7 +29,7 @@ struct DialogOptions {
             return .Failure(DialogOptionsError.EmptyTitleAndMessage)
         }
         
-        if let actions = options["actions"] as? [[String: AnyObject]] where count(actions) > 0 {
+        if let actions = options["actions"] as? [[String: AnyObject]] where actions.count > 0 {
             var dialogActions = [DialogAction]()
             
             for actionOptions in actions {
