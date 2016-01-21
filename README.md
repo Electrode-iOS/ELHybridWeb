@@ -1,33 +1,33 @@
-# Zoot [![Build Status](https://travis-ci.org/TheHolyGrail/Zoot.svg)](https://travis-ci.org/TheHolyGrail/Zoot)
+# ELHybridWeb [![Build Status](https://travis-ci.org/Electrode-iOS/ELHybridWeb.svg)](https://travis-ci.org/Electrode-iOS/ELHybridWeb)
 
-Zoot (`THGHybridWeb` framework) is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS. Zoot uses [BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath) to bridge Swift objects to JavaScript.
+ELHybridWeb is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS. ELHybridWeb uses [ELJSBridge](https://github.com/Electrode-iOS/ELJSBridge) to bridge Swift objects to JavaScript.
 
 ## Installation
 
 ### Manual
 
-Install manually by adding THGHybridWeb.xcodeproj to your project and configuring your target to link THGHybridWeb.framework.
+Install manually by adding ELHybridWeb.xcodeproj to your project and configuring your target to link ELHybridWeb.framework.
 
-Zoot depends on the following [THG](https://github.com/TheHolyGrail/) frameworks:
+ELHybridWeb depends on the following [Electrode-iOS](https://github.com/Electrode-iOS/) frameworks:
 
-- [`THGBridge`/BridgeOfDeath](https://github.com/TheHolyGrail/BridgeOfDeath).
-  - [`THGFoundation`/Excalibur](https://github.com/TheHolyGrail/Excalibur).
-  - [`THGLog`/Shrubbery](https://github.com/TheHolyGrail/Shrubbery).
+- [`ELJSBridge`](https://github.com/Electrode-iOS/ELJSBridge).
+  - [`ELFoundation`](https://github.com/Electrode-iOS/ELFoundation).
+  - [`ELLog`](https://github.com/Electrode-iOS/ELLog).
 
-[THG](https://github.com/TheHolyGrail/) frameworks are designed to live side-by-side in the file system, like so:
+[Electrode-iOS](https://github.com/Electrode-iOS/) frameworks are designed to live side-by-side in the file system, like so:
 
 * \MyProject
-* \MyProject\Zoot
-* \MyProject\BridgeOfDeath
-* \MyProject\Excalibur
-* \MyProject\Shrubbery
+* \MyProject\ELHybridWeb
+* \MyProject\ELJSBridge
+* \MyProject\ELFoundation
+* \MyProject\ELLog
 
 ### Carthage
 
 Install with [Carthage](https://github.com/Carthage/Carthage) by adding the framework to your project's [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
 ```
-github "TheHolyGrail/Zoot" ~> 2.0.0
+github "Electrode-iOS/ELHybridWeb" ~> 2.0.0
 ```
 
 ## Usage
@@ -55,32 +55,23 @@ window?.rootViewController = navigationController
 
 ### Web
 
-See the [Platform API documentation](platformAPI.md) for a reference of the JavaScript API. An example web application is available at [http://bridgeofdeath.herokuapp.com/](http://bridgeofdeath.herokuapp.com/) that demonstrates basic web usage of Zoot.
+See the [Platform API documentation](platformAPI.md) for a reference of the JavaScript API. An example web application is available at [http://bridgeofdeath.herokuapp.com/](http://bridgeofdeath.herokuapp.com/) that demonstrates basic web usage of ELHybridWeb.
 
 ## Example
 
-A test iOS project is located in Example/ZootExample.xcodeproj that is configured to load the test page at [http://bridgeofdeath.herokuapp.com/](http://bridgeofdeath.herokuapp.com/).
+A test iOS project is located in Example/ELHybridWebExample.xcodeproj that is configured to load the test page at [http://bridgeofdeath.herokuapp.com/](http://bridgeofdeath.herokuapp.com/).
 
 ## Contributions
 
 We appreciate your contributions to all of our projects and look forward to interacting with you via Pull Requests, the issue tracker, via Twitter, etc.  We're happy to help you, and to have you help us.  We'll strive to answer every PR and issue and be very transparent in what we do.
 
-When contributing code, please refer to our style guide [Dennis](https://github.com/TheHolyGrail/Dennis).
-
-###### THG's Primary Contributors
-
-Dr. Sneed ([@bsneed](https://github.com/bsneed))<br>
-Steve Riggins ([@steveriggins](https://github.com/steveriggins))<br>
-Sam Grover ([@samgrover](https://github.com/samgrover))<br>
-Angelo Di Paolo ([@angelodipaolo](https://github.com/angelodipaolo))<br>
-Cody Garvin ([@migs647](https://github.com/migs647))<br>
-Wes Ostler ([@wesostler](https://github.com/wesostler))<br>
+When contributing code, please refer to our style guide [Dennis](https://github.com/Electrode-iOS/Dennis).
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Walmart, TheHolyGrail, and other Contributors
+Copyright (c) 2015 Walmart
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

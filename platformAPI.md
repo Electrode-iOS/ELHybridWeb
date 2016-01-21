@@ -1,7 +1,7 @@
 Platform API documentation
 ==========================
 
-The platform API is a JavaScript API that provides a bridge to native device APIs for iOS and Android. [Zoot](https://github.com/TheHolyGrail/Zoot) is the implementation for iOS that bridges the platform API to native Objective-C-based APIs. Her twin, [Dingo](https://github.com/TheHolyGrail/Dingo), is a Java framework that bridges the API to native Android APIs. 
+The platform API is a JavaScript API that provides a bridge to native device APIs for iOS and Android. [ELHybridWeb](https://github.com/Electrode-iOS/ELHybridWeb) is the implementation for iOS that bridges the platform API to native Objective-C-based APIs. Her twin, [Dingo](https://github.com/Electrode-iOS/Dingo), is a Java framework that bridges the API to native Android APIs. 
 
 The platform API enables web applications to use native device APIs for building hybrid experiences.
 
@@ -107,7 +107,7 @@ The web application uses the `share()` method to enable the user to share conten
 ```
 var options = {
   message: "What is your quest?", 
-  url: "https://github.com/TheHolyGrail/BridgeOfDeath"
+  url: "https://github.com/Electrode-iOS/BridgeOfDeath"
 };
 
 NativeBridge.share(options);
@@ -347,7 +347,7 @@ The Done button dismisses the external web view regardless of the web history.
 
 The `presentExternalURL()` method can be used when the hybrid web application needs to navigate to an external web application or website that the hybrid web app developer does not control. It allows the user to freely navigate forward and backward in a new web view instance without modfiying the web history of the hybrid web application.
 
-An optional `returnURL` option can be set that enables the hybrid web application to intercept a request of the external web view in order to return to the original hybrid web application's web view. When the external web view attempts to load a request the request's URL will be compared against the `returnURL` value to determine if the request should be intercepted. Ignoring the query string value, the `returnURL` will match against any subset of the intercepted URL including the scheme, domain, port, and path. For example the `returnURL` value of `"https//github.com/TheHolyGrail"` will intercept the URLs `"https//github.com/TheHolyGrail/Zoot"` and `"https//github.com/TheHolyGrail/BridgeOfDeath"` but not the URL `"https//github.com/"`.
+An optional `returnURL` option can be set that enables the hybrid web application to intercept a request of the external web view in order to return to the original hybrid web application's web view. When the external web view attempts to load a request the request's URL will be compared against the `returnURL` value to determine if the request should be intercepted. Ignoring the query string value, the `returnURL` will match against any subset of the intercepted URL including the scheme, domain, port, and path. For example the `returnURL` value of `"https//github.com/TheHolyGrail"` will intercept the URLs `"https//github.com/Electrode-iOS/ELHybridWeb"` and `"https//github.com/Electrode-iOS/BridgeOfDeath"` but not the URL `"https//github.com/"`.
 
 After a request has been matched against the `returnURL` value the bridge prevents the request from loading inside the external web view and instead loads it into the original hybrid web application's web view. The external web view is dismissed and the user returns to the original web application's web view with the intercepted request loaded into it.
 

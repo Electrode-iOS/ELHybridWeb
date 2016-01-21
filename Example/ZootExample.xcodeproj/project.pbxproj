@@ -13,9 +13,9 @@
 		177E5DBB1B00FF22006BCBE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DBA1B00FF22006BCBE2 /* ViewController.swift */; };
 		177E5DC01B00FF22006BCBE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 177E5DBF1B00FF22006BCBE2 /* Images.xcassets */; };
 		177E5DC31B00FF22006BCBE2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177E5DC11B00FF22006BCBE2 /* LaunchScreen.xib */; };
-		177E5DCF1B00FF22006BCBE2 /* ZootExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */; };
-		1786AFE11B0E611F005B7559 /* THGHybridWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17E55D681B0E419900DA11BB /* THGHybridWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		17E55D6B1B0E41A900DA11BB /* THGHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E55D681B0E419900DA11BB /* THGHybridWeb.framework */; };
+		177E5DCF1B00FF22006BCBE2 /* ELHybridWebExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5DCE1B00FF22006BCBE2 /* ELHybridWebExampleTests.swift */; };
+		1786AFE11B0E611F005B7559 /* ELHybridWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17E55D681B0E419900DA11BB /* ELHybridWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		17E55D6B1B0E41A900DA11BB /* ELHybridWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E55D681B0E419900DA11BB /* ELHybridWeb.framework */; };
 		17EA19721B0ABB5300E011CB /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17EA19711B0ABB5300E011CB /* ViewController.xib */; };
 		17ED5C971B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */; };
 /* End PBXBuildFile section */
@@ -26,28 +26,28 @@
 			containerPortal = 177E5DAB1B00FF22006BCBE2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 177E5DB21B00FF22006BCBE2;
-			remoteInfo = ZootExample;
+			remoteInfo = ELHybridWebExample;
 		};
 		1786AFE21B0E611F005B7559 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */;
+			containerPortal = 17E55D621B0E419900DA11BB /* ELHybridWeb.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 173E4E571B00FDAD00ACBCCA;
-			remoteInfo = THGHybridWeb;
+			remoteInfo = ELHybridWeb;
 		};
 		17E55D671B0E419900DA11BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */;
+			containerPortal = 17E55D621B0E419900DA11BB /* ELHybridWeb.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 173E4E581B00FDAD00ACBCCA;
-			remoteInfo = THGHybridWeb;
+			remoteInfo = ELHybridWeb;
 		};
 		17E55D691B0E419900DA11BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */;
+			containerPortal = 17E55D621B0E419900DA11BB /* ELHybridWeb.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 173E4E631B00FDAE00ACBCCA;
-			remoteInfo = THGHybridWebTests;
+			remoteInfo = ELHybridWebTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -58,7 +58,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1786AFE11B0E611F005B7559 /* THGHybridWeb.framework in Embed Frameworks */,
+				1786AFE11B0E611F005B7559 /* ELHybridWeb.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,16 +68,16 @@
 /* Begin PBXFileReference section */
 		177DA81D1B064C450006457E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		177DA81E1B064C450006457E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
-		177E5DB31B00FF22006BCBE2 /* ZootExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZootExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		177E5DB31B00FF22006BCBE2 /* ELHybridWebExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ELHybridWebExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		177E5DB71B00FF22006BCBE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		177E5DB81B00FF22006BCBE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		177E5DBA1B00FF22006BCBE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		177E5DBF1B00FF22006BCBE2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		177E5DC21B00FF22006BCBE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		177E5DC81B00FF22006BCBE2 /* ZootExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZootExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		177E5DC81B00FF22006BCBE2 /* ELHybridWebExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ELHybridWebExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		177E5DCD1B00FF22006BCBE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZootExampleTests.swift; sourceTree = "<group>"; };
-		17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGHybridWeb.xcodeproj; path = ../THGHybridWeb.xcodeproj; sourceTree = "<group>"; };
+		177E5DCE1B00FF22006BCBE2 /* ELHybridWebExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELHybridWebExampleTests.swift; sourceTree = "<group>"; };
+		17E55D621B0E419900DA11BB /* ELHybridWeb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELHybridWeb.xcodeproj; path = ../ELHybridWeb.xcodeproj; sourceTree = "<group>"; };
 		17EA19711B0ABB5300E011CB /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		17ED5C961B0B558E00E1AE34 /* HybridAPI+NativeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+NativeDetailView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17E55D6B1B0E41A900DA11BB /* THGHybridWeb.framework in Frameworks */,
+				17E55D6B1B0E41A900DA11BB /* ELHybridWeb.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,9 +104,9 @@
 		177E5DAA1B00FF22006BCBE2 = {
 			isa = PBXGroup;
 			children = (
-				17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */,
-				177E5DB51B00FF22006BCBE2 /* ZootExample */,
-				177E5DCB1B00FF22006BCBE2 /* ZootExampleTests */,
+				17E55D621B0E419900DA11BB /* ELHybridWeb.xcodeproj */,
+				177E5DB51B00FF22006BCBE2 /* ELHybridWebExample */,
+				177E5DCB1B00FF22006BCBE2 /* ELHybridWebExampleTests */,
 				177E5DB41B00FF22006BCBE2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,13 +114,13 @@
 		177E5DB41B00FF22006BCBE2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				177E5DB31B00FF22006BCBE2 /* ZootExample.app */,
-				177E5DC81B00FF22006BCBE2 /* ZootExampleTests.xctest */,
+				177E5DB31B00FF22006BCBE2 /* ELHybridWebExample.app */,
+				177E5DC81B00FF22006BCBE2 /* ELHybridWebExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		177E5DB51B00FF22006BCBE2 /* ZootExample */ = {
+		177E5DB51B00FF22006BCBE2 /* ELHybridWebExample */ = {
 			isa = PBXGroup;
 			children = (
 				177E5DB81B00FF22006BCBE2 /* AppDelegate.swift */,
@@ -133,7 +133,7 @@
 				177E5DC11B00FF22006BCBE2 /* LaunchScreen.xib */,
 				177E5DB61B00FF22006BCBE2 /* Supporting Files */,
 			);
-			path = ZootExample;
+			path = ELHybridWebExample;
 			sourceTree = "<group>";
 		};
 		177E5DB61B00FF22006BCBE2 /* Supporting Files */ = {
@@ -144,13 +144,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		177E5DCB1B00FF22006BCBE2 /* ZootExampleTests */ = {
+		177E5DCB1B00FF22006BCBE2 /* ELHybridWebExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				177E5DCE1B00FF22006BCBE2 /* ZootExampleTests.swift */,
+				177E5DCE1B00FF22006BCBE2 /* ELHybridWebExampleTests.swift */,
 				177E5DCC1B00FF22006BCBE2 /* Supporting Files */,
 			);
-			path = ZootExampleTests;
+			path = ELHybridWebExampleTests;
 			sourceTree = "<group>";
 		};
 		177E5DCC1B00FF22006BCBE2 /* Supporting Files */ = {
@@ -164,8 +164,8 @@
 		17E55D631B0E419900DA11BB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				17E55D681B0E419900DA11BB /* THGHybridWeb.framework */,
-				17E55D6A1B0E419900DA11BB /* THGHybridWebTests.xctest */,
+				17E55D681B0E419900DA11BB /* ELHybridWeb.framework */,
+				17E55D6A1B0E419900DA11BB /* ELHybridWebTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,9 +173,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		177E5DB21B00FF22006BCBE2 /* ZootExample */ = {
+		177E5DB21B00FF22006BCBE2 /* ELHybridWebExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 177E5DD21B00FF22006BCBE2 /* Build configuration list for PBXNativeTarget "ZootExample" */;
+			buildConfigurationList = 177E5DD21B00FF22006BCBE2 /* Build configuration list for PBXNativeTarget "ELHybridWebExample" */;
 			buildPhases = (
 				177E5DAF1B00FF22006BCBE2 /* Sources */,
 				177E5DB01B00FF22006BCBE2 /* Frameworks */,
@@ -187,14 +187,14 @@
 			dependencies = (
 				1786AFE31B0E611F005B7559 /* PBXTargetDependency */,
 			);
-			name = ZootExample;
-			productName = ZootExample;
-			productReference = 177E5DB31B00FF22006BCBE2 /* ZootExample.app */;
+			name = ELHybridWebExample;
+			productName = ELHybridWebExample;
+			productReference = 177E5DB31B00FF22006BCBE2 /* ELHybridWebExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		177E5DC71B00FF22006BCBE2 /* ZootExampleTests */ = {
+		177E5DC71B00FF22006BCBE2 /* ELHybridWebExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 177E5DD51B00FF22006BCBE2 /* Build configuration list for PBXNativeTarget "ZootExampleTests" */;
+			buildConfigurationList = 177E5DD51B00FF22006BCBE2 /* Build configuration list for PBXNativeTarget "ELHybridWebExampleTests" */;
 			buildPhases = (
 				177E5DC41B00FF22006BCBE2 /* Sources */,
 				177E5DC51B00FF22006BCBE2 /* Frameworks */,
@@ -205,9 +205,9 @@
 			dependencies = (
 				177E5DCA1B00FF22006BCBE2 /* PBXTargetDependency */,
 			);
-			name = ZootExampleTests;
-			productName = ZootExampleTests;
-			productReference = 177E5DC81B00FF22006BCBE2 /* ZootExampleTests.xctest */;
+			name = ELHybridWebExampleTests;
+			productName = ELHybridWebExampleTests;
+			productReference = 177E5DC81B00FF22006BCBE2 /* ELHybridWebExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -229,7 +229,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 177E5DAE1B00FF22006BCBE2 /* Build configuration list for PBXProject "ZootExample" */;
+			buildConfigurationList = 177E5DAE1B00FF22006BCBE2 /* Build configuration list for PBXProject "ELHybridWebExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -243,29 +243,29 @@
 			projectReferences = (
 				{
 					ProductGroup = 17E55D631B0E419900DA11BB /* Products */;
-					ProjectRef = 17E55D621B0E419900DA11BB /* THGHybridWeb.xcodeproj */;
+					ProjectRef = 17E55D621B0E419900DA11BB /* ELHybridWeb.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				177E5DB21B00FF22006BCBE2 /* ZootExample */,
-				177E5DC71B00FF22006BCBE2 /* ZootExampleTests */,
+				177E5DB21B00FF22006BCBE2 /* ELHybridWebExample */,
+				177E5DC71B00FF22006BCBE2 /* ELHybridWebExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		17E55D681B0E419900DA11BB /* THGHybridWeb.framework */ = {
+		17E55D681B0E419900DA11BB /* ELHybridWeb.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = THGHybridWeb.framework;
+			path = ELHybridWeb.framework;
 			remoteRef = 17E55D671B0E419900DA11BB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		17E55D6A1B0E419900DA11BB /* THGHybridWebTests.xctest */ = {
+		17E55D6A1B0E419900DA11BB /* ELHybridWebTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = THGHybridWebTests.xctest;
+			path = ELHybridWebTests.xctest;
 			remoteRef = 17E55D691B0E419900DA11BB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -308,7 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				177E5DCF1B00FF22006BCBE2 /* ZootExampleTests.swift in Sources */,
+				177E5DCF1B00FF22006BCBE2 /* ELHybridWebExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,12 +317,12 @@
 /* Begin PBXTargetDependency section */
 		177E5DCA1B00FF22006BCBE2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 177E5DB21B00FF22006BCBE2 /* ZootExample */;
+			target = 177E5DB21B00FF22006BCBE2 /* ELHybridWebExample */;
 			targetProxy = 177E5DC91B00FF22006BCBE2 /* PBXContainerItemProxy */;
 		};
 		1786AFE31B0E611F005B7559 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = THGHybridWeb;
+			name = ELHybridWeb;
 			targetProxy = 1786AFE21B0E611F005B7559 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -427,7 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = ZootExample/Info.plist;
+				INFOPLIST_FILE = ELHybridWebExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -438,7 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = ZootExample/Info.plist;
+				INFOPLIST_FILE = ELHybridWebExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -456,10 +456,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ZootExampleTests/Info.plist;
+				INFOPLIST_FILE = ELHybridWebExampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZootExample.app/ZootExample";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ELHybridWebExample.app/ELHybridWebExample";
 			};
 			name = Debug;
 		};
@@ -471,17 +471,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ZootExampleTests/Info.plist;
+				INFOPLIST_FILE = ELHybridWebExampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZootExample.app/ZootExample";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ELHybridWebExample.app/ELHybridWebExample";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		177E5DAE1B00FF22006BCBE2 /* Build configuration list for PBXProject "ZootExample" */ = {
+		177E5DAE1B00FF22006BCBE2 /* Build configuration list for PBXProject "ELHybridWebExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				177E5DD01B00FF22006BCBE2 /* Debug */,
@@ -490,7 +490,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		177E5DD21B00FF22006BCBE2 /* Build configuration list for PBXNativeTarget "ZootExample" */ = {
+		177E5DD21B00FF22006BCBE2 /* Build configuration list for PBXNativeTarget "ELHybridWebExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				177E5DD31B00FF22006BCBE2 /* Debug */,
@@ -499,7 +499,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		177E5DD51B00FF22006BCBE2 /* Build configuration list for PBXNativeTarget "ZootExampleTests" */ = {
+		177E5DD51B00FF22006BCBE2 /* Build configuration list for PBXNativeTarget "ELHybridWebExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				177E5DD61B00FF22006BCBE2 /* Debug */,

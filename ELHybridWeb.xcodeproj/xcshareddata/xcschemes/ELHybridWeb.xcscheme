@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "173E4E571B00FDAD00ACBCCA"
-               BuildableName = "THGHybridWeb.framework"
-               BlueprintName = "THGHybridWeb"
-               ReferencedContainer = "container:THGHybridWeb.xcodeproj">
+               BuildableName = "ELHybridWeb.framework"
+               BlueprintName = "ELHybridWeb"
+               ReferencedContainer = "container:ELHybridWeb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "173E4E621B00FDAE00ACBCCA"
-               BuildableName = "THGHybridWebTests.xctest"
-               BlueprintName = "THGHybridWebTests"
-               ReferencedContainer = "container:THGHybridWeb.xcodeproj">
+               BuildableName = "ELHybridWebTests.xctest"
+               BlueprintName = "ELHybridWebTests"
+               ReferencedContainer = "container:ELHybridWeb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,9 +48,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "173E4E621B00FDAE00ACBCCA"
-               BuildableName = "THGHybridWebTests.xctest"
-               BlueprintName = "THGHybridWebTests"
-               ReferencedContainer = "container:THGHybridWeb.xcodeproj">
+               BuildableName = "ELHybridWebTests.xctest"
+               BlueprintName = "ELHybridWebTests"
+               ReferencedContainer = "container:ELHybridWeb.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "173E4E571B00FDAD00ACBCCA"
-            BuildableName = "THGHybridWeb.framework"
-            BlueprintName = "THGHybridWeb"
-            ReferencedContainer = "container:THGHybridWeb.xcodeproj">
+            BuildableName = "ELHybridWeb.framework"
+            BlueprintName = "ELHybridWeb"
+            ReferencedContainer = "container:ELHybridWeb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "173E4E571B00FDAD00ACBCCA"
-            BuildableName = "THGHybridWeb.framework"
-            BlueprintName = "THGHybridWeb"
-            ReferencedContainer = "container:THGHybridWeb.xcodeproj">
+            BuildableName = "ELHybridWeb.framework"
+            BlueprintName = "ELHybridWeb"
+            ReferencedContainer = "container:ELHybridWeb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -98,9 +98,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "173E4E571B00FDAD00ACBCCA"
-            BuildableName = "THGHybridWeb.framework"
-            BlueprintName = "THGHybridWeb"
-            ReferencedContainer = "container:THGHybridWeb.xcodeproj">
+            BuildableName = "ELHybridWeb.framework"
+            BlueprintName = "ELHybridWeb"
+            ReferencedContainer = "container:ELHybridWeb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
