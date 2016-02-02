@@ -10,8 +10,11 @@
 		170DE10D1B8C872300E9C3E9 /* Navigation+External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */; };
 		172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */; };
 		172F077E1B4C67A100C96ABF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F077D1B4C67A100C96ABF /* Util.swift */; };
-		173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		173E4E5E1B00FDAD00ACBCCA /* ELHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* ELHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		174CA6C51B20804400A80074 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CA6C41B20804400A80074 /* NavigationBar.swift */; };
+		175CA2101C51253F005A8364 /* ELJSBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA2091C5124D2005A8364 /* ELJSBridge.framework */; };
+		175CA2111C512586005A8364 /* ELFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1EC1C5124C6005A8364 /* ELFoundation.framework */; };
+		175CA2121C512586005A8364 /* ELLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1FA1C5124CC005A8364 /* ELLog.framework */; };
 		17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17711C0D1B20FDFB0043B71E /* BarButton.swift */; };
 		177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */; };
 		177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
@@ -38,9 +41,6 @@
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
-		81E286F81BE292480082DAF4 /* THGBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA491B3B27FF0000FEEF /* THGBridge.framework */; };
-		81E286F91BE292480082DAF4 /* THGFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */; };
-		DBF3D5EA1BFBB36400A6A1E6 /* THGHybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,98 +49,84 @@
 			containerPortal = 173E4E4F1B00FDAD00ACBCCA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 173E4E571B00FDAD00ACBCCA;
-			remoteInfo = THGHybridWeb;
+			remoteInfo = ELHybridWeb;
 		};
-		17AB907D1B4186DD002BCA0F /* PBXContainerItemProxy */ = {
+		175CA1EB1C5124C6005A8364 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8D47BB1AAE6FF50028B74D;
-			remoteInfo = THGLog;
-		};
-		17AB907F1B4186DD002BCA0F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8D47C61AAE6FF50028B74D;
-			remoteInfo = THGLogTests;
-		};
-		17AB90811B4186DD002BCA0F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA2410631AF966F600AA4410;
-			remoteInfo = THGLog_osx;
-		};
-		81E286EA1BE2922D0082DAF4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA41FF9E1BBC85DC0009CB83;
-			remoteInfo = THGBridge_osxTests;
-		};
-		81E286EF1BE2922D0082DAF4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8CD5631B7A9DCB00DA8BF7;
-			remoteInfo = THGFoundation_osxTests;
-		};
-		81E286F41BE2923D0082DAF4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CAC38A9C1AC3130B005A3CE0;
-			remoteInfo = THGBridge;
-		};
-		81E286F61BE2923D0082DAF4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CACF2A091A9614D20084EFAE;
-			remoteInfo = THGFoundation;
-		};
-		CA85AA2E1B3B27EF0000FEEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
+			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CACF2A0A1A9614D20084EFAE;
-			remoteInfo = THGFoundation;
+			remoteInfo = ELFoundation;
 		};
-		CA85AA301B3B27EF0000FEEF /* PBXContainerItemProxy */ = {
+		175CA1ED1C5124C6005A8364 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
+			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CACF2A151A9614D20084EFAE;
-			remoteInfo = THGFoundationTests;
+			remoteInfo = ELFoundationTests;
 		};
-		CA85AA321B3B27EF0000FEEF /* PBXContainerItemProxy */ = {
+		175CA1EF1C5124C6005A8364 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
+			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = CA24104D1AF965B700AA4410;
-			remoteInfo = THGFoundation_osx;
+			remoteGlobalIDString = CA8CD55A1B7A9DCA00DA8BF7;
+			remoteInfo = ELFoundation_osx;
 		};
-		CA85AA481B3B27FF0000FEEF /* PBXContainerItemProxy */ = {
+		175CA1F11C5124C6005A8364 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
+			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA8CD5631B7A9DCB00DA8BF7;
+			remoteInfo = ELFoundation_osxTests;
+		};
+		175CA1F91C5124CC005A8364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA8D47BB1AAE6FF50028B74D;
+			remoteInfo = ELLog;
+		};
+		175CA1FB1C5124CC005A8364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA8D47C61AAE6FF50028B74D;
+			remoteInfo = ELLogTests;
+		};
+		175CA1FD1C5124CC005A8364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA2410631AF966F600AA4410;
+			remoteInfo = ELLog_osx;
+		};
+		175CA2081C5124D2005A8364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CAC38A9D1AC3130B005A3CE0;
-			remoteInfo = THGBridge;
+			remoteInfo = ELJSBridge;
 		};
-		CA85AA4A1B3B27FF0000FEEF /* PBXContainerItemProxy */ = {
+		175CA20A1C5124D2005A8364 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
+			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CAC38AA81AC3130B005A3CE0;
-			remoteInfo = THGBridgeTests;
+			remoteInfo = ELJSBridgeTests;
 		};
-		CA85AA4C1B3B27FF0000FEEF /* PBXContainerItemProxy */ = {
+		175CA20C1C5124D2005A8364 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
+			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = CA24107F1AF9692000AA4410;
-			remoteInfo = THGBridge_osx;
+			remoteGlobalIDString = CA41FF951BBC85DC0009CB83;
+			remoteInfo = ELJSBridge_osx;
+		};
+		175CA20E1C5124D2005A8364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA41FF9E1BBC85DC0009CB83;
+			remoteInfo = ELJSBridge_osxTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -160,12 +146,15 @@
 		170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+External.swift"; sourceTree = "<group>"; };
 		172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+View.swift"; sourceTree = "<group>"; };
 		172F077D1B4C67A100C96ABF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THGHybridWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		173E4E581B00FDAD00ACBCCA /* ELHybridWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ELHybridWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E5C1B00FDAD00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THGHybridWeb.h; sourceTree = "<group>"; };
-		173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THGHybridWebTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		173E4E5D1B00FDAD00ACBCCA /* ELHybridWeb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELHybridWeb.h; sourceTree = "<group>"; };
+		173E4E631B00FDAE00ACBCCA /* ELHybridWebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ELHybridWebTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E691B00FDAE00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		174CA6C41B20804400A80074 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELFoundation.xcodeproj; path = ../ELFoundation/ELFoundation.xcodeproj; sourceTree = "<group>"; };
+		175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELLog.xcodeproj; path = ../ELLog/ELLog.xcodeproj; sourceTree = "<group>"; };
+		175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELJSBridge.xcodeproj; path = ../ELJSBridge/ELJSBridge.xcodeproj; sourceTree = "<group>"; };
 		17711C0D1B20FDFB0043B71E /* BarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButton.swift; sourceTree = "<group>"; };
 		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; };
 		177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Logging.swift"; sourceTree = "<group>"; };
@@ -181,7 +170,6 @@
 		178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegateTests.swift; sourceTree = "<group>"; };
 		178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarTests.swift; sourceTree = "<group>"; };
 		1795F5EA1B73A3B60070BB49 /* WebViewControllerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerOptions.swift; sourceTree = "<group>"; };
-		17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGLog.xcodeproj; path = ../Shrubbery/THGLog.xcodeproj; sourceTree = "<group>"; };
 		17B435691B667B4D00446D71 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+Modal.swift"; sourceTree = "<group>"; };
 		17C41D5C1B7E1F27009431C0 /* ViewAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAPITests.swift; sourceTree = "<group>"; };
@@ -193,9 +181,6 @@
 		17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPIInfo.swift; sourceTree = "<group>"; };
 		1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerOptionsTests.swift; sourceTree = "<group>"; };
 		19FECF611B9615720095440B /* BarButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonTests.swift; sourceTree = "<group>"; };
-		CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGFoundation.xcodeproj; path = ../Excalibur/THGFoundation.xcodeproj; sourceTree = "<group>"; };
-		CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = THGBridge.xcodeproj; path = ../BridgeOfDeath/THGBridge.xcodeproj; sourceTree = "<group>"; };
-		DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THGHybridWebLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,8 +188,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81E286F81BE292480082DAF4 /* THGBridge.framework in Frameworks */,
-				81E286F91BE292480082DAF4 /* THGFoundation.framework in Frameworks */,
+				175CA2111C512586005A8364 /* ELFoundation.framework in Frameworks */,
+				175CA2121C512586005A8364 /* ELLog.framework in Frameworks */,
+				175CA2101C51253F005A8364 /* ELJSBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,8 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				CA85AA271B3B27E20000FEEF /* Modules */,
-				173E4E5A1B00FDAD00ACBCCA /* THGHybridWeb */,
-				173E4E671B00FDAE00ACBCCA /* THGHybridWebTests */,
+				173E4E5A1B00FDAD00ACBCCA /* ELHybridWeb */,
+				173E4E671B00FDAE00ACBCCA /* ELHybridWebTests */,
 				173E4E591B00FDAD00ACBCCA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -231,20 +217,20 @@
 		173E4E591B00FDAD00ACBCCA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */,
-				173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */,
+				173E4E581B00FDAD00ACBCCA /* ELHybridWeb.framework */,
+				173E4E631B00FDAE00ACBCCA /* ELHybridWebTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		173E4E5A1B00FDAD00ACBCCA /* THGHybridWeb */ = {
+		173E4E5A1B00FDAD00ACBCCA /* ELHybridWeb */ = {
 			isa = PBXGroup;
 			children = (
 				177E5D841B00FE1A006BCBE2 /* Source */,
-				173E4E5D1B00FDAD00ACBCCA /* THGHybridWeb.h */,
+				173E4E5D1B00FDAD00ACBCCA /* ELHybridWeb.h */,
 				173E4E5B1B00FDAD00ACBCCA /* Supporting Files */,
 			);
-			path = THGHybridWeb;
+			path = ELHybridWeb;
 			sourceTree = "<group>";
 		};
 		173E4E5B1B00FDAD00ACBCCA /* Supporting Files */ = {
@@ -255,7 +241,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		173E4E671B00FDAE00ACBCCA /* THGHybridWebTests */ = {
+		173E4E671B00FDAE00ACBCCA /* ELHybridWebTests */ = {
 			isa = PBXGroup;
 			children = (
 				173E4E681B00FDAE00ACBCCA /* Supporting Files */,
@@ -269,7 +255,7 @@
 				19FECF611B9615720095440B /* BarButtonTests.swift */,
 				1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */,
 			);
-			path = THGHybridWebTests;
+			path = ELHybridWebTests;
 			sourceTree = "<group>";
 		};
 		173E4E681B00FDAE00ACBCCA /* Supporting Files */ = {
@@ -278,6 +264,38 @@
 				173E4E691B00FDAE00ACBCCA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		175CA1E51C5124C6005A8364 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				175CA1EC1C5124C6005A8364 /* ELFoundation.framework */,
+				175CA1EE1C5124C6005A8364 /* ELFoundationTests.xctest */,
+				175CA1F01C5124C6005A8364 /* ELFoundation.framework */,
+				175CA1F21C5124C6005A8364 /* ELFoundation_osxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		175CA1F41C5124CC005A8364 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				175CA1FA1C5124CC005A8364 /* ELLog.framework */,
+				175CA1FC1C5124CC005A8364 /* ELLogTests.xctest */,
+				175CA1FE1C5124CC005A8364 /* ELLog.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		175CA2001C5124D2005A8364 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				175CA2091C5124D2005A8364 /* ELJSBridge.framework */,
+				175CA20B1C5124D2005A8364 /* ELJSBridgeTests.xctest */,
+				175CA20D1C5124D2005A8364 /* ELJSBridge_osx.framework */,
+				175CA20F1C5124D2005A8364 /* ELJSBridge_osxTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		177E5D841B00FE1A006BCBE2 /* Source */ = {
@@ -325,46 +343,14 @@
 			path = "Web View";
 			sourceTree = "<group>";
 		};
-		17AB90781B4186DD002BCA0F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				17AB907E1B4186DD002BCA0F /* THGLog.framework */,
-				17AB90801B4186DD002BCA0F /* THGLogTests.xctest */,
-				17AB90821B4186DD002BCA0F /* THGLog.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		CA85AA271B3B27E20000FEEF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */,
-				CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */,
-				CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */,
+				175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */,
+				175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */,
+				175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */,
 			);
 			name = Modules;
-			sourceTree = "<group>";
-		};
-		CA85AA291B3B27EF0000FEEF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */,
-				CA85AA311B3B27EF0000FEEF /* THGFoundationTests.xctest */,
-				CA85AA331B3B27EF0000FEEF /* THGFoundation.framework */,
-				81E286F01BE2922D0082DAF4 /* THGFoundation_osxTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CA85AA411B3B27FF0000FEEF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CA85AA491B3B27FF0000FEEF /* THGBridge.framework */,
-				CA85AA4B1B3B27FF0000FEEF /* THGBridgeTests.xctest */,
-				CA85AA4D1B3B27FF0000FEEF /* THGBridge_osx.framework */,
-				81E286EB1BE2922D0082DAF4 /* THGBridge_osxTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,16 +360,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173E4E5E1B00FDAD00ACBCCA /* THGHybridWeb.h in Headers */,
+				173E4E5E1B00FDAD00ACBCCA /* ELHybridWeb.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		173E4E571B00FDAD00ACBCCA /* THGHybridWeb */ = {
+		173E4E571B00FDAD00ACBCCA /* ELHybridWeb */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 173E4E6E1B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "THGHybridWeb" */;
+			buildConfigurationList = 173E4E6E1B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "ELHybridWeb" */;
 			buildPhases = (
 				173E4E531B00FDAD00ACBCCA /* Sources */,
 				173E4E541B00FDAD00ACBCCA /* Frameworks */,
@@ -393,17 +379,15 @@
 			buildRules = (
 			);
 			dependencies = (
-				81E286F51BE2923D0082DAF4 /* PBXTargetDependency */,
-				81E286F71BE2923D0082DAF4 /* PBXTargetDependency */,
 			);
-			name = THGHybridWeb;
-			productName = THGHybridWeb;
-			productReference = 173E4E581B00FDAD00ACBCCA /* THGHybridWeb.framework */;
+			name = ELHybridWeb;
+			productName = ELHybridWeb;
+			productReference = 173E4E581B00FDAD00ACBCCA /* ELHybridWeb.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		173E4E621B00FDAE00ACBCCA /* THGHybridWebTests */ = {
+		173E4E621B00FDAE00ACBCCA /* ELHybridWebTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 173E4E711B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "THGHybridWebTests" */;
+			buildConfigurationList = 173E4E711B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "ELHybridWebTests" */;
 			buildPhases = (
 				173E4E5F1B00FDAE00ACBCCA /* Sources */,
 				173E4E601B00FDAE00ACBCCA /* Frameworks */,
@@ -415,9 +399,9 @@
 			dependencies = (
 				173E4E661B00FDAE00ACBCCA /* PBXTargetDependency */,
 			);
-			name = THGHybridWebTests;
-			productName = THGHybridWebTests;
-			productReference = 173E4E631B00FDAE00ACBCCA /* THGHybridWebTests.xctest */;
+			name = ELHybridWebTests;
+			productName = ELHybridWebTests;
+			productReference = 173E4E631B00FDAE00ACBCCA /* ELHybridWebTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -428,7 +412,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
-				ORGANIZATIONNAME = TheHolyGrail;
+				ORGANIZATIONNAME = WalmartLabs;
 				TargetAttributes = {
 					173E4E571B00FDAD00ACBCCA = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -438,7 +422,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 173E4E521B00FDAD00ACBCCA /* Build configuration list for PBXProject "THGHybridWeb" */;
+			buildConfigurationList = 173E4E521B00FDAD00ACBCCA /* Build configuration list for PBXProject "ELHybridWeb" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -450,102 +434,102 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = CA85AA411B3B27FF0000FEEF /* Products */;
-					ProjectRef = CA85AA401B3B27FF0000FEEF /* THGBridge.xcodeproj */;
+					ProductGroup = 175CA1E51C5124C6005A8364 /* Products */;
+					ProjectRef = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
 				},
 				{
-					ProductGroup = CA85AA291B3B27EF0000FEEF /* Products */;
-					ProjectRef = CA85AA281B3B27EF0000FEEF /* THGFoundation.xcodeproj */;
+					ProductGroup = 175CA2001C5124D2005A8364 /* Products */;
+					ProjectRef = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
 				},
 				{
-					ProductGroup = 17AB90781B4186DD002BCA0F /* Products */;
-					ProjectRef = 17AB90771B4186DD002BCA0F /* THGLog.xcodeproj */;
+					ProductGroup = 175CA1F41C5124CC005A8364 /* Products */;
+					ProjectRef = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				173E4E571B00FDAD00ACBCCA /* THGHybridWeb */,
-				173E4E621B00FDAE00ACBCCA /* THGHybridWebTests */,
+				173E4E571B00FDAD00ACBCCA /* ELHybridWeb */,
+				173E4E621B00FDAE00ACBCCA /* ELHybridWebTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		17AB907E1B4186DD002BCA0F /* THGLog.framework */ = {
+		175CA1EC1C5124C6005A8364 /* ELFoundation.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = THGLog.framework;
-			remoteRef = 17AB907D1B4186DD002BCA0F /* PBXContainerItemProxy */;
+			path = ELFoundation.framework;
+			remoteRef = 175CA1EB1C5124C6005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		17AB90801B4186DD002BCA0F /* THGLogTests.xctest */ = {
+		175CA1EE1C5124C6005A8364 /* ELFoundationTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = THGLogTests.xctest;
-			remoteRef = 17AB907F1B4186DD002BCA0F /* PBXContainerItemProxy */;
+			path = ELFoundationTests.xctest;
+			remoteRef = 175CA1ED1C5124C6005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		17AB90821B4186DD002BCA0F /* THGLog.framework */ = {
+		175CA1F01C5124C6005A8364 /* ELFoundation.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = THGLog.framework;
-			remoteRef = 17AB90811B4186DD002BCA0F /* PBXContainerItemProxy */;
+			path = ELFoundation.framework;
+			remoteRef = 175CA1EF1C5124C6005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		81E286EB1BE2922D0082DAF4 /* THGBridge_osxTests.xctest */ = {
+		175CA1F21C5124C6005A8364 /* ELFoundation_osxTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = THGBridge_osxTests.xctest;
-			remoteRef = 81E286EA1BE2922D0082DAF4 /* PBXContainerItemProxy */;
+			path = ELFoundation_osxTests.xctest;
+			remoteRef = 175CA1F11C5124C6005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		81E286F01BE2922D0082DAF4 /* THGFoundation_osxTests.xctest */ = {
+		175CA1FA1C5124CC005A8364 /* ELLog.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ELLog.framework;
+			remoteRef = 175CA1F91C5124CC005A8364 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		175CA1FC1C5124CC005A8364 /* ELLogTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = THGFoundation_osxTests.xctest;
-			remoteRef = 81E286EF1BE2922D0082DAF4 /* PBXContainerItemProxy */;
+			path = ELLogTests.xctest;
+			remoteRef = 175CA1FB1C5124CC005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA85AA2F1B3B27EF0000FEEF /* THGFoundation.framework */ = {
+		175CA1FE1C5124CC005A8364 /* ELLog.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = THGFoundation.framework;
-			remoteRef = CA85AA2E1B3B27EF0000FEEF /* PBXContainerItemProxy */;
+			path = ELLog.framework;
+			remoteRef = 175CA1FD1C5124CC005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA85AA311B3B27EF0000FEEF /* THGFoundationTests.xctest */ = {
+		175CA2091C5124D2005A8364 /* ELJSBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ELJSBridge.framework;
+			remoteRef = 175CA2081C5124D2005A8364 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		175CA20B1C5124D2005A8364 /* ELJSBridgeTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = THGFoundationTests.xctest;
-			remoteRef = CA85AA301B3B27EF0000FEEF /* PBXContainerItemProxy */;
+			path = ELJSBridgeTests.xctest;
+			remoteRef = 175CA20A1C5124D2005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA85AA331B3B27EF0000FEEF /* THGFoundation.framework */ = {
+		175CA20D1C5124D2005A8364 /* ELJSBridge_osx.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = THGFoundation.framework;
-			remoteRef = CA85AA321B3B27EF0000FEEF /* PBXContainerItemProxy */;
+			path = ELJSBridge_osx.framework;
+			remoteRef = 175CA20C1C5124D2005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA85AA491B3B27FF0000FEEF /* THGBridge.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = THGBridge.framework;
-			remoteRef = CA85AA481B3B27FF0000FEEF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA85AA4B1B3B27FF0000FEEF /* THGBridgeTests.xctest */ = {
+		175CA20F1C5124D2005A8364 /* ELJSBridge_osxTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = THGBridgeTests.xctest;
-			remoteRef = CA85AA4A1B3B27FF0000FEEF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA85AA4D1B3B27FF0000FEEF /* THGBridge_osx.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = THGBridge_osx.framework;
-			remoteRef = CA85AA4C1B3B27FF0000FEEF /* PBXContainerItemProxy */;
+			path = ELJSBridge_osxTests.xctest;
+			remoteRef = 175CA20E1C5124D2005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -618,18 +602,8 @@
 /* Begin PBXTargetDependency section */
 		173E4E661B00FDAE00ACBCCA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 173E4E571B00FDAD00ACBCCA /* THGHybridWeb */;
+			target = 173E4E571B00FDAD00ACBCCA /* ELHybridWeb */;
 			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
-		};
-		81E286F51BE2923D0082DAF4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = THGBridge;
-			targetProxy = 81E286F41BE2923D0082DAF4 /* PBXContainerItemProxy */;
-		};
-		81E286F71BE2923D0082DAF4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = THGFoundation;
-			targetProxy = 81E286F61BE2923D0082DAF4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -730,7 +704,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = THGHybridWeb/Info.plist;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -746,7 +721,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = THGHybridWeb/Info.plist;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -763,7 +739,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = THGHybridWebTests/Info.plist;
+				INFOPLIST_FILE = ELHybridWebTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -773,7 +749,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				INFOPLIST_FILE = THGHybridWebTests/Info.plist;
+				INFOPLIST_FILE = ELHybridWebTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -860,7 +836,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		173E4E521B00FDAD00ACBCCA /* Build configuration list for PBXProject "THGHybridWeb" */ = {
+		173E4E521B00FDAD00ACBCCA /* Build configuration list for PBXProject "ELHybridWeb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E6C1B00FDAE00ACBCCA /* Debug */,
@@ -870,7 +846,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		173E4E6E1B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "THGHybridWeb" */ = {
+		173E4E6E1B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "ELHybridWeb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E6F1B00FDAE00ACBCCA /* Debug */,
@@ -880,7 +856,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		173E4E711B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "THGHybridWebTests" */ = {
+		173E4E711B00FDAE00ACBCCA /* Build configuration list for PBXNativeTarget "ELHybridWebTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E721B00FDAE00ACBCCA /* Debug */,

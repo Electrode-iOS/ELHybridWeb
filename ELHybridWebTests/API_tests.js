@@ -60,7 +60,7 @@ window.NativeBridge.dialog(testDialogOptions, function(error, id) {
 // 1. A well formed call
 var shareOptions = {
   message: "What is your quest?", 
-  url: "https://github.com/TheHolyGrail/BridgeOfDeath"
+  url: "https://github.com/Electrode-iOS/BridgeOfDeath"
 };
 NativeBridge.share(shareOptions);
 
@@ -72,7 +72,7 @@ NativeBridge.share(shareOptions);
 
 // 2. No message
 var shareOptions = {
-  url: "https://github.com/TheHolyGrail/BridgeOfDeath"
+  url: "https://github.com/Electrode-iOS/BridgeOfDeath"
 };
 NativeBridge.share(shareOptions);
 

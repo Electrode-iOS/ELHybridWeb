@@ -1,6 +1,6 @@
 //
-//  ZootExampleTests.swift
-//  ZootExampleTests
+//  ELHybridWebExampleTests.swift
+//  ELHybridWebExampleTests
 //
 //  Created by Angelo Di Paolo on 5/11/15.
 //  Copyright (c) 2015 TheHolyGrail. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class ZootExampleTests: XCTestCase {
+class ELHybridWebExampleTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

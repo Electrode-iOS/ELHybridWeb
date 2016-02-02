@@ -1,9 +1,9 @@
 //
 //  HybridAPI+Logging.swift
-//  THGHybridWeb
+//  ELHybridWeb
 //
 //  Created by Angelo Di Paolo on 5/11/15.
-//  Copyright (c) 2015 TheHolyGrail. All rights reserved.
+//  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import JavaScriptCore
     func log(value: AnyObject)
 }
 
-extension HybridAPI: HybridLoggingJSExport {
+extension HybridAPI {
     func log(value: AnyObject) {
         print("HybridAPI: \(value)")
     }

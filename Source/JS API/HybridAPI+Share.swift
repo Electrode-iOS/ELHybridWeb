@@ -1,9 +1,9 @@
 //
 //  HybridAPI+Share.swift
-//  THGHybridWeb
+//  ELHybridWeb
 //
 //  Created by Angelo Di Paolo on 5/4/15.
-//  Copyright (c) 2015 TheHolyGrail. All rights reserved.
+//  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import UIKit
     func share(options: [String: AnyObject])
 }
 
-extension HybridAPI: ShareJSExport {
+extension HybridAPI {
     
     func share(options: [String: AnyObject]) {
         THGHybridWebLogger.sharedLogger.log(.Debug, message: "options:\(options)") // provide breadcrumbs
