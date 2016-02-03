@@ -218,7 +218,9 @@ public class WebViewController: UIViewController {
             // Pin web view sides to sides of view
             self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             view.removeDoubleTapGestures()
-            placeholderImageView.image = UIImage.loadImageFromGUID(storedScreenshotGUID)
+            if let nnStoredScreenshotGUID = storedScreenshotGUID {
+                placeholderImageView.image = UIImage.loadImageFromGUID(nnStoredScreenshotGUID)
+            }
             view.bringSubviewToFront(placeholderImageView)
         case .Unknown: break
         }

@@ -57,7 +57,7 @@ extension BarButton {
     }
     
     public func select() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "") // provide breadcrumbs
         callback?.safelyCallWithArguments([id])
     }
 }

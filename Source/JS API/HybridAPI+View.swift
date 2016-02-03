@@ -22,12 +22,12 @@ import UIKit
     internal var onShowCallback: (() -> Void)?
     
     public func appeared() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) onAppearCallback:\(onAppearCallback)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) onAppearCallback:\(onAppearCallback)") // provide breadcrumbs
         onAppearCallback?.safelyCallWithArguments(nil)
     }
     
     public func disappeared() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) onDisappearCallback:\(onDisappearCallback)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) onDisappearCallback:\(onDisappearCallback)") // provide breadcrumbs
         onDisappearCallback?.safelyCallWithArguments(nil)
     }
 }
@@ -42,12 +42,12 @@ extension ViewAPI: ViewJSExport {
     }
     
     public func setOnAppear(callback: JSValue) {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) callback:\(callback)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) callback:\(callback)") // provide breadcrumbs
         onAppearCallback = callback
     }
     
     public func setOnDisappear(callback: JSValue) {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) callback:\(callback)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) callback:\(callback)") // provide breadcrumbs
         onDisappearCallback = callback
     }
 }

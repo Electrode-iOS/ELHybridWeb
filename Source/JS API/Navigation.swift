@@ -23,7 +23,7 @@ import JavaScriptCore
     private var onBackCallback: JSValue?
 
     func animateForward(options: JSValue, _ callback: JSValue) {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) options:\(options), callback:\(callback)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) options:\(options), callback:\(callback)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             let vcOptions = WebViewControllerOptions(javaScriptValue: options)
             self.webViewController?.pushWebViewControllerWithOptions(vcOptions)
@@ -31,21 +31,21 @@ import JavaScriptCore
     }
     
     func animateBackward() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             self.webViewController?.popWebViewController()
         }
     }
     
     func popToRoot() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             self.webViewController?.popToRootWebViewController(false)
         }
     }
 
     func back() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
         if let validCallbackValue = onBackCallback?.asValidValue {
             validCallbackValue.safelyCallWithArguments(nil)
         } else {
@@ -56,7 +56,7 @@ import JavaScriptCore
     }
 
     func setOnBack(callback: JSValue) {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) callback:\(callback)") // provide breadcrumbs
+        ELHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) callback:\(callback)") // provide breadcrumbs
         onBackCallback = callback
     }
 }

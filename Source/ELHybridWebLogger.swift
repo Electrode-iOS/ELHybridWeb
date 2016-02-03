@@ -1,5 +1,5 @@
 //
-//  THGHybridWebLogger.swift
+//  ELHybridWebLogger.swift
 //  walmart
 //
 //  Created by David Pettigrew on 10/22/15.
@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import THGLog
+import ELLog
 
-public class THGHybridWebLogger {
+public class ELHybridWebLogger {
 
-    public static let sharedLogger = THGHybridWebLogger.thgHybridWebLogger()
+    public static let sharedLogger = ELHybridWebLogger.thgHybridWebLogger()
 
     /// Private convenience method for instantiating the default logging scheme.
     private static func thgHybridWebLogger() -> Logger {
