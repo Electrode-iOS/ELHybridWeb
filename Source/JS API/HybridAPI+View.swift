@@ -1,9 +1,9 @@
 //
 //  HybridAPI+View.swift
-//  THGHybridWeb
+//  ELHybridWeb
 //
 //  Created by Angelo Di Paolo on 7/21/15.
-//  Copyright (c) 2015 TheHolyGrail. All rights reserved.
+//  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
 import JavaScriptCore
@@ -19,6 +19,7 @@ import UIKit
 
     internal var onAppearCallback: JSValue?
     private var onDisappearCallback: JSValue?
+    internal var onShowCallback: (() -> Void)?
     
     public func appeared() {
         THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) onAppearCallback:\(onAppearCallback)") // provide breadcrumbs
@@ -34,8 +35,10 @@ import UIKit
 extension ViewAPI: ViewJSExport {
     /// Show the web view
     public func show() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
-        webViewController?.showWebView()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.webViewController?.showWebView()
+            self.onShowCallback?()
+        }
     }
     
     public func setOnAppear(callback: JSValue) {
