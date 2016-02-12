@@ -132,9 +132,9 @@ public class WebViewController: UIViewController {
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
-    var errorView: UIView?
-    var errorLabel: UILabel?
-    var reloadButton: UIButton?
+    public var errorView: UIView?
+    public var errorLabel: UILabel?
+    public var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
     private (set) weak var externalPresentingWebViewController: WebViewController?
     private(set) public var externalReturnURL: NSURL?
@@ -163,7 +163,7 @@ public class WebViewController: UIViewController {
     }()
 
     /// A NSURLSessionDataTask object used to load the URLs
-    var dataTask: NSURLSessionDataTask?
+    public var dataTask: NSURLSessionDataTask?
 
     /**
      Initialize a web view controller instance with a web view and JavaScript
@@ -438,7 +438,7 @@ extension WebViewController: WebViewBridging {
         configureContext(context)
         
         if let hybridAPI = hybridAPI {
-            var readyCallback = bridge.contextValueForName("nativeBridgeReady")
+            let readyCallback = bridge.contextValueForName("nativeBridgeReady")
             
             if !readyCallback.isUndefined {
                 readyCallback.callWithData(hybridAPI)
