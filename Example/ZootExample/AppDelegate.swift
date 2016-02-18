@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ZootExample
+//  ELHybridWebExample
 //
 //  Created by Angelo Di Paolo on 5/11/15.
 //  Copyright (c) 2015 TheHolyGrail. All rights reserved.

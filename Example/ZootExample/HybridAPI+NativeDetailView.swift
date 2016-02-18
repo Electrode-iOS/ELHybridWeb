@@ -1,6 +1,6 @@
 //
 //  HybridAPI+NativeDetailView.swift
-//  ZootExample
+//  ELHybridWebExample
 //
 //  Created by Angelo Di Paolo on 5/15/15.
 //  Copyright (c) 2015 TheHolyGrail. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 import JavaScriptCore
-import THGHybridWeb
+import ELHybridWeb
 
 @objc protocol DetailViewJSExport: JSExport {
     func pushDetailView(detailID: String)

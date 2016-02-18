@@ -1,9 +1,9 @@
 //
 //  WebViewController.swift
-//  THGHybridWeb
+//  ELHybridWeb
 //
 //  Created by Angelo Di Paolo on 4/16/15.
-//  Copyright (c) 2015 TheHolyGrail. All rights reserved.
+//  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
 import Foundation
@@ -11,7 +11,7 @@ import JavaScriptCore
 import UIKit
 #if NOFRAMEWORKS
 #else
-import THGBridge
+import ELJSBridge
 #endif
 
 /**
@@ -21,36 +21,36 @@ import THGBridge
 @objc public protocol WebViewControllerDelegate {
     /**
      Sent before the web view begins loading a frame.
-     :param: webViewController The web view controller loading the web view frame.
-     :param: request The request that will load the frame.
-     :param: navigationType The type of user action that started the load.
-     :returns: Return true to
+     - parameter webViewController: The web view controller loading the web view frame.
+     - parameter request: The request that will load the frame.
+     - parameter navigationType: The type of user action that started the load.
+     - returns: Return true to
     */
     optional func webViewController(webViewController: WebViewController, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
     
     /**
      Sent before the web view begins loading a frame.
-     :param: webViewController The web view controller that has begun loading the frame.
+     - parameter webViewController: The web view controller that has begun loading the frame.
     */
     optional func webViewControllerDidStartLoad(webViewController: WebViewController)
     
     /**
      Sent after the web view as finished loading a frame.
-     :param: webViewController The web view controller that has completed loading the frame.
+     - parameter webViewController: The web view controller that has completed loading the frame.
     */
     optional func webViewControllerDidFinishLoad(webViewController: WebViewController)
     
     /**
      Sent if the web view fails to load a frame.
-     :param: webViewController The web view controller that failed to load the frame.
-     :param: error The error that occured during loading.
+     - parameter webViewController: The web view controller that failed to load the frame.
+     - parameter error: The error that occured during loading.
     */
-    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
-    
+    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError?)
+
     /**
      Sent when the web view creates the JS context for the frame.
-     :param: webViewController The web view controller that failed to load the frame.
-     :param: context The newly created JavaScript context.
+     parameter webViewController: The web view controller that failed to load the frame.
+     parameter context: The newly created JavaScript context.
     */
     optional func webViewControllerDidCreateJavaScriptContext(webViewController: WebViewController, context: JSContext)
 }
@@ -218,8 +218,10 @@ public class WebViewController: UIViewController {
             // Pin web view sides to sides of view
             self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             view.removeDoubleTapGestures()
-            placeholderImageView.image = UIImage.loadImageFromGUID(storedScreenshotGUID)
-            view.bringSubviewToFront(placeholderImageView)
+            if let storedScreenshotGUID = storedScreenshotGUID {
+                placeholderImageView.image = UIImage.loadImageFromGUID(storedScreenshotGUID)
+                view.bringSubviewToFront(placeholderImageView)
+            }
         case .Unknown: break
         }
     }
@@ -244,9 +246,12 @@ public class WebViewController: UIViewController {
         case .WebPop, .WebDismiss, .WebPush, .WebModal:
             // only store screen shot when disappearing by web transition
             placeholderImageView.frame = webView.frame // must align frames for image capture
-            let image = webView.captureImage()
-            placeholderImageView.image = image
-            storedScreenshotGUID = image?.saveImageToGUID()
+            
+            if let screenshotImage = webView.captureImage() {
+                placeholderImageView.image = screenshotImage
+                storedScreenshotGUID = screenshotImage.saveImageToGUID()
+            }
+
             view.bringSubviewToFront(placeholderImageView)
             
             webView.hidden = true
@@ -289,11 +294,9 @@ public class WebViewController: UIViewController {
     }
     
     public final func showWebView() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.webView.hidden = false
-            self.placeholderImageView.image = nil
-            self.view.sendSubviewToBack(self.placeholderImageView)
-        })
+        self.webView.hidden = false
+        self.placeholderImageView.image = nil
+        self.view.sendSubviewToBack(self.placeholderImageView)
     }
 }
 
@@ -327,13 +330,11 @@ extension WebViewController {
                             let httpError = NSError(domain: "WebViewController", code: urlResponse.statusCode, userInfo: ["response" : urlResponse, NSLocalizedDescriptionKey : "HTTP Response Status \(urlResponse.statusCode)"])
                             self.renderFeatureErrorDisplayWithError(httpError, featureName: self.featureNameForError(httpError))
                         }
-                    } else if let data = data, 
-                                  mime = urlResponse.MIMEType, 
-                                  name = urlResponse.textEncodingName, 
-                                  url = urlResponse.URL {
-                        self.webView.loadData(data, MIMEType: mime, textEncodingName: name, baseURL: url)
-                    } else {
-                        // TODO: should we handle the case where some of that stuff was nil?
+                    } else if let data = data,
+                        MIMEType = urlResponse.MIMEType,
+                        textEncodingName = urlResponse.textEncodingName,
+                        url = urlResponse.URL {
+                        self.webView.loadData(data, MIMEType: MIMEType, textEncodingName: textEncodingName, baseURL: url)
                     }
                 }
             })
@@ -366,11 +367,13 @@ extension WebViewController {
 // MARK: - NSURLSessionDelegate
 
 extension WebViewController: NSURLSessionDelegate {
+    
     public func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if let host = challengeHost, trust = challenge.protectionSpace.serverTrust
-                where host == challenge.protectionSpace.host {
-                    let credential = NSURLCredential(forTrust: trust)
+            if let host = challengeHost,
+                let serverTrust = challenge.protectionSpace.serverTrust
+                where challenge.protectionSpace.host == host {
+                    let credential = NSURLCredential(forTrust: serverTrust)
                     completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
             } else {
                 completionHandler(NSURLSessionAuthChallengeDisposition.PerformDefaultHandling, nil)
@@ -408,14 +411,11 @@ extension WebViewController: UIWebViewDelegate {
     }
     
     final public func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        if let error = error {
-            if error.code != NSURLErrorCancelled {
-                if showErrorDisplay {
-                    renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
-                }
-            }
-            delegate?.webViewController?(self, didFailLoadWithError: error)
+        if let error = error where error.code != NSURLErrorCancelled && showErrorDisplay {
+            renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
         }
+
+        delegate?.webViewController?(self, didFailLoadWithError: error)
     }
 }
 
@@ -622,9 +622,8 @@ extension WebViewController {
         return label
     }
     
-    private func createReloadButton() -> UIButton {
+    private func createReloadButton() -> UIButton? {
         let button = UIButton(type: .Custom)
-    
         let size = CGSizeMake(170, 38)
         let x = CGRectGetMidX(view.bounds) - (size.width / 2)
         var y = CGRectGetMidY(view.bounds) - (size.height / 2)
@@ -688,7 +687,8 @@ extension WebViewController {
     
     /// Removes the error display and attempts to reload the web view.
     public func reloadButtonTapped(sender: AnyObject) {
-        if let url = self.url { self.loadURL(url) }
+        guard let url = url else { return }
+        loadURL(url)
     }
 }
 
@@ -712,14 +712,13 @@ extension WebViewController {
 extension UIView {
     
     func captureImage() -> UIImage? {
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+
         UIGraphicsBeginImageContextWithOptions(bounds.size, opaque, 0.0)
-        if let context = UIGraphicsGetCurrentContext() {
-            layer.renderInContext(context)
-            let image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return image
-        }
-        return nil
+        layer.renderInContext(context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
     
     func removeDoubleTapGestures() {
@@ -748,25 +747,22 @@ extension UIImage {
         
         // do this shit in the background.
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            let data = UIImageJPEGRepresentation(self, 1.0)
-            if let data = data {
-                let fileManager = NSFileManager.defaultManager()
-                
-                if let fullPath = NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid).absoluteString
-                {
-                    fileManager.createFileAtPath(fullPath, contents: data, attributes: nil)
-                }
+            if let imageData = UIImageJPEGRepresentation(self, 1.0),
+                let filePath = UIImage.absoluteFilePath(guid: guid) {
+                    NSFileManager.defaultManager().createFileAtPath(filePath, contents: imageData, attributes: nil)
             }
         }
         
         return guid
     }
     
-    class func loadImageFromGUID(guid: String?) -> UIImage? {
-        if let guid = guid, fullPath = NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid).absoluteString {
-            return UIImage(contentsOfFile: fullPath)
-        }
-        return nil
+    class func loadImageFromGUID(guid: String) -> UIImage? {
+        guard let filePath = UIImage.absoluteFilePath(guid: guid) else { return nil }
+        return UIImage(contentsOfFile: filePath)
+    }
+    
+    private class func absoluteFilePath(guid guid: String) -> String? {
+        return NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid).absoluteString
     }
 }
 

@@ -1,9 +1,9 @@
 //
 //  TabBar.swift
-//  THGHybridWeb
+//  ELHybridWeb
 //
 //  Created by Angelo Di Paolo on 7/27/15.
-//  Copyright (c) 2015 TheHolyGrail. All rights reserved.
+//  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
 import JavaScriptCore
@@ -16,12 +16,12 @@ import JavaScriptCore
 @objc public class TabBar: ViewControllerChild, TabBarJSExport {
     
     public func hide() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "") // provide breadcrumbs
+        //log(.Debug, "") // provide breadcrumbs
         parentViewController?.tabBarController?.tabBar.hidden = true
     }
     
     public func show() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "") // provide breadcrumbs
+        //log(.Debug, message: "") // provide breadcrumbs
         parentViewController?.tabBarController?.tabBar.hidden = false
     }
 }

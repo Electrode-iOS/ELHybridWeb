@@ -1,9 +1,9 @@
 //
 //  Navigation+Modal.swift
-//  THGHybridWeb
+//  ELHybridWeb
 //
 //  Created by Angelo Di Paolo on 6/15/15.
-//  Copyright (c) 2015 TheHolyGrail. All rights reserved.
+//  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
 import JavaScriptCore
@@ -16,7 +16,7 @@ import JavaScriptCore
 extension Navigation: ModalNavigationJSExport {
     
     func presentModal(options: JSValue) {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self) options:\(options)")
+        log(.Debug, "\(self) options:\(options)")
         dispatch_async(dispatch_get_main_queue()) {
             let vcOptions = WebViewControllerOptions(javaScriptValue: options)
             self.webViewController?.presentModalWebViewController(vcOptions)
@@ -24,7 +24,7 @@ extension Navigation: ModalNavigationJSExport {
     }
     
     func dismissModal() {
-        THGHybridWebLogger.sharedLogger.log(.Debug, message: "\(self)") // provide breadcrumbs
+        log(.Debug, "\(self)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
         }
