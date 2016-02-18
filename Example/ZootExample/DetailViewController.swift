@@ -1,6 +1,6 @@
 //
 //  DetailViewController.swift
-//  ZootExample
+//  ELHybridWebExample
 //
 //  Created by Angelo Di Paolo on 5/15/15.
 //  Copyright (c) 2015 TheHolyGrail. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 import JavaScriptCore
-import THGHybridWeb
+import ELHybridWeb
 
 /**
  Example view controler that displays the details of an item.

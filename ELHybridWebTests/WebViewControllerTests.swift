@@ -1,15 +1,15 @@
 //
 //  WebViewControllerTests.swift
-//  THGHybridWeb
+//  ELHybridWeb
 //
 //  Created by Angelo Di Paolo on 5/12/15.
-//  Copyright (c) 2015 TheHolyGrail. All rights reserved.
+//  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
 import UIKit
 import XCTest
-import THGBridge
-import THGHybridWeb
+import ELJSBridge
+@testable import ELHybridWeb
 
 class WebViewControllerTests: XCTestCase {
     
@@ -35,7 +35,7 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.dialog")
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
     
@@ -44,7 +44,7 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.share")
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
     
@@ -53,7 +53,7 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.navigation")
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is Navigation)
     }
     
@@ -62,7 +62,7 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.navigationBar")
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NavigationBar)
     }
     
@@ -71,7 +71,7 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.tabBar")
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is TabBar)
     }
     
@@ -80,7 +80,7 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         
         let result = webController.bridge.context.evaluateScript("NativeBridge.view")
-        XCTAssert(result.isObject())
+        XCTAssert(result.isObject)
         XCTAssert(result.toObject() is ViewAPI)
     }
 }
@@ -94,50 +94,17 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         webController.webView.hidden = true
         
+        let showCompleteExpectation = expectationWithDescription("web view show completion callback ran")
+        webController.hybridAPI?.view.onShowCallback = {
+            showCompleteExpectation.fulfill()
+        }
+        
         webController.bridge.context.evaluateScript("NativeBridge.view.show()")
-        XCTAssertFalse(webController.webView.hidden)
+        
+        waitForExpectationsWithTimeout(3) { error in
+            XCTAssertFalse(webController.webView.hidden)
+        }
     }
-    
-    // safelyCallWithArguments is breaking this test
-//    func testOnAppearAfterSetCallback() {
-//        let expectation = expectationWithDescription("On appear called")
-//        
-//        let webController = WebViewController()
-//        webController.addBridgeAPIObject()
-//        
-//        // set an on appear callback
-//        let callbackName = "_onAppear"
-//        let callback: @objc_block () -> Void = {
-//            expectation.fulfill()
-//        }
-//        let unsafeCastedCallback: AnyObject = unsafeBitCast(callback, AnyObject.self)
-//        webController.bridge.context.setObject(unsafeCastedCallback, forKeyedSubscript: callbackName)
-//        webController.bridge.context.evaluateScript("NativeBridge.view.setOnAppear(\(callbackName))")
-//        
-//        // manually trigger UIViewController's viewDidAppear
-//        webController.viewDidAppear(false)
-//        waitForExpectationsWithTimeout(4.0, handler: nil)
-//    }
-    
-    // TODO: safelyCallWithArguments is breaking this test
-//    func testOnAppearBeforeSetCallback() {
-//        let expectation = expectationWithDescription("On appear called")
-//        
-//        let webController = WebViewController()
-//        webController.addBridgeAPIObject()
-//        
-//        // manually trigger UIViewController's viewDidAppear early
-//        webController.viewDidAppear(false)
-//        
-//        // set an on appear callback
-//        let callbackName = "_onAppear"
-//        let callback: @objc_block () -> Void = { expectation.fulfill() }
-//        let unsafeCastedCallback: AnyObject = unsafeBitCast(callback, AnyObject.self)
-//        webController.bridge.context.setObject(unsafeCastedCallback, forKeyedSubscript: callbackName)
-//        webController.bridge.context.evaluateScript("NativeBridge.cart.setOnAppear(\(callbackName))")
-//        
-//        waitForExpectationsWithTimeout(2.0, handler: nil)
-//    }
 }
 
 // MARK: - Test integration with Tab Bar API
