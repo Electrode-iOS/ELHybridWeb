@@ -305,7 +305,6 @@
 			children = (
 				177E5D851B00FE1A006BCBE2 /* JS API */,
 				177E5D8D1B00FE1A006BCBE2 /* Web View */,
-				DBF3D5E91BFBB36400A6A1E6 /* THGHybridWebLogger.swift */,
 				172F077D1B4C67A100C96ABF /* Util.swift */,
 				CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */,
 			);
@@ -580,7 +579,6 @@
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
 				CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
-				DBF3D5EA1BFBB36400A6A1E6 /* THGHybridWebLogger.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,7 +815,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = THGHybridWeb/Info.plist;
+				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
