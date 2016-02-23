@@ -12,7 +12,7 @@ import JavaScriptCore
     var dialogAlert: DialogAlert?
     
     func show(options: [String: AnyObject], callback: JSValue) {
-        ELHybridWebLogger.sharedLogger.log(.Debug, message: "options:\(options), callback:\(callback)") // provide breadcrumbs
+        log(.Debug, "options:\(options), callback:\(callback)") // provide breadcrumbs
         switch DialogOptions.resultOrErrorWithOptions(options) {
             
         case .Success(let box):

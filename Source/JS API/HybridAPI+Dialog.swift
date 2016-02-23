@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
-import Foundation
 import JavaScriptCore
 
 @objc protocol DialogJSExport: JSExport {
@@ -16,7 +15,7 @@ import JavaScriptCore
 extension HybridAPI {
     
     func dialog(options: [String: AnyObject], _ callback: JSValue) {
-        ELHybridWebLogger.sharedLogger.log(.Debug, message: "options:\(options), callback\(callback)") // provide breadcrumbs
+        log(.Debug, "options:\(options), callback\(callback)") // provide breadcrumbs
         dialog.show(options, callback: callback)
     }
 }

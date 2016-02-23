@@ -16,12 +16,12 @@ import JavaScriptCore
 @objc public class TabBar: ViewControllerChild, TabBarJSExport {
     
     public func hide() {
-        ELHybridWebLogger.sharedLogger.log(.Debug, message: "") // provide breadcrumbs
+        //log(.Debug, "") // provide breadcrumbs
         parentViewController?.tabBarController?.tabBar.hidden = true
     }
     
     public func show() {
-        ELHybridWebLogger.sharedLogger.log(.Debug, message: "") // provide breadcrumbs
+        //log(.Debug, message: "") // provide breadcrumbs
         parentViewController?.tabBarController?.tabBar.hidden = false
     }
 }

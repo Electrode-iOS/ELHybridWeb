@@ -42,6 +42,7 @@
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
+		CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +184,7 @@
 		17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPIInfo.swift; sourceTree = "<group>"; };
 		1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerOptionsTests.swift; sourceTree = "<group>"; };
 		19FECF611B9615720095440B /* BarButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonTests.swift; sourceTree = "<group>"; };
+		CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ELHybridWeb.swift; path = Source/ELHybridWeb.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +309,7 @@
 				177E5D851B00FE1A006BCBE2 /* JS API */,
 				177E5D8D1B00FE1A006BCBE2 /* Web View */,
 				172F077D1B4C67A100C96ABF /* Util.swift */,
+				CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */,
 			);
 			path = Source;
 			sourceTree = SOURCE_ROOT;
@@ -577,6 +580,7 @@
 				170DE10D1B8C872300E9C3E9 /* Navigation+External.swift in Sources */,
 				17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */,
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
+				CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
 				07CC370E1C617EAE0030C91B /* ELHybridWebLogger.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
