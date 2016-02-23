@@ -57,7 +57,7 @@ extension BarButton {
     }
     
     public func select() {
-        //log(.Debug, "") // provide breadcrumbs
+        log(.Debug, "") // provide breadcrumbs
         callback?.safelyCallWithArguments([id])
     }
 }
