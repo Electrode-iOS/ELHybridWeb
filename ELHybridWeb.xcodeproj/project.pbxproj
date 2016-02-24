@@ -13,9 +13,6 @@
 		172F077E1B4C67A100C96ABF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F077D1B4C67A100C96ABF /* Util.swift */; };
 		173E4E5E1B00FDAD00ACBCCA /* ELHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* ELHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		174CA6C51B20804400A80074 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CA6C41B20804400A80074 /* NavigationBar.swift */; };
-		175CA2101C51253F005A8364 /* ELJSBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA2091C5124D2005A8364 /* ELJSBridge.framework */; };
-		175CA2111C512586005A8364 /* ELFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1EC1C5124C6005A8364 /* ELFoundation.framework */; };
-		175CA2121C512586005A8364 /* ELLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1FA1C5124CC005A8364 /* ELLog.framework */; };
 		17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17711C0D1B20FDFB0043B71E /* BarButton.swift */; };
 		177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */; };
 		177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
@@ -42,6 +39,9 @@
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
+		C32457EE1C7D5F7800350557 /* ELJSBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA2091C5124D2005A8364 /* ELJSBridge.framework */; };
+		C32457EF1C7D5FA200350557 /* ELLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1FA1C5124CC005A8364 /* ELLog.framework */; };
+		C32457F01C7D5FA900350557 /* ELFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1EC1C5124C6005A8364 /* ELFoundation.framework */; };
 		CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +130,27 @@
 			remoteGlobalIDString = CA41FF9E1BBC85DC0009CB83;
 			remoteInfo = ELJSBridge_osxTests;
 		};
+		C38C0CEE1C7D8B400040D03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CAC38A9C1AC3130B005A3CE0;
+			remoteInfo = ELJSBridge;
+		};
+		C38C0CFB1C7D8BDE0040D03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CA8D47BA1AAE6FF50028B74D;
+			remoteInfo = ELLog;
+		};
+		C38C0CFD1C7D8BE60040D03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CACF2A091A9614D20084EFAE;
+			remoteInfo = ELFoundation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -192,9 +213,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175CA2111C512586005A8364 /* ELFoundation.framework in Frameworks */,
-				175CA2121C512586005A8364 /* ELLog.framework in Frameworks */,
-				175CA2101C51253F005A8364 /* ELJSBridge.framework in Frameworks */,
+				C32457F01C7D5FA900350557 /* ELFoundation.framework in Frameworks */,
+				C32457EF1C7D5FA200350557 /* ELLog.framework in Frameworks */,
+				C32457EE1C7D5F7800350557 /* ELJSBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +405,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				C38C0CFC1C7D8BDE0040D03D /* PBXTargetDependency */,
+				C38C0CFE1C7D8BE60040D03D /* PBXTargetDependency */,
+				C38C0CEF1C7D8B400040D03D /* PBXTargetDependency */,
 			);
 			name = ELHybridWeb;
 			productName = ELHybridWeb;
@@ -611,6 +635,21 @@
 			target = 173E4E571B00FDAD00ACBCCA /* ELHybridWeb */;
 			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
 		};
+		C38C0CEF1C7D8B400040D03D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ELJSBridge;
+			targetProxy = C38C0CEE1C7D8B400040D03D /* PBXContainerItemProxy */;
+		};
+		C38C0CFC1C7D8BDE0040D03D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ELLog;
+			targetProxy = C38C0CFB1C7D8BDE0040D03D /* PBXContainerItemProxy */;
+		};
+		C38C0CFE1C7D8BE60040D03D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ELFoundation;
+			targetProxy = C38C0CFD1C7D8BE60040D03D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -715,7 +754,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walmartlabs.ELHybridWeb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -733,7 +771,6 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walmartlabs.ELHybridWeb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -823,7 +860,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walmartlabs.ELHybridWeb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
