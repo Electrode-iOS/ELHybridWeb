@@ -16,10 +16,6 @@ public class THGHybridWebLogger {
     /// Private convenience method for instantiating the default logging scheme.
     private static func thgHybridWebLogger() -> Logger {
         let logger = Logger()
-//        let file = LogTextfileDestination(filename: "HybridAPI.log.txt")
-//        file.level = LogLevel.Debug.rawValue | LogLevel.Error.rawValue
-//        file.showCaller = true
-//        logger.addDestination(file)
         let console = LogConsoleDestination()
         console.level = LogLevel.Debug.rawValue | LogLevel.Error.rawValue
         console.showCaller = true
