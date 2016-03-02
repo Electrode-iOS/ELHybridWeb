@@ -151,7 +151,7 @@ public class WebViewController: UIViewController {
     /// Host for NSURLSessionDelegate challenge
     public var challengeHost: String?
 
-    lazy var urlSession: NSURLSession = {
+    lazy public var urlSession: NSURLSession = {
             let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
             if let agent = self.userAgent {
                 configuration.HTTPAdditionalHeaders = [
@@ -210,15 +210,18 @@ public class WebViewController: UIViewController {
             
         case .WebPush, .WebModal, .WebPop, .WebDismiss, .External:
             webView.delegate = self
-            webView.removeFromSuperview()
+            webView.removeFromSuperview() // remove webView from previous view controller's view
             webView.frame = view.bounds
-            view.addSubview(webView)
+            view.addSubview(webView) // add webView to this view controller's view
             // Pin web view top and bottom to top and bottom of view
             self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             // Pin web view sides to sides of view
             self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             view.removeDoubleTapGestures()
-            
+            if let storedScreenshotGUID = storedScreenshotGUID {
+                placeholderImageView.image = UIImage.loadImageFromGUID(storedScreenshotGUID)
+                view.bringSubviewToFront(placeholderImageView)
+            }
         case .Unknown: break
         }
     }
@@ -460,7 +463,7 @@ extension WebViewController: WebViewBridging {
 
 // MARK: - Web Controller Navigation
 
-extension WebViewController {
+public extension WebViewController {
     
     /**
      Push a new web view controller on the navigation stack using the existing
