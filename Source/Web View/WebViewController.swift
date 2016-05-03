@@ -577,10 +577,10 @@ extension WebViewController {
         externalWebViewController.title = options.title
         
         let backText = NSLocalizedString("Back", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
-        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: "externalBackButtonTapped")
+        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: #selector(WebViewController.externalBackButtonTapped))
         
         let doneText = NSLocalizedString("Done", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
-        externalWebViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: doneText, style: .Done, target: externalWebViewController, action: "dismissExternalURL")
+        externalWebViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: doneText, style: .Done, target: externalWebViewController, action: #selector(WebViewController.dismissExternalURL))
         
         let navigationController = UINavigationController(rootViewController: externalWebViewController)
         presentViewController(navigationController, animated: true, completion: nil)
@@ -661,7 +661,7 @@ extension WebViewController {
         }
         
         if let button = reloadButton {
-            button.addTarget(self, action: "reloadButtonTapped:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(WebViewController.reloadButtonTapped(_:)), forControlEvents: .TouchUpInside)
             errorView.addSubview(button)
         }
     }
