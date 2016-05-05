@@ -53,7 +53,7 @@ extension BarButton {
 extension BarButton {
     
     public var barButtonItem: UIBarButtonItem {
-        return UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: "select")
+        return UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BarButton.select as (BarButton) -> () -> ()))
     }
     
     public func select() {
