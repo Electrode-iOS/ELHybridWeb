@@ -22,37 +22,32 @@ class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
         let vc = WebViewController()
         vc.delegate = self
         
-        if let url = NSURL(string: "https://httpbin.org/") {
-            didStartLoadExpectation = expectationWithDescription("did start load")
-            
-            vc.loadURL(url)
-            
-            waitForExpectationsWithTimeout(4.0, handler: nil)
-        }
+        didStartLoadExpectation = expectationWithDescription("did start load")
+        vc.webViewDidStartLoad(UIWebView())
+        
+        waitForExpectationsWithTimeout(4.0, handler: nil)
     }
     
     func testDelegateDidFinishLoad() {
         let vc = WebViewController()
         vc.delegate = self
         
-        if let url = NSURL(string: "https://httpbin.org/") {
-            didFinishLoadExpectation = expectationWithDescription("did finish load")
-            
-            vc.loadURL(url)
-            waitForExpectationsWithTimeout(4.0, handler: nil)
-        }
+        didFinishLoadExpectation = expectationWithDescription("did finish load")
+        vc.webViewDidFinishLoad(UIWebView())
+        
+        waitForExpectationsWithTimeout(4.0, handler: nil)
     }
     
     func testDelegateShouldStartLoad() {
+        let request = NSURLRequest(URL: NSURL(string: "")!)
         let vc = WebViewController()
         vc.delegate = self
         
-        if let url = NSURL(string: "https://httpbin.org/") {
-            shouldStartLoadExpectation = expectationWithDescription("should start load")
-            
-            vc.loadURL(url)
-            waitForExpectationsWithTimeout(4.0, handler: nil)
-        }
+        shouldStartLoadExpectation = expectationWithDescription("should start load")
+        vc.webView(UIWebView(), shouldStartLoadWithRequest: request, navigationType: .Reload)
+        
+        waitForExpectationsWithTimeout(4.0, handler: nil)
+
     }
     
     // MARK: WebViewControllerDelegate
