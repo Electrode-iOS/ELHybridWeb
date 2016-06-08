@@ -22,7 +22,7 @@ class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
         let vc = WebViewController()
         vc.delegate = self
         
-        if let url = NSURL(string: "http://httpbin.org/") {
+        if let url = NSURL(string: "https://httpbin.org/") {
             didStartLoadExpectation = expectationWithDescription("did start load")
             
             vc.loadURL(url)
@@ -35,7 +35,7 @@ class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
         let vc = WebViewController()
         vc.delegate = self
         
-        if let url = NSURL(string: "http://httpbin.org/") {
+        if let url = NSURL(string: "https://httpbin.org/") {
             didFinishLoadExpectation = expectationWithDescription("did finish load")
             
             vc.loadURL(url)
@@ -47,7 +47,7 @@ class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
         let vc = WebViewController()
         vc.delegate = self
         
-        if let url = NSURL(string: "http://httpbin.org/") {
+        if let url = NSURL(string: "https://httpbin.org/") {
             shouldStartLoadExpectation = expectationWithDescription("should start load")
             
             vc.loadURL(url)
