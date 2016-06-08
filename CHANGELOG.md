@@ -1,3 +1,20 @@
+# [3.0.0](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v3.0.0)
+
+### Breaking Changes
+
+- Updated to be compatible with Swift 2.2.
+
+### New Features
+
+- Added logging API 
+
+### Fixes
+
+- Changed to auto-layout constraints to fix issue with modal web view being blank
+- Add missing bundle identifier to project file
+- Fix for `popToRoot()`
+
+
 # [2.0.0](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v2.0.0)
 
 - Updated to support Swift 2 and iOS SDK 9
