@@ -20,9 +20,9 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
 	<key>NSPrincipalClass</key>
 	<string></string>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
 </dict>
 </plist>

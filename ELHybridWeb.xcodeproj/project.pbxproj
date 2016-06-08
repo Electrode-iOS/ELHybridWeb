@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07CC370E1C617EAE0030C91B /* ELHybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */; };
 		170DE10D1B8C872300E9C3E9 /* Navigation+External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */; };
 		172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */; };
 		172F077E1B4C67A100C96ABF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F077D1B4C67A100C96ABF /* Util.swift */; };
 		173E4E5E1B00FDAD00ACBCCA /* ELHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* ELHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		174CA6C51B20804400A80074 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CA6C41B20804400A80074 /* NavigationBar.swift */; };
-		175CA2101C51253F005A8364 /* ELJSBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA2091C5124D2005A8364 /* ELJSBridge.framework */; };
-		175CA2111C512586005A8364 /* ELFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1EC1C5124C6005A8364 /* ELFoundation.framework */; };
-		175CA2121C512586005A8364 /* ELLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1FA1C5124CC005A8364 /* ELLog.framework */; };
 		17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17711C0D1B20FDFB0043B71E /* BarButton.swift */; };
 		177E5D901B00FE1A006BCBE2 /* HybridAPI+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */; };
 		177E5D911B00FE1A006BCBE2 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
@@ -41,6 +39,9 @@
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
+		C32457EE1C7D5F7800350557 /* ELJSBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA2091C5124D2005A8364 /* ELJSBridge.framework */; };
+		C32457EF1C7D5FA200350557 /* ELLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1FA1C5124CC005A8364 /* ELLog.framework */; };
+		C32457F01C7D5FA900350557 /* ELFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1EC1C5124C6005A8364 /* ELFoundation.framework */; };
 		CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +130,27 @@
 			remoteGlobalIDString = CA41FF9E1BBC85DC0009CB83;
 			remoteInfo = ELJSBridge_osxTests;
 		};
+		C38C0CEE1C7D8B400040D03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CAC38A9C1AC3130B005A3CE0;
+			remoteInfo = ELJSBridge;
+		};
+		C38C0CFB1C7D8BDE0040D03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CA8D47BA1AAE6FF50028B74D;
+			remoteInfo = ELLog;
+		};
+		C38C0CFD1C7D8BE60040D03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CACF2A091A9614D20084EFAE;
+			remoteInfo = ELFoundation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -144,35 +166,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+External.swift"; sourceTree = "<group>"; };
-		172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+View.swift"; sourceTree = "<group>"; };
+		07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELHybridWebLogger.swift; sourceTree = "<group>"; };
+		170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Navigation+External.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "HybridAPI+View.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		172F077D1B4C67A100C96ABF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		173E4E581B00FDAD00ACBCCA /* ELHybridWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ELHybridWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E5C1B00FDAD00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		173E4E5D1B00FDAD00ACBCCA /* ELHybridWeb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELHybridWeb.h; sourceTree = "<group>"; };
 		173E4E631B00FDAE00ACBCCA /* ELHybridWebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ELHybridWebTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E691B00FDAE00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		174CA6C41B20804400A80074 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		174CA6C41B20804400A80074 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NavigationBar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELFoundation.xcodeproj; path = ../ELFoundation/ELFoundation.xcodeproj; sourceTree = "<group>"; };
 		175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELLog.xcodeproj; path = ../ELLog/ELLog.xcodeproj; sourceTree = "<group>"; };
 		175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELJSBridge.xcodeproj; path = ../ELJSBridge/ELJSBridge.xcodeproj; sourceTree = "<group>"; };
-		17711C0D1B20FDFB0043B71E /* BarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButton.swift; sourceTree = "<group>"; };
-		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; };
+		17711C0D1B20FDFB0043B71E /* BarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BarButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Logging.swift"; sourceTree = "<group>"; };
-		177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Share.swift"; sourceTree = "<group>"; };
+		177E5D891B00FE1A006BCBE2 /* HybridAPI+Share.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "HybridAPI+Share.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		177E5D8A1B00FE1A006BCBE2 /* HybridAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPI.swift; sourceTree = "<group>"; };
 		177E5D8B1B00FE1A006BCBE2 /* JSValue+HybridAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSValue+HybridAPI.swift"; sourceTree = "<group>"; };
-		177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		177E5D8C1B00FE1A006BCBE2 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Navigation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerChild.swift; sourceTree = "<group>"; };
 		177E5D8F1B00FE1A006BCBE2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		177E5DFC1B01444C006BCBE2 /* HybridAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPITests.swift; sourceTree = "<group>"; };
-		1782B2351B6B0EC800FC0E4B /* Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
-		1782B23E1B6B0EF800FC0E4B /* DialogAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogAlert.swift; sourceTree = "<group>"; };
+		1782B2351B6B0EC800FC0E4B /* Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Dialog.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		1782B23E1B6B0EF800FC0E4B /* DialogAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DialogAlert.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegateTests.swift; sourceTree = "<group>"; };
 		178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarTests.swift; sourceTree = "<group>"; };
 		1795F5EA1B73A3B60070BB49 /* WebViewControllerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerOptions.swift; sourceTree = "<group>"; };
-		17B435691B667B4D00446D71 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
-		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+Modal.swift"; sourceTree = "<group>"; };
+		17B435691B667B4D00446D71 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabBar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Navigation+Modal.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		17C41D5C1B7E1F27009431C0 /* ViewAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAPITests.swift; sourceTree = "<group>"; };
 		17C41D651B7E25E9009431C0 /* TabBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTests.swift; sourceTree = "<group>"; };
 		17C479321B4C612200F01703 /* DialogOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogOptions.swift; sourceTree = "<group>"; };
@@ -190,9 +213,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175CA2111C512586005A8364 /* ELFoundation.framework in Frameworks */,
-				175CA2121C512586005A8364 /* ELLog.framework in Frameworks */,
-				175CA2101C51253F005A8364 /* ELJSBridge.framework in Frameworks */,
+				C32457F01C7D5FA900350557 /* ELFoundation.framework in Frameworks */,
+				C32457EF1C7D5FA200350557 /* ELLog.framework in Frameworks */,
+				C32457EE1C7D5F7800350557 /* ELJSBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +326,7 @@
 		177E5D841B00FE1A006BCBE2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */,
 				177E5D851B00FE1A006BCBE2 /* JS API */,
 				177E5D8D1B00FE1A006BCBE2 /* Web View */,
 				172F077D1B4C67A100C96ABF /* Util.swift */,
@@ -381,6 +405,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				C38C0CFC1C7D8BDE0040D03D /* PBXTargetDependency */,
+				C38C0CFE1C7D8BE60040D03D /* PBXTargetDependency */,
+				C38C0CEF1C7D8B400040D03D /* PBXTargetDependency */,
 			);
 			name = ELHybridWeb;
 			productName = ELHybridWeb;
@@ -523,7 +550,7 @@
 		175CA20D1C5124D2005A8364 /* ELJSBridge_osx.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = ELJSBridge_osx.framework;
+			path = ELJSBridge.framework;
 			remoteRef = 175CA20C1C5124D2005A8364 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -579,6 +606,7 @@
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
 				CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
+				07CC370E1C617EAE0030C91B /* ELHybridWebLogger.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -607,6 +635,21 @@
 			target = 173E4E571B00FDAD00ACBCCA /* ELHybridWeb */;
 			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
 		};
+		C38C0CEF1C7D8B400040D03D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ELJSBridge;
+			targetProxy = C38C0CEE1C7D8B400040D03D /* PBXContainerItemProxy */;
+		};
+		C38C0CFC1C7D8BDE0040D03D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ELLog;
+			targetProxy = C38C0CFB1C7D8BDE0040D03D /* PBXContainerItemProxy */;
+		};
+		C38C0CFE1C7D8BE60040D03D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ELFoundation;
+			targetProxy = C38C0CFD1C7D8BE60040D03D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -631,6 +674,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -676,10 +720,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -707,8 +752,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -725,7 +768,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -760,7 +802,7 @@
 			};
 			name = Release;
 		};
-		DB5F6F621C77CD250048EA81 /* QADeployment */ = {
+		20DC78721BFEA224004AF8C8 /* QADeployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -781,6 +823,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -800,7 +843,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -809,26 +851,23 @@
 			};
 			name = QADeployment;
 		};
-		DB5F6F631C77CD250048EA81 /* QADeployment */ = {
+		20DC78731BFEA224004AF8C8 /* QADeployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = ELHybridWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.walmartlabs.ELHybridWeb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = QADeployment;
 		};
-		DB5F6F641C77CD250048EA81 /* QADeployment */ = {
+		20DC78741BFEA224004AF8C8 /* QADeployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
@@ -849,7 +888,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E6C1B00FDAE00ACBCCA /* Debug */,
-				DB5F6F621C77CD250048EA81 /* QADeployment */,
+				20DC78721BFEA224004AF8C8 /* QADeployment */,
 				173E4E6D1B00FDAE00ACBCCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -859,7 +898,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E6F1B00FDAE00ACBCCA /* Debug */,
-				DB5F6F631C77CD250048EA81 /* QADeployment */,
+				20DC78731BFEA224004AF8C8 /* QADeployment */,
 				173E4E701B00FDAE00ACBCCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -869,7 +908,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				173E4E721B00FDAE00ACBCCA /* Debug */,
-				DB5F6F641C77CD250048EA81 /* QADeployment */,
+				20DC78741BFEA224004AF8C8 /* QADeployment */,
 				173E4E731B00FDAE00ACBCCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
