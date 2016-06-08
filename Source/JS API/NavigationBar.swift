@@ -48,6 +48,7 @@ import JavaScriptCore
 extension NavigationBar: NavigationBarJSExport {
     
     func setTitle(title: JSValue, _ callback: JSValue? = nil) {
+        log(.Debug, "title:\(title), callback\(callback)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             self.title = title.asString
             callback?.safelyCallWithArguments(nil)
@@ -55,6 +56,7 @@ extension NavigationBar: NavigationBarJSExport {
     }
     
     func setButtons(buttonsToSet: JSValue?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
+        log(.Debug, "buttonsToSet\(buttonsToSet), callback:\(callback)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             self.configureButtons(buttonsToSet, callback: callback)
             testingCallback?.safelyCallWithArguments(nil) // only for testing purposes
@@ -62,6 +64,7 @@ extension NavigationBar: NavigationBarJSExport {
     }
     
     func configureButtons(buttonsToSet: JSValue?, callback: JSValue?) {
+        log(.Debug, "buttonsToSet\(buttonsToSet), callback:\(callback)") // provide breadcrumbs
         if let buttonOptions = buttonsToSet?.toObject() as? [AnyObject] {
             buttons = BarButton.dictionaryFromJSONArray(buttonOptions, callback: callback) // must set buttons on main thread
         } else {

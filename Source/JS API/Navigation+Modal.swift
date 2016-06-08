@@ -16,6 +16,7 @@ import JavaScriptCore
 extension Navigation: ModalNavigationJSExport {
     
     func presentModal(options: JSValue) {
+        log(.Debug, "\(self) options:\(options)")
         dispatch_async(dispatch_get_main_queue()) {
             let vcOptions = WebViewControllerOptions(javaScriptValue: options)
             self.webViewController?.presentModalWebViewController(vcOptions)
@@ -23,6 +24,7 @@ extension Navigation: ModalNavigationJSExport {
     }
     
     func dismissModal() {
+        log(.Debug, "\(self)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
         }

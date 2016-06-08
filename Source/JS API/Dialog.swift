@@ -12,6 +12,7 @@ import JavaScriptCore
     var dialogAlert: DialogAlert?
     
     func show(options: [String: AnyObject], callback: JSValue) {
+        log(.Debug, "options:\(options), callback:\(callback)") // provide breadcrumbs
         switch DialogOptions.resultOrErrorWithOptions(options) {
             
         case .Success(let box):

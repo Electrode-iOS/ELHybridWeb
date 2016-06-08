@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 WalmartLabs. All rights reserved.
 //
 
-import Foundation
 import JavaScriptCore
-import UIKit
 
 @objc protocol ShareJSExport: JSExport {
     func share(options: [String: AnyObject])
@@ -17,6 +15,7 @@ import UIKit
 extension HybridAPI {
     
     func share(options: [String: AnyObject]) {
+        log(.Debug, "options:\(options)") // provide breadcrumbs
         dispatch_async(dispatch_get_main_queue()) {
             if let activityViewController = HybridAPI.activityViewControllerWithOptions(options) {
                 self.parentViewController?.presentViewController(activityViewController, animated: true, completion: nil)

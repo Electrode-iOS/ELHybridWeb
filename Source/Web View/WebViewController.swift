@@ -132,9 +132,9 @@ public class WebViewController: UIViewController {
     private lazy var placeholderImageView: UIImageView = {
         return UIImageView(frame: self.view.bounds)
     }()
-    var errorView: UIView?
-    var errorLabel: UILabel?
-    var reloadButton: UIButton?
+    public var errorView: UIView?
+    public var errorLabel: UILabel?
+    public var reloadButton: UIButton?
     public weak var hybridAPI: HybridAPI?
     private (set) weak var externalPresentingWebViewController: WebViewController?
     private(set) public var externalReturnURL: NSURL?
@@ -151,7 +151,7 @@ public class WebViewController: UIViewController {
     /// Host for NSURLSessionDelegate challenge
     public var challengeHost: String?
 
-    lazy var urlSession: NSURLSession = {
+    lazy public var urlSession: NSURLSession = {
             let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
             if let agent = self.userAgent {
                 configuration.HTTPAdditionalHeaders = [
@@ -163,7 +163,7 @@ public class WebViewController: UIViewController {
     }()
 
     /// A NSURLSessionDataTask object used to load the URLs
-    var dataTask: NSURLSessionDataTask?
+    public var dataTask: NSURLSessionDataTask?
 
     /**
      Initialize a web view controller instance with a web view and JavaScript
@@ -210,20 +210,18 @@ public class WebViewController: UIViewController {
             
         case .WebPush, .WebModal, .WebPop, .WebDismiss, .External:
             webView.delegate = self
-            webView.removeFromSuperview()
+            webView.removeFromSuperview() // remove webView from previous view controller's view
             webView.frame = view.bounds
-            view.addSubview(webView)
-            let tlg = self.topLayoutGuide
-            // Pin web view top to top layout guide
-            let webViewTopLayoutConstraint = NSLayoutConstraint(item: webView, attribute: .Top, relatedBy: .Equal, toItem: tlg, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-            self.view.addConstraint(webViewTopLayoutConstraint)
-            // Pin web view bottom to bottom of view
-            self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
+            view.addSubview(webView) // add webView to this view controller's view
+            // Pin web view top and bottom to top and bottom of view
+            self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             // Pin web view sides to sides of view
             self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
-
             view.removeDoubleTapGestures()
-            
+            if let storedScreenshotGUID = storedScreenshotGUID {
+                placeholderImageView.image = UIImage.loadImageFromGUID(storedScreenshotGUID)
+                view.bringSubviewToFront(placeholderImageView)
+            }
         case .Unknown: break
         }
     }
@@ -443,7 +441,7 @@ extension WebViewController: WebViewBridging {
         configureContext(context)
         
         if let hybridAPI = hybridAPI {
-            var readyCallback = bridge.contextValueForName("nativeBridgeReady")
+            let readyCallback = bridge.contextValueForName("nativeBridgeReady")
             
             if !readyCallback.isUndefined {
                 readyCallback.callWithData(hybridAPI)
@@ -465,7 +463,7 @@ extension WebViewController: WebViewBridging {
 
 // MARK: - Web Controller Navigation
 
-extension WebViewController {
+public extension WebViewController {
     
     /**
      Push a new web view controller on the navigation stack using the existing
@@ -579,10 +577,10 @@ extension WebViewController {
         externalWebViewController.title = options.title
         
         let backText = NSLocalizedString("Back", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
-        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: "externalBackButtonTapped")
+        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: #selector(WebViewController.externalBackButtonTapped))
         
         let doneText = NSLocalizedString("Done", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
-        externalWebViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: doneText, style: .Done, target: externalWebViewController, action: "dismissExternalURL")
+        externalWebViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: doneText, style: .Done, target: externalWebViewController, action: #selector(WebViewController.dismissExternalURL))
         
         let navigationController = UINavigationController(rootViewController: externalWebViewController)
         presentViewController(navigationController, animated: true, completion: nil)
@@ -663,7 +661,7 @@ extension WebViewController {
         }
         
         if let button = reloadButton {
-            button.addTarget(self, action: "reloadButtonTapped:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(WebViewController.reloadButtonTapped(_:)), forControlEvents: .TouchUpInside)
             errorView.addSubview(button)
         }
     }
