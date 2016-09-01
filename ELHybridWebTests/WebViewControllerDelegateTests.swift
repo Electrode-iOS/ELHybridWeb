@@ -65,7 +65,7 @@ class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
         return true
     }
     
-    func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError?) {
+    func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError) {
         didFailLoadExpectation?.fulfill()
     }
 }

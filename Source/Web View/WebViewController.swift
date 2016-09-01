@@ -45,7 +45,7 @@ import ELJSBridge
      - parameter webViewController: The web view controller that failed to load the frame.
      - parameter error: The error that occured during loading.
     */
-    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError?)
+    optional func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError)
 
     /**
      Sent when the web view creates the JS context for the frame.
@@ -410,8 +410,8 @@ extension WebViewController: UIWebViewDelegate {
         }
     }
     
-    final public func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        if let error = error where error.code != NSURLErrorCancelled && showErrorDisplay {
+    final public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+        if error.code != NSURLErrorCancelled && showErrorDisplay {
             renderFeatureErrorDisplayWithError(error, featureName: featureNameForError(error))
         }
 
@@ -762,7 +762,7 @@ extension UIImage {
     }
     
     private class func absoluteFilePath(guid guid: String) -> String? {
-        return NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid).absoluteString
+        return NSURL(string: NSTemporaryDirectory())?.URLByAppendingPathComponent(guid)!.absoluteString
     }
 }
 
