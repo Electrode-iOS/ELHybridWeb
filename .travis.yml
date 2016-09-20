@@ -7,4 +7,4 @@ install:
   - git clone https://github.com/Electrode-iOS/ELLog.git ../ELLog
 
 script:
-   - xcodebuild -project ELHybridWeb.xcodeproj -scheme ELHybridWeb -sdk iphonesimulator test -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0'
+   - xcodebuild -project ELHybridWeb.xcodeproj -scheme ELHybridWeb -sdk iphonesimulator test -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0' CODE_SIGNING_REQUIRED=NO
