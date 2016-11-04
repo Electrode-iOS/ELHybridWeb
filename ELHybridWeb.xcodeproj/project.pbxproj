@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07CC370E1C617EAE0030C91B /* ELHybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */; };
 		170DE10D1B8C872300E9C3E9 /* Navigation+External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */; };
 		172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */; };
 		172F077E1B4C67A100C96ABF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F077D1B4C67A100C96ABF /* Util.swift */; };
@@ -94,7 +93,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELHybridWebLogger.swift; sourceTree = "<group>"; };
 		170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Navigation+External.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "HybridAPI+View.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		172F077D1B4C67A100C96ABF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 		177E5D841B00FE1A006BCBE2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */,
 				177E5D851B00FE1A006BCBE2 /* JS API */,
 				177E5D8D1B00FE1A006BCBE2 /* Web View */,
 				172F077D1B4C67A100C96ABF /* Util.swift */,
@@ -442,7 +439,6 @@
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
 				CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
-				07CC370E1C617EAE0030C91B /* ELHybridWebLogger.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
