@@ -9,7 +9,6 @@
 import UIKit
 import XCTest
 import ELHybridWeb
-import ELJSBridge
 
 class HybridAPITests: XCTestCase {
     
@@ -17,7 +16,7 @@ class HybridAPITests: XCTestCase {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.dialog")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.dialog")
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
@@ -26,7 +25,7 @@ class HybridAPITests: XCTestCase {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.share")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.share")
         
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
@@ -36,7 +35,7 @@ class HybridAPITests: XCTestCase {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.navigation")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation")
         
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is Navigation)

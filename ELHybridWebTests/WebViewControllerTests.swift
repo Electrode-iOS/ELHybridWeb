@@ -8,7 +8,6 @@
 
 import UIKit
 import XCTest
-import ELJSBridge
 @testable import ELHybridWeb
 
 class WebViewControllerTests: XCTestCase {
@@ -34,7 +33,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.dialog")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.dialog")
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
@@ -43,7 +42,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.share")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.share")
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
@@ -52,7 +51,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.navigation")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation")
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is Navigation)
     }
@@ -61,7 +60,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.navigationBar")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigationBar")
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NavigationBar)
     }
@@ -70,7 +69,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.tabBar")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.tabBar")
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is TabBar)
     }
@@ -79,7 +78,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridge.context.evaluateScript("NativeBridge.view")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.view")
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is ViewAPI)
     }
@@ -99,7 +98,7 @@ extension WebViewControllerTests {
             showCompleteExpectation.fulfill()
         }
         
-        webController.bridge.context.evaluateScript("NativeBridge.view.show()")
+        webController.bridgeContext.evaluateScript("NativeBridge.view.show()")
         
         waitForExpectationsWithTimeout(3) { error in
             XCTAssertFalse(webController.webView.hidden)
@@ -119,7 +118,7 @@ extension WebViewControllerTests {
         tabBarController.viewControllers = [webController]
         tabBarController.tabBar.hidden = true
         
-        webController.bridge.context.evaluateScript("NativeBridge.tabBar.show()")
+        webController.bridgeContext.evaluateScript("NativeBridge.tabBar.show()")
         XCTAssertFalse(tabBarController.tabBar.hidden)
     }
     
@@ -130,7 +129,7 @@ extension WebViewControllerTests {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [webController]
         
-        webController.bridge.context.evaluateScript("NativeBridge.tabBar.hide()")
+        webController.bridgeContext.evaluateScript("NativeBridge.tabBar.hide()")
         XCTAssertTrue(tabBarController.tabBar.hidden)
     }
 }

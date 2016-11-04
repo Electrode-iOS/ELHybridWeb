@@ -28,8 +28,6 @@
 		178412271B16762D00EECF8B /* WebViewControllerDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */; };
 		178822E91B4D4BFC00B5548D /* NavigationBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */; };
 		1795F5EB1B73A3B60070BB49 /* WebViewControllerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795F5EA1B73A3B60070BB49 /* WebViewControllerOptions.swift */; };
-		17A146361DB7253A00309044 /* ELFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A1460C1DB7250C00309044 /* ELFoundation.framework */; };
-		17A146371DB7253A00309044 /* ELJSBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A1461D1DB7251200309044 /* ELJSBridge.framework */; };
 		17A146381DB7253A00309044 /* ELLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A1462B1DB7251800309044 /* ELLog.framework */; };
 		17B4356A1B667B4D00446D71 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B435691B667B4D00446D71 /* TabBar.swift */; };
 		17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */; };
@@ -52,62 +50,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 173E4E571B00FDAD00ACBCCA;
 			remoteInfo = ELHybridWeb;
-		};
-		17A1460B1DB7250C00309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146041DB7250C00309044 /* ELFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CACF2A0A1A9614D20084EFAE;
-			remoteInfo = ELFoundation;
-		};
-		17A1460D1DB7250C00309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146041DB7250C00309044 /* ELFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CACF2A151A9614D20084EFAE;
-			remoteInfo = ELFoundationTests;
-		};
-		17A1460F1DB7250C00309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146041DB7250C00309044 /* ELFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8CD55A1B7A9DCA00DA8BF7;
-			remoteInfo = ELFoundation_osx;
-		};
-		17A146111DB7250C00309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146041DB7250C00309044 /* ELFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8CD5631B7A9DCB00DA8BF7;
-			remoteInfo = ELFoundation_osxTests;
-		};
-		17A1461C1DB7251200309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146131DB7251200309044 /* ELJSBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CAC38A9D1AC3130B005A3CE0;
-			remoteInfo = ELJSBridge;
-		};
-		17A1461E1DB7251200309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146131DB7251200309044 /* ELJSBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CAC38AA81AC3130B005A3CE0;
-			remoteInfo = ELJSBridgeTests;
-		};
-		17A146201DB7251200309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146131DB7251200309044 /* ELJSBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA41FF951BBC85DC0009CB83;
-			remoteInfo = ELJSBridge_osx;
-		};
-		17A146221DB7251200309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146131DB7251200309044 /* ELJSBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA41FF9E1BBC85DC0009CB83;
-			remoteInfo = ELJSBridge_osxTests;
 		};
 		17A1462A1DB7251800309044 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -136,20 +78,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = CA8D47BA1AAE6FF50028B74D;
 			remoteInfo = ELLog;
-		};
-		17A146321DB7253000309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146131DB7251200309044 /* ELJSBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CAC38A9C1AC3130B005A3CE0;
-			remoteInfo = ELJSBridge;
-		};
-		17A146341DB7253000309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146041DB7250C00309044 /* ELFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CACF2A091A9614D20084EFAE;
-			remoteInfo = ELFoundation;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -191,8 +119,6 @@
 		178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegateTests.swift; sourceTree = "<group>"; };
 		178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarTests.swift; sourceTree = "<group>"; };
 		1795F5EA1B73A3B60070BB49 /* WebViewControllerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerOptions.swift; sourceTree = "<group>"; };
-		17A146041DB7250C00309044 /* ELFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELFoundation.xcodeproj; path = Carthage/Checkouts/ELFoundation/ELFoundation.xcodeproj; sourceTree = "<group>"; };
-		17A146131DB7251200309044 /* ELJSBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELJSBridge.xcodeproj; path = Carthage/Checkouts/ELJSBridge/ELJSBridge.xcodeproj; sourceTree = "<group>"; };
 		17A146241DB7251800309044 /* ELLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELLog.xcodeproj; path = Carthage/Checkouts/ELLog/ELLog.xcodeproj; sourceTree = "<group>"; };
 		17B435691B667B4D00446D71 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabBar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Navigation+Modal.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -213,8 +139,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17A146361DB7253A00309044 /* ELFoundation.framework in Frameworks */,
-				17A146371DB7253A00309044 /* ELJSBridge.framework in Frameworks */,
 				17A146381DB7253A00309044 /* ELLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,28 +261,6 @@
 			path = "Web View";
 			sourceTree = "<group>";
 		};
-		17A146051DB7250C00309044 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				17A1460C1DB7250C00309044 /* ELFoundation.framework */,
-				17A1460E1DB7250C00309044 /* ELFoundationTests.xctest */,
-				17A146101DB7250C00309044 /* ELFoundation.framework */,
-				17A146121DB7250C00309044 /* ELFoundation_osxTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		17A146141DB7251200309044 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				17A1461D1DB7251200309044 /* ELJSBridge.framework */,
-				17A1461F1DB7251200309044 /* ELJSBridgeTests.xctest */,
-				17A146211DB7251200309044 /* ELJSBridge.framework */,
-				17A146231DB7251200309044 /* ELJSBridge_osxTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		17A146251DB7251800309044 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,8 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				17A146241DB7251800309044 /* ELLog.xcodeproj */,
-				17A146131DB7251200309044 /* ELJSBridge.xcodeproj */,
-				17A146041DB7250C00309044 /* ELFoundation.xcodeproj */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -406,8 +306,6 @@
 			);
 			dependencies = (
 				17A146311DB7253000309044 /* PBXTargetDependency */,
-				17A146331DB7253000309044 /* PBXTargetDependency */,
-				17A146351DB7253000309044 /* PBXTargetDependency */,
 			);
 			name = ELHybridWeb;
 			productName = ELHybridWeb;
@@ -465,14 +363,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 17A146051DB7250C00309044 /* Products */;
-					ProjectRef = 17A146041DB7250C00309044 /* ELFoundation.xcodeproj */;
-				},
-				{
-					ProductGroup = 17A146141DB7251200309044 /* Products */;
-					ProjectRef = 17A146131DB7251200309044 /* ELJSBridge.xcodeproj */;
-				},
-				{
 					ProductGroup = 17A146251DB7251800309044 /* Products */;
 					ProjectRef = 17A146241DB7251800309044 /* ELLog.xcodeproj */;
 				},
@@ -486,62 +376,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		17A1460C1DB7250C00309044 /* ELFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELFoundation.framework;
-			remoteRef = 17A1460B1DB7250C00309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A1460E1DB7250C00309044 /* ELFoundationTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELFoundationTests.xctest;
-			remoteRef = 17A1460D1DB7250C00309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A146101DB7250C00309044 /* ELFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELFoundation.framework;
-			remoteRef = 17A1460F1DB7250C00309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A146121DB7250C00309044 /* ELFoundation_osxTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELFoundation_osxTests.xctest;
-			remoteRef = 17A146111DB7250C00309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A1461D1DB7251200309044 /* ELJSBridge.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELJSBridge.framework;
-			remoteRef = 17A1461C1DB7251200309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A1461F1DB7251200309044 /* ELJSBridgeTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELJSBridgeTests.xctest;
-			remoteRef = 17A1461E1DB7251200309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A146211DB7251200309044 /* ELJSBridge.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELJSBridge.framework;
-			remoteRef = 17A146201DB7251200309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A146231DB7251200309044 /* ELJSBridge_osxTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELJSBridge_osxTests.xctest;
-			remoteRef = 17A146221DB7251200309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		17A1462B1DB7251800309044 /* ELLog.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -641,16 +475,6 @@
 			isa = PBXTargetDependency;
 			name = ELLog;
 			targetProxy = 17A146301DB7253000309044 /* PBXContainerItemProxy */;
-		};
-		17A146331DB7253000309044 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ELJSBridge;
-			targetProxy = 17A146321DB7253000309044 /* PBXContainerItemProxy */;
-		};
-		17A146351DB7253000309044 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ELFoundation;
-			targetProxy = 17A146341DB7253000309044 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

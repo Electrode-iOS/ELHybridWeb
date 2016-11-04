@@ -9,10 +9,6 @@
 import Foundation
 import JavaScriptCore
 import UIKit
-#if NOFRAMEWORKS
-#else
-import ELJSBridge
-#endif
 
 /**
  Defines methods that a delegate of a WebViewController object can optionally 
@@ -111,7 +107,8 @@ public class WebViewController: UIViewController {
     }()
     
     /// JavaScript bridge for the web view's JSContext
-    private(set) public var bridge = Bridge()
+//    private(set) public var bridge = Bridge()
+    private(set) public var bridgeContext = JSContext()
     private var storedScreenshotGUID: String? = nil
     private var firstLoadCycleCompleted = true
     private (set) var disappearedBy = AppearenceCause.Unknown
@@ -172,10 +169,10 @@ public class WebViewController: UIViewController {
      :param: webView The web view to use in the web view controller.
      :param: bridge The bridge instance to integrate int
     */
-    public required init(webView: UIWebView, bridge: Bridge) {
+    public required init(webView: UIWebView, context: JSContext) {
         super.init(nibName: nil, bundle: nil)
         
-        self.bridge = bridge
+        self.bridgeContext = context
         self.webView = webView
         self.webView.delegate = self
     }
@@ -441,7 +438,7 @@ extension WebViewController: WebViewBridging {
         configureContext(context)
         
         if let hybridAPI = hybridAPI {
-            let readyCallback = bridge.contextValueForName("nativeBridgeReady")
+            let readyCallback = context.objectForKeyedSubscript("nativeBridgeReady")
             
             if !readyCallback.isUndefined {
                 readyCallback.callWithData(hybridAPI)
@@ -453,7 +450,7 @@ extension WebViewController: WebViewBridging {
      Explictly set the bridge's JavaScript context.
     */
     final public func configureBridgeContext(context: JSContext) {
-        bridge.context = context
+        bridgeContext = context
     }
     
     public func configureContext(context: JSContext) {
@@ -534,7 +531,7 @@ public extension WebViewController {
     }
     
     public func newWebViewControllerWithOptions(options: WebViewControllerOptions?) -> WebViewController {
-        let webViewController = self.dynamicType.init(webView: webView, bridge: bridge)
+        let webViewController = self.dynamicType.init(webView: webView, context: bridgeContext)
         webViewController.addBridgeAPIObject()
         webViewController.hybridAPI?.navigationBar.title = options?.title
         webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
@@ -698,10 +695,10 @@ extension WebViewController {
     
     public func addBridgeAPIObject() {
         if let bridgeObject = hybridAPI {
-            bridge.context.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName)
+            bridgeContext.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName)
         } else {
             let platform = HybridAPI(parentViewController: self)
-            bridge.context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
+            bridgeContext.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
             hybridAPI = platform
         }
     }
@@ -743,7 +740,7 @@ extension UIImage {
     
     // saves image to temp directory and returns a GUID so you can fetch it later.
     func saveImageToGUID() -> String? {
-        let guid = String.GUID()
+        let guid = NSUUID().UUIDString
         
         // do this shit in the background.
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
