@@ -20,6 +20,6 @@ extension HybridAPI {
     }
     
     func log(level: LogLevel, _ message: String) {
-        ELHybridWeb.logging.log(level, message: "\(ELHybridWeb.self): " + message)
+        sharedLogger.log(level, message: message)
     }
 }
