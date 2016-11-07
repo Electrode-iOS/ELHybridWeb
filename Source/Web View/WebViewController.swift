@@ -106,8 +106,6 @@ public class WebViewController: UIViewController {
         return webView
     }()
     
-    /// JavaScript bridge for the web view's JSContext
-//    private(set) public var bridge = Bridge()
     private(set) public var bridgeContext = JSContext()
     private var storedScreenshotGUID: String? = nil
     private var firstLoadCycleCompleted = true
