@@ -3,23 +3,11 @@
 [![Version](https://img.shields.io/badge/version-v3.1.0-blue.svg)](https://github.com/Electrode-iOS/ELHybridWeb/releases/latest)
 [![Build Status](https://travis-ci.org/Electrode-iOS/ELHybridWeb.svg?branch=master)](https://travis-ci.org/Electrode-iOS/ELHybridWeb)
 
-ELHybridWeb is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS. ELHybridWeb uses [ELJSBridge](https://github.com/Electrode-iOS/ELJSBridge) to bridge Swift objects to JavaScript.
+ELHybridWeb is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS.
 
 ## Requirements
 
-ELHybridWeb requires Swift 2.3, Xcode 8, and depends on the following [Electrode-iOS](https://github.com/Electrode-iOS/) frameworks:
-
-- [`ELJSBridge`](https://github.com/Electrode-iOS/ELJSBridge).
-- [`ELFoundation`](https://github.com/Electrode-iOS/ELFoundation).
-- [`ELLog`](https://github.com/Electrode-iOS/ELLog).
-
-[Electrode-iOS](https://github.com/Electrode-iOS/) frameworks are designed to live side-by-side in the file system, like so:
-
-* \MyProject
-* \MyProject\ELHybridWeb
-* \MyProject\ELJSBridge
-* \MyProject\ELFoundation
-* \MyProject\ELLog
+ELHybridWeb requires Swift 2.3 and Xcode 8.
 
 ## Installation
 

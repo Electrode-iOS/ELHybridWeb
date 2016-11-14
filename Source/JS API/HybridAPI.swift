@@ -8,10 +8,6 @@
 
 import JavaScriptCore
 import UIKit
-#if NOFRAMEWORKS
-#else
-import ELJSBridge
-#endif
 
 @objc protocol HybridAPIJSExport: JSExport {
     var navigation: Navigation {get}
