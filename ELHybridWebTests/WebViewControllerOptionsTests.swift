@@ -14,8 +14,8 @@ import ELHybridWeb
 class WebViewControllerOptionsTests: XCTestCase {
     
     func testInitialization() {
-        let context = JSContext(virtualMachine: JSVirtualMachine())
-        let options = JSValue(newObjectInContext: context)
+        let context = JSContext(virtualMachine: JSVirtualMachine())!
+        let options = JSValue(newObjectIn: context)!
         
         context.evaluateScript("var onAppear = function() {};")
         let onAppearValue = context.objectForKeyedSubscript("onAppear")
@@ -44,7 +44,7 @@ class WebViewControllerOptionsTests: XCTestCase {
     
     func testInitializationWithUndefinedOptions() {
         let context = JSContext(virtualMachine: JSVirtualMachine())
-        let webViewControllerOptions = WebViewControllerOptions(javaScriptValue: JSValue(undefinedInContext: context))
+        let webViewControllerOptions = WebViewControllerOptions(javaScriptValue: JSValue(undefinedIn: context))
         
         XCTAssertNil(webViewControllerOptions.onAppearCallback)
         XCTAssertNil(webViewControllerOptions.navigationBarButtonCallback)

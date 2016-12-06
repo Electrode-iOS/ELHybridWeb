@@ -45,7 +45,7 @@ import UIKit
 }
 
 extension DialogAlert: UIAlertViewDelegate {
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         callback?(buttonIndex)
     }
 }

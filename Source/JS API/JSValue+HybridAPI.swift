@@ -18,7 +18,7 @@ public extension JSValue {
      - parameter data: The data that is passed to the callback
      :return: The return value of the function call.
     */
-    func callWithData(data: AnyObject) -> JSValue! {
+    @discardableResult func call(withData data: Any) -> JSValue! {
         return call(withArguments: [JSValue(nullIn: context), data])
     }
     
@@ -28,7 +28,7 @@ public extension JSValue {
      - parameter error: The error that is passed to the callback.
      :return: The return value of the function call.
     */
-    func callWithError(error: NSError) -> JSValue! {
+    @discardableResult func call(withError error: NSError) -> JSValue! {
         return call(withErrorMessage: error.localizedDescription)
     }
     
@@ -39,7 +39,7 @@ public extension JSValue {
      that is passed to the callback.
     :return: The return value of the function call.
     */
-    func call(withErrorMessage message: String) -> JSValue! {
+    @discardableResult func call(withErrorMessage message: String) -> JSValue! {
         let jsError = JSValue(newErrorFromMessage: message, in: context)!
         return call(withArguments: [jsError, JSValue(nullIn: context)])
     }

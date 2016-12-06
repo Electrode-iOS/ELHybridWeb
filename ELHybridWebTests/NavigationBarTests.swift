@@ -49,7 +49,7 @@ class NavigationBarTests: XCTestCase {
 //        waitForExpectationsWithTimeout(2.0, handler: nil)
 //    }
     
-    func validateSetTitleWithWebViewController(webViewController: WebViewController) {
+    func validateSetTitleWithWebViewController(_ webViewController: WebViewController) {
         XCTAssertNotNil(webViewController.navigationItem.title)
         XCTAssertEqual(webViewController.navigationItem.title!, expectedTitle)
     }
@@ -105,7 +105,7 @@ class NavigationBarTests: XCTestCase {
 //        waitForExpectationsWithTimeout(2.0, handler: nil)
 //    }
     
-    func validateSetButtonsWithWebViewController(webViewController: WebViewController) {
+    func validateSetButtonsWithWebViewController(_ webViewController: WebViewController) {
         let leftButtonTitle = webViewController.navigationItem.leftBarButtonItem?.title!
         XCTAssertEqual(leftButtonTitle!, self.expectedLeftButtonTitle)
         let rightButtonTitle = webViewController.navigationItem.rightBarButtonItem?.title!

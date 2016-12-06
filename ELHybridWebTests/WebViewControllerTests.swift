@@ -13,7 +13,7 @@ import XCTest
 class WebViewControllerTests: XCTestCase {
     
     func testGetWebViewJavaScriptContext() {
-        let webView = UIWebView(frame: CGRectZero)
+        let webView = UIWebView(frame: CGRect.zero)
         let context = webView.javaScriptContext
         XCTAssert(context != nil)
     }
@@ -33,7 +33,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.dialog")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.dialog")!
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
@@ -42,7 +42,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.share")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.share")!
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NSDictionary)
     }
@@ -51,7 +51,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation")!
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is Navigation)
     }
@@ -60,7 +60,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigationBar")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigationBar")!
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is NavigationBar)
     }
@@ -69,7 +69,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.tabBar")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.tabBar")!
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is TabBar)
     }
@@ -78,7 +78,7 @@ extension WebViewControllerTests {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.view")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.view")!
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is ViewAPI)
     }
@@ -91,17 +91,17 @@ extension WebViewControllerTests {
     func testViewShow() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
-        webController.webView.hidden = true
+        webController.webView.isHidden = true
         
-        let showCompleteExpectation = expectationWithDescription("web view show completion callback ran")
+        let showCompleteExpectation = expectation(description: "web view show completion callback ran")
         webController.hybridAPI?.view.onShowCallback = {
             showCompleteExpectation.fulfill()
         }
         
         webController.bridgeContext.evaluateScript("NativeBridge.view.show()")
         
-        waitForExpectationsWithTimeout(3) { error in
-            XCTAssertFalse(webController.webView.hidden)
+        waitForExpectations(timeout: 3) { error in
+            XCTAssertFalse(webController.webView.isHidden)
         }
     }
 }
@@ -116,10 +116,10 @@ extension WebViewControllerTests {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [webController]
-        tabBarController.tabBar.hidden = true
+        tabBarController.tabBar.isHidden = true
         
         webController.bridgeContext.evaluateScript("NativeBridge.tabBar.show()")
-        XCTAssertFalse(tabBarController.tabBar.hidden)
+        XCTAssertFalse(tabBarController.tabBar.isHidden)
     }
     
     func testTabBarHide() {
@@ -130,7 +130,7 @@ extension WebViewControllerTests {
         tabBarController.viewControllers = [webController]
         
         webController.bridgeContext.evaluateScript("NativeBridge.tabBar.hide()")
-        XCTAssertTrue(tabBarController.tabBar.hidden)
+        XCTAssertTrue(tabBarController.tabBar.isHidden)
     }
 }
 
@@ -143,9 +143,9 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         
         let options = ExternalNavigationOptions.testOptions()!
-        let externalWebViewController = webController.presentExternalURLWithOptions(options)
+        let externalWebViewController = webController.presentExternalURL(options: options)
         
-        XCTAssertEqual(externalWebViewController.appearedFrom, WebViewController.AppearenceCause.External, "appearedFrom should be .External")
+        XCTAssertEqual(externalWebViewController.appearedFrom, WebViewController.AppearenceCause.external, "appearedFrom should be .External")
         XCTAssertNotNil(externalWebViewController.url)
         XCTAssertEqual(externalWebViewController.url!, options.url, "Should equal the original URL option value")
         XCTAssertEqual(externalWebViewController.externalReturnURL!, options.returnURL!, "Should equal the original return URL option value")
@@ -157,7 +157,7 @@ extension WebViewControllerTests {
         webController.addBridgeAPIObject()
         
         let options = ExternalNavigationOptions.testOptions()!
-        let externalWebViewController = webController.presentExternalURLWithOptions(options)
+        let externalWebViewController = webController.presentExternalURL(options: options)
         
         let backButton = externalWebViewController.navigationItem.leftBarButtonItem
         XCTAssertNotNil(backButton, "Back bar button should not be nil")
@@ -173,11 +173,11 @@ extension WebViewControllerTests {
 
 class TestWebViewController: WebViewController {
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 }

@@ -23,7 +23,7 @@ import UIKit
     
     // MARK: JSON Serialization
     
-    public static func dictionary(fromJSONArray array: [AnyObject], callback: JSValue?) -> [Int: BarButton] {
+    public static func dictionary(fromJSONArray array: [Any], callback: JSValue?) -> [Int: BarButton] {
         var buttons = [Int: BarButton]()
 
         for (index, buttonOptions) in array.enumerated() {

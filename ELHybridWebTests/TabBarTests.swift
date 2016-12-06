@@ -25,39 +25,39 @@ class TabBarTests: XCTestCase {
     
     func testExportName() {
         let api = HybridAPI(parentViewController: WebViewController())
-        let context = JSContext(virtualMachine: JSVirtualMachine())
-        context.setObject(api, forKeyedSubscript: HybridAPI.exportName)
+        let context = JSContext(virtualMachine: JSVirtualMachine())!
+        context.setObject(api, forKeyedSubscript: HybridAPI.exportName as NSString)
         
-        let tabBarObject: AnyObject = context.evaluateScript("NativeBridge.tabBar").toObject()
+        let tabBarObject: Any = context.evaluateScript("NativeBridge.tabBar").toObject()
         XCTAssert(tabBarObject is TabBar)
     }
     
     func testShow() {
         let webController = WebViewController()
         let api = HybridAPI(parentViewController: webController)
-        let context = JSContext(virtualMachine: JSVirtualMachine())
-        context.setObject(api, forKeyedSubscript: HybridAPI.exportName)
+        let context = JSContext(virtualMachine: JSVirtualMachine())!
+        context.setObject(api, forKeyedSubscript: HybridAPI.exportName as NSString)
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [webController]
-        tabBarController.tabBar.hidden = true
+        tabBarController.tabBar.isHidden = true
         
-        XCTAssertTrue(tabBarController.tabBar.hidden)
+        XCTAssertTrue(tabBarController.tabBar.isHidden)
         api.tabBar.show()
-        XCTAssertFalse(tabBarController.tabBar.hidden)
+        XCTAssertFalse(tabBarController.tabBar.isHidden)
     }
     
     func testHide() {
         let webController = WebViewController()
         let api = HybridAPI(parentViewController: webController)
-        let context = JSContext(virtualMachine: JSVirtualMachine())
-        context.setObject(api, forKeyedSubscript: HybridAPI.exportName)
+        let context = JSContext(virtualMachine: JSVirtualMachine())!
+        context.setObject(api, forKeyedSubscript: HybridAPI.exportName as NSString)
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [webController]
         
-        XCTAssertFalse(tabBarController.tabBar.hidden)
+        XCTAssertFalse(tabBarController.tabBar.isHidden)
         api.tabBar.hide()
-        XCTAssertTrue(tabBarController.tabBar.hidden)
+        XCTAssertTrue(tabBarController.tabBar.isHidden)
     }
 }

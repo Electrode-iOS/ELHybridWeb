@@ -91,7 +91,7 @@ import UIKit
 public class WebViewController: UIViewController {
     
     public enum AppearenceCause {
-        case Unknown, WebPush, WebPop, WebModal, WebDismiss, External
+        case unknown, webPush, webPop, webModal, webDismiss, external
     }
     
     /// The URL that was loaded with `loadURL()`
@@ -109,14 +109,14 @@ public class WebViewController: UIViewController {
     fileprivate(set) public var bridgeContext: JSContext! = JSContext()
     private var storedScreenshotGUID: String? = nil
     private var firstLoadCycleCompleted = true
-    fileprivate (set) var disappearedBy = AppearenceCause.Unknown
-    private var storedAppearence = AppearenceCause.WebPush
+    fileprivate (set) var disappearedBy = AppearenceCause.unknown
+    private var storedAppearence = AppearenceCause.webPush
     // TODO: make appearedFrom internal in Swift 2 with @testable
     private (set) public var appearedFrom: AppearenceCause {
         get {
             switch disappearedBy {
-            case .WebPush: return .WebPop
-            case .WebModal: return .WebDismiss
+            case .webPush: return .webPop
+            case .webModal: return .webDismiss
             default: return storedAppearence
             }
         }
@@ -203,7 +203,7 @@ public class WebViewController: UIViewController {
                 
         switch appearedFrom {
             
-        case .WebPush, .WebModal, .WebPop, .WebDismiss, .External:
+        case .webPush, .webModal, .webPop, .webDismiss, .external:
             webView.delegate = self
             webView.removeFromSuperview() // remove webView from previous view controller's view
             webView.frame = view.bounds
@@ -217,7 +217,7 @@ public class WebViewController: UIViewController {
                 placeholderImageView.image = UIImage.loadImageFromGUID(guid: storedScreenshotGUID)
                 view.bringSubview(toFront: placeholderImageView)
             }
-        case .Unknown: break
+        case .unknown: break
         }
     }
     
@@ -227,9 +227,9 @@ public class WebViewController: UIViewController {
         
         switch appearedFrom {
         
-        case .WebPop, .WebDismiss: addBridgeAPIObject()
+        case .webPop, .webDismiss: addBridgeAPIObject()
             
-        case .WebPush, .WebModal, .External, .Unknown: break
+        case .webPush, .webModal, .external, .unknown: break
         }
     }
     
@@ -238,7 +238,7 @@ public class WebViewController: UIViewController {
         
         switch disappearedBy {
             
-        case .WebPop, .WebDismiss, .WebPush, .WebModal:
+        case .webPop, .webDismiss, .webPush, .webModal:
             // only store screen shot when disappearing by web transition
             placeholderImageView.frame = webView.frame // must align frames for image capture
             
@@ -251,14 +251,14 @@ public class WebViewController: UIViewController {
             
             webView.isHidden = true
             
-        case .Unknown:
+        case .unknown:
             if isMovingFromParentViewController {
                 webView.isHidden = true
             }
-        case .External: break
+        case .external: break
         }
 
-        if disappearedBy != .WebPop && isMovingFromParentViewController {
+        if disappearedBy != .webPop && isMovingFromParentViewController {
             hybridAPI?.navigation.back()
         }
 
@@ -267,7 +267,8 @@ public class WebViewController: UIViewController {
         switch disappearedBy {
         // clear out parent reference to prevent the popping view's onAppear from
         // showing the web view too early
-        case .WebPop, .Unknown where isMovingFromParentViewController:
+        case .webPop,
+             .unknown where isMovingFromParentViewController:
             hybridAPI?.parentViewController = nil
         default: break
         }
@@ -278,13 +279,13 @@ public class WebViewController: UIViewController {
         
         switch disappearedBy {
             
-        case .WebPop, .WebDismiss, .WebPush, .WebModal, .External:
+        case .webPop, .webDismiss, .webPush, .webModal, .external:
             // we're gone.  dump the screenshot, we'll load it later if we need to.
             placeholderImageView.image = nil
             
-        case .Unknown:
+        case .unknown:
             // we don't know how it will appear if we don't know how it disappeared
-            appearedFrom = .Unknown
+            appearedFrom = .unknown
         }
     }
     
@@ -343,7 +344,7 @@ public class WebViewController: UIViewController {
     }
     
     fileprivate func didInterceptRequest(_ request: URLRequest) -> Bool {
-        if appearedFrom == .External {
+        if appearedFrom == .external {
             // intercept requests that match external return URL
             if let url = request.url, shouldInterceptExternalURL(url: url) {
                 returnFromExternal(returnURL: url)
@@ -370,10 +371,10 @@ public class WebViewController: UIViewController {
      :param: hideBottomBar Hides the bottom bar of the view controller when true.
      */
     public func pushWebViewController(options: WebViewControllerOptions?) {
-        disappearedBy = .WebPush
+        disappearedBy = .webPush
         
         let webViewController = newWebViewController(options: options)
-        webViewController.appearedFrom = .WebPush
+        webViewController.appearedFrom = .webPush
         
         navigationController?.pushViewController(webViewController, animated: true)
     }
@@ -383,7 +384,7 @@ public class WebViewController: UIViewController {
      web view history. Uses animation.
      */
     public func popWebViewController() {
-        disappearedBy = .WebPop
+        disappearedBy = .webPop
         
         if let navController = self.navigationController, navController.viewControllers.count > 1 {
             navController.popViewController(animated: true)
@@ -395,10 +396,10 @@ public class WebViewController: UIViewController {
      root view controller. The existing web view instance is reused.
      */
     public func presentModalWebViewController(options: WebViewControllerOptions?) {
-        disappearedBy = .WebModal
+        disappearedBy = .webModal
         
         let webViewController = newWebViewController(options: options)
-        webViewController.appearedFrom = .WebModal
+        webViewController.appearedFrom = .webModal
         
         let navigationController = UINavigationController(rootViewController: webViewController)
         
@@ -411,7 +412,7 @@ public class WebViewController: UIViewController {
     
     /// Pops until there's only a single view controller left on the navigation stack.
     public func popToRootWebViewController(animated: Bool) {
-        disappearedBy = .WebPop
+        disappearedBy = .webPop
         let _ = navigationController?.popToRootViewController(animated: animated)
     }
     
@@ -458,7 +459,7 @@ public class WebViewController: UIViewController {
         externalWebViewController.externalPresentingWebViewController = self
         externalWebViewController.addBridgeAPIObject()
         externalWebViewController.load(url: options.url)
-        externalWebViewController.appearedFrom = .External
+        externalWebViewController.appearedFrom = .external
         externalWebViewController.externalReturnURL = options.returnURL
         externalWebViewController.title = options.title
         
@@ -659,7 +660,7 @@ extension WebViewController: WebViewBridging {
         
         if let hybridAPI = hybridAPI, let readyCallback = context.objectForKeyedSubscript("nativeBridgeReady") {
             if !readyCallback.isUndefined {
-                readyCallback.callWithData(data: hybridAPI)
+                readyCallback.call(withData: hybridAPI)
             }
         }
     }
@@ -772,20 +773,20 @@ public extension NSObject {
     
     func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
         let notifyWebviews = { () -> Void in
-            if let allWebViews = globalWebViews.allObjects as? [UIWebView] {
-                for webView in allWebViews {
-                    let cookie = "__thgWebviewCookie\(webView.hash)"
-                    let js = "var \(cookie) = '\(cookie)'"
-                    webView.stringByEvaluatingJavaScript(from: js)
-                    
-                    let contextCookie = context.objectForKeyedSubscript(cookie).toString()
-                    if contextCookie == cookie {
-                        if let bridgingDelegate = webView.delegate as? WebViewBridging {
-                            bridgingDelegate.didCreateJavaScriptContext(context: context)
-                        }
+            let allWebViews = globalWebViews.allObjects
+            for webView in allWebViews {
+                let cookie = "__thgWebviewCookie\(webView.hash)"
+                let js = "var \(cookie) = '\(cookie)'"
+                webView.stringByEvaluatingJavaScript(from: js)
+                
+                let contextCookie = context.objectForKeyedSubscript(cookie).toString()
+                if contextCookie == cookie {
+                    if let bridgingDelegate = webView.delegate as? WebViewBridging {
+                        bridgingDelegate.didCreateJavaScriptContext(context: context)
                     }
                 }
             }
+        
         }
         
         let webFrameClass1: AnyClass! = NSClassFromString("WebFrame") // Most web-views

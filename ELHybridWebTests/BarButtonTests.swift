@@ -12,14 +12,14 @@ import XCTest
 
 class BarButtonTests: XCTestCase {
     
-    var actionJSONArray: [AnyObject] {
+    var actionJSONArray: [Any] {
         let actionOne = ["id": "action1", "title": "Action 1"]
         let actionTwo = ["id": "action2", "title": "Action 2"]
         return [actionOne, actionTwo]
     }
     
     func testDictionaryFromJSONArray() {
-        let buttons: [Int: BarButton] = BarButton.dictionaryFromJSONArray(actionJSONArray, callback: nil)
+        let buttons: [Int: BarButton] = BarButton.dictionary(fromJSONArray: actionJSONArray, callback: nil)
         
         let buttonOne = buttons[0]
         XCTAssertNotNil(buttonOne)
@@ -33,7 +33,7 @@ class BarButtonTests: XCTestCase {
     }
     
     func testBarButtonItemProperty() {
-        let buttons: [Int: BarButton] = BarButton.dictionaryFromJSONArray(actionJSONArray, callback: nil)
+        let buttons: [Int: BarButton] = BarButton.dictionary(fromJSONArray: actionJSONArray, callback: nil)
         let firstButton = buttons[0]!
         let barButtonItem = firstButton.barButtonItem
         

@@ -16,26 +16,28 @@ class HybridAPITests: XCTestCase {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.dialog")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.dialog")!
+        
+        
         XCTAssert(result.isObject)
-        XCTAssert(result.toObject() is NSDictionary)
+        XCTAssert(result.toObject() is Dictionary)
     }
     
     func testShareExport() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.share")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.share")!
         
         XCTAssert(result.isObject)
-        XCTAssert(result.toObject() is NSDictionary)
+        XCTAssert(result.toObject() is Dictionary)
     }
     
     func testNavigationExport() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
         
-        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation")
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation")!
         
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is Navigation)
