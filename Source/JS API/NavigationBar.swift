@@ -14,13 +14,13 @@ import JavaScriptCore
 }
 
 @objc public class NavigationBar: ViewControllerChild {
-    
     public var title: String? {
         didSet {
             parentViewController?.navigationItem.title = title
         }
     }
-    private var buttons: [Int: BarButton]? {
+    
+    fileprivate var buttons: [Int: BarButton]? {
         didSet {
             if let buttons = buttons {
                 if let leftButton = buttons[0]?.barButtonItem {
@@ -49,24 +49,24 @@ extension NavigationBar: NavigationBarJSExport {
     
     func setTitle(title: JSValue, _ callback: JSValue? = nil) {
         log(.Debug, "title:\(title), callback\(callback)") // provide breadcrumbs
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.title = title.asString
-            callback?.safelyCallWithArguments(nil)
+            callback?.safelyCall(withArguments: nil)
         }
     }
     
     func setButtons(buttonsToSet: JSValue?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
         log(.Debug, "buttonsToSet\(buttonsToSet), callback:\(callback)") // provide breadcrumbs
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.configureButtons(buttonsToSet, callback: callback)
-            testingCallback?.safelyCallWithArguments(nil) // only for testing purposes
+            testingCallback?.safelyCall(withArguments: nil) // only for testing purposes
         }
     }
     
-    func configureButtons(buttonsToSet: JSValue?, callback: JSValue?) {
+    func configureButtons(_ buttonsToSet: JSValue?, callback: JSValue?) {
         log(.Debug, "buttonsToSet\(buttonsToSet), callback:\(callback)") // provide breadcrumbs
         if let buttonOptions = buttonsToSet?.toObject() as? [AnyObject] {
-            buttons = BarButton.dictionaryFromJSONArray(buttonOptions, callback: callback) // must set buttons on main thread
+            buttons = BarButton.dictionary(fromJSONArray: buttonOptions, callback: callback) // must set buttons on main thread
         } else {
             buttons = nil
         }

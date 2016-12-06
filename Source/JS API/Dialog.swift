@@ -13,13 +13,12 @@ import JavaScriptCore
     
     func show(options: [String: AnyObject], callback: JSValue) {
         log(.Debug, "options:\(options), callback:\(callback)") // provide breadcrumbs
-        switch DialogOptions.resultOrErrorWithOptions(options) {
+        switch DialogOptions.resultOrErrorWithOptions(options: options) {
             
         case .Success(let box):
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 // bail out if an alert is currently visible to prevent showing multiple alerts
-                if let visible = self.dialogAlert?.visible
-                    where visible == true {
+                if let visible = self.dialogAlert?.visible, visible == true {
                     return
                 }
                 
@@ -27,14 +26,14 @@ import JavaScriptCore
                 self.dialogAlert = DialogAlert(dialogOptions: dialogOptions)
                 
                 self.dialogAlert?.show { buttonIndex in
-                    if let action = dialogOptions.actionAtIndex(buttonIndex) {
-                        callback.safelyCallWithData(action)
+                    if let action = dialogOptions.actionAtIndex(index: buttonIndex) {
+                        callback.safelyCall(data: action)
                     }
                 }
             }
             
         case .Failure(let error):
-            callback.callWithErrorMessage(error.message)
+            callback.call(withErrorMessage: error.message)
         }
     }
 }

@@ -19,7 +19,7 @@ public extension JSValue {
      :return: The return value of the function call.
     */
     func callWithData(data: AnyObject) -> JSValue! {
-        return callWithArguments([JSValue(nullInContext: context), data])
+        return call(withArguments: [JSValue(nullIn: context), data])
     }
     
     /**
@@ -29,7 +29,7 @@ public extension JSValue {
      :return: The return value of the function call.
     */
     func callWithError(error: NSError) -> JSValue! {
-        return callWithErrorMessage(error.localizedDescription)
+        return call(withErrorMessage: error.localizedDescription)
     }
     
     /**
@@ -39,9 +39,9 @@ public extension JSValue {
      that is passed to the callback.
     :return: The return value of the function call.
     */
-    func callWithErrorMessage(errorMessage: String) -> JSValue! {
-        let jsError = JSValue(newErrorFromMessage: errorMessage, inContext: context)
-        return callWithArguments([jsError, JSValue(nullInContext: context)])
+    func call(withErrorMessage message: String) -> JSValue! {
+        let jsError = JSValue(newErrorFromMessage: message, in: context)!
+        return call(withArguments: [jsError, JSValue(nullIn: context)])
     }
     
     /**
@@ -52,8 +52,8 @@ public extension JSValue {
     :return: The return value of the function call.
     */
     func callWithErrorType(error: HybridAPIErrorType) -> JSValue! {
-        let jsError = JSValue(newErrorFromMessage: error.message, inContext: context)
-        return callWithArguments([jsError, JSValue(nullInContext: context)])
+        let jsError = JSValue(newErrorFromMessage: error.message, in: context)!
+        return call(withArguments: [jsError, JSValue(nullIn: context)])
     }
     
     /**
@@ -63,27 +63,27 @@ public extension JSValue {
      :param: data The data that is passed to the callback
      :return: The return value of the function call.
     */
-    func safelyCallWithData(data: AnyObject) {
-        return safelyCallWithArguments([JSValue(nullInContext: context), data])
+    func safelyCall(data: Any) {
+        return safelyCall(withArguments: [JSValue(nullIn: context), data])
     }
     
     /**
     Calls the javascript function with a timeout to prevent deadlocks.
     :param: arguments The arguments array to be passed to the javascript function.
     */
-    func safelyCallWithArguments(arguments: [AnyObject]!) {
+    func safelyCall(withArguments arguments: [Any]!) {
         if isUndefined || isNull {
             return
         }
         
-        var args: [AnyObject] = [self, NSNumber(integer: 0)]
+        var args: [Any] = [self, NSNumber(value: 0)]
         if arguments != nil {
             args += arguments
         }
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.context.objectForKeyedSubscript("setTimeout").callWithArguments(args)
-        })
+        DispatchQueue.main.async {
+            self.context.objectForKeyedSubscript("setTimeout").call(withArguments: args)
+        }
     }
 }
 

@@ -16,26 +16,25 @@ import UIKit
 }
 
 @objc public class ViewAPI: ViewControllerChild  {
-
     internal var onAppearCallback: JSValue?
-    private var onDisappearCallback: JSValue?
+    fileprivate var onDisappearCallback: JSValue?
     internal var onShowCallback: (() -> Void)?
     
     public func appeared() {
         log(.Debug, "\(self) onAppearCallback:\(onAppearCallback)") // provide breadcrumbs
-        onAppearCallback?.safelyCallWithArguments(nil)
+        onAppearCallback?.safelyCall(withArguments: nil)
     }
     
     public func disappeared() {
         log(.Debug, "\(self) onDisappearCallback:\(onDisappearCallback)") // provide breadcrumbs
-        onDisappearCallback?.safelyCallWithArguments(nil)
+        onDisappearCallback?.safelyCall(withArguments: nil)
     }
 }
 
 extension ViewAPI: ViewJSExport {
     /// Show the web view
     public func show() {
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.webViewController?.showWebView()
             self.onShowCallback?()
         }

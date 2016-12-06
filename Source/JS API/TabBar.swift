@@ -14,12 +14,11 @@ import JavaScriptCore
 }
 
 @objc public class TabBar: ViewControllerChild, TabBarJSExport {
-    
     public func hide() {
-        parentViewController?.tabBarController?.tabBar.hidden = true
+        parentViewController?.tabBarController?.tabBar.isHidden = true
     }
     
     public func show() {
-        parentViewController?.tabBarController?.tabBar.hidden = false
+        parentViewController?.tabBarController?.tabBar.isHidden = false
     }
 }

@@ -18,11 +18,11 @@ public struct WebViewControllerOptions {
     public init(javaScriptValue: JSValue) {
         // TODO: make this a `guard` statement after migrating to Swift 2
         if let _ = javaScriptValue.asValidValue {
-            self.title = javaScriptValue.valueForProperty("title").asString
-            self.tabBarHidden = javaScriptValue.valueForProperty("tabBarHidden").toBool() ?? false
-            self.onAppearCallback = javaScriptValue.valueForProperty("onAppear")
-            self.navigationBarButtonCallback = javaScriptValue.valueForProperty("onNavigationBarButtonTap").asValidValue
-            self.navigationBarButtons = javaScriptValue.valueForProperty("navigationBarButtons").asValidValue
+            self.title = javaScriptValue.forProperty("title").asString
+            self.tabBarHidden = javaScriptValue.forProperty("tabBarHidden").toBool() 
+            self.onAppearCallback = javaScriptValue.forProperty("onAppear")
+            self.navigationBarButtonCallback = javaScriptValue.forProperty("onNavigationBarButtonTap").asValidValue
+            self.navigationBarButtons = javaScriptValue.forProperty("navigationBarButtons").asValidValue
         }
     }
 }
