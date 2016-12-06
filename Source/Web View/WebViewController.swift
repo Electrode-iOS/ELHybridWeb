@@ -298,12 +298,9 @@ public class WebViewController: UIViewController {
         self.placeholderImageView.image = nil
         self.view.sendSubviewToBack(self.placeholderImageView)
     }
-}
 
-// MARK: - Request Loading
-
-extension WebViewController {
     
+    // MARK: - Request Loading
     /**
      Load the web view with the provided URL.
      :param: url The URL used to load the web view.
@@ -362,6 +359,232 @@ extension WebViewController {
         return false
     }
 
+    // MARK: - Web Controller Navigation
+    
+    /**
+     Push a new web view controller on the navigation stack using the existing
+     web view instance. Does not affect web view history. Uses animation.
+     */
+    public func pushWebViewController() {
+        pushWebViewControllerWithOptions(nil)
+    }
+    
+    /**
+     Push a new web view controller on the navigation stack using the existing
+     web view instance. Does not affect web view history. Uses animation.
+     :param: hideBottomBar Hides the bottom bar of the view controller when true.
+     */
+    public func pushWebViewControllerWithOptions(options: WebViewControllerOptions?) {
+        disappearedBy = .WebPush
+        
+        let webViewController = newWebViewControllerWithOptions(options)
+        webViewController.appearedFrom = .WebPush
+        
+        navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    /**
+     Pop a web view controller off of the navigation. Does not affect
+     web view history. Uses animation.
+     */
+    public func popWebViewController() {
+        disappearedBy = .WebPop
+        
+        if let navController = self.navigationController
+            where navController.viewControllers.count > 1 {
+            navController.popViewControllerAnimated(true)
+        }
+    }
+    
+    /**
+     Present a navigation controller containing a new web view controller as the
+     root view controller. The existing web view instance is reused.
+     */
+    public func presentModalWebViewController(options: WebViewControllerOptions?) {
+        disappearedBy = .WebModal
+        
+        let webViewController = newWebViewControllerWithOptions(options)
+        webViewController.appearedFrom = .WebModal
+        
+        let navigationController = UINavigationController(rootViewController: webViewController)
+        
+        if let tabBarController = tabBarController {
+            tabBarController.presentViewController(navigationController, animated: true, completion: nil)
+        } else {
+            presentViewController(navigationController, animated: true, completion: nil)
+        }
+    }
+    
+    /// Pops until there's only a single view controller left on the navigation stack.
+    public func popToRootWebViewController(animated: Bool) {
+        disappearedBy = .WebPop
+        navigationController?.popToRootViewControllerAnimated(animated)
+    }
+    
+    /**
+     Return `true` to have the web view controller push a new web view controller
+     on the stack for a given navigation type of a request.
+     */
+    public func pushesWebViewControllerForNavigationType(navigationType: UIWebViewNavigationType) -> Bool {
+        return false
+    }
+    
+    public func newWebViewControllerWithOptions(options: WebViewControllerOptions?) -> WebViewController {
+        let webViewController = self.dynamicType.init(webView: webView, bridge: bridge)
+        webViewController.addBridgeAPIObject()
+        webViewController.hybridAPI?.navigationBar.title = options?.title
+        webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
+        webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
+        
+        if let navigationBarButtons = options?.navigationBarButtons {
+            webViewController.hybridAPI?.navigationBar.configureButtons(navigationBarButtons, callback: options?.navigationBarButtonCallback)
+        }
+        
+        return webViewController
+    }
+
+    // MARK: - External Navigation
+    final var shouldDismissExternalURLModal: Bool {
+        return !webView.canGoBack
+    }
+    
+    final func shouldInterceptExternalURL(url: NSURL) -> Bool {
+        if let requestedURLString = url.absoluteStringWithoutQuery,
+            let returnURLString = externalReturnURL?.absoluteStringWithoutQuery
+            where requestedURLString.rangeOfString(returnURLString) != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    // TODO: make internal after migrating to Swift 2 and @testable
+    final public func presentExternalURLWithOptions(options: ExternalNavigationOptions) -> WebViewController{
+        let externalWebViewController = self.dynamicType.init()
+        externalWebViewController.externalPresentingWebViewController = self
+        externalWebViewController.addBridgeAPIObject()
+        externalWebViewController.loadURL(options.url)
+        externalWebViewController.appearedFrom = .External
+        externalWebViewController.externalReturnURL = options.returnURL
+        externalWebViewController.title = options.title
+        
+        let backText = NSLocalizedString("Back", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: #selector(WebViewController.externalBackButtonTapped))
+        
+        let doneText = NSLocalizedString("Done", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        externalWebViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: doneText, style: .Done, target: externalWebViewController, action: #selector(WebViewController.dismissExternalURL))
+        
+        let navigationController = UINavigationController(rootViewController: externalWebViewController)
+        presentViewController(navigationController, animated: true, completion: nil)
+        return externalWebViewController
+    }
+    
+    final func externalBackButtonTapped() {
+        if shouldDismissExternalURLModal {
+            externalPresentingWebViewController?.showWebView()
+            dismissExternalURL()
+        }
+        
+        webView.goBack()
+    }
+    
+    final func returnFromExternalWithReturnURL(url: NSURL) {
+        externalPresentingWebViewController?.loadURL(url)
+        dismissExternalURL()
+    }
+    
+    final func dismissExternalURL() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    // MARK: - Error UI
+    private func createErrorLabel() -> UILabel? {
+        let height = CGFloat(50)
+        let y = CGRectGetMidY(view.bounds) - (height / 2) - 100
+        let label = UILabel(frame: CGRectMake(0, y, CGRectGetWidth(view.bounds), height))
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.numberOfLines = 0
+        label.textAlignment = NSTextAlignment.Center
+        label.backgroundColor = view.backgroundColor
+        label.font = UIFont.boldSystemFontOfSize(12)
+        return label
+    }
+    
+    private func createReloadButton() -> UIButton? {
+        let button = UIButton(type: .Custom)
+        let size = CGSizeMake(170, 38)
+        let x = CGRectGetMidX(view.bounds) - (size.width / 2)
+        var y = CGRectGetMidY(view.bounds) - (size.height / 2)
+        
+        if let label = errorLabel {
+            y = CGRectGetMaxY(label.frame) + 20
+        }
+        
+        button.setTitle(NSLocalizedString("Try again", comment: "Try again"), forState: UIControlState.Normal)
+        button.frame = CGRectMake(x, y, size.width, size.height)
+        button.backgroundColor = UIColor.lightGrayColor()
+        button.titleLabel?.backgroundColor = UIColor.lightGrayColor()
+        button.titleLabel?.textColor = UIColor.whiteColor()
+        
+        return button
+    }
+
+    // MARK: - Error Display Events
+    /// Override to completely customize error display. Must also override `removeErrorDisplay`
+    public func renderErrorDisplayWithError(error: NSError, message: String) {
+        let errorView = UIView(frame: view.bounds)
+        view.addSubview(errorView)
+        self.errorView = errorView
+        
+        self.errorLabel = createErrorLabel()
+        self.reloadButton = createReloadButton()
+        
+        if let errorLabel = errorLabel {
+            errorLabel.text = NSLocalizedString(message, comment: "Web View Load Error")
+            errorView.addSubview(errorLabel)
+        }
+        
+        if let button = reloadButton {
+            button.addTarget(self, action: #selector(WebViewController.reloadButtonTapped(_:)), forControlEvents: .TouchUpInside)
+            errorView.addSubview(button)
+        }
+    }
+    
+    /// Override to handle custom error display removal.
+    public func removeErrorDisplay() {
+        errorView?.removeFromSuperview()
+        errorView = nil
+        showWebView()
+    }
+    
+    /// Override to customize the feature name that appears in the error display.
+    public func featureNameForError(error: NSError) -> String {
+        return "This feature"
+    }
+    
+    /// Override to customize the error message text.
+    public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
+        let message = "Sorry!\n \(featureName) isn't working right now."
+        webView.hidden = true
+        renderErrorDisplayWithError(error, message: message)
+    }
+    
+    /// Removes the error display and attempts to reload the web view.
+    public func reloadButtonTapped(sender: AnyObject) {
+        guard let url = url else { return }
+        loadURL(url)
+    }
+
+    // MARK: - Bridge API
+    public func addBridgeAPIObject() {
+        if let bridgeObject = hybridAPI {
+            bridge.context.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName)
+        } else {
+            let platform = HybridAPI(parentViewController: self)
+            bridge.context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
+            hybridAPI = platform
+        }
+    }
 }
 
 // MARK: - NSURLSessionDelegate
@@ -461,251 +684,7 @@ extension WebViewController: WebViewBridging {
     }
 }
 
-// MARK: - Web Controller Navigation
 
-public extension WebViewController {
-    
-    /**
-     Push a new web view controller on the navigation stack using the existing
-     web view instance. Does not affect web view history. Uses animation.
-    */
-    public func pushWebViewController() {
-        pushWebViewControllerWithOptions(nil)
-    }
-    
-    /**
-     Push a new web view controller on the navigation stack using the existing
-     web view instance. Does not affect web view history. Uses animation.
-     :param: hideBottomBar Hides the bottom bar of the view controller when true.
-    */
-    public func pushWebViewControllerWithOptions(options: WebViewControllerOptions?) {
-        disappearedBy = .WebPush
-        
-        let webViewController = newWebViewControllerWithOptions(options)
-        webViewController.appearedFrom = .WebPush
-        
-        navigationController?.pushViewController(webViewController, animated: true)
-    }
-    
-    /**
-     Pop a web view controller off of the navigation. Does not affect
-     web view history. Uses animation.
-    */
-    public func popWebViewController() {
-        disappearedBy = .WebPop
-
-        if let navController = self.navigationController
-            where navController.viewControllers.count > 1 {
-                navController.popViewControllerAnimated(true)
-        }
-    }
-    
-    /**
-     Present a navigation controller containing a new web view controller as the
-     root view controller. The existing web view instance is reused.
-    */
-    public func presentModalWebViewController(options: WebViewControllerOptions?) {
-        disappearedBy = .WebModal
-        
-        let webViewController = newWebViewControllerWithOptions(options)
-        webViewController.appearedFrom = .WebModal
-        
-        let navigationController = UINavigationController(rootViewController: webViewController)
-        
-        if let tabBarController = tabBarController {
-            tabBarController.presentViewController(navigationController, animated: true, completion: nil)
-        } else {
-            presentViewController(navigationController, animated: true, completion: nil)
-        }
-    }
-    
-    /// Pops until there's only a single view controller left on the navigation stack.
-    public func popToRootWebViewController(animated: Bool) {
-        disappearedBy = .WebPop
-        navigationController?.popToRootViewControllerAnimated(animated)
-    }
-    
-    /**
-     Return `true` to have the web view controller push a new web view controller
-     on the stack for a given navigation type of a request.
-    */
-    public func pushesWebViewControllerForNavigationType(navigationType: UIWebViewNavigationType) -> Bool {
-        return false
-    }
-    
-    public func newWebViewControllerWithOptions(options: WebViewControllerOptions?) -> WebViewController {
-        let webViewController = self.dynamicType.init(webView: webView, bridge: bridge)
-        webViewController.addBridgeAPIObject()
-        webViewController.hybridAPI?.navigationBar.title = options?.title
-        webViewController.hidesBottomBarWhenPushed = options?.tabBarHidden ?? false
-        webViewController.hybridAPI?.view.onAppearCallback = options?.onAppearCallback?.asValidValue
-        
-        if let navigationBarButtons = options?.navigationBarButtons {
-            webViewController.hybridAPI?.navigationBar.configureButtons(navigationBarButtons, callback: options?.navigationBarButtonCallback)
-        }
-        
-        return webViewController
-    }
-}
-
-// MARK: - External Navigation
-
-extension WebViewController {
-    
-    final var shouldDismissExternalURLModal: Bool {
-        return !webView.canGoBack
-    }
-    
-    final func shouldInterceptExternalURL(url: NSURL) -> Bool {
-        if let requestedURLString = url.absoluteStringWithoutQuery,
-            let returnURLString = externalReturnURL?.absoluteStringWithoutQuery
-            where requestedURLString.rangeOfString(returnURLString) != nil {
-                return true
-        }
-        
-        return false
-    }
-    
-    // TODO: make internal after migrating to Swift 2 and @testable
-    final public func presentExternalURLWithOptions(options: ExternalNavigationOptions) -> WebViewController{
-        let externalWebViewController = self.dynamicType.init()
-        externalWebViewController.externalPresentingWebViewController = self
-        externalWebViewController.addBridgeAPIObject()
-        externalWebViewController.loadURL(options.url)
-        externalWebViewController.appearedFrom = .External
-        externalWebViewController.externalReturnURL = options.returnURL
-        externalWebViewController.title = options.title
-        
-        let backText = NSLocalizedString("Back", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
-        externalWebViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: backText, style: .Plain, target: externalWebViewController, action: #selector(WebViewController.externalBackButtonTapped))
-        
-        let doneText = NSLocalizedString("Done", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
-        externalWebViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: doneText, style: .Done, target: externalWebViewController, action: #selector(WebViewController.dismissExternalURL))
-        
-        let navigationController = UINavigationController(rootViewController: externalWebViewController)
-        presentViewController(navigationController, animated: true, completion: nil)
-        return externalWebViewController
-    }
-    
-    final func externalBackButtonTapped() {
-        if shouldDismissExternalURLModal {
-            externalPresentingWebViewController?.showWebView()
-            dismissExternalURL()
-        }
-        
-        webView.goBack()
-    }
-    
-    final func returnFromExternalWithReturnURL(url: NSURL) {
-        externalPresentingWebViewController?.loadURL(url)
-        dismissExternalURL()
-    }
-    
-    final func dismissExternalURL() {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-}
-
-// MARK: - Error UI
-
-extension WebViewController {
-    
-    private func createErrorLabel() -> UILabel? {
-        let height = CGFloat(50)
-        let y = CGRectGetMidY(view.bounds) - (height / 2) - 100
-        let label = UILabel(frame: CGRectMake(0, y, CGRectGetWidth(view.bounds), height))
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        label.numberOfLines = 0
-        label.textAlignment = NSTextAlignment.Center
-        label.backgroundColor = view.backgroundColor
-        label.font = UIFont.boldSystemFontOfSize(12)
-        return label
-    }
-    
-    private func createReloadButton() -> UIButton? {
-        let button = UIButton(type: .Custom)
-        let size = CGSizeMake(170, 38)
-        let x = CGRectGetMidX(view.bounds) - (size.width / 2)
-        var y = CGRectGetMidY(view.bounds) - (size.height / 2)
-        
-        if let label = errorLabel {
-            y = CGRectGetMaxY(label.frame) + 20
-        }
-        
-        button.setTitle(NSLocalizedString("Try again", comment: "Try again"), forState: UIControlState.Normal)
-        button.frame = CGRectMake(x, y, size.width, size.height)
-        button.backgroundColor = UIColor.lightGrayColor()
-        button.titleLabel?.backgroundColor = UIColor.lightGrayColor()
-        button.titleLabel?.textColor = UIColor.whiteColor()
-        
-        return button
-    }
-}
-
-// MARK: - Error Display Events
-
-extension WebViewController {
-    
-    /// Override to completely customize error display. Must also override `removeErrorDisplay`
-     public func renderErrorDisplayWithError(error: NSError, message: String) {
-        let errorView = UIView(frame: view.bounds)
-        view.addSubview(errorView)
-        self.errorView = errorView
-        
-        self.errorLabel = createErrorLabel()
-        self.reloadButton = createReloadButton()
-        
-        if let errorLabel = errorLabel {
-            errorLabel.text = NSLocalizedString(message, comment: "Web View Load Error")
-            errorView.addSubview(errorLabel)
-        }
-        
-        if let button = reloadButton {
-            button.addTarget(self, action: #selector(WebViewController.reloadButtonTapped(_:)), forControlEvents: .TouchUpInside)
-            errorView.addSubview(button)
-        }
-    }
-    
-    /// Override to handle custom error display removal.
-    public func removeErrorDisplay() {
-        errorView?.removeFromSuperview()
-        errorView = nil
-        showWebView()
-    }
-   
-    /// Override to customize the feature name that appears in the error display.
-    public func featureNameForError(error: NSError) -> String {
-        return "This feature"
-    }
-    
-    /// Override to customize the error message text.
-    public func renderFeatureErrorDisplayWithError(error: NSError, featureName: String) {
-        let message = "Sorry!\n \(featureName) isn't working right now."
-        webView.hidden = true
-        renderErrorDisplayWithError(error, message: message)
-    }
-    
-    /// Removes the error display and attempts to reload the web view.
-    public func reloadButtonTapped(sender: AnyObject) {
-        guard let url = url else { return }
-        loadURL(url)
-    }
-}
-
-// MARK: - Bridge API
-
-extension WebViewController {
-    
-    public func addBridgeAPIObject() {
-        if let bridgeObject = hybridAPI {
-            bridge.context.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName)
-        } else {
-            let platform = HybridAPI(parentViewController: self)
-            bridge.context.setObject(platform, forKeyedSubscript: HybridAPI.exportName)
-            hybridAPI = platform
-        }
-    }
-}
 
 // MARK: - UIView Utils
 

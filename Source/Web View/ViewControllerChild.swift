@@ -24,12 +24,8 @@ protocol ViewControllerChildType {
     public required init(parentViewController: UIViewController) {
         self.parentViewController = parentViewController
     }
-}
 
-// MARK: WebViewController Integration
-
-extension ViewControllerChild {
-    
+    // MARK: WebViewController Integration
     weak var webViewController: WebViewController? {
         return parentViewController as? WebViewController
     }

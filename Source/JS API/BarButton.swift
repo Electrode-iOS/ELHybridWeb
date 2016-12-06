@@ -21,12 +21,8 @@ import UIKit
         self.title = title
         self.image = image
     }
-}
 
-// MARK: - JSON Serialization
-
-extension BarButton {
-    
+    // MARK: - JSON Serialization
     public static func dictionaryFromJSONArray(array: [AnyObject], callback: JSValue?) -> [Int: BarButton] {
         var buttons = [Int: BarButton]()
 
@@ -46,12 +42,8 @@ extension BarButton {
         
         return buttons
     }
-}
 
-// MARK: - UIBarButtonItem
-
-extension BarButton {
-    
+    // MARK: - UIBarButtonItem
     public var barButtonItem: UIBarButtonItem {
         return UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BarButton.select as (BarButton) -> () -> ()))
     }

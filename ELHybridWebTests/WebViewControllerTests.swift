@@ -24,12 +24,8 @@ class WebViewControllerTests: XCTestCase {
         webViewController.addBridgeAPIObject()
         XCTAssertNotNil(webViewController.hybridAPI)
     }
-}
 
-// MARK: - Exports
-
-extension WebViewControllerTests {
-    
+    // MARK: - Exports
     func testDialogExport() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
@@ -83,12 +79,8 @@ extension WebViewControllerTests {
         XCTAssert(result.isObject)
         XCTAssert(result.toObject() is ViewAPI)
     }
-}
 
-// MARK: - Test integration with View API
-
-extension WebViewControllerTests {
-    
+    // MARK: - Test integration with View API
     func testViewShow() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
@@ -105,12 +97,9 @@ extension WebViewControllerTests {
             XCTAssertFalse(webController.webView.hidden)
         }
     }
-}
 
-// MARK: - Test integration with Tab Bar API
 
-extension WebViewControllerTests {
-
+    // MARK: - Test integration with Tab Bar API
     func testTabBarShow() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
@@ -133,12 +122,8 @@ extension WebViewControllerTests {
         webController.bridge.context.evaluateScript("NativeBridge.tabBar.hide()")
         XCTAssertTrue(tabBarController.tabBar.hidden)
     }
-}
 
-// MARK: - External Navigation
-
-extension WebViewControllerTests {
-    
+    // MARK: - External Navigation
     func testPresentExternalURLWithOptions() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
