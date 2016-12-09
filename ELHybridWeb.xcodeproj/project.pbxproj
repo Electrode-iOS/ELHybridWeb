@@ -450,7 +450,6 @@
 					};
 					173E4E621B00FDAE00ACBCCA = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = DXZ5VF8836;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -797,7 +796,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				DEVELOPMENT_TEAM = DXZ5VF8836;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -813,7 +812,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				DEVELOPMENT_TEAM = DXZ5VF8836;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ELHybridWebTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -895,7 +894,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				DEVELOPMENT_TEAM = DXZ5VF8836;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
