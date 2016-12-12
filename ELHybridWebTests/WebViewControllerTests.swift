@@ -23,11 +23,6 @@ class WebViewControllerTests: XCTestCase {
         webViewController.addBridgeAPIObject()
         XCTAssertNotNil(webViewController.hybridAPI)
     }
-}
-
-// MARK: - Exports
-
-extension WebViewControllerTests {
     
     func testDialogExport() {
         let webController = WebViewController()
