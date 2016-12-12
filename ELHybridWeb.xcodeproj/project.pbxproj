@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07CC370E1C617EAE0030C91B /* ELHybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */; };
 		170DE10D1B8C872300E9C3E9 /* Navigation+External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */; };
 		172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */; };
 		172F077E1B4C67A100C96ABF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F077D1B4C67A100C96ABF /* Util.swift */; };
@@ -39,9 +38,6 @@
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
-		C32457EE1C7D5F7800350557 /* ELJSBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA2091C5124D2005A8364 /* ELJSBridge.framework */; };
-		C32457EF1C7D5FA200350557 /* ELLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1FA1C5124CC005A8364 /* ELLog.framework */; };
-		C32457F01C7D5FA900350557 /* ELFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175CA1EC1C5124C6005A8364 /* ELFoundation.framework */; };
 		CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,103 +49,33 @@
 			remoteGlobalIDString = 173E4E571B00FDAD00ACBCCA;
 			remoteInfo = ELHybridWeb;
 		};
-		175CA1EB1C5124C6005A8364 /* PBXContainerItemProxy */ = {
+		1915FE6A1DFF1FBD00833375 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CACF2A0A1A9614D20084EFAE;
-			remoteInfo = ELFoundation;
-		};
-		175CA1ED1C5124C6005A8364 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CACF2A151A9614D20084EFAE;
-			remoteInfo = ELFoundationTests;
-		};
-		175CA1EF1C5124C6005A8364 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8CD55A1B7A9DCA00DA8BF7;
-			remoteInfo = ELFoundation_osx;
-		};
-		175CA1F11C5124C6005A8364 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8CD5631B7A9DCB00DA8BF7;
-			remoteInfo = ELFoundation_osxTests;
-		};
-		175CA1F91C5124CC005A8364 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			containerPortal = 1915FE641DFF1FBD00833375 /* ELLog.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA8D47BB1AAE6FF50028B74D;
 			remoteInfo = ELLog;
 		};
-		175CA1FB1C5124CC005A8364 /* PBXContainerItemProxy */ = {
+		1915FE6C1DFF1FBD00833375 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			containerPortal = 1915FE641DFF1FBD00833375 /* ELLog.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA8D47C61AAE6FF50028B74D;
 			remoteInfo = ELLogTests;
 		};
-		175CA1FD1C5124CC005A8364 /* PBXContainerItemProxy */ = {
+		1915FE6E1DFF1FBD00833375 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			containerPortal = 1915FE641DFF1FBD00833375 /* ELLog.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA2410631AF966F600AA4410;
 			remoteInfo = ELLog_osx;
 		};
-		175CA2081C5124D2005A8364 /* PBXContainerItemProxy */ = {
+		1915FE701DFF1FC300833375 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CAC38A9D1AC3130B005A3CE0;
-			remoteInfo = ELJSBridge;
-		};
-		175CA20A1C5124D2005A8364 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CAC38AA81AC3130B005A3CE0;
-			remoteInfo = ELJSBridgeTests;
-		};
-		175CA20C1C5124D2005A8364 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA41FF951BBC85DC0009CB83;
-			remoteInfo = ELJSBridge_osx;
-		};
-		175CA20E1C5124D2005A8364 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA41FF9E1BBC85DC0009CB83;
-			remoteInfo = ELJSBridge_osxTests;
-		};
-		C38C0CEE1C7D8B400040D03D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CAC38A9C1AC3130B005A3CE0;
-			remoteInfo = ELJSBridge;
-		};
-		C38C0CFB1C7D8BDE0040D03D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+			containerPortal = 1915FE641DFF1FBD00833375 /* ELLog.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = CA8D47BA1AAE6FF50028B74D;
 			remoteInfo = ELLog;
-		};
-		C38C0CFD1C7D8BE60040D03D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CACF2A091A9614D20084EFAE;
-			remoteInfo = ELFoundation;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -166,7 +92,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELHybridWebLogger.swift; sourceTree = "<group>"; };
 		170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Navigation+External.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "HybridAPI+View.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		172F077D1B4C67A100C96ABF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -176,9 +101,6 @@
 		173E4E631B00FDAE00ACBCCA /* ELHybridWebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ELHybridWebTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E4E691B00FDAE00ACBCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		174CA6C41B20804400A80074 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NavigationBar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELFoundation.xcodeproj; path = ../ELFoundation/ELFoundation.xcodeproj; sourceTree = "<group>"; };
-		175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELLog.xcodeproj; path = ../ELLog/ELLog.xcodeproj; sourceTree = "<group>"; };
-		175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELJSBridge.xcodeproj; path = ../ELJSBridge/ELJSBridge.xcodeproj; sourceTree = "<group>"; };
 		17711C0D1B20FDFB0043B71E /* BarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BarButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		177E5D861B00FE1A006BCBE2 /* HybridAPI+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "HybridAPI+Dialog.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HybridAPI+Logging.swift"; sourceTree = "<group>"; };
@@ -203,6 +125,7 @@
 		17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+JavaScriptContext.swift"; sourceTree = "<group>"; };
 		17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
 		17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPIInfo.swift; sourceTree = "<group>"; };
+		1915FE641DFF1FBD00833375 /* ELLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELLog.xcodeproj; path = Carthage/Checkouts/ELLog/ELLog.xcodeproj; sourceTree = "<group>"; };
 		1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerOptionsTests.swift; sourceTree = "<group>"; };
 		19FECF611B9615720095440B /* BarButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonTests.swift; sourceTree = "<group>"; };
 		CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ELHybridWeb.swift; path = Source/ELHybridWeb.swift; sourceTree = SOURCE_ROOT; };
@@ -213,9 +136,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C32457F01C7D5FA900350557 /* ELFoundation.framework in Frameworks */,
-				C32457EF1C7D5FA200350557 /* ELLog.framework in Frameworks */,
-				C32457EE1C7D5F7800350557 /* ELJSBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,42 +211,9 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		175CA1E51C5124C6005A8364 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				175CA1EC1C5124C6005A8364 /* ELFoundation.framework */,
-				175CA1EE1C5124C6005A8364 /* ELFoundationTests.xctest */,
-				175CA1F01C5124C6005A8364 /* ELFoundation.framework */,
-				175CA1F21C5124C6005A8364 /* ELFoundation_osxTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		175CA1F41C5124CC005A8364 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				175CA1FA1C5124CC005A8364 /* ELLog.framework */,
-				175CA1FC1C5124CC005A8364 /* ELLogTests.xctest */,
-				175CA1FE1C5124CC005A8364 /* ELLog.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		175CA2001C5124D2005A8364 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				175CA2091C5124D2005A8364 /* ELJSBridge.framework */,
-				175CA20B1C5124D2005A8364 /* ELJSBridgeTests.xctest */,
-				175CA20D1C5124D2005A8364 /* ELJSBridge.framework */,
-				175CA20F1C5124D2005A8364 /* ELJSBridge_osxTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		177E5D841B00FE1A006BCBE2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				07CC370D1C617EAE0030C91B /* ELHybridWebLogger.swift */,
 				177E5D851B00FE1A006BCBE2 /* JS API */,
 				177E5D8D1B00FE1A006BCBE2 /* Web View */,
 				172F077D1B4C67A100C96ABF /* Util.swift */,
@@ -369,12 +256,20 @@
 			path = "Web View";
 			sourceTree = "<group>";
 		};
+		1915FE651DFF1FBD00833375 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1915FE6B1DFF1FBD00833375 /* ELLog.framework */,
+				1915FE6D1DFF1FBD00833375 /* ELLogTests.xctest */,
+				1915FE6F1DFF1FBD00833375 /* ELLog.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CA85AA271B3B27E20000FEEF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */,
-				175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */,
-				175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */,
+				1915FE641DFF1FBD00833375 /* ELLog.xcodeproj */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -405,9 +300,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C38C0CFC1C7D8BDE0040D03D /* PBXTargetDependency */,
-				C38C0CFE1C7D8BE60040D03D /* PBXTargetDependency */,
-				C38C0CEF1C7D8B400040D03D /* PBXTargetDependency */,
+				1915FE711DFF1FC300833375 /* PBXTargetDependency */,
 			);
 			name = ELHybridWeb;
 			productName = ELHybridWeb;
@@ -466,16 +359,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 175CA1E51C5124C6005A8364 /* Products */;
-					ProjectRef = 175CA1E41C5124C6005A8364 /* ELFoundation.xcodeproj */;
-				},
-				{
-					ProductGroup = 175CA2001C5124D2005A8364 /* Products */;
-					ProjectRef = 175CA1FF1C5124D2005A8364 /* ELJSBridge.xcodeproj */;
-				},
-				{
-					ProductGroup = 175CA1F41C5124CC005A8364 /* Products */;
-					ProjectRef = 175CA1F31C5124CC005A8364 /* ELLog.xcodeproj */;
+					ProductGroup = 1915FE651DFF1FBD00833375 /* Products */;
+					ProjectRef = 1915FE641DFF1FBD00833375 /* ELLog.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -487,81 +372,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		175CA1EC1C5124C6005A8364 /* ELFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELFoundation.framework;
-			remoteRef = 175CA1EB1C5124C6005A8364 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		175CA1EE1C5124C6005A8364 /* ELFoundationTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELFoundationTests.xctest;
-			remoteRef = 175CA1ED1C5124C6005A8364 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		175CA1F01C5124C6005A8364 /* ELFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELFoundation.framework;
-			remoteRef = 175CA1EF1C5124C6005A8364 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		175CA1F21C5124C6005A8364 /* ELFoundation_osxTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELFoundation_osxTests.xctest;
-			remoteRef = 175CA1F11C5124C6005A8364 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		175CA1FA1C5124CC005A8364 /* ELLog.framework */ = {
+		1915FE6B1DFF1FBD00833375 /* ELLog.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ELLog.framework;
-			remoteRef = 175CA1F91C5124CC005A8364 /* PBXContainerItemProxy */;
+			remoteRef = 1915FE6A1DFF1FBD00833375 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		175CA1FC1C5124CC005A8364 /* ELLogTests.xctest */ = {
+		1915FE6D1DFF1FBD00833375 /* ELLogTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ELLogTests.xctest;
-			remoteRef = 175CA1FB1C5124CC005A8364 /* PBXContainerItemProxy */;
+			remoteRef = 1915FE6C1DFF1FBD00833375 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		175CA1FE1C5124CC005A8364 /* ELLog.framework */ = {
+		1915FE6F1DFF1FBD00833375 /* ELLog.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ELLog.framework;
-			remoteRef = 175CA1FD1C5124CC005A8364 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		175CA2091C5124D2005A8364 /* ELJSBridge.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELJSBridge.framework;
-			remoteRef = 175CA2081C5124D2005A8364 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		175CA20B1C5124D2005A8364 /* ELJSBridgeTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELJSBridgeTests.xctest;
-			remoteRef = 175CA20A1C5124D2005A8364 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		175CA20D1C5124D2005A8364 /* ELJSBridge.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELJSBridge.framework;
-			remoteRef = 175CA20C1C5124D2005A8364 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		175CA20F1C5124D2005A8364 /* ELJSBridge_osxTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELJSBridge_osxTests.xctest;
-			remoteRef = 175CA20E1C5124D2005A8364 /* PBXContainerItemProxy */;
+			remoteRef = 1915FE6E1DFF1FBD00833375 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -609,7 +438,6 @@
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
 				CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
-				07CC370E1C617EAE0030C91B /* ELHybridWebLogger.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,20 +466,10 @@
 			target = 173E4E571B00FDAD00ACBCCA /* ELHybridWeb */;
 			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
 		};
-		C38C0CEF1C7D8B400040D03D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ELJSBridge;
-			targetProxy = C38C0CEE1C7D8B400040D03D /* PBXContainerItemProxy */;
-		};
-		C38C0CFC1C7D8BDE0040D03D /* PBXTargetDependency */ = {
+		1915FE711DFF1FC300833375 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ELLog;
-			targetProxy = C38C0CFB1C7D8BDE0040D03D /* PBXContainerItemProxy */;
-		};
-		C38C0CFE1C7D8BE60040D03D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ELFoundation;
-			targetProxy = C38C0CFD1C7D8BE60040D03D /* PBXContainerItemProxy */;
+			targetProxy = 1915FE701DFF1FC300833375 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -756,7 +574,7 @@
 		173E4E6F1B00FDAE00ACBCCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -775,7 +593,7 @@
 		173E4E701B00FDAE00ACBCCA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -874,7 +692,7 @@
 		20DC78731BFEA224004AF8C8 /* QADeployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;

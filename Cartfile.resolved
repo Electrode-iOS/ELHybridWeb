@@ -1,3 +1,1 @@
-github "Electrode-iOS/ELFoundation" "v0.0.2"
-github "Electrode-iOS/ELLog" "v0.0.3"
-github "Electrode-iOS/ELJSBridge" "v0.0.2"
+github "Electrode-iOS/ELLog" "v2.1.1"

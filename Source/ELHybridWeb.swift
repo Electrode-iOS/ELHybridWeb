@@ -9,11 +9,8 @@
 import Foundation
 import ELLog
 
-@objc
-public class ELHybridWeb: NSObject {
-    public static let logging = Logger()
-}
+var sharedLogger = Logger()
 
 internal func log(level: LogLevel, _ message: String) {
-    ELHybridWeb.logging.log(level, message: "\(ELHybridWeb.self): " + message)
+    sharedLogger.log(level, message: "ELHybridWeb: " + message)
 }

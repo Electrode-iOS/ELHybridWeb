@@ -9,7 +9,6 @@
 import UIKit
 import XCTest
 @testable import ELHybridWeb
-import ELJSBridge
 import JavaScriptCore
 
 class ViewAPITests: XCTestCase {

@@ -9,7 +9,6 @@
 import UIKit
 import XCTest
 import ELHybridWeb
-import ELJSBridge
 
 class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
     
