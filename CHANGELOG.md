@@ -1,3 +1,11 @@
+# [4.0.0](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.0)
+
+- Migrated to Swift 3
+- Simplify logging code by removing unnecessary ELHybridWeb class
+- Removed dead logging code
+- Removed ELJSBridge as a dependency
+- Enable dependencies to be installed via Carthage
+
 # [3.1.0](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v3.1.0)
 
 - Added support for Xcode 8, Swift 2.3, and iOS SDK 10
