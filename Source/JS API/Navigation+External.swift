@@ -18,39 +18,39 @@ extension Navigation: ExternalNavigationJSExport {
     func presentExternalURL(options: [String: String])  {
         log(.Debug, "options:\(options)") // provide breadcrumbs
         if let externalOptions = ExternalNavigationOptions(options: options) {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.webViewController?.presentExternalURLWithOptions(externalOptions)
+            DispatchQueue.main.async {
+                self.webViewController?.presentExternalURL(options: externalOptions)
             }
         }
     }
     
     func dismissExternalURL(urlString: String) {
         log(.Debug, "urlString\(urlString)") // provide breadcrumbs
-        if let url = NSURL(string: urlString) {
+        if let url = URL(string: urlString) {
             if let presentingWebViewController = webViewController?.externalPresentingWebViewController {
-                presentingWebViewController.loadURL(url)
+                presentingWebViewController.load(url: url)
             } else {
-                webViewController?.loadURL(url)
+                webViewController?.load(url: url)
             }
             
-            parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+            parentViewController?.dismiss(animated: true, completion: nil)
         }
     }
 }
 
 // TODO: Make internal after migrating to Swift 2 and @testable
 public struct ExternalNavigationOptions {
-    public let url: NSURL
-    private(set) public var returnURL: NSURL?
+    public let url: URL
+    private(set) public var returnURL: URL?
     private(set) public var title: String?
     
     public init?(options: [String: String]) {
         if let urlString = options["url"],
-            let url = NSURL(string: urlString) {
+            let url = URL(string: urlString) {
                 self.url = url
                 
                 if let returnURLString = options["returnURL"],
-                    let returnURL = NSURL(string: returnURLString) {
+                    let returnURL = URL(string: returnURLString) {
                         self.returnURL = returnURL
                 }
                 

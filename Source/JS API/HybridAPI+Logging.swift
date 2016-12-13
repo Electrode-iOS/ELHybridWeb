@@ -16,10 +16,10 @@ import ELLog
 
 extension HybridAPI {
     func log(value: AnyObject) {
-        log(.Info, "HybridAPI: \(value)")
+        self.log(.Info, "HybridAPI: \(value)")
     }
     
-    func log(level: LogLevel, _ message: String) {
+    func log(_ level: LogLevel, _ message: String) {
         sharedLogger.log(level, message: message)
     }
 }

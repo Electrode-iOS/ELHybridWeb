@@ -21,50 +21,50 @@ class WebViewControllerDelegateTests: XCTestCase, WebViewControllerDelegate {
         let vc = WebViewController()
         vc.delegate = self
         
-        didStartLoadExpectation = expectationWithDescription("did start load")
+        didStartLoadExpectation = expectation(description: "did start load")
         vc.webViewDidStartLoad(UIWebView())
         
-        waitForExpectationsWithTimeout(4.0, handler: nil)
+        waitForExpectations(timeout: 4.0, handler: nil)
     }
     
     func testDelegateDidFinishLoad() {
         let vc = WebViewController()
         vc.delegate = self
         
-        didFinishLoadExpectation = expectationWithDescription("did finish load")
+        didFinishLoadExpectation = expectation(description: "did finish load")
         vc.webViewDidFinishLoad(UIWebView())
         
-        waitForExpectationsWithTimeout(4.0, handler: nil)
+        waitForExpectations(timeout: 4.0, handler: nil)
     }
     
     func testDelegateShouldStartLoad() {
-        let request = NSURLRequest(URL: NSURL(string: "")!)
+        let request = URLRequest(url: NSURL(string: "")! as URL)
         let vc = WebViewController()
         vc.delegate = self
+        shouldStartLoadExpectation = expectation(description: "should start load")
+
+        let _ = vc.webView(UIWebView(), shouldStartLoadWith: request, navigationType: .reload)
         
-        shouldStartLoadExpectation = expectationWithDescription("should start load")
-        vc.webView(UIWebView(), shouldStartLoadWithRequest: request, navigationType: .Reload)
-        
-        waitForExpectationsWithTimeout(4.0, handler: nil)
+        waitForExpectations(timeout: 4.0, handler: nil)
 
     }
     
     // MARK: WebViewControllerDelegate
     
-    func webViewControllerDidStartLoad(webViewController: WebViewController) {
+    func webViewControllerDidStartLoad(_ webViewController: WebViewController) {
         didStartLoadExpectation?.fulfill()
     }
     
-    func webViewControllerDidFinishLoad(webViewController: WebViewController) {
+    func webViewControllerDidFinishLoad(_ webViewController: WebViewController) {
         didFinishLoadExpectation?.fulfill()
     }
     
-    func webViewController(webViewController: WebViewController, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webViewController(_ webViewController: WebViewController, shouldStartLoadWithRequest request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         shouldStartLoadExpectation?.fulfill()
         return true
     }
     
-    func webViewController(webViewController: WebViewController, didFailLoadWithError error: NSError) {
+    func webViewController(_ webViewController: WebViewController, didFailLoadWithError error: Error) {
         didFailLoadExpectation?.fulfill()
     }
 }

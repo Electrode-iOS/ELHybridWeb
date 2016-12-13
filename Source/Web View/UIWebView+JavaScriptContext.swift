@@ -18,6 +18,6 @@ public extension UIWebView {
     Retreive the JavaScript context from the web view.
     */
     var javaScriptContext: JSContext? {
-        return valueForKeyPath(webViewJavaScriptContextPath) as? JSContext
+        return value(forKeyPath: webViewJavaScriptContextPath) as? JSContext
     }
 }

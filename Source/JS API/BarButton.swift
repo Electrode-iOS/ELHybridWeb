@@ -9,28 +9,24 @@
 import JavaScriptCore
 import UIKit
 
-// TODO: change all public members to internal after migrating to Swift 2 for testability
-    @objc public class BarButton: NSObject {
-    internal let id: String
-    internal let title: String
-    internal let image: String?
-    internal var callback: JSValue?
+@objc public class BarButton: NSObject {
+    let id: String
+    let title: String
+    let image: String?
+    var callback: JSValue?
     
     public init(id: String, title: String, image: String?) {
         self.id = id
         self.title = title
         self.image = image
     }
-}
-
-// MARK: - JSON Serialization
-
-extension BarButton {
     
-    public static func dictionaryFromJSONArray(array: [AnyObject], callback: JSValue?) -> [Int: BarButton] {
+    // MARK: JSON Serialization
+    
+    public static func dictionary(fromJSONArray array: [Any], callback: JSValue?) -> [Int: BarButton] {
         var buttons = [Int: BarButton]()
 
-        for (index, buttonOptions) in array.enumerate() {
+        for (index, buttonOptions) in array.enumerated() {
             if let buttonOptions = buttonOptions as? [String: String],
                 let id = buttonOptions["id"],
                 let title = buttonOptions["title"] {
@@ -46,18 +42,15 @@ extension BarButton {
         
         return buttons
     }
-}
-
-// MARK: - UIBarButtonItem
-
-extension BarButton {
+    
+    // MARK: UIBarButtonItem
     
     public var barButtonItem: UIBarButtonItem {
-        return UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BarButton.select as (BarButton) -> () -> ()))
+        return UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(BarButton.select))
     }
     
     public func select() {
         log(.Debug, "") // provide breadcrumbs
-        callback?.safelyCallWithArguments([id])
+        callback?.safelyCall(withArguments: [id])
     }
 }

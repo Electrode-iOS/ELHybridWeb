@@ -16,6 +16,6 @@ extension HybridAPI {
     
     func dialog(options: [String: AnyObject], _ callback: JSValue) {
         log(.Debug, "options:\(options), callback\(callback)") // provide breadcrumbs
-        dialog.show(options, callback: callback)
+        dialog.show(options: options, callback: callback)
     }
 }

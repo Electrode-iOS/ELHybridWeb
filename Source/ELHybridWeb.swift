@@ -11,6 +11,6 @@ import ELLog
 
 var sharedLogger = Logger()
 
-internal func log(level: LogLevel, _ message: String) {
+func log(_ level: LogLevel, _ message: String) {
     sharedLogger.log(level, message: "ELHybridWeb: " + message)
 }

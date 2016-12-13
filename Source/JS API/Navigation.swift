@@ -24,30 +24,30 @@ import JavaScriptCore
 
     func animateForward(options: JSValue, _ callback: JSValue) {
         log(.Debug, "\(self) options:\(options), callback:\(callback)") // provide breadcrumbs
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             let vcOptions = WebViewControllerOptions(javaScriptValue: options)
-            self.webViewController?.pushWebViewControllerWithOptions(vcOptions)
+            self.webViewController?.pushWebViewController(options: vcOptions)
         }
     }
     
     func animateBackward() {
         log(.Debug, "\(self)") // provide breadcrumbs
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.webViewController?.popWebViewController()
         }
     }
     
     func popToRoot() {
         log(.Debug, "\(self)") // provide breadcrumbs
-        dispatch_async(dispatch_get_main_queue()) {
-            self.webViewController?.popToRootWebViewController(false)
+        DispatchQueue.main.async {
+            self.webViewController?.popToRootWebViewController(animated: false)
         }
     }
 
     func back() {
         log(.Debug, "\(self)") // provide breadcrumbs
         if let _ = onBackCallback?.asValidValue {
-            onBackCallback?.safelyCallWithArguments(nil)
+            onBackCallback?.safelyCall(withArguments: nil)
         } else {
             webViewController?.webView.stopLoading()
             webViewController?.webView.delegate = topWebViewController

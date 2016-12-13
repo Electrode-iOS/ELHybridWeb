@@ -15,7 +15,7 @@ public struct HybridAPIInfo {
     public let appVersion: String
     
     public init(appVersion: String) {
-        let currentDevice = UIDevice.currentDevice()
+        let currentDevice = UIDevice.current
         self.device = currentDevice.model
         self.platform = "\(currentDevice.systemName) \(currentDevice.systemVersion)"
         self.appVersion = appVersion

@@ -9,29 +9,28 @@
 import JavaScriptCore
 
 @objc protocol ShareJSExport: JSExport {
-    func share(options: [String: AnyObject])
+    func share(options: [String: Any])
 }
 
 extension HybridAPI {
     
-    func share(options: [String: AnyObject]) {
-        log(.Debug, "options:\(options)") // provide breadcrumbs
-        dispatch_async(dispatch_get_main_queue()) {
-            if let activityViewController = HybridAPI.activityViewControllerWithOptions(options) {
-                self.parentViewController?.presentViewController(activityViewController, animated: true, completion: nil)
+    func share(options: [String: Any]) {
+        DispatchQueue.main.async {
+            if let activityViewController = HybridAPI.activityViewController(withOptions: options) {
+                self.parentViewController?.present(activityViewController, animated: true, completion: nil)
             }
         }
     }
     
-    private static func activityViewControllerWithOptions(options: [String: AnyObject]) -> UIActivityViewController? {
-        if let items = shareItemsFromOptions(options) {
+    private static func activityViewController(withOptions options: [String: Any]) -> UIActivityViewController? {
+        if let items = shareItems(withOptions: options) {
             return UIActivityViewController(activityItems: items, applicationActivities: nil)
         }
         
         return nil
     }
     
-    private static func shareItemsFromOptions(options: [String: AnyObject]) -> [AnyObject]? {
+    private static func shareItems(withOptions options: [String: Any]) -> [Any]? {
         if let message = options["message"] as? String,
             let url = options["url"] as? String {
                 return [url, message]

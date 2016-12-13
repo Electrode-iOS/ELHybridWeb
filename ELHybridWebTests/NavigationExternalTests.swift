@@ -22,10 +22,10 @@ class NavigationExternalTests: XCTestCase {
         
         XCTAssertTrue(options != nil)
         
-        let originalURL = NSURL(string: NavigationExternalTests.optionJSON["url"]!)
+        let originalURL = URL(string: NavigationExternalTests.optionJSON["url"]!)
         XCTAssertEqual(options!.url, originalURL!)
         
-        let returnURL = NSURL(string: NavigationExternalTests.optionJSON["returnURL"]!)
+        let returnURL = URL(string: NavigationExternalTests.optionJSON["returnURL"]!)
         XCTAssertEqual(options!.returnURL!, returnURL!)
     }
     
