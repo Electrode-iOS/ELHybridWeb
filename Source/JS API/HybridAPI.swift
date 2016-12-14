@@ -21,7 +21,7 @@ import UIKit
 /**
  Exports the hybrid API to JavaScript.
 */
-@objc public class HybridAPI: ViewControllerChild, HybridAPIJSExport, ShareJSExport, DialogJSExport {
+@objc open class HybridAPI: ViewControllerChild, HybridAPIJSExport, ShareJSExport, DialogJSExport {
     
     public static let exportName = "NativeBridge"
     var navigation: Navigation
@@ -39,7 +39,7 @@ import UIKit
         super.init(parentViewController: parentViewController)
     }
 
-    override public weak var parentViewController: UIViewController? {
+    override open weak var parentViewController: UIViewController? {
         didSet {
             navigation.parentViewController = parentViewController
             navigationBar.parentViewController = parentViewController
@@ -48,7 +48,7 @@ import UIKit
         }
     }
     
-    public func info() -> [String: String] {
+    open func info() -> [String: String] {
         return HybridAPIInfo(appVersion: "1.0").asDictionary
     }
     

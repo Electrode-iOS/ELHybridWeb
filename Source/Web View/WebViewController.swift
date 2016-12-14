@@ -88,7 +88,7 @@ import UIKit
  window?.rootViewController = navigationController
  ```
 */
-public class WebViewController: UIViewController {
+open class WebViewController: UIViewController {
     
     public enum AppearenceCause {
         case unknown, webPush, webPop, webModal, webDismiss, external
@@ -189,7 +189,7 @@ public class WebViewController: UIViewController {
         }
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.white
@@ -198,7 +198,7 @@ public class WebViewController: UIViewController {
         view.addSubview(placeholderImageView)
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
                 
         switch appearedFrom {
@@ -221,7 +221,7 @@ public class WebViewController: UIViewController {
         }
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         hybridAPI?.view.appeared()
         
@@ -233,7 +233,7 @@ public class WebViewController: UIViewController {
         }
     }
     
-    public override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         switch disappearedBy {
@@ -274,7 +274,7 @@ public class WebViewController: UIViewController {
         }
     }
     
-    public override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         switch disappearedBy {
@@ -528,7 +528,7 @@ public class WebViewController: UIViewController {
     // MARK: Error Display Events
     
     /// Override to completely customize error display. Must also override `removeErrorDisplay`
-    public func renderErrorDisplay(error: Error, message: String) {
+    open func renderErrorDisplay(error: Error, message: String) {
         let errorView = UIView(frame: view.bounds)
         view.addSubview(errorView)
         self.errorView = errorView
@@ -555,26 +555,26 @@ public class WebViewController: UIViewController {
     }
     
     /// Override to customize the feature name that appears in the error display.
-    public func featureName(forError error: Error) -> String {
+    open func featureName(forError error: Error) -> String {
         return "This feature"
     }
     
     /// Override to customize the error message text.
-    public func renderFeatureErrorDisplayWithError(error: Error, featureName: String) {
+    open func renderFeatureErrorDisplayWithError(error: Error, featureName: String) {
         let message = "Sorry!\n \(featureName) isn't working right now."
         webView.isHidden = true
         renderErrorDisplay(error: error, message: message)
     }
     
     /// Removes the error display and attempts to reload the web view.
-    public func reloadButtonTapped(sender: AnyObject) {
+    open func reloadButtonTapped(sender: AnyObject) {
         guard let url = url else { return }
         load(url: url)
     }
     
     // MARK: Bridge API
     
-    public func addBridgeAPIObject() {
+    open func addBridgeAPIObject() {
         if let bridgeObject = hybridAPI {
             bridgeContext.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName as NSString)
         } else {
