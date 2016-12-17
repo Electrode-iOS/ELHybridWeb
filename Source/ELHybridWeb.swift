@@ -9,7 +9,7 @@
 import Foundation
 import ELLog
 
-var sharedLogger = Logger()
+public var sharedLogger = Logger()
 
 func log(_ level: LogLevel, _ message: String) {
     sharedLogger.log(level, message: "ELHybridWeb: " + message)
