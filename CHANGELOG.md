@@ -1,3 +1,7 @@
+# [4.0.1](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.1)
+
+- Make `sharedLogger` API public
+
 # [4.0.0](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.0)
 
 - Migrated to Swift 3
