@@ -1,3 +1,7 @@
+# [4.0.2](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.2)
+
+- Removed `lazy` vars to fix a build issue when installing via Carthage.
+
 # [4.0.1](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.1)
 
 - Make `sharedLogger` API public
