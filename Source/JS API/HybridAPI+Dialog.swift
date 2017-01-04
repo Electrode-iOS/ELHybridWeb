@@ -9,12 +9,11 @@
 import JavaScriptCore
 
 @objc protocol DialogJSExport: JSExport {
-    func dialog(options: [String: AnyObject], _ callback: JSValue)
+    func dialog(_ options: [String: AnyObject], _ callback: JSValue)
 }
 
 extension HybridAPI {
-    
-    func dialog(options: [String: AnyObject], _ callback: JSValue) {
+    func dialog(_ options: [String: AnyObject], _ callback: JSValue) {
         log(.Debug, "options:\(options), callback\(callback)") // provide breadcrumbs
         dialog.show(options: options, callback: callback)
     }

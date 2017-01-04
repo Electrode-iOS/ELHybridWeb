@@ -446,7 +446,7 @@ open class WebViewController: UIViewController {
     
     final func shouldInterceptExternalURL(url: URL) -> Bool {
         if let requestedURLString = url.absoluteStringWithoutQuery,
-            let returnURLString = externalReturnURL?.absoluteStringWithoutQuery, (requestedURLString as NSString).range(of: returnURLString) != nil {
+            let returnURLString = externalReturnURL?.absoluteStringWithoutQuery, (requestedURLString as NSString).range(of: returnURLString).location != NSNotFound {
             return true
         }
         

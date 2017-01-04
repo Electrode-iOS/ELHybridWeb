@@ -9,12 +9,11 @@
 import JavaScriptCore
 
 @objc protocol ShareJSExport: JSExport {
-    func share(options: [String: Any])
+    func share(_ options: [String: AnyObject])
 }
 
 extension HybridAPI {
-    
-    func share(options: [String: Any]) {
+    func share(_ options: [String: AnyObject]) {
         DispatchQueue.main.async {
             if let activityViewController = HybridAPI.activityViewController(withOptions: options) {
                 self.parentViewController?.present(activityViewController, animated: true, completion: nil)
