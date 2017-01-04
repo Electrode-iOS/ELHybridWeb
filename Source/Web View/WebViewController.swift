@@ -98,7 +98,13 @@ open class WebViewController: UIViewController {
     private(set) public var url: URL?
     
     /// The web view used to load and render the web content.
-    private(set) public var webView: UIWebView!
+    private(set) public lazy var webView: UIWebView = {
+        let webView =  UIWebView(frame: CGRect.zero)
+        webView.delegate = self
+        WebViewManager.addBridgedWebView(webView: webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        return webView
+    }()
     
     fileprivate(set) public var bridgeContext: JSContext! = JSContext()
     private var storedScreenshotGUID: String? = nil
@@ -118,7 +124,9 @@ open class WebViewController: UIViewController {
             storedAppearence = newValue
         }
     }
-    private var placeholderImageView: UIImageView!
+    private lazy var placeholderImageView: UIImageView = {
+        return UIImageView(frame: self.view.bounds)
+    }()
     public var errorView: UIView?
     public var errorLabel: UILabel?
     public var reloadButton: UIButton?
@@ -138,7 +146,16 @@ open class WebViewController: UIViewController {
     /// Host for NSURLSessionDelegate challenge
     public var challengeHost: String?
 
-    public var urlSession: URLSession!
+    lazy public var urlSession: URLSession = {
+            let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+            if let agent = self.userAgent {
+                configuration.httpAdditionalHeaders = [
+                    "User-Agent": agent
+                ]
+            }
+            let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+            return session
+    }()
 
     /// A NSURLSessionDataTask object used to load the URLs
     public var dataTask: URLSessionDataTask?
@@ -172,36 +189,13 @@ open class WebViewController: UIViewController {
         }
     }
     
-    func initWebView() {
-        if webView == nil {
-            webView = UIWebView(frame: CGRect.zero)
-            webView.delegate = self
-            WebViewManager.addBridgedWebView(webView: webView)
-            webView.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-
-    func initURLSession() {
-        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
-        if let agent = self.userAgent {
-            configuration.httpAdditionalHeaders = [
-                "User-Agent": agent
-            ]
-        }
-        urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-    }
-
     open override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.white
         
         edgesForExtendedLayout = []
-        placeholderImageView = UIImageView(frame: self.view.bounds)
         view.addSubview(placeholderImageView)
-        
-        initURLSession()
-        initWebView()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
