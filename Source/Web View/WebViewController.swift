@@ -156,17 +156,14 @@ open class WebViewController: UIViewController {
         self.bridgeContext = context
         self.webView = webView
         self.webView.delegate = self
-        initURLSession()
     }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        initURLSession()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initURLSession()
     }
     
     deinit {
@@ -203,6 +200,7 @@ open class WebViewController: UIViewController {
         placeholderImageView = UIImageView(frame: self.view.bounds)
         view.addSubview(placeholderImageView)
         
+        initURLSession()
         initWebView()
     }
     
