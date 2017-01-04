@@ -1,6 +1,6 @@
 # ELHybridWeb 
 
-[![Version](https://img.shields.io/badge/version-v4.0.3-blue.svg)](https://github.com/Electrode-iOS/ELHybridWeb/releases/latest)
+[![Version](https://img.shields.io/badge/version-v4.0.2-blue.svg)](https://github.com/Electrode-iOS/ELHybridWeb/releases/latest)
 [![Build Status](https://travis-ci.org/Electrode-iOS/ELHybridWeb.svg?branch=master)](https://travis-ci.org/Electrode-iOS/ELHybridWeb)
 
 ELHybridWeb is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS.

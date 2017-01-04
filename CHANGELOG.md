@@ -1,7 +1,3 @@
-# [4.0.3](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.3)
-
-- Fixed urlSession to be loaded on init, not viewDidLoad
-
 # [4.0.2](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.2)
 
 - Removed `lazy` vars to fix a build issue when installing via Carthage.
