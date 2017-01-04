@@ -1,3 +1,7 @@
+# [4.0.2](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.2)
+
+- Fixed failing unit tests that started failing after migrating to Swift 3
+
 # [4.0.1](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.1)
 
 - Make `sharedLogger` API public
