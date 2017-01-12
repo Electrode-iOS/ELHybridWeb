@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBAction func pushWebView(sender: UIButton) {
         if let url = webViewURL {
             let webController = WebViewController()
-            webController.loadURL(url)
+            webController.load(url: url as URL)
             navigationController?.pushViewController(webController, animated: true)
         }
     }

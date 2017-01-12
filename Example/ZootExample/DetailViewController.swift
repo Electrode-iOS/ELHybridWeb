@@ -31,7 +31,7 @@ class DetailViewController: UIViewController {
             detailLabel.text = "Detail ID: \(detailID)"
         }
         
-        webViewButton.enabled = (previousWebViewController != nil)
+        webViewButton.isEnabled = (previousWebViewController != nil)
     }
     
     /**
@@ -39,7 +39,7 @@ class DetailViewController: UIViewController {
     */
     @IBAction func pushWebViewCallback(sender: UIButton) {
         
-        webCallback?.callWithArguments([testOutput])
+        webCallback?.call(withArguments: [testOutput])
         previousWebViewController?.pushWebViewController()
     }
 }
