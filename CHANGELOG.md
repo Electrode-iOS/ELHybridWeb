@@ -1,3 +1,7 @@
+# [4.0.3](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.3)
+
+- Update `didCreateJavaScriptContext` signature to work with Swift 3. Fixes an issue that was preventing the Hybrid API object from being injected into the `JSContext`.
+
 # [4.0.2](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.2)
 
 - Fixed failing unit tests that started failing after migrating to Swift 3
