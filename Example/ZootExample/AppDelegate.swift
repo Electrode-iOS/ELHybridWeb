@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ELHybridWeb
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,10 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let viewController = ViewController(nibName: "ViewController", bundle: nil)
-        let navController = UINavigationController(rootViewController: viewController)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+//        let viewController = ViewController(nibName: "ViewController", bundle: nil)
+        let webViewController = WebViewController()
+        let url = URL(string: "http://bridgeofdeath.herokuapp.com/")!
+        webViewController.load(url: url)
 
+        let navController = UINavigationController(rootViewController: webViewController)
+
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
