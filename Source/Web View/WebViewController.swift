@@ -771,7 +771,7 @@ public extension NSObject {
         }
     }
     
-    func webView(webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
+    func webView(_ webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
         let notifyWebviews = { () -> Void in
             let allWebViews = globalWebViews.allObjects
             for webView in allWebViews {
