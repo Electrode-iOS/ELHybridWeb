@@ -9,8 +9,8 @@
 import JavaScriptCore
 
 @objc protocol NavigationBarJSExport: JSExport {
-    func setTitle(title: JSValue, _ callback: JSValue?)
-    func setButtons(buttonsToSet: JSValue?, _ callback: JSValue?, _ testingCallback: JSValue?)
+    func setTitle(_ title: JSValue, _ callback: JSValue?)
+    func setButtons(_ buttonsToSet: JSValue?, _ callback: JSValue?, _ testingCallback: JSValue?)
 }
 
 @objc public class NavigationBar: ViewControllerChild {
@@ -46,8 +46,7 @@ import JavaScriptCore
 }
 
 extension NavigationBar: NavigationBarJSExport {
-    
-    func setTitle(title: JSValue, _ callback: JSValue? = nil) {
+    func setTitle(_ title: JSValue, _ callback: JSValue? = nil) {
         log(.Debug, "title:\(title), callback\(callback)") // provide breadcrumbs
         DispatchQueue.main.async {
             self.title = title.asString
@@ -55,7 +54,7 @@ extension NavigationBar: NavigationBarJSExport {
         }
     }
     
-    func setButtons(buttonsToSet: JSValue?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
+    func setButtons(_ buttonsToSet: JSValue?, _ callback: JSValue? = nil, _ testingCallback: JSValue? = nil) {
         log(.Debug, "buttonsToSet\(buttonsToSet), callback:\(callback)") // provide breadcrumbs
         DispatchQueue.main.async {
             self.configureButtons(buttonsToSet, callback: callback)
