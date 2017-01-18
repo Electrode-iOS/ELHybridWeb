@@ -1,3 +1,7 @@
+# [4.0.4](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.4)
+
+- Update all hybrid APIs to export to JS properly after Swift 3 migration mistakenly converted the APIs to be wrongly exported
+
 # [4.0.3](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.3)
 
 - Update `didCreateJavaScriptContext` signature to work with Swift 3. Fixes an issue that was preventing the Hybrid API object from being injected into the `JSContext`.
