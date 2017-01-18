@@ -69,6 +69,15 @@ class WebViewControllerTests: XCTestCase {
         XCTAssert(result.toObject() is NSDictionary)
     }
     
+    func testNavigationPresentModalExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation.presentModal")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
+    }
+    
     func testNavigationBarExport() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
