@@ -12,7 +12,7 @@ import JavaScriptCore
     func animateForward(_ options: JSValue,  _ callback: JSValue)
     func animateBackward()
     func popToRoot()
-    func setOnBack(callback: JSValue)
+    func setOnBack(_ callback: JSValue)
 }
 
 @objc public class Navigation: ViewControllerChild, NavigationJSExport {
@@ -55,7 +55,7 @@ import JavaScriptCore
         }
     }
 
-    func setOnBack(callback: JSValue) {
+    func setOnBack(_ callback: JSValue) {
         log(.Debug, "\(self) callback:\(callback)") // provide breadcrumbs
         onBackCallback = callback
     }
