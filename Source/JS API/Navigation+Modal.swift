@@ -9,12 +9,12 @@
 import JavaScriptCore
 
 @objc protocol ModalNavigationJSExport: JSExport {
-    func presentModal(options: JSValue)
+    func presentModal(_ options: JSValue)
     func dismissModal()
 }
 
 extension Navigation: ModalNavigationJSExport {
-    func presentModal(options: JSValue) {
+    func presentModal(_ options: JSValue) {
         log(.Debug, "\(self) options:\(options)")
         DispatchQueue.main.async {
             let vcOptions = WebViewControllerOptions(javaScriptValue: options)

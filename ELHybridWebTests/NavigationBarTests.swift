@@ -146,4 +146,23 @@ class NavigationBarTests: XCTestCase {
 //        
 //        waitForExpectationsWithTimeout(2.0, handler: nil)
 //    }
+
+    func testSetTitleExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigationBar.setTitle")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
+    }
+    
+    func testSetButtonsExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigationBar.setButtons")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
+    }
+    
 }

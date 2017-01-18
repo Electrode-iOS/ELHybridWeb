@@ -12,7 +12,6 @@ import XCTest
 import JavaScriptCore
 
 class ViewAPITests: XCTestCase {
-    
     func testParentViewControllerChange() {
         let webController = WebViewController()
         let api = HybridAPI(parentViewController: webController)
@@ -49,6 +48,23 @@ class ViewAPITests: XCTestCase {
         waitForExpectations(timeout: 3.0) { error in
             XCTAssertFalse(webController.webView.isHidden)
         }
+    }
+    
+    func testSetOnAppearExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
         
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.view.setOnAppear")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
+    }
+    
+    func testSetOnDisappearExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.view.setOnDisappear")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
     }
 }

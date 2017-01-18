@@ -9,13 +9,13 @@
 import JavaScriptCore
 
 @objc protocol ExternalNavigationJSExport: JSExport {
-    func presentExternalURL(options: [String: String])
-    func dismissExternalURL(urlString: String)
+    func presentExternalURL(_ options: [String: String])
+    func dismissExternalURL(_ urlString: String)
 }
 
 extension Navigation: ExternalNavigationJSExport {
     
-    func presentExternalURL(options: [String: String])  {
+    func presentExternalURL(_ options: [String: String])  {
         log(.Debug, "options:\(options)") // provide breadcrumbs
         if let externalOptions = ExternalNavigationOptions(options: options) {
             DispatchQueue.main.async {
@@ -24,7 +24,7 @@ extension Navigation: ExternalNavigationJSExport {
         }
     }
     
-    func dismissExternalURL(urlString: String) {
+    func dismissExternalURL(_ urlString: String) {
         log(.Debug, "urlString\(urlString)") // provide breadcrumbs
         if let url = URL(string: urlString) {
             if let presentingWebViewController = webViewController?.externalPresentingWebViewController {

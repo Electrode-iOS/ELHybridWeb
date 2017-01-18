@@ -11,8 +11,8 @@ import UIKit
 
 @objc protocol ViewJSExport: JSExport {
     func show()
-    func setOnAppear(callback: JSValue)
-    func setOnDisappear(callback: JSValue)
+    func setOnAppear(_ callback: JSValue)
+    func setOnDisappear(_ callback: JSValue)
 }
 
 @objc public class ViewAPI: ViewControllerChild  {
@@ -40,12 +40,12 @@ extension ViewAPI: ViewJSExport {
         }
     }
     
-    public func setOnAppear(callback: JSValue) {
+    public func setOnAppear(_ callback: JSValue) {
         log(.Debug, "\(self) callback:\(callback)") // provide breadcrumbs
         onAppearCallback = callback
     }
     
-    public func setOnDisappear(callback: JSValue) {
+    public func setOnDisappear(_ callback: JSValue) {
         log(.Debug, "\(self) callback:\(callback)") // provide breadcrumbs
         onDisappearCallback = callback
     }
