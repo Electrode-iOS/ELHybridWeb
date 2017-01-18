@@ -32,12 +32,28 @@ class NavigationExternalTests: XCTestCase {
     func testFailedInitialization() {
         let options = ExternalNavigationOptions(options: ["UrL" : "foo"])
         XCTAssertTrue(options == nil)
-
+    }
+    
+    func testPresentExternalURLExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation.presentExternalURL")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
+    }
+    
+    func testDismissExternalURLExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation.dismissExternalURL")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
     }
 }
 
 extension ExternalNavigationOptions {
-    
     static func testOptions() -> ExternalNavigationOptions? {
         return ExternalNavigationOptions(options: NavigationExternalTests.optionJSON)
     }
