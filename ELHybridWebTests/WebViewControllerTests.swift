@@ -51,6 +51,24 @@ class WebViewControllerTests: XCTestCase {
         XCTAssert(result.toObject() is Navigation)
     }
     
+    func testNavigationAnimateForwardExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation.animateForward")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
+    }
+    
+    func testNavigationSetOnBackExport() {
+        let webController = WebViewController()
+        webController.addBridgeAPIObject()
+        
+        let result = webController.bridgeContext.evaluateScript("NativeBridge.navigation.setOnBack")!
+        XCTAssert(result.isObject)
+        XCTAssert(result.toObject() is NSDictionary)
+    }
+    
     func testNavigationBarExport() {
         let webController = WebViewController()
         webController.addBridgeAPIObject()
