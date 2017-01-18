@@ -9,7 +9,7 @@
 import JavaScriptCore
 
 @objc protocol NavigationJSExport: JSExport {
-    func animateForward(options: JSValue,  _ callback: JSValue)
+    func animateForward(_ options: JSValue,  _ callback: JSValue)
     func animateBackward()
     func popToRoot()
     func setOnBack(callback: JSValue)
@@ -22,7 +22,7 @@ import JavaScriptCore
     }
     private var onBackCallback: JSValue?
 
-    func animateForward(options: JSValue, _ callback: JSValue) {
+    func animateForward(_ options: JSValue, _ callback: JSValue) {
         log(.Debug, "\(self) options:\(options), callback:\(callback)") // provide breadcrumbs
         DispatchQueue.main.async {
             let vcOptions = WebViewControllerOptions(javaScriptValue: options)
