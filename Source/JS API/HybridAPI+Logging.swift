@@ -11,11 +11,11 @@ import JavaScriptCore
 import ELLog
 
 @objc protocol HybridLoggingJSExport: JSExport {
-    func log(value: AnyObject)
+    func log(_ value: AnyObject)
 }
 
 extension HybridAPI {
-    func log(value: AnyObject) {
+    func log(_ value: AnyObject) {
         self.log(.Info, "HybridAPI: \(value)")
     }
     
