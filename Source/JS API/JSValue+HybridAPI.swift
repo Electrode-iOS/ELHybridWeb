@@ -89,16 +89,26 @@ public extension JSValue {
 
 // MARK: - String Helpers
 
-internal extension JSValue {
+public extension JSValue {
     var asString: String? {
         if self.isString { return self.toString() }
+        return nil
+    }
+
+    var asInt32: Int32? {
+        if self.isNumber { return self.toInt32() }
+        return nil
+    }
+
+    var asDictionary:  [AnyHashable : Any]? {
+        if self.isObject { return self.toDictionary() }
         return nil
     }
 }
 
 // MARK: - Optional Helpers
 
-extension JSValue {
+public extension JSValue {
     var asValidValue: JSValue? {
         if isUndefined || isNull {
             return nil
