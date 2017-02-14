@@ -1,3 +1,7 @@
+# [4.0.5](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.5)
+
+- Make JSValue helpers public.
+
 # [4.0.4](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.4)
 
 - Update all hybrid APIs to export to JS properly after Swift 3 migration mistakenly converted the APIs to be wrongly exported
