@@ -21,12 +21,12 @@ import UIKit
     internal var onShowCallback: (() -> Void)?
     
     public func appeared() {
-        log(.Debug, "\(self) onAppearCallback:\(onAppearCallback)") // provide breadcrumbs
+        log(.Debug, "\(self) onAppearCallback:\(String(describing: onAppearCallback))") // provide breadcrumbs
         onAppearCallback?.safelyCall(withArguments: nil)
     }
     
     public func disappeared() {
-        log(.Debug, "\(self) onDisappearCallback:\(onDisappearCallback)") // provide breadcrumbs
+        log(.Debug, "\(self) onDisappearCallback:\(String(describing: onDisappearCallback))") // provide breadcrumbs
         onDisappearCallback?.safelyCall(withArguments: nil)
     }
 }
