@@ -1,3 +1,7 @@
+# [4.0.6](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.6)
+
+- Use default settings for bitcode
+
 # [4.0.5](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.5)
 
 - Make JSValue helpers public.
