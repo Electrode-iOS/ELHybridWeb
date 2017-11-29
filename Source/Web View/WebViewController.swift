@@ -208,8 +208,15 @@ open class WebViewController: UIViewController {
             webView.removeFromSuperview() // remove webView from previous view controller's view
             webView.frame = view.bounds
             view.addSubview(webView) // add webView to this view controller's view
+            
             // Pin web view top and bottom to top and bottom of view
-            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
+            if #available(iOS 11.0, *) {
+                webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+                webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            } else {
+                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
+            }
+            
             // Pin web view sides to sides of view
             self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             view.removeDoubleTapGestures()
