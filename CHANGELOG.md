@@ -1,3 +1,7 @@
+# [4.0.7](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.7)
+
+- Use safe area layout guide for web view
+
 # [4.0.6](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.6)
 
 - Use default settings for bitcode
