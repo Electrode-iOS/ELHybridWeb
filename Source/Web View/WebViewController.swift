@@ -409,7 +409,7 @@ open class WebViewController: UIViewController {
         webViewController.appearedFrom = .webModal
         
         let navigationController = UINavigationController(rootViewController: webViewController)
-        
+        navigationController.modalPresentationStyle = .overCurrentContext
         if let tabBarController = tabBarController {
             tabBarController.present(navigationController, animated: true, completion: nil)
         } else {
