@@ -1,3 +1,7 @@
+# [4.0.8](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.8)
+
+- Use `overCurrentContext` presentation style when presenting modal views
+
 # [4.0.7](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.7)
 
 - Use safe area layout guide for web view
