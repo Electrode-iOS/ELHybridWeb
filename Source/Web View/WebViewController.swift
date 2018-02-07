@@ -481,7 +481,7 @@ open class WebViewController: UIViewController {
         return externalWebViewController
     }
     
-    final func externalBackButtonTapped() {
+    @objc final func externalBackButtonTapped() {
         if shouldDismissExternalURLModal {
             externalPresentingWebViewController?.showWebView()
             dismissExternalURL()
@@ -495,7 +495,7 @@ open class WebViewController: UIViewController {
         dismissExternalURL()
     }
     
-    final func dismissExternalURL() {
+    @objc final func dismissExternalURL() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -574,7 +574,7 @@ open class WebViewController: UIViewController {
     }
     
     /// Removes the error display and attempts to reload the web view.
-    open func reloadButtonTapped(sender: AnyObject) {
+    @objc open func reloadButtonTapped(sender: AnyObject) {
         guard let url = url else { return }
         load(url: url)
     }
