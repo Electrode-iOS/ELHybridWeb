@@ -135,7 +135,7 @@ open class WebViewController: UIViewController {
     private(set) public var externalReturnURL: URL?
     
     /// Handles web view controller events.
-    public weak var delegate: WebViewControllerDelegate?
+    @objc public weak var delegate: WebViewControllerDelegate?
     
     /// Set `false` to disable error message UI.
     public var showErrorDisplay = true
