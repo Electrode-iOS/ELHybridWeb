@@ -98,7 +98,7 @@ open class WebViewController: UIViewController {
     private(set) public var url: URL?
     
     /// The web view used to load and render the web content.
-    private(set) public lazy var webView: UIWebView = {
+    @objc private(set) public lazy var webView: UIWebView = {
         let webView =  UIWebView(frame: CGRect.zero)
         webView.delegate = self
         WebViewManager.addBridgedWebView(webView: webView)
@@ -135,16 +135,16 @@ open class WebViewController: UIViewController {
     private(set) public var externalReturnURL: URL?
     
     /// Handles web view controller events.
-    public weak var delegate: WebViewControllerDelegate?
+    @objc public weak var delegate: WebViewControllerDelegate?
     
     /// Set `false` to disable error message UI.
     public var showErrorDisplay = true
 
     /// An optional custom user agent string to be used in the header when loading the URL.
-    public var userAgent: String?
+    @objc public var userAgent: String?
 
     /// Host for NSURLSessionDelegate challenge
-    public var challengeHost: String?
+    @objc public var challengeHost: String?
 
     lazy public var urlSession: URLSession = {
             let configuration: URLSessionConfiguration = URLSessionConfiguration.default
@@ -308,7 +308,7 @@ open class WebViewController: UIViewController {
      Load the web view with the provided URL.
      :param: url The URL used to load the web view.
     */
-    final public func load(url: URL) {
+    @objc final public func load(url: URL) {
         self.dataTask?.cancel() // cancel any running task
         hybridAPI = nil
         firstLoadCycleCompleted = false
@@ -481,7 +481,7 @@ open class WebViewController: UIViewController {
         return externalWebViewController
     }
     
-    final func externalBackButtonTapped() {
+    @objc final func externalBackButtonTapped() {
         if shouldDismissExternalURLModal {
             externalPresentingWebViewController?.showWebView()
             dismissExternalURL()
@@ -495,7 +495,7 @@ open class WebViewController: UIViewController {
         dismissExternalURL()
     }
     
-    final func dismissExternalURL() {
+    @objc final func dismissExternalURL() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -574,14 +574,14 @@ open class WebViewController: UIViewController {
     }
     
     /// Removes the error display and attempts to reload the web view.
-    open func reloadButtonTapped(sender: AnyObject) {
+    @objc open func reloadButtonTapped(sender: AnyObject) {
         guard let url = url else { return }
         load(url: url)
     }
     
     // MARK: Bridge API
     
-    open func addBridgeAPIObject() {
+    @objc open func addBridgeAPIObject() {
         if let bridgeObject = hybridAPI {
             bridgeContext.setObject(bridgeObject, forKeyedSubscript: HybridAPI.exportName as NSString)
         } else {

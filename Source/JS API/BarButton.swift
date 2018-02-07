@@ -49,7 +49,7 @@ import UIKit
         return UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(BarButton.select))
     }
     
-    public func select() {
+    @objc public func select() {
         log(.Debug, "") // provide breadcrumbs
         callback?.safelyCall(withArguments: [id])
     }
