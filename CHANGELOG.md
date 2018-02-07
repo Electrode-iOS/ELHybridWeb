@@ -1,3 +1,7 @@
+# [5.0.0](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v5.0.0)
+
+- Migrate to Swift 4
+
 # [4.0.8](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v4.0.8)
 
 - Use `overCurrentContext` presentation style when presenting modal views
