@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/Electrode-iOS/ELHybridWeb.svg?branch=master)](https://travis-ci.org/Electrode-iOS/ELHybridWeb)
 
+**Note:** This framework has been deprecated. It is no longer being actively maintained and will not be updated for future versions of Swift or iOS.
+
 ELHybridWeb is a Swift framework that provides a bridged JavaScript API and web view controller for building hybrid web applications on iOS.
 
 ## Requirements
