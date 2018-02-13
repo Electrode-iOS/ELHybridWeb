@@ -767,8 +767,7 @@ public extension NSObject {
         static var uniqueIDKey = "nsobject_uniqueID"
     }
     
-    @objc
-    var uniqueWebViewID: String! {
+    @objc var uniqueWebViewID: String! {
         if let currentValue = objc_getAssociatedObject(self, &AssociatedKeys.uniqueIDKey) as? String {
             return currentValue
         } else {
@@ -778,7 +777,7 @@ public extension NSObject {
         }
     }
     
-    func webView(_ webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
+    @objc func webView(_ webView: AnyObject, didCreateJavaScriptContext context: JSContext, forFrame frame: AnyObject) {
         let notifyWebviews = { () -> Void in
             let allWebViews = globalWebViews.allObjects
             for webView in allWebViews {
