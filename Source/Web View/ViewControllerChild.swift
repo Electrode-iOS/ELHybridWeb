@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ViewControllerChildType {
-    weak var parentViewController: UIViewController? {get set}
+    var parentViewController: UIViewController? {get set}
     init(parentViewController: UIViewController)
 }
 
