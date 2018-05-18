@@ -1,3 +1,8 @@
+# [5.0.2](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v5.0.2)
+
+- Update to Xcode 9.3 recommended project settings
+- Fix Xcode 9.3 warnings
+
 # [5.0.1](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v5.0.1)
 
 - Expose `didCreateJavaScriptContext` to Obj-C. Fixes an issue in Swift 4 that was preventing didCreateJavaScriptContext from being called which resulted in the JS API never being added to the web view's JS context.
