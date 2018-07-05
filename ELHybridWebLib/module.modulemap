@@ -1,0 +1,11 @@
+module ELHybridWeb {
+    umbrella header "ELHybridWeb.h"
+    
+    export *
+}
+
+module ELHybridWeb.Swift {
+    header "ELHybridWeb-Swift.h"
+    requires objc
+}
+

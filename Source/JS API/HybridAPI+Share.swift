@@ -7,6 +7,7 @@
 //
 
 import JavaScriptCore
+import UIKit
 
 @objc protocol ShareJSExport: JSExport {
     func share(_ options: [String: AnyObject])
