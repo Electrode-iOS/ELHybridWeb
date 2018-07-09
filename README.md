@@ -17,8 +17,8 @@ ELHybridWeb requires Swift 4 and Xcode 9.2.
 Install manually by adding ELHybridWeb.xcodeproj to your project and configuring your target to link ELHybridWeb.framework from `ELHybridWeb` target.
 
 There are two target that builds `ELHybridWeb.framework`.
-1. `ELHybridWeb`: Creates dynamicly linked `ELHybridWeb.framework.`
-2. `ELHybridWeb_static`: Creates staticly linked `ELHybridWeb.framework`.
+1. `ELHybridWeb`: Creates dynamically linked `ELHybridWeb.framework.`
+2. `ELHybridWeb_static`: Creates statically linked `ELHybridWeb.framework`.
 
 ### Carthage
 
