@@ -1,3 +1,7 @@
+# [5.1.0](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v5.1.0)
+
+- Add a target that builds a static framework for iOS platform.
+
 # [5.0.2](https://github.com/Electrode-iOS/ELHybridWeb/releases/tag/v5.0.2)
 
 - Update to Xcode 9.3 recommended project settings
