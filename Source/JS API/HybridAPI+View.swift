@@ -21,12 +21,12 @@ import UIKit
     internal var onShowCallback: (() -> Void)?
     
     public func appeared() {
-        log(.Debug, "\(self) onAppearCallback:\(String(describing: onAppearCallback))") // provide breadcrumbs
+        log(.debug, "\(self) onAppearCallback:\(String(describing: onAppearCallback))") // provide breadcrumbs
         onAppearCallback?.safelyCall(withArguments: nil)
     }
     
     public func disappeared() {
-        log(.Debug, "\(self) onDisappearCallback:\(String(describing: onDisappearCallback))") // provide breadcrumbs
+        log(.debug, "\(self) onDisappearCallback:\(String(describing: onDisappearCallback))") // provide breadcrumbs
         onDisappearCallback?.safelyCall(withArguments: nil)
     }
 }
@@ -41,12 +41,12 @@ extension ViewAPI: ViewJSExport {
     }
     
     public func setOnAppear(_ callback: JSValue) {
-        log(.Debug, "\(self) callback:\(callback)") // provide breadcrumbs
+        log(.debug, "\(self) callback:\(callback)") // provide breadcrumbs
         onAppearCallback = callback
     }
     
     public func setOnDisappear(_ callback: JSValue) {
-        log(.Debug, "\(self) callback:\(callback)") // provide breadcrumbs
+        log(.debug, "\(self) callback:\(callback)") // provide breadcrumbs
         onDisappearCallback = callback
     }
 }

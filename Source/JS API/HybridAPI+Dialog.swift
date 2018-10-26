@@ -14,7 +14,7 @@ import JavaScriptCore
 
 extension HybridAPI {
     func dialog(_ options: [String: AnyObject], _ callback: JSValue) {
-        log(.Debug, "options:\(options), callback\(callback)") // provide breadcrumbs
+        ELHybridWeb.log(.debug, "options:\(options), callback\(callback)") // provide breadcrumbs
         dialog.show(options: options, callback: callback)
     }
 }

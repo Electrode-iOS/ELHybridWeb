@@ -23,7 +23,7 @@ import JavaScriptCore
     private var onBackCallback: JSValue?
 
     func animateForward(_ options: JSValue, _ callback: JSValue) {
-        log(.Debug, "\(self) options:\(options), callback:\(callback)") // provide breadcrumbs
+        log(.debug, "\(self) options:\(options), callback:\(callback)") // provide breadcrumbs
         DispatchQueue.main.async {
             let vcOptions = WebViewControllerOptions(javaScriptValue: options)
             self.webViewController?.pushWebViewController(options: vcOptions)
@@ -31,21 +31,21 @@ import JavaScriptCore
     }
     
     func animateBackward() {
-        log(.Debug, "\(self)") // provide breadcrumbs
+        log(.debug, "\(self)") // provide breadcrumbs
         DispatchQueue.main.async {
             self.webViewController?.popWebViewController()
         }
     }
     
     func popToRoot() {
-        log(.Debug, "\(self)") // provide breadcrumbs
+        log(.debug, "\(self)") // provide breadcrumbs
         DispatchQueue.main.async {
             self.webViewController?.popToRootWebViewController(animated: false)
         }
     }
 
     func back() {
-        log(.Debug, "\(self)") // provide breadcrumbs
+        log(.debug, "\(self)") // provide breadcrumbs
         if let _ = onBackCallback?.asValidValue {
             onBackCallback?.safelyCall(withArguments: nil)
         } else {
@@ -56,7 +56,7 @@ import JavaScriptCore
     }
 
     func setOnBack(_ callback: JSValue) {
-        log(.Debug, "\(self) callback:\(callback)") // provide breadcrumbs
+        log(.debug, "\(self) callback:\(callback)") // provide breadcrumbs
         onBackCallback = callback
     }
 }
