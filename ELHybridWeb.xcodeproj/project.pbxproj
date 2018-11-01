@@ -37,6 +37,7 @@
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
 		197977232183704700127566 /* HybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197977222183704700127566 /* HybridWebLogger.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
+		19C69F56218B4880001BD6AB /* HybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197977222183704700127566 /* HybridWebLogger.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
 		3E8CA31320E57B9300CBDA69 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
 		3E8CA31420E57B9300CBDA69 /* HybridAPI+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */; };
@@ -447,6 +448,7 @@
 				3E8CA31420E57B9300CBDA69 /* HybridAPI+View.swift in Sources */,
 				3E8CA31520E57B9300CBDA69 /* DialogAlert.swift in Sources */,
 				3E8CA31620E57B9300CBDA69 /* WebViewController.swift in Sources */,
+				19C69F56218B4880001BD6AB /* HybridWebLogger.swift in Sources */,
 				3E8CA31720E57B9300CBDA69 /* Dialog.swift in Sources */,
 				3E8CA31820E57B9300CBDA69 /* DialogOptions.swift in Sources */,
 				3E8CA31920E57B9300CBDA69 /* BarButton.swift in Sources */,
