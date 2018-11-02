@@ -50,7 +50,7 @@ import UIKit
     }
     
     @objc public func select() {
-        log(.Debug, "") // provide breadcrumbs
+        log(.debug, "") // provide breadcrumbs
         callback?.safelyCall(withArguments: [id])
     }
 }

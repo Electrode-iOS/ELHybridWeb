@@ -8,7 +8,7 @@ ELHybridWeb is a Swift framework that provides a bridged JavaScript API and web 
 
 ## Requirements
 
-ELHybridWeb requires Swift 4 and Xcode 9.2.
+ELHybridWeb requires Swift 4 and Xcode 10.
 
 ## Installation
 

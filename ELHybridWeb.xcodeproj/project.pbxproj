@@ -26,7 +26,6 @@
 		178412271B16762D00EECF8B /* WebViewControllerDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */; };
 		178822E91B4D4BFC00B5548D /* NavigationBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */; };
 		1795F5EB1B73A3B60070BB49 /* WebViewControllerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795F5EA1B73A3B60070BB49 /* WebViewControllerOptions.swift */; };
-		17A146381DB7253A00309044 /* ELLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A1462B1DB7251800309044 /* ELLog.framework */; };
 		17B4356A1B667B4D00446D71 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B435691B667B4D00446D71 /* TabBar.swift */; };
 		17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */; };
 		17C41D5D1B7E1F27009431C0 /* ViewAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C41D5C1B7E1F27009431C0 /* ViewAPITests.swift */; };
@@ -36,7 +35,9 @@
 		17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
 		17E076EA1B025AA2008F89EC /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */; };
 		17FA96741B5D4954000B4754 /* HybridAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */; };
+		197977232183704700127566 /* HybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197977222183704700127566 /* HybridWebLogger.swift */; };
 		1993579F1B96651000408546 /* WebViewControllerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */; };
+		19C69F56218B4880001BD6AB /* HybridWebLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197977222183704700127566 /* HybridWebLogger.swift */; };
 		19FECF621B9615720095440B /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FECF611B9615720095440B /* BarButtonTests.swift */; };
 		3E8CA31320E57B9300CBDA69 /* HybridAPI+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D871B00FE1A006BCBE2 /* HybridAPI+Logging.swift */; };
 		3E8CA31420E57B9300CBDA69 /* HybridAPI+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B6C4E1B5EAC1700D2E9D2 /* HybridAPI+View.swift */; };
@@ -57,11 +58,9 @@
 		3E8CA32320E57B9300CBDA69 /* Navigation+External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DE10C1B8C872300E9C3E9 /* Navigation+External.swift */; };
 		3E8CA32420E57B9300CBDA69 /* Navigation+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */; };
 		3E8CA32520E57B9300CBDA69 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F077D1B4C67A100C96ABF /* Util.swift */; };
-		3E8CA32620E57B9300CBDA69 /* ELHybridWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */; };
 		3E8CA32720E57B9300CBDA69 /* UIWebView+JavaScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */; };
 		3E8CA32820E57B9300CBDA69 /* ViewControllerChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177E5D8E1B00FE1A006BCBE2 /* ViewControllerChild.swift */; };
 		3E8CA32C20E57B9300CBDA69 /* ELHybridWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = 173E4E5D1B00FDAD00ACBCCA /* ELHybridWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,48 +70,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 173E4E571B00FDAD00ACBCCA;
 			remoteInfo = ELHybridWeb;
-		};
-		17A1462A1DB7251800309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146241DB7251800309044 /* ELLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8D47BB1AAE6FF50028B74D;
-			remoteInfo = ELLog;
-		};
-		17A1462C1DB7251800309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146241DB7251800309044 /* ELLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA8D47C61AAE6FF50028B74D;
-			remoteInfo = ELLogTests;
-		};
-		17A1462E1DB7251800309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146241DB7251800309044 /* ELLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA2410631AF966F600AA4410;
-			remoteInfo = ELLog_osx;
-		};
-		17A146301DB7253000309044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146241DB7251800309044 /* ELLog.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CA8D47BA1AAE6FF50028B74D;
-			remoteInfo = ELLog;
-		};
-		3E8CA33720E57B9300CBDA69 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146241DB7251800309044 /* ELLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3EBC4B8E20E55C2D00013E61;
-			remoteInfo = ELLog_static;
-		};
-		3E8CA3C920E57F8C00CBDA69 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17A146241DB7251800309044 /* ELLog.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3EBC4B7C20E55C2D00013E61;
-			remoteInfo = ELLog_static;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -152,7 +109,6 @@
 		178412261B16762D00EECF8B /* WebViewControllerDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerDelegateTests.swift; sourceTree = "<group>"; };
 		178822E81B4D4BFC00B5548D /* NavigationBarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarTests.swift; sourceTree = "<group>"; };
 		1795F5EA1B73A3B60070BB49 /* WebViewControllerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerOptions.swift; sourceTree = "<group>"; };
-		17A146241DB7251800309044 /* ELLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ELLog.xcodeproj; path = Carthage/Checkouts/ELLog/ELLog.xcodeproj; sourceTree = "<group>"; };
 		17B435691B667B4D00446D71 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabBar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		17BEBC9F1B2F60B100B0FB3E /* Navigation+Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Navigation+Modal.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		17C41D5C1B7E1F27009431C0 /* ViewAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAPITests.swift; sourceTree = "<group>"; };
@@ -162,10 +118,10 @@
 		17E076E21B024AC4008F89EC /* UIWebView+JavaScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+JavaScriptContext.swift"; sourceTree = "<group>"; };
 		17E076E91B025AA2008F89EC /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
 		17FA96731B5D4954000B4754 /* HybridAPIInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridAPIInfo.swift; sourceTree = "<group>"; };
+		197977222183704700127566 /* HybridWebLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridWebLogger.swift; sourceTree = "<group>"; };
 		1993579E1B96651000408546 /* WebViewControllerOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerOptionsTests.swift; sourceTree = "<group>"; };
 		19FECF611B9615720095440B /* BarButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonTests.swift; sourceTree = "<group>"; };
 		3E8CA33220E57B9300CBDA69 /* ELHybridWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ELHybridWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ELHybridWeb.swift; path = Source/ELHybridWeb.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +129,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17A146381DB7253A00309044 /* ELLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +152,6 @@
 		173E4E4E1B00FDAD00ACBCCA = {
 			isa = PBXGroup;
 			children = (
-				CA85AA271B3B27E20000FEEF /* Modules */,
 				173E4E5A1B00FDAD00ACBCCA /* ELHybridWeb */,
 				173E4E671B00FDAE00ACBCCA /* ELHybridWebTests */,
 				173E4E591B00FDAD00ACBCCA /* Products */,
@@ -262,7 +216,7 @@
 				177E5D851B00FE1A006BCBE2 /* JS API */,
 				177E5D8D1B00FE1A006BCBE2 /* Web View */,
 				172F077D1B4C67A100C96ABF /* Util.swift */,
-				CA5A6A161C6E80AF00418372 /* ELHybridWeb.swift */,
+				197977222183704700127566 /* HybridWebLogger.swift */,
 			);
 			path = Source;
 			sourceTree = SOURCE_ROOT;
@@ -301,25 +255,6 @@
 			path = "Web View";
 			sourceTree = "<group>";
 		};
-		17A146251DB7251800309044 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				17A1462B1DB7251800309044 /* ELLog.framework */,
-				3E8CA33820E57B9300CBDA69 /* ELLog.framework */,
-				17A1462D1DB7251800309044 /* ELLogTests.xctest */,
-				17A1462F1DB7251800309044 /* ELLog.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CA85AA271B3B27E20000FEEF /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				17A146241DB7251800309044 /* ELLog.xcodeproj */,
-			);
-			name = Modules;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -354,7 +289,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				17A146311DB7253000309044 /* PBXTargetDependency */,
 			);
 			name = ELHybridWeb;
 			productName = ELHybridWeb;
@@ -392,7 +326,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3E8CA3CA20E57F8C00CBDA69 /* PBXTargetDependency */,
 			);
 			name = ELHybridWeb_static;
 			productName = ELHybridWeb;
@@ -429,12 +362,6 @@
 			mainGroup = 173E4E4E1B00FDAD00ACBCCA;
 			productRefGroup = 173E4E591B00FDAD00ACBCCA /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 17A146251DB7251800309044 /* Products */;
-					ProjectRef = 17A146241DB7251800309044 /* ELLog.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				173E4E571B00FDAD00ACBCCA /* ELHybridWeb */,
@@ -443,37 +370,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		17A1462B1DB7251800309044 /* ELLog.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELLog.framework;
-			remoteRef = 17A1462A1DB7251800309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A1462D1DB7251800309044 /* ELLogTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ELLogTests.xctest;
-			remoteRef = 17A1462C1DB7251800309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17A1462F1DB7251800309044 /* ELLog.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELLog.framework;
-			remoteRef = 17A1462E1DB7251800309044 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3E8CA33820E57B9300CBDA69 /* ELLog.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ELLog.framework;
-			remoteRef = 3E8CA33720E57B9300CBDA69 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		173E4E561B00FDAD00ACBCCA /* Resources */ = {
@@ -508,6 +404,7 @@
 				172B6C4F1B5EAC1700D2E9D2 /* HybridAPI+View.swift in Sources */,
 				1782B23F1B6B0EF800FC0E4B /* DialogAlert.swift in Sources */,
 				177E5D981B00FE1A006BCBE2 /* WebViewController.swift in Sources */,
+				197977232183704700127566 /* HybridWebLogger.swift in Sources */,
 				1782B2361B6B0EC800FC0E4B /* Dialog.swift in Sources */,
 				17C479331B4C612200F01703 /* DialogOptions.swift in Sources */,
 				17711C0E1B20FDFB0043B71E /* BarButton.swift in Sources */,
@@ -523,7 +420,6 @@
 				170DE10D1B8C872300E9C3E9 /* Navigation+External.swift in Sources */,
 				17BEBCA01B2F60B100B0FB3E /* Navigation+Modal.swift in Sources */,
 				172F077E1B4C67A100C96ABF /* Util.swift in Sources */,
-				CA5A6A171C6E80AF00418372 /* ELHybridWeb.swift in Sources */,
 				17E076E31B024AC4008F89EC /* UIWebView+JavaScriptContext.swift in Sources */,
 				177E5D971B00FE1A006BCBE2 /* ViewControllerChild.swift in Sources */,
 			);
@@ -552,6 +448,7 @@
 				3E8CA31420E57B9300CBDA69 /* HybridAPI+View.swift in Sources */,
 				3E8CA31520E57B9300CBDA69 /* DialogAlert.swift in Sources */,
 				3E8CA31620E57B9300CBDA69 /* WebViewController.swift in Sources */,
+				19C69F56218B4880001BD6AB /* HybridWebLogger.swift in Sources */,
 				3E8CA31720E57B9300CBDA69 /* Dialog.swift in Sources */,
 				3E8CA31820E57B9300CBDA69 /* DialogOptions.swift in Sources */,
 				3E8CA31920E57B9300CBDA69 /* BarButton.swift in Sources */,
@@ -567,7 +464,6 @@
 				3E8CA32320E57B9300CBDA69 /* Navigation+External.swift in Sources */,
 				3E8CA32420E57B9300CBDA69 /* Navigation+Modal.swift in Sources */,
 				3E8CA32520E57B9300CBDA69 /* Util.swift in Sources */,
-				3E8CA32620E57B9300CBDA69 /* ELHybridWeb.swift in Sources */,
 				3E8CA32720E57B9300CBDA69 /* UIWebView+JavaScriptContext.swift in Sources */,
 				3E8CA32820E57B9300CBDA69 /* ViewControllerChild.swift in Sources */,
 			);
@@ -580,16 +476,6 @@
 			isa = PBXTargetDependency;
 			target = 173E4E571B00FDAD00ACBCCA /* ELHybridWeb */;
 			targetProxy = 173E4E651B00FDAE00ACBCCA /* PBXContainerItemProxy */;
-		};
-		17A146311DB7253000309044 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ELLog;
-			targetProxy = 17A146301DB7253000309044 /* PBXContainerItemProxy */;
-		};
-		3E8CA3CA20E57F8C00CBDA69 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ELLog_static;
-			targetProxy = 3E8CA3C920E57F8C00CBDA69 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

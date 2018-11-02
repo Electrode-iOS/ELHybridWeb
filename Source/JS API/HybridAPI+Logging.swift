@@ -8,7 +8,6 @@
 
 import Foundation
 import JavaScriptCore
-import ELLog
 
 @objc protocol HybridLoggingJSExport: JSExport {
     func log(_ value: AnyObject)
@@ -16,10 +15,6 @@ import ELLog
 
 extension HybridAPI {
     func log(_ value: AnyObject) {
-        self.log(.Info, "HybridAPI: \(value)")
-    }
-    
-    func log(_ level: LogLevel, _ message: String) {
-        sharedLogger.log(level, message: message)
+        ELHybridWeb.log(.info, "HybridAPI: \(value)")
     }
 }

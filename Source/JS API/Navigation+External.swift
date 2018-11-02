@@ -16,7 +16,7 @@ import JavaScriptCore
 extension Navigation: ExternalNavigationJSExport {
     
     func presentExternalURL(_ options: [String: String])  {
-        log(.Debug, "options:\(options)") // provide breadcrumbs
+        log(.debug, "options:\(options)") // provide breadcrumbs
         if let externalOptions = ExternalNavigationOptions(options: options) {
             DispatchQueue.main.async {
                 self.webViewController?.presentExternalURL(options: externalOptions)
@@ -25,7 +25,7 @@ extension Navigation: ExternalNavigationJSExport {
     }
     
     func dismissExternalURL(_ urlString: String) {
-        log(.Debug, "urlString\(urlString)") // provide breadcrumbs
+        log(.debug, "urlString\(urlString)") // provide breadcrumbs
         if let url = URL(string: urlString) {
             if let presentingWebViewController = webViewController?.externalPresentingWebViewController {
                 presentingWebViewController.load(url: url)
