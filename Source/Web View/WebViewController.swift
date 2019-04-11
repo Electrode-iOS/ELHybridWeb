@@ -22,7 +22,7 @@ import UIKit
      - parameter navigationType: The type of user action that started the load.
      - returns: Return true to
     */
-    @objc optional func webViewController(_ webViewController: WebViewController, shouldStartLoadWithRequest request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool
+    @objc optional func webViewController(_ webViewController: WebViewController, shouldStartLoadWithRequest request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool
     
     /**
      Sent before the web view begins loading a frame.
@@ -214,15 +214,15 @@ open class WebViewController: UIViewController {
                 webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
                 webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
             } else {
-                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
+                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[webView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             }
             
             // Pin web view sides to sides of view
-            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
+            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["webView" : webView]))
             view.removeDoubleTapGestures()
             if let storedScreenshotGUID = storedScreenshotGUID {
                 placeholderImageView.image = UIImage.loadImageFromGUID(guid: storedScreenshotGUID)
-                view.bringSubview(toFront: placeholderImageView)
+                view.bringSubviewToFront(placeholderImageView)
             }
         case .unknown: break
         }
@@ -254,18 +254,18 @@ open class WebViewController: UIViewController {
                 storedScreenshotGUID = screenshotImage.saveImageToGUID()
             }
 
-            view.bringSubview(toFront: placeholderImageView)
+            view.bringSubviewToFront(placeholderImageView)
             
             webView.isHidden = true
             
         case .unknown:
-            if isMovingFromParentViewController {
+            if isMovingFromParent {
                 webView.isHidden = true
             }
         case .external: break
         }
 
-        if disappearedBy != .webPop && isMovingFromParentViewController {
+        if disappearedBy != .webPop && isMovingFromParent {
             hybridAPI?.navigation.back()
         }
 
@@ -275,7 +275,7 @@ open class WebViewController: UIViewController {
         // clear out parent reference to prevent the popping view's onAppear from
         // showing the web view too early
         case .webPop,
-             .unknown where isMovingFromParentViewController:
+             .unknown where isMovingFromParent:
             hybridAPI?.parentViewController = nil
         default: break
         }
@@ -299,7 +299,7 @@ open class WebViewController: UIViewController {
     public final func showWebView() {
         webView.isHidden = false
         placeholderImageView.image = nil
-        view.sendSubview(toBack: placeholderImageView)
+        view.sendSubviewToBack(placeholderImageView)
     }
     
     // MARK: Request Loading
@@ -427,7 +427,7 @@ open class WebViewController: UIViewController {
      Return `true` to have the web view controller push a new web view controller
      on the stack for a given navigation type of a request.
      */
-    public func pushesWebViewControllerForNavigationType(navigationType: UIWebViewNavigationType) -> Bool {
+    public func pushesWebViewControllerForNavigationType(navigationType: UIWebView.NavigationType) -> Bool {
         return false
     }
     
@@ -523,7 +523,7 @@ open class WebViewController: UIViewController {
             y = label.frame.maxY + 20
         }
         
-        button.setTitle(NSLocalizedString("Try again", comment: "Try again"), for: UIControlState.normal)
+        button.setTitle(NSLocalizedString("Try again", comment: "Try again"), for: UIControl.State.normal)
         button.frame = CGRect(x: x, y: y, width: size.width, height: size.height)
         button.backgroundColor = UIColor.lightGray
         button.titleLabel?.backgroundColor = UIColor.lightGray
@@ -624,7 +624,7 @@ extension WebViewController: UIWebViewDelegate {
         }
     }
     
-    final public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    final public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         if pushesWebViewControllerForNavigationType(navigationType: navigationType) {
             pushWebViewController()
         }
@@ -723,7 +723,7 @@ extension UIImage {
         let guid = UUID().uuidString
         
         DispatchQueue.global().async {
-            if let imageData = UIImageJPEGRepresentation(self, 1.0),
+            if let imageData = self.jpegData(compressionQuality: 1.0),
                 let filePath = UIImage.absoluteFilePath(guid: guid) {
                 FileManager.default.createFile(atPath: filePath, contents: imageData, attributes: nil)
             }

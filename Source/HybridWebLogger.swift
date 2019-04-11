@@ -41,5 +41,5 @@ public var logger: HybridWebLogger?
 
 /// Convenient wrapper for sending messages to `logger`
 internal func log(_ flag: HybridWebLogFlag, _ message: @autoclosure () -> String) {
-    logger?.log(flag, message)
+    logger?.log(flag, message())
 }
