@@ -26,7 +26,7 @@ import UIKit
     }
     
     func show(callback: @escaping (Int) -> Void) {
-        log(.debug, "callback:\(callback)") // provide breadcrumbs
+        log(.debug, "callback:\(String(describing: callback))") // provide breadcrumbs
         self.callback = callback
         
         alertView = createAlertView()
